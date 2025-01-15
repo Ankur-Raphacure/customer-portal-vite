@@ -919,3 +919,7 @@ body {
     display: none;
   }
 }
+
+#basic-navbar-nav{
+  visibility: visible;
+}
