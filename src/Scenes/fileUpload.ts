@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 const azure_accountID = "socialstarhub-extension-imagesInfo";
 const azure_contentGuId = "temp";
 
-// const account = process.env.REACT_APP_AZURE_ACCOUNT_NAME;
-// const content_gu_id = process.env.REACT_APP_AZURE_CONTENT_GU_ID
+// const account = import.meta.env.REACT_APP_AZURE_ACCOUNT_NAME;
+// const content_gu_id = import.meta.env.REACT_APP_AZURE_CONTENT_GU_ID
 
 const account = azure_accountID;
 
 const contentGuId = azure_contentGuId;
-// const sas = process.env.REACT_APP_AZURE_SAS_STRING;
+// const sas = import.meta.env.REACT_APP_AZURE_SAS_STRING;
 
 const uploadFileToAzure = async (
   sasToken: string,

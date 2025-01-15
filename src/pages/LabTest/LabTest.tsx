@@ -116,7 +116,7 @@ const LabTest = () => {
   const fetchMore = () => {};
   const handleSubmit = async (e: any) => {
     // e.preventDefault();
-    // //process.env.REACT_APP_AZURE_STORAGE_CONNECTION_STRING
+    // //import.meta.env.REACT_APP_AZURE_STORAGE_CONNECTION_STRING
     // const blobServiceClient = new BlobServiceClient();
     // const blockBlobClient = blobServiceClient.getBlockBlobClient(file.name);
     // try {
