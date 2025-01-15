@@ -418,8 +418,8 @@ const Home = () => {
                         and access your ABHA ID.
                       </p>
                       <div className="d-flex justify-content-between align-items-center abha-sub-card-right-img-div">
-                        {AbhaCardImg.map((item: any) => {
-                          return <img src={item?.img} alt="" />;
+                        {AbhaCardImg.map((item: any, index:any) => {
+                          return <img src={item?.img} alt="" key={index} />;
                         })}
                       </div>
                       <div className="d-flex align-items-center">
@@ -494,7 +494,7 @@ const Home = () => {
                   </div>
                   <div className="doctore-card-div ">
                     {topHealthcareSpecialist?.map((item: any, index: any) => (
-                      <DoctorDetailsCard item={item} />
+                      <DoctorDetailsCard item={item} key={index} />
                     ))}
                   </div>
                 </div>

@@ -20,8 +20,6 @@ import {
   Row,
   Col,
   Button,
-  CardDeck,
-  CardColumns,
   InputGroup,
   Dropdown,
 } from "react-bootstrap";
@@ -619,9 +617,9 @@ const Header = (props) => {
         <div className="bg-body-tertiary">
           <div className="marquee-rotate-sec-con-txt">
             <Marquee>
-              {items.map((item) => {
+              {items.map((item,index) => {
                 return (
-                  <div className="marquee-rotate-div">
+                  <div className="marquee-rotate-div" key={index}>
                     <p>{item}</p>
                   </div>
                 );
