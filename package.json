@@ -61,7 +61,6 @@
     "react-popover": "^0.5.10",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.3.4",
-    "react-scripts": "^5",
     "react-select": "^5.8.0",
     "react-share": "^5.1.0",
     "react-slick": "^0.30.2",
