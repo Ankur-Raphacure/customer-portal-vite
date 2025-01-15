@@ -1,0 +1,23 @@
+@media (min-width: 768px) {
+  .custom_addressmodal {
+    max-width: 41.5625% !important;
+    top: 10%;
+  }
+}
+
+button.selectaddress-btn {
+  appearance: none;
+  border-radius: 5px;
+  border: 1px solid #ac9494;
+  height: 34px;
+  background: #ffffff;
+  font-size: 12px;
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  white-space: nowrap;
+  /* width: 47.549%; */
+  padding: 0 12px;
+  width: fit-content;
+}

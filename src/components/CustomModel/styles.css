@@ -1,0 +1,68 @@
+/* .modal-content {
+    min-width: 609px;
+    border: none;
+    border-radius: unset;
+}
+
+.modal-body {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    min-height     : 195px;
+} */
+
+.modalBodyText {
+  /* font-family: Noto Serif; */
+  /* font-style : normal; */
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 40px;
+  color: #000000;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.modalCandelBtn {
+  width: 154px;
+  height: 50px;
+  border: 1px solid #000000;
+  background: #ffffff;
+  border-radius: 4px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  margin-right: 16px;
+}
+
+.modalCandelBtn:hover,
+.modalCandelBtn:focus,
+.modalCandelBtn:active {
+  background-color: #ffffff !important;
+  border: 1px solid #000000 !important;
+  color: #000000 !important;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset !important;
+}
+
+.modalDeleteBtn {
+  width: 148px;
+  height: 50px;
+  background: #000000 !important;
+  border: none;
+  border-radius: 4px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.modalDeleteBtn:hover,
+.modalDeleteBtn:focus,
+.modalDeleteBtn:active {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset !important;
+  background-color: #000000 !important;
+}

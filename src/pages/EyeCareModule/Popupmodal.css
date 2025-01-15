@@ -1,0 +1,119 @@
+/* .modal-body h3 {
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: left;
+}
+
+.modal-body p {
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.modal-body input::placeholder {
+    color: #000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.modal-body select {
+    color: #000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.modal-body option {
+    color: #000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.modal-body input[type="date"] {
+    color: #000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.modal-body input[type="date"]::placeholder {
+    color: #000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.modal-body textarea {
+    color: #000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+    resize: vertical; 
+}
+
+.modal-body textarea::placeholder {
+    color: #000;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.modal-body button,
+.modal-footer button {
+    border-radius: 2px;
+    background: #9747FF;
+    box-shadow: 2px 2px 19px 0px rgba(0, 0, 0, 0.10);
+    color: #FFF;
+    display: inline-flex;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-body button:hover,
+.modal-footer button:hover {
+    background: #863fdb; 
+}
+
+.modal-body button:focus,
+.modal-footer button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(151, 71, 255, 0.5); 
+} */

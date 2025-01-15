@@ -1,0 +1,26 @@
+@media (min-width: 768px) {
+  .doctor_slotModal {
+    max-width: 31.796% !important;
+    top: 5%;
+
+    .doctor_slotselection {
+      margin-top: auto;
+    }
+  }
+}
+
+.doctor_slotModal .doctor_slotselection{
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+.modal-dialog.doctor_slotModal{
+  margin: 1rem;
+  max-width: 100% !important;
+  @media (max-width: 760px){
+    margin: 0;
+    padding: 1rem;
+    height: auto;
+  }
+}

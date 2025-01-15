@@ -1,0 +1,77 @@
+@media all and (min-width: 480px) {
+    .LoginContainer {
+      padding: 30px 0;
+    }
+  
+    .LoginContainer form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+  }
+  .LoginContainer {
+    width: 500px;
+    margin: auto !important;
+  }
+  .errorMessage{
+    color: red;
+  }
+  .signup-md{
+    width: 47%;
+    float: left;
+  }
+  .signup-md-left{
+    width: 47%;
+    float: left;
+    margin-left: 6%;
+  }
+  .SignupContainer{
+    margin-top: 50px;
+  }
+  .loginsignupContainer{
+    margin-top: 50px;
+  }
+  .tabHeaderDesktop{
+    width: 500px;
+    margin: auto !important;
+  }
+  .data-loginsignupContainer {
+    width: 75%;
+    margin: auto;
+  }
+  .freshbag_signin_header{
+    font-size: 28px;
+    font-weight: 600;
+    color: #000;
+    /* margin-top: 5px!important; */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .tabHeaderDesktop > div{
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    /* padding-bottom: 13px; */
+    cursor: pointer;
+  }
+  .tabHeaderDesktop .tabActive{
+    border-bottom: 10px solid #000;
+  }
+  .tabInActive {
+    border-bottom: 1px solid #dadada;
+}
+.data-loginsignupContainer > .row{
+    margin: 0px;
+}
+.tabHeaderDesktop span{
+    padding-bottom: 15px;
+}
+.LoginContainer .form-group .error.form-control{
+  border-color: red;
+}
+.SignupContainer .form-group .invalid-feedback{
+  display: inline;
+}

@@ -1,0 +1,105 @@
+@media (min-width: 601px) {
+  .show-mobile {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .show-desktop {
+    display: none;
+  }
+  .layout-container {
+    /* width: fit-content; */
+  }
+  .freshbag-container {
+    width: 100%;
+  }
+  .products-list {
+    max-width: 100%;
+    padding: 0px;
+  }
+  .products-list .product_cart {
+    padding: 10px;
+    display: block;
+  }
+  .products-list .product_cart > div {
+    width: 100%;
+  }
+  .products-list .product_cart .cart_product-image img {
+    max-width: 100%;
+  }
+  .product_cart .cart_product-image {
+    width: 100%;
+  }
+  .product_cart .cart_actions {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .cart-left-side-continer,
+  .cart-right-side-continer {
+    width: 100%;
+    margin-bottom: 0px;
+  }
+  .cart-right-side-continer {
+    padding-top: 10px;
+  }
+  .products-list-cart .product_cart {
+    display: block;
+  }
+  .products-list-cart .product_cart > div {
+    width: 100%;
+  }
+  .products-list-cart .product_cart .cart_product-actions {
+    text-align: right;
+    width: 95%;
+  }
+  .products-list-cart .cart_product-image img {
+    max-width: 100%;
+  }
+  .LoginContainer {
+    width: 100%;
+  }
+  .orderHistory-container {
+    width: 90%;
+  }
+  .orderHistory-header-text {
+    width: 100%;
+  }
+  .orderHistory-body .order-details-row {
+    display: block;
+  }
+  .orderHistory-body .order-details-row > div {
+    width: 100%;
+  }
+  .orderHistory-body .order-history-item-image {
+    max-width: 100%;
+  }
+  .orderHistory-body .order-body-all-rows {
+    padding-left: 20px;
+  }
+  .myProfile-container .profile-left-container,
+  .myProfile-container .profile-right-container {
+    width: 100%;
+  }
+  .profile-right-container .userProfile-wrapper > div {
+    display: block;
+  }
+  .profileinfoHeader span {
+    font-size: 20px;
+  }
+  .profileinfoHeader .profileEdit {
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  /* create-product */
+  .product-upload-section {
+    width: 100%;
+  }
+  .product-upload-body .imageContainer {
+    margin: 22px 6px 43px !important;
+    width: 100%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+}

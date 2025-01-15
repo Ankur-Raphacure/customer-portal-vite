@@ -1,0 +1,23 @@
+.not-found-section {
+  margin-top: 20%;
+}
+.not-found-content {
+  margin: 0 auto;
+  margin-top: 20px;
+  text-align: center;
+  /* font-family: "Montserrat"; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 21px;
+  color: #000000;
+}
+.not-found-content button {
+  height: 50px;
+  border-radius: 4px;
+  padding: 5px 20px;
+  background: #000;
+  color: #fff;
+  border: none;
+  margin-top: 20px;
+}

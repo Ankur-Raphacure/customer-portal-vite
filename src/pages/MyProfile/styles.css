@@ -1,0 +1,162 @@
+
+.myProfile-container{
+    margin: 0 auto;
+    position: relative;
+    padding: 14px 0px;
+    display: contents;
+}
+.profile-left-container{
+    width: 25%;
+    float: left;
+}
+.profile-right-container{
+    float: left;
+    width: 75%;
+    padding-left: 16px;
+}
+.fontBold{
+    font-weight: 600;
+}
+.profileinfoHeader .profileEdit{
+    font-size: 19px;
+    color: #2874f0;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.profileEditSave{
+    margin-top: 40px;
+    text-align: center;
+}
+.profileEditSave Button{
+    width: 150px;
+}
+.profile-content{
+    padding: 30px;
+    min-height: 100vh;
+    background-color: #fff;
+}
+.profile-top{
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+}
+.profile-menu{
+    background-color: #fff;
+    min-height: 80vh;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+    margin-bottom: 16px;
+}
+.profile-menu .orderSection {
+    padding: 15px 20px;
+}
+.imageIcon{
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+}
+.profile-name{
+    padding: 5px 0 0 16px;
+    width: calc(100% - 50px);
+}
+.profile-hello{
+    font-size: 12px;
+}
+.profile-username{
+    padding-top: 3px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    text-transform: capitalize;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.profile-name p{
+    margin-bottom: 0px;
+}
+.imageIcon {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.profile-image{
+    padding: 15px 20px;
+    display: flex;
+}
+.orderSection-row svg{
+    width: 16px;
+    height: 16px;
+    transform: rotate(180deg);
+}
+.orderSection-row{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+.orderSection-row span{
+    font-size: 16px;
+    font-weight: 500;
+    color: #878787;
+    cursor: pointer;
+}
+.ordersecimage{
+    height: 30px;
+    width: 50px;
+    margin-left: 5px;
+}
+.orderSection{
+    /* border-bottom: 1px solid #f0f0f0; */
+    display: flex;
+}
+.ordersectionpage{
+    border-bottom: 1px solid #f0f0f0;
+}
+.logoutsectionpage{
+    margin-top: 50px;
+    border-top: 1px solid #f0f0f0;
+}
+.list-menu-item{
+    font-size: 14px;
+    padding: 12px 5px 12px 50px;
+    cursor: pointer;
+}
+.list-menu-items .selected{
+    font-weight: 500;
+    color: #2874f0;
+    background-color: #f5faff;
+}
+.profile-content .headerText{
+    font-size: 18px;
+    font-weight: 500;
+}
+.namesSection{
+    margin-top: 10px;
+    display: flex;
+}
+.namesSection input {
+    width: 250px;
+    height: 50px;
+    padding: 15px;
+    margin-right: 30px;
+}
+.profileHeaderSec{
+    margin-top: 30px;
+}
+.profileinfoHeader span  {  
+    font-weight: 600;
+    font-size: 29px;
+}
+.profileinfoHeader{
+    margin-bottom: 30px;
+}
+.userProfile-wrapper .hasError{
+    border: 1px solid red;
+    border-radius: 3px;
+}
+.user-details-row{
+    display: flex;
+}

@@ -1,0 +1,15 @@
+.image-link {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.main-links {
+  display: flex;
+  gap: 50px;
+}
+.rapha-plus-home-page-top .search-list-sec {
+  margin-left: 0px !important;
+}
+.perent-search-div1 {
+  margin-top: 20px;
+}

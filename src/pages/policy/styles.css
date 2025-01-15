@@ -1,0 +1,13 @@
+.privacyPolicy {
+  font-family: Roboto;
+}
+.bgImage {
+  opacity: 0.1;
+  position: fixed;
+}
+.privacyPolicy h1 {
+  font-size: 3rem;
+}
+.privacyPolicy p {
+  font-size: 1.5rem;
+}

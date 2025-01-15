@@ -1,0 +1,9 @@
+.image-link {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.main-links {
+  display: flex;
+  gap: 50px;
+}

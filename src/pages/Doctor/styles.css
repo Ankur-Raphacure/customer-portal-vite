@@ -1,0 +1,16 @@
+.image-link {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.main-links {
+  display: flex;
+  gap: 50px;
+}
+
+.book-appointemnt-sec
+  .hospital_container
+  .hospital_listcontainer
+  .hospital_header {
+  padding: 5px !important;
+}

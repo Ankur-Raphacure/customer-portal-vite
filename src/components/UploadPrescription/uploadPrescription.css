@@ -1,0 +1,11 @@
+@media (min-width: 768px) {
+  .upload-prescription-box {
+    max-width: 60.39% !important;
+    top: -5%;
+
+    .modal-content {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
