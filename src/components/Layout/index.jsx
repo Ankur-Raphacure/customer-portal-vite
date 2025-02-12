@@ -198,7 +198,7 @@ const Layout = (props) => {
             setIsLoading(false);
           }
         } else {
-          setIsInvalidDomain(true);
+          setIsInvalidDomain(false);
         }
       } else if (isDoctorDashboard) {
         const data1 = { userid: userid };
