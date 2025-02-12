@@ -26,3 +26,5 @@ dist-ssr
 tmp/
 build
 .vercel
+bun.lock
+package-lock.json
