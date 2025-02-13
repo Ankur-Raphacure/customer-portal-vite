@@ -1,241 +1,45 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PharmacyStyled } from "../../Pharmacy/Pharmacy.styled";
 import {
-  getAllBrandsAPI,
   getAllCategoriesAPI,
-  getAllMedicineAPI,
-  getAllSubCategoriesAPI,
-  getAllCompareMedicineAPI,
-  getPharmacyCategoriesAPI,
-  getAllSaltCategoriesAPI,
 } from "../../../redux/slices/labtest/labtestService";
-import { getAttachmentIds } from "../../../Scenes/common";
-import { Select } from "antd";
-import { handleAddToCartAPI,getCartItemsAPI } from "../../../redux/slices/checkout/checkoutService";
-import ComparisonMedicineCardModule from "../../Pharmacy/ComparisonMedicineCardModule";
-
-import { updateShowLoginModel } from "../../../redux/slices/auth/authSlice";
-import Loader from "../../../components/Loader/Loader";
-import SideFilterModule from "../../Pharmacy/SideFilterModule";
+import SideFilterModule from "../sideModuleFilter/SideFilterModule";
 import SearchByTextModule from "../../Pharmacy/SearchByTextModule";
-import { pharmacySearchTextChange } from "../../Pharmacy/PharmacyObjectsModule";
-import MedicineCardModule from "../../Pharmacy/MedicineCardModule";
 import BreadCrumbModule from "../../Pharmacy/BreadCrumbModule";
-import Paginations from "../../../components/PaginationModule/Paginations";
 import ProductCard from "../../../components/Gym/productCard/productCard/ProductCard";
-import { getCategoriesAPI, getGymVendorsAPI } from "../../../redux/slices/generic/genericService";
+import { RootState } from "../../../redux/store";
+import { getAllFitnessCentersAPI, getAllFitnessVendorsAPI } from "../../../redux/slices/fitness/fitnessService";
+import { FitnessCenterPageStyle } from "./FitnessCentersPage.style";
+import { toast } from "react-toastify";
+import Loader from "../../../components/Loader/Loader";
 
 const FitnessCenterPage = (props: any) => {
   let { sectionName } = props?.match?.params;
   sectionName = sectionName === "all" ? "" : sectionName;
-  const [medicines, setMedicines] = useState([]);
-  const location = useLocation<any>();
-  const SelectedCategory = location?.state;
-  const titleName = SelectedCategory?.name as any;
-  const [btnCategoryId, setBtnCategoryId] = useState([] as any);
 
   const list = [
     {
       title: "Fitness",
-      link: `/fitness`,
+      link: `/fitness_v2`,
     },
     {
-      title: titleName || sectionName,
-    },
+      title:"Gyms",
+      link:"/fitnessCenters"
+    }
   ];
-  const allTypeList = [
-    {
-      name: "Branded",
-      id: "branded",
-      link: `/pharmacy`,
-    },
-    {
-      name: "Generic",
-      id: "generic",
-      link: `/pharmacy`,
-    },
-    {
-      name: "Wellness",
-      id: "wellness",
-      link: `/pharmacy`,
-    },
-    {
-      name: "Fitness",
-      id: "fitness",
-      link: `/fitness`,
-    },
-  ];
-  const [paginatedMedicines, setPaginatedMedicines] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
-  const pageSize = 12;
-  const [visibleCount, setVisibleCount] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
   const [searchText, setSearchText] = useState("");
-  const [sortBy, setSortBy] = useState("");
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState("");
-  const [minDiscount, setMinDiscount] = useState("");
-  const [maxDiscount, setMaxDiscount] = useState("");
   const [categoryFilter, setCategoryFilter] = useState(
     sectionName ? ([Number(sectionName)] as any) : ([] as any)
   );
-  const [brandFilter, setBrandFilter] = useState([] as any);
-  const [typeFilter, setTypeFilter] = useState("");
-  const [page, setPage] = useState(1);
-  const [pageSizes, setPageSizes] = useState(10);
-  const [currentCount, setCurrentCount] = useState(1);
-  const history = useHistory();
+  const [vendorFilter,setVendorFilter] = useState([])
+
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-  const { cartItems } = useSelector((ReduxState: any) => ReduxState.checkout);
-  const { user,userCity } = useSelector((ReduxState: any) => ReduxState.auth);
-  const pProducts =
-    cartItems?.carts?.find((itemv: any) => itemv?.section_key === "pharmacy") ||
-    [];
-  const {
-    allCategoriesList,
-    allMedicinesList,
-    MedicinesCount,
-    allSubCategoriesList,
-    allSaltCategoryList,
-    allBrandsList,
-    allCompareMedicineList,
-  } = useSelector((ReduxState: any) => ReduxState.labtest);
-  const CompareMedicineList = useMemo(() => {
-    if (!Array.isArray(allCompareMedicineList)) return [];
-    return allCompareMedicineList?.map((ele: any) => ele?.medicines);
-  }, [allCompareMedicineList]);
-
-  const { selectedFilterType } = useSelector(
-    (ReduxState: any) => ReduxState.generic
-  );
 
 
+ 
 
 
-
-
-  const { allGymVendorsList, allGymCategoriesList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
-  );
-
-
-    const getLatestData = (city = "bengaluru") => {
-      dispatch(getGymVendorsAPI({ type: "gym", city: city?.toLowerCase() }));
-      dispatch(getCategoriesAPI({ type: "gym", city: city?.toLowerCase() }));
-    };
-
-
-    useEffect(() => {
-      getLatestData(userCity?.name);
-    }, [userCity?.name]);
-
-
-    console.log("hai")
-    console.log("all gym",allGymVendorsList)
-    console.log("all gym categories",allGymCategoriesList)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const handleClick = (btnName: any) => {
-    const prevcaids = [...btnCategoryId];
-    if (prevcaids?.includes(btnName)) {
-      const findINdex = prevcaids.findIndex(
-        (itemId: any) => itemId === btnName
-      );
-      prevcaids.splice(findINdex, 1);
-    } else {
-      prevcaids.push(btnName);
-    }
-    setBtnCategoryId(prevcaids);
-  };
-  useEffect(() => {
-    if (sectionName === "allProductsBySalt") {
-      getAllCompareProductsCall();
-    }
-  }, [btnCategoryId, page, pageSize]);
-
-  const getAllCompareProductsCall = async () => {
-    const newCount = currentCount + 8;
-    setCurrentCount(newCount);
-    setIsLoading(true);
-    await dispatch(
-      getAllCompareMedicineAPI({
-        status: "active",
-        categoryIds: btnCategoryId,
-        page: 1,
-        count: newCount,
-      })
-    );
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    paginateMedicines(currentPage);
-  }, [currentPage, medicines]);
-
-  const paginateMedicines = (page: number) => {
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    setPaginatedMedicines(medicines.slice(start, end));
-  };
-  const navigateToPage = (url: string) => {
-    history.push(url);
-  };
-  const addToCart = (item: any) => {
-    if (!user?.id) {
-      dispatch(updateShowLoginModel(true));
-    } else {
-      handleAddToCartCall(item);
-    }
-  };
-  const handleAddToCartCall = async (item: any) => {
-    const medC = [{ service_code: item?.service_code, count: 1 }];
-    const body1 = {
-      carts: [
-        {
-          user_id: user?.id,
-          useWallet: true,
-          collection_1_date: null,
-          collection_1_slot: null,
-          medicines: medC,
-          attachment_ids: getAttachmentIds("pharmacy"),
-          section_key: "pharmacy",
-        },
-      ],
-    };
-    await dispatch(handleAddToCartAPI(body1));
-    await dispatch(getCartItemsAPI());
-  };
-  const handleSelect = (value: string, option: any) => {
-    navigateToPage(option.key);
-  };
-  const handleLoadMore = () => {
-    setVisibleCount((prevCount: any) => prevCount + 1);
-  };
-  const handleSortChange = async (value: any) => {
-    setSortBy(value);
-  };
-  const setSelectedSortOption = (value: any) => {
-    setSortBy(value);
-  };
   const handleChangeCategoryFilter = async (id: any) => {
     const prevcaids = [...categoryFilter];
     if (prevcaids?.includes(id)) {
@@ -245,33 +49,6 @@ const FitnessCenterPage = (props: any) => {
       prevcaids.push(id);
     }
     setCategoryFilter(prevcaids);
-    dispatch(getAllBrandsAPI({ filters: { categoryIds: prevcaids } }));
-    setBrandFilter([]);
-    setMinPrice(0);
-    setMaxPrice("");
-    setMinDiscount("");
-    setMaxDiscount("");
-    setBrandFilter([]);
-  };
-  const handleChangeBrandFilter = (id: any) => {
-    const prevcaids = [...brandFilter];
-    if (prevcaids?.includes(id)) {
-      const findINdex = prevcaids.findIndex((itemId: any) => itemId === id);
-      prevcaids.splice(findINdex, 1);
-    } else {
-      prevcaids.push(id);
-    }
-    setBrandFilter(prevcaids);
-  };
-  const handleChangeTypeFilter = (id: any) => {
-    setTypeFilter(typeFilter != id ? id : "");
-    setBrandFilter([]);
-    setMinPrice(0);
-    setMaxPrice("");
-    setMinDiscount("");
-    setMaxDiscount("");
-    setBrandFilter([]);
-    // setCategoryFilter([]);
   };
 
   const handleonFilterName = async (event: any) => {
@@ -279,273 +56,170 @@ const FitnessCenterPage = (props: any) => {
     handleClearAll();
   };
 
-  const handleonFilterDiscount = (value: any) => {
-    setMinDiscount(minDiscount != value[0] ? value[0] : "");
-    setMaxDiscount(maxDiscount != value[1] ? value[1] : "");
-  };
-  const filterPriceRange = (value: any) => {
-    setMinPrice(value?.[0] ?? 0);
-    setMaxPrice(value?.[1]);
-  };
-
   const handleClearAll = () => {
-    setSortBy("");
-    setMinPrice(0);
-    setMaxPrice("");
-    setMinDiscount("");
-    setMaxDiscount("");
     setCategoryFilter([]);
-    setBrandFilter([]);
-    setTypeFilter("");
-  };
-  const getAllUsersCall = async () => {
-    let body = {} as any;
-    if (searchText) {
-      body.searchText = searchText;
-    }
-    if (sortBy) {
-      body.sortBy = sortBy;
-    }
-    if (categoryFilter) {
-      body.categoryIds = categoryFilter;
-    }
-    if (brandFilter) {
-      body.brands = brandFilter;
-    }
-    if (minPrice === 0 || minPrice) {
-      body.minPrice = minPrice;
-    }
-    if (maxPrice) {
-      body.maxPrice = maxPrice;
-    }
-    if (minDiscount) {
-      body.minDiscount = minDiscount;
-    }
-    if (maxDiscount) {
-      body.maxDiscount = maxDiscount;
-    }
-    if (typeFilter) {
-      body.medicineType = typeFilter;
-    }
-    body.count = pageSize;
-    body.page = visibleCount;
-
-    await dispatch(getAllMedicineAPI(body));
   };
 
+  const handleVendorChangeFilter = (id:string)=>{
+    setVendorFilter((pre:any)=>{
+      if(pre?.includes(id)){
+        return pre?.filter((item:any)=>item!==id)
+      }else{
+        return [...pre,id]
+      }
+    })
+  }
+
+  // filter data fetch for vendors and categories
+
+  const { allCategoriesList } = useSelector(
+    (ReduxState: any) => ReduxState.labtest
+  );
+  const {fitnessVendors} = useSelector((store:RootState)=>store?.Fitness)
+
   useEffect(() => {
-    if (sectionName !== "allProductsBySalt") {
-      getAllUsersCall();
-    }
-  }, [
-    visibleCount,
-    pageSize,
-    JSON.stringify(categoryFilter),
-    searchText,
-    sortBy,
-    maxPrice,
-    minPrice,
-    maxDiscount,
-    minDiscount,
-    brandFilter,
-    typeFilter,
-  ]);
-  useEffect(() => {
-    const objBody = {
-      categorieId: "",
-    };
-    if (sectionName === "allProductsBySalt") {
-      dispatch(getAllSaltCategoriesAPI(objBody));
-    } else {
-      dispatch(getAllCategoriesAPI({ sectionName: "pharmacy" }));
-      dispatch(getAllSubCategoriesAPI(objBody));
-    }
+    dispatch(getAllCategoriesAPI({ sectionName: "fitness" }));
+    dispatch(getAllFitnessVendorsAPI({status:"approved"}))
   }, []);
 
-  useEffect(() => {
-    dispatch(getAllBrandsAPI({ filters: { categoryIds: categoryFilter } }));
-  }, [categoryFilter]);
-  return (
-    <PharmacyStyled>
-      {isLoading && <Loader />}
-      {sectionName === "allProductsBySalt" ? (
-        <div className="allProductsBySalt-div">
-          <div>
-            <div className=" comparison-carousel-div">
-              <BreadCrumbModule
-                moduleName={"pharmacy"}
-                medicines={sectionName}
-                SelectedCategory={SelectedCategory}
-                list={list}
-              />
-              <p className=" comparison-carousel-title">
-                Compare Generic & Branded
-              </p>
-              <div className=" comparison-carousel-filter-btn">
-                {allSaltCategoryList?.category_ids?.map(
-                  (label: any, index: any) => {
-                    if (!label?.name) {
-                      return null;
-                    }
-                    const isActive = btnCategoryId.includes(label.id);
-                    return (
-                      <button
-                        key={index}
-                        onClick={() => handleClick(label.id)}
-                        className={isActive ? "active btn" : "btn"}
-                        style={{
-                          backgroundColor: btnCategoryId.includes(label.id)
-                            ? "#252b61"
-                            : "white",
-                          color: btnCategoryId.includes(label.id)
-                            ? "white"
-                            : "black",
-                        }}
-                      >
-                        {label?.name}
-                      </button>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-            {CompareMedicineList?.length > 0 ? (
-              <div>
-                <div className="all-compare-medicines-list">
-                  {CompareMedicineList?.map((item: any, index: any) => {
-                    const totLen = item?.length;
-                    const totLen1 = totLen - 1;
-                    const item2 = [...item];
-                    item2.sort(
-                      (a: any, b: any) =>
-                        a.discounted_price - b.discounted_price
-                    );
-                    const isAddedToCarts = pProducts?.medicines;
-                    return (
-                      <ComparisonMedicineCardModule
-                        key={index}
-                        generic={item2?.[0]}
-                        addToCart={addToCart}
-                        isAddedtoCart={isAddedToCarts}
-                        branded={item2?.[totLen1]}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            ) : (
-              <>
-                <div className="no-comparision-found-sec">
-                  <h5>No Comparision found</h5>
-                </div>
-              </>
-            )}
-          </div>
 
-          <div className="pagination-box-sec-pha mb-3">
-            <button
-              onClick={getAllCompareProductsCall}
-              className="load-more-btn"
-            >
-              Load More
-            </button>
-          </div>
+  //
+
+
+  //fitness centers
+
+    const { selectedCurrentAddress } = useSelector(
+      (ReduxState: RootState) => ReduxState.profile
+    );
+
+  const [pageNo, setPageNo] = useState(1);
+
+  const {
+    loading: fitnessCentersLoading,
+    data: fitnessCentersData,
+    error: fitnessCentersError,
+  } = useSelector((store: RootState) => store.Fitness.fitnessCenters);
+
+  useEffect(()=>{
+    if(fitnessCentersError){
+      toast.error(fitnessCentersError)
+    }
+  },[fitnessCentersError])
+
+  useEffect(() => {
+    const filterData = {
+      searchText: searchText ?? "",
+    };
+    dispatch(
+      getAllFitnessCentersAPI({
+        page: pageNo,
+        count: pageSize,
+        ...filterData,
+        category_ids: categoryFilter,
+        status: "active",
+        role: "user",
+        latitude:selectedCurrentAddress?.latitude,
+        longitude:selectedCurrentAddress?.longitude,
+        vendor_id:vendorFilter
+      })
+    );
+  }, [pageNo, pageSize, dispatch, searchText, categoryFilter,selectedCurrentAddress,vendorFilter]);
+
+  const handleLoadMore = () => {
+    setPageSize((pre) => {
+      return pre * 2;
+    });
+  };
+
+  console.log(fitnessVendors)
+
+  console.log("centers", fitnessCentersData);
+
+  //
+
+  return (
+    <FitnessCenterPageStyle>
+      {
+        fitnessCentersLoading && <Loader/>
+      }
+      <div className="all-fitnesscenter-page-div container">
+        <div className="filter-module-div">
+          <SideFilterModule
+            allCategoriesList={allCategoriesList}
+            handleChangeCategoryFilter={handleChangeCategoryFilter}
+            handleClearAll={handleClearAll}
+            categoryFilter={categoryFilter}
+            origin={"fitness"}
+            vendors={fitnessVendors}
+            selectedVendors={vendorFilter}
+            handleVendorChangeFilter={handleVendorChangeFilter}
+          />
         </div>
-      ) : (
-        <div className="all-pharmacy-page-div">
-          <div className="filter-module-div">
-            <SideFilterModule
-              allCategoriesList={allCategoriesList}
-              allBrandsList={allBrandsList}
-              allSubCategoriesList={allSubCategoriesList}
-              handleChangeCategoryFilter={handleChangeCategoryFilter}
-              handleonFilterDiscount={handleonFilterDiscount}
-              filterPriceRange={filterPriceRange}
-              handleClearAll={handleClearAll}
-              categoryFilter={categoryFilter}
-              brandFilter={brandFilter}
-              minDiscount={minDiscount}
-              maxDiscount={maxDiscount}
-              allTypeList={allTypeList}
-              typeFilter={typeFilter}
-              handleChangeBrandFilter={handleChangeBrandFilter}
-              handleChangeTypeFilter={handleChangeTypeFilter}
-              setSelectedSortOption={setSelectedSortOption}
-              origin={"pharmacy"}
+        <div className="right-card-module-div">
+          <BreadCrumbModule moduleName={"gym"} list={list} />
+          <div className="parent-search-left-div">
+            <SearchByTextModule
+              details={[" 💪 Gym"]}
+              handleonFilterName={handleonFilterName}
+              setSearchText={setSearchText}
+              searchText={searchText}
             />
           </div>
-          <div className="right-card-module-div">
-            <BreadCrumbModule
-              moduleName={"gym"}
-              medicines={sectionName}
-              SelectedCategory={SelectedCategory}
-              list={list}
-            />
-            <div className="parent-search-left-div">
-                <SearchByTextModule
-                    details={[" 💪 Gym"]}
-                    handleonFilterName={handleonFilterName}
-                    setSearchText={setSearchText}
-                    searchText={searchText}
-                />
+          <div className="parent-search-fild-div">
+            <div className="all-fitness-center-div">
+              <h2>All Fitness Centres</h2>
             </div>
-            <div className="parent-search-fild-div">
-                <div style={{marginTop:"20px"}}>
-                    <h2>All Fitness Centres</h2>
-                </div>
-              <div className="selector-filter-sub-module-div">
-                <Select
-                  showSearch
-                  placeholder="Sort By"
-                  filterOption={(input, option) =>
-                    (option?.label ?? "")
-                      .toLowerCase()
-                      .includes(input.toLowerCase())
-                  }
-                  defaultValue="discount"
-                  onChange={handleSortChange}
-                  options={[
-                    { value: "discount", label: "Discount" },
-                    { value: "desc", label: "Price: High to Low" },
-                    { value: "asc", label: "Price: Low to High" },
-                  ]}
-                />
-              </div>
-            </div>
-            <div className="page-count-div">
+          </div>
+          <div className="page-count-div">
+            {typeof fitnessCentersData?.totalRecords === "number" &&
+            !isNaN(fitnessCentersData?.totalRecords) ? (
               <p>
-                Showing 1 to {pageSize * visibleCount} Medicines of{" "}
-                {MedicinesCount} Medicines
+                {fitnessCentersData?.fitnessCenters?.length > pageSize * pageNo
+                  ? `Showing ${
+                      fitnessCentersData?.fitnessCenters?.length ? "1" : "0"
+                    } to ${pageSize * pageNo} Fitness of 
+                   ${fitnessCentersData?.totalRecords} Fitness Centers`
+                  : `Showing ${
+                      fitnessCentersData?.fitnessCenters?.length ? "1" : "0"
+                    } to ${
+                      fitnessCentersData?.fitnessCenters?.length
+                    } FitnessCenters`}
               </p>
-            </div>
-            <div className="card-module-div">
-              {Object.keys(allGymCategoriesList).length > 0 && allGymCategoriesList?.vendors?.map((item: any) => {
-                const isAddedToCart = pProducts?.medicines?.find(
-                  (item2: any) => item2?.service_code === item.service_code
-                );
-                const data= {
-                    name:item?.name,
-                    place:item?.city,
-                    imgLink:item?.image
-                }
+            ) : null}
+          </div>
+          <div className="card-module-div">
+            {Array.isArray(fitnessCentersData?.fitnessCenters) &&
+              !fitnessCentersLoading &&
+              fitnessCentersData?.fitnessCenters?.map((item: any) => {
+                const data = {
+                  name: item?.name,
+                  place: item?.city,
+                  imgLink: item?.images?.[0],
+                  rating: item?.rating ?? "n/a",
+                  distance:item?.distance_km ?? "N/A",
+                  isRapha:item?.isRapha,
+                };
                 return (
-                  <ProductCard data={data} />
+                  <ProductCard
+                    data={data}
+                    key={item?.id}
+                    link={`/fitnessCenters/${item?.name?.split?.(" ")?.join("-")}/${item?.id}`}
+                  />
                 );
               })}
-            </div>
+          </div>
+          <div className="pagination-box-sec-pha">
             <div className="pagination-box-sec-pha">
-              <div className="pagination-box-sec-pha">
-                {MedicinesCount > pageSize * visibleCount && (
-                  <button onClick={handleLoadMore} className="load-more-btn">
-                    Load More
-                  </button>
-                )}
-              </div>
+              {fitnessCentersData?.totalRecords > pageSize * pageNo && (
+                <button onClick={handleLoadMore} className="load-more-btn">
+                  Load More
+                </button>
+              )}
             </div>
           </div>
         </div>
-      )}
-    </PharmacyStyled>
+      </div>
+    </FitnessCenterPageStyle>
   );
 };
 

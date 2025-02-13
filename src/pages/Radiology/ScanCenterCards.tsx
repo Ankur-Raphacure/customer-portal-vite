@@ -13,7 +13,7 @@ const ScanCenterCards = (props: any) => {
       <div className="scanCenter-main-card-container">
         <div
           className="scanCenter-card-container"
-          onClick={() => history.push(handleNavigateDetails(viewScanCards?.id))}
+          onClick={() => handleNavigateDetails(viewScanCards)}
         >
           {sectionName && (
             <div className="rating-banner-div">

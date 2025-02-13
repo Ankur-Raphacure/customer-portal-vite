@@ -5,7 +5,7 @@ export const DashboardComponentStyled = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
   margin-top: 1rem;
   .userDetails,

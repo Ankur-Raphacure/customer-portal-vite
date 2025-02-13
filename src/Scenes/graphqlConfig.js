@@ -382,10 +382,13 @@ export const medicinesQuery = (
   const queryObj = {
     query: `
         {
-          medicines (searchText:"${searchText}", category: "${category}",sort:"${selectedRecomonded || ""
-      }",discountStart:${discStart || null},discountEnd:${discEnd || null
-      }, startPrice: ${startPrice ? startPrice : null}, endPrice: ${endPrice ? endPrice : null
-      }, page: 0){
+          medicines (searchText:"${searchText}", category: "${category}",sort:"${
+      selectedRecomonded || ""
+    }",discountStart:${discStart || null},discountEnd:${
+      discEnd || null
+    }, startPrice: ${startPrice ? startPrice : null}, endPrice: ${
+      endPrice ? endPrice : null
+    }, page: 0){
               service_code,
               search_keys,
               service_name,
@@ -458,6 +461,7 @@ export const myAddressQuery = {
     longitude
     state
     zip
+    type
   }
     }`,
 };
@@ -678,13 +682,15 @@ export const constructgetCtmriDetailsQuery = (body) => {
   // , city: "${city}"
   const queryObj = {
     query: `{
-      test(service_code: "${body?.service_code}", city: "${body?.city || ""
-      }", sort: "${body?.sort || "discount"}") {
+      test(service_code: "${body?.service_code}", city: "${
+      body?.city || ""
+    }", sort: "${body?.sort || "discount"}") {
         service_code,
         service_name,
         description,
         preperation,
         category_ids,
+        search_keys
         type,
         price{
           actual_cost,
@@ -1071,8 +1077,9 @@ export const eyecareNearClinicQuery = (body) => {
 export const dentalcareNearClinicQuery = (body) => {
   const queryObj = {
     query: `{
-    vendors(page: 0, count: 100, type: "dental_care", city: "${body?.city || ""
-      }"){
+    vendors(page: 0, count: 100, type: "dental_care", city: "${
+      body?.city || ""
+    }"){
       id
       name
       city
@@ -1091,8 +1098,9 @@ export const dentalcareNearClinicQuery = (body) => {
 export const getAyurvedsPanchakarmaQuery = (body) => {
   const queryObj = {
     query: `{
-    vendors(page: 0, count: 100, type: "panchakarma", city: "${body?.city || ""
-      }"){
+    vendors(page: 0, count: 100, type: "panchakarma", city: "${
+      body?.city || ""
+    }"){
       id
       name
       city
@@ -1111,8 +1119,9 @@ export const getAyurvedsPanchakarmaQuery = (body) => {
 export const getAyurvedsNaturopathyQuery = (body) => {
   const queryObj = {
     query: `{
-    vendors(page: 0, count: 30, type: "naturopathy", city: "${body?.city || ""
-      }"){
+    vendors(page: 0, count: 30, type: "naturopathy", city: "${
+      body?.city || ""
+    }"){
       id
       name
       city
@@ -1168,8 +1177,9 @@ export const getWomensPackagesQuery = {
 export const getVaccinationsQuery = (body) => {
   const queryObj = {
     query: `{
-    tests(page: 0, count: 30, type: "vaccination",for:"female",, city: "${body?.city || ""
-      }"){
+    tests(page: 0, count: 30, type: "vaccination",for:"female",, city: "${
+      body?.city || ""
+    }"){
       service_code,
               service_name,
               fasting,
@@ -1425,8 +1435,9 @@ export const getGymVendorsQuery = (body) => {
 export const constructgetPackageDetailsQuery = (body) => {
   const queryObj = {
     query: `{
-      package(service_code:"${body?.service_code}", city:"${body?.city ?? ""
-      }", collection_type: "${body?.collection_type || "center"}"
+      package(service_code:"${body?.service_code}", city:"${
+      body?.city ?? ""
+    }", collection_type: "${body?.collection_type || "center"}"
     ,  sort: "${body?.sort || "discount"}"){
         service_code
         service_name
@@ -1434,13 +1445,17 @@ export const constructgetPackageDetailsQuery = (body) => {
         description
         preperation
         category_ids
+        search_keys
+        is_corporate
         fasting
         type
+        visit_type
         price {
           actual_cost
           discount_percentage
           service_charges
           discounted_price
+          discount_for_dependents
         }
         sort
         tests {
@@ -1561,7 +1576,7 @@ export const constructgetAllScansNearByQuery = (body) => {
 
 export const getAllVendorDetailsQuery = {
   query: `{
-    vendors {
+    vendors(type:"diagnostic_center") {
       id
       name
       tests {
@@ -1571,6 +1586,13 @@ export const getAllVendorDetailsQuery = {
       packages {
         service_name
         service_code
+        price{
+          actual_cost
+          discount_percentage
+          service_charges
+          discounted_price
+          discount_for_dependents
+        }
       }
     }
   }`,

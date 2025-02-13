@@ -1,31 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CategoryStyled } from './Category.Styled'
-import { Descriptions } from 'antd'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getAllCategoriesAPI } from '../../../../redux/slices/labtest/labtestService'
 
 const Category = () => {
+    const dispatch = useDispatch()
 
-    const cards = [
-        {
-            title:"Fitness centres",
-            descriptions:"Gym, Yoga, Zumba, Aerobic.. etc",
-            imgLink:"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736319552284.png"
-        },
-        {
-            title:"Game zone",
-            descriptions:"Football, Tennis, badminton Etc",
-            imgLink:"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736319133154.png"
-        },
-        {
-            title:"Rapha Mart",
-            descriptions:"Gymwear, workout equipments, ",
-            imgLink:"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736319607322.png"
-        },
-        {
-            title:"Virtual Fitness",
-            descriptions:"workout from anywhere ",
-            imgLink:"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736319636656.png"
-        },
-    ]
+    const [categories,setCategories] = useState(null) as any;
+
+
+    useEffect(()=>{
+        const getAllCategories = async()=>{
+            const result = await dispatch(getAllCategoriesAPI({sectionName:"fitness"})) as any
+            if(result?.meta?.requestStatus==="fulfilled"){
+                setCategories(result?.payload?.data)
+            }
+        }
+        getAllCategories()
+    },[])
+
   return (
     <>
         <CategoryStyled>
@@ -33,16 +27,17 @@ const Category = () => {
                 <h3>Category</h3>
                 <div className='category-deck'>
                     {
-                        cards?.map((item:any)=>{
+                        categories?.category_ids?.map((item:any)=>{
                             return (
                                 <>
-                                    <div className='category-card'>
-                                        <h5>{item?.title}</h5>
-                                        <p className='category-descriptions'>{item?.descriptions}</p>
-                                        <div className='card-img-container'>
-                                            <img className='card-img' src={item?.imgLink} alt={item?.title} />
+                                    <Link className='link-to' to="/fitnessCenters">
+                                        <div className='category-card'>
+                                            <h5>{item?.name}</h5>
+                                            <div className='card-img-container'>
+                                                <img className='card-img' src={item?.image} alt={item?.name} />
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </>
                             )
                         })

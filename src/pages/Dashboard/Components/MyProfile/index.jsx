@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 
-import { Row, Col, Button, Form } from "react-bootstrap";
+import { Row, Col, Button, Form, CardDeck, CardColumns } from "react-bootstrap";
 // import "./styles.css";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,9 @@ import {
 import CustomModal from "../../../../components/CustomModel";
 import EmpanelWithUs from "../../../../components/EmpanelWithUs/EmpanelWithUs";
 import Loader from "../../../../components/Loader/Loader";
+import ProfileCard from "./ProfileCard";
+import { MdDeleteOutline, MdEdit } from "react-icons/md";
+import ConfirmModal from "../../../../components/ConfirmModal/ConfirmModal";
 // import { triggerMixpanelEvent } from "../../Scenes/common";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -48,6 +51,8 @@ const MyProfile = () => {
   const query1 = useQuery();
   const updateProfilev = query1.get("updateProfile");
   const [isNewUser, setIsNewUser] = useState(false);
+  const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
+  const [selectedDeleteAddress, setSelectedDeleteAddress] = useState(null);
 
   useEffect(() => {
     const urlObj = new URL(window.location.href);
@@ -137,6 +142,8 @@ const MyProfile = () => {
     handleSelectDefaultAdd();
   }, [selectedAddId]);
 
+
+
   const handleDeleteAddress = async (addId) => {
     setIsLoading(true);
     const resp = await dispatch(deleteAddressAPI({ id: addId?.id }));
@@ -170,6 +177,14 @@ const MyProfile = () => {
             selectedAddress={selectedAddress}
           />
 
+          <ConfirmModal
+            show={showDeleteConfirmModal}
+            title={"Delete Address"}
+            description={"Are you sure you want to delete this address?"}
+            onClose={() => setShowDeleteConfirmModal(false)}
+            onConfirm={() => handleDeleteAddress(selectedDeleteAddress)}
+          />
+
           <CustomModal
             show={showSuccessUserPopup}
             titleText={showSuccessUserPopupText}
@@ -181,6 +196,7 @@ const MyProfile = () => {
           <div className="full-profile-sec-all">
             <div className="orders-header">
               <h3>Your Dependents</h3>
+              <button className="addMemberBtn" onClick={handleAddNewMember}>Add New Member</button>
               {/* <div className="search-container">
                 <input
                   type="text"
@@ -194,65 +210,12 @@ const MyProfile = () => {
               <div className="depends-users-all">
                 {userDependents?.map((user) => {
                   return (
-                    <div className="depends-user-box">
-                      <div className="user-box-left">
-                        <div className="box-left-img">
-                          {user.image ? (
-                            <img src={user.image} />
-                          ) : (
-                            <FaUserCircle size={70} />
-                          )}
-                        </div>
-                        <div className="box-left-info">
-                          <p>
-                            {`${user?.first_name || ""} ${user?.last_name || ""
-                              }`}{" "}
-                            ({user?.relation || ""})
-                          </p>
-                          <div>
-                            <p>
-                              <span>Phone</span>
-                              <span>: {user?.phone}</span>
-                            </p>
-                            <p>
-                              <span>Email</span>
-                              <span>: {user?.email}</span>
-                            </p>
-                            <p>
-                              <span>Age</span>
-                              <span>: {user?.age}</span>
-                            </p>
-                            <p>
-                              <span>Gender</span>
-                              <span>: {user?.gender}</span>
-                            </p>
-                            <p>
-                              <span>Date of Birth</span>
-                              <span>: {user?.dob}</span>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="user-box-right">
-                        <span
-                          onClick={() => {
-                            handleEditUser(user);
-                          }}
-                        >
-                          Edit
-                        </span>
-                      </div>
-                    </div>
+                    <ProfileCard
+                      user={user}
+                      handleEditUser={handleEditUser}
+                    />
                   );
                 })}
-                <div
-                  className="depends-user-box add-new-member-sec"
-                  onClick={handleAddNewMember}
-                >
-                  <div className="user-box-left ">
-                    <span>+ Add New Member</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -261,14 +224,7 @@ const MyProfile = () => {
           <div className="full-profile-sec-all">
             <div className="orders-header">
               <h3>Your Address</h3>
-              {/* <div className="search-container">
-                <input
-                  type="text"
-                  placeholder="Search for all Dependents"
-                  className="search-input"
-                />
-                <FaSearch className="search-icon" />
-              </div> */}
+              <button className="addMemberBtn" onClick={handleAddNewAddress}>Add New Address</button>
             </div>
             <div className="all-depends-content">
               <div className="depends-users-all">
@@ -279,67 +235,73 @@ const MyProfile = () => {
                         <div className="box-left-info">
                           <p> {item?.name}</p>
 
-                          <div>
-                            <p>
-                              <span>Address</span>
-                              <span>: {item?.address}</span>
-                            </p>
-                            <p>
-                              <span>City</span>
-                              <span>: {item?.city}</span>
-                            </p>
-                            <p>
-                              <span>State</span>
-                              <span>: {item?.state}</span>
-                            </p>
-                            <p>
-                              <span>Zipcode</span>
-                              <span>: {item?.zip}</span>
-                            </p>
-                            <p>
-                              <span>Landmark</span>
-                              <span>: {item?.landmark}</span>
-                            </p>
+                          <div className="d-flex" key={item.id}>
+                            <div className="default-add-radio-btn me-3">
+                              <input
+                                type="radio"
+                                checked={
+                                  selectedAddId
+                                    ? selectedAddId === item.id
+                                    : item?.isDefault
+                                }
+                                onChange={() => handleSelectDefaultAdd(item)}
+                              />
+                            </div>
+                            <div className="user-box-right me-3">
+                              <span onClick={() => handleEditAddress(item)}>
+                                <div className="d-flex flex-row align-items-center gap-1">
+                                  <MdEdit />
+                                  Edit
+                                </div>
+                              </span>
+                            </div>
+                            {item?.isDefault ||
+                              (selectedAddId !== item.id && (
+                                <div className="user-box-right">
+                                  <span onClick={() => {
+                                    setShowDeleteConfirmModal(true);
+                                    setSelectedDeleteAddress(item);
+                                  }}>
+                                    <div className="d-flex flex-row align-items-center gap-1">
+                                      <MdDeleteOutline />
+                                      Delete
+                                    </div>
+                                  </span>
+                                </div>
+                              ))}
                           </div>
                         </div>
                       </div>
-                      <div className="d-flex align-litems-center" key={item.id}>
-                        <div className="default-add-radio-btn me-3">
-                          <input
-                            type="radio"
-                            checked={
-                              selectedAddId
-                                ? selectedAddId === item.id
-                                : item?.isDefault
-                            }
-                            onChange={() => handleSelectDefaultAdd(item)}
-                          />
-                        </div>
-                        <div className="user-box-right me-3">
-                          <span onClick={() => handleEditAddress(item)}>
-                            Edit
-                          </span>
-                        </div>
-                        {item?.isDefault ||
-                          (selectedAddId !== item.id && (
-                            <div className="user-box-right">
-                              <span onClick={() => handleDeleteAddress(item)}>
-                                Delete
-                              </span>
-                            </div>
-                          ))}
+
+                      <div>
+                        <p>
+                          <span className="title">Address</span>
+                          <span>: {item?.address}</span>
+                        </p>
+                        <p>
+                          <span className="title">City</span>
+                          <span>: {item?.city}</span>
+                        </p>
+                        <p>
+                          <span className="title">State</span>
+                          <span>: {item?.state}</span>
+                        </p>
+                        <p>
+                          <span className="title">Zipcode</span>
+                          <span>: {item?.zip}</span>
+                        </p>
+                        <p>
+                          <span className="title">Landmark</span>
+                          <span>: {item?.landmark}</span>
+                        </p>
+                        <p>
+                          <span className="title">House / Building No.</span>
+                          <span>: {item?.detail}</span>
+                        </p>
                       </div>
                     </div>
                   );
                 })}
-                <div
-                  className="depends-user-box add-new-member-sec"
-                  onClick={handleAddNewAddress}
-                >
-                  <div className="user-box-left ">
-                    <span>+ Add New Address</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

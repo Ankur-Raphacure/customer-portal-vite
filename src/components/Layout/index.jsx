@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Header from "../Header";
 import RPHeader from "../RPHeader";
 import Footer from "../Footer";
 import { useDispatch, useSelector } from "react-redux";
 import Axios from "axios";
+import CommonModule from "./CommonModule";
 import {
   updateSubDomainDetails,
   updateSubDomainName,
@@ -22,6 +23,9 @@ import Sidebar from "../SideMenu/Sidebar";
 import { useHistory, useLocation } from "react-router-dom";
 import Loader from "../../components/Common/Loader";
 import DomainNotFound from "./../DomainNotFound";
+import { isMobile } from "react-device-detect";
+
+import MobileHeader from "../../components/Header/MobileHeader";
 import {
   doctorPrescribedItems,
   updatePrescribedItems,
@@ -31,14 +35,16 @@ import {
   getCartItemsAPI,
   handleAddToCartAPI,
 } from "../../redux/slices/checkout/checkoutService";
-import { getToken } from "../../Scenes/common";
+import { getToken, checkIsMobile } from "../../Scenes/common";
 import styled from "styled-components";
 import RPFooterV2 from "../RPFooterV2";
+import { ViewportContext } from "../../context/ViewportContext";
+import { updateSelectedUserAddress } from "../../redux/slices/Profile/ProfileSlice";
 
 const MobileViweHeaderAdd = styled.div`
   display: none;
   @media (max-width: 768px) {
-    display: block;
+    /* display: block; */
   }
 `;
 
@@ -51,27 +57,26 @@ const xKey = API_KEY;
 function extractParams(urlString) {
   const url = new URL(urlString);
   const params = url.searchParams;
-  const userId = params.get('userid')?.replace(/ /g, '+'); // Replace spaces back to +
-  const mobileNo = params.get('mobileNo')?.replace(/ /g, '+'); // Replace spaces back to +
+  const userId = params.get("userid")?.replace(/ /g, "+"); // Replace spaces back to +
+  const mobileNo = params.get("mobileNo")?.replace(/ /g, "+"); // Replace spaces back to +
   return { userid: userId, mobileNo: mobileNo };
 }
 
 const Layout = (props) => {
   const dispatch = useDispatch();
   const uName = window.location.pathname?.toLowerCase();
-  const isSubPage = uName?.includes("/dashboard") ? true : false;
+  const isDashboardPage = uName?.includes("/dashboard") ? true : false;
   const showAddressSec = uName?.includes("/dashboard") ? false : true;
 
   const query1 = useQuery();
   const isvideocallPage = uName === "/videocall";
-
-  const params = extractParams(window.location.href)
-  const mobileNo1 = params.mobileNo
-  const userid = params.userid
-
+  const params = extractParams(window.location.href);
+  const mobileNo1 = params.mobileNo;
+  const userid = params.userid;
+  const isMobile1 = isMobile || checkIsMobile();
   const user_key = query1.get("key");
   const doctorId = query1.get("doctorId");
-
+  console.log("isMobile1", isMobile1);
   const { isRaphaPlus, user, subDomainDetails } = useSelector(
     ({ auth }) => auth
   );
@@ -84,11 +89,26 @@ const Layout = (props) => {
   const [selectedUser, setSelectedUser] = useState({});
   const user_subDD = localStorage.getItem("user_subDomainDetails");
   const user_subDD1 = user_subDD !== null ? JSON.parse(user_subDD) : {};
+
   const { userDependents, userAddress } = useSelector(
     (ReduxState) => ReduxState.profile
   );
   const patha = window.location.hostname;
   const userToken = getToken();
+  const listOfTopBanners = [
+    "/",
+    "/#",
+    "/doctor",
+    "/pharmacy",
+    "/labtest",
+    "/ctmri",
+  ];
+  const homePagesList = ["/", "/#"];
+  const isTopBanner = listOfTopBanners?.includes(uName) ? true : false;
+  const isHomepAge = homePagesList?.includes(uName) ? true : false;
+  // const isTopBanner = false;
+  console.log("uName", uName);
+  console.log("isTopBanner", isTopBanner);
   useEffect(() => {
     if (window.location.pathname.endsWith("index.html")) {
       history.push("/");
@@ -103,9 +123,9 @@ const Layout = (props) => {
     try {
       let pathName = patha?.split(".")[0] ?? "";
 
-      // pathName = "suryoday";
+      // pathName = "indigrid";
       // pathName = "dbs";
-      // pathName = "wyh";
+      // pathName = "berrybox";
       if (
         pathName === "localhost" ||
         pathName === "staging" ||
@@ -121,9 +141,9 @@ const Layout = (props) => {
         dispatch(updateIsRaphaPlus(true));
       }
       const isDoctorDashboard = userid && user_key && !pathName ? true : false;
-      // pathName = "berrybox";
-      // pathName = "getafixmd";
       // pathName = "wyh";
+      // pathName = "berrybox";
+      // pathName = "indigrid";
       // if (isDoctorDashboard) {
       //   pathName = "doctorDashboard";
       // }
@@ -238,41 +258,6 @@ const Layout = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchIPInfo = async () => {
-  //     try {
-  //       const userCity = JSON.parse(localStorage.getItem("userCity"));
-  //       if (userCity && userCity.id) {
-  //         console.log("City already Selected");
-  //         return; // Skipping API Call
-  //       }
-
-  //       const response = await fetch("https://ipinfo.io/json");
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-
-  //       const data = await response.json();
-
-  //       // Create a new object with required fields
-  //       const formattedCity = data.city.toLowerCase().replace(/\s+/g, "_"); // Format city for id
-  //       const newObj = {
-  //         id: formattedCity,
-  //         name: data.city,
-  //         image: "", // Empty field for image
-  //         state_name: data.region, // Use region as state_name
-  //       };
-  //       await dispatch(updateUserCity(newObj));
-
-  //       console.log("New Object:", newObj);
-  //     } catch (error) {
-  //       console.error("Error fetching IP information:", error);
-  //     }
-  //   };
-
-  //   fetchIPInfo();
-  // }, []);
-
   const isRPlus = patha?.includes("raphaplus");
 
   const selectSavedAddress = (addss) => {
@@ -288,32 +273,75 @@ const Layout = (props) => {
     }
   }, []);
 
+  useEffect(() => {
+    const defaultAddress = userAddress?.find((addr) => addr.isDefault === true);
+    console.log("Default Address:", defaultAddress);
+    if (defaultAddress?.latitude && defaultAddress?.longitude) {
+      const userSelectedAddress = localStorage.getItem("userSelectedAddress");
+      if (!userSelectedAddress) {
+        // Check if the address is already stored
+        dispatch(updateSelectedUserAddress(defaultAddress || {}));
+      }
+    }
+  }, [userAddress]);
+
+  useEffect(() => {
+    const handleAppInstalled = () => {
+      // Perform your API call here to log the installation
+      // fetch('/api/log-pwa-install', { method: 'POST' });
+      // alert("PWA Installed");
+      console.log("PWA installed!");
+    };
+
+    window.addEventListener("appinstalled", handleAppInstalled);
+
+    return () => {
+      window.removeEventListener("appinstalled", handleAppInstalled);
+    };
+  }, []);
+
+  console.log("isMobile1", isMobile1);
+  console.log("isTopBanner", isTopBanner);
+  console.log("isDashboardPage", isDashboardPage);
   return (
     <div className={"wrapper-hide-header"}>
+      <CommonModule />
       {isInvalidDomain ? (
         <DomainNotFound isRPlus={isRPlus} />
       ) : (
         <>
-          {isRaphaPlus ? <RPHeader /> : <Header />}
-
-          {isLoading && <Loader />}
-          <div className="layout-container justify-content-center full-content-sec-page-design">
-            <MobileViweHeaderAdd>
-              <HeaderAddress
-                index={0}
-                addressList={userAddress}
-                address={selectedAddress}
-                selectSavedAddress={selectSavedAddress}
-              />
-            </MobileViweHeaderAdd>
-
-            {props.children}
-            {/* <div className="left-menu-side-content">
-    <Sidebar />
-  </div>
-  <div className="right-menu-side-content"> {props.children}</div> */}
-          </div>
-          {isRaphaPlus ? <RPFooterV2 /> : <> {!isSubPage && <Footer />}</>}
+          {isRaphaPlus ? (
+            <>
+              <RPHeader />
+              {isLoading && <Loader />}
+              <div className="layout-container justify-content-center full-content-sec-page-design">
+                {props.children}
+              </div>
+              <RPFooterV2 />
+            </>
+          ) : isMobile1 ? (
+            <>
+              {!isTopBanner && !isDashboardPage && (
+                <div className="MobileHeader-main-div">
+                  <MobileHeader pathName={"/doctor/doctorlist"} />
+                </div>
+              )}
+              {isLoading && <Loader />}
+              <div className="layout-container justify-content-center full-content-sec-page-design">
+                {props.children}
+              </div>
+              {!isDashboardPage && <Footer />}
+            </>
+          ) : (
+            <>
+              <Header isMobileTopBanner={false} />
+              {isLoading && <Loader />}
+              <div className="layout-container justify-content-center full-content-sec-page-design">
+                {props.children}
+              </div>
+              {!isDashboardPage && <Footer />}
+            </>
+          )}
         </>
       )}
     </div>

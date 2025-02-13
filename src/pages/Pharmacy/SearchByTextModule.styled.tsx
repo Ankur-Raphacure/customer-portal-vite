@@ -8,7 +8,7 @@ export const SearchByTextModuleStyled = styled.div`
     /* margin-top: 40px; */
   }
   .search-bar {
-    height: 63.741px;
+    height: 60px;
     display: flex;
     align-items: center;
     background: #f8f8f8;
@@ -22,7 +22,7 @@ export const SearchByTextModuleStyled = styled.div`
   }
   .mic-icon {
     background-color: #ffffff;
-    padding: 8px;
+    padding: 7px;
     border-radius: 50%;
     cursor: pointer;
   }
@@ -34,7 +34,7 @@ export const SearchByTextModuleStyled = styled.div`
   .search-icon {
     background-color: #92bdf6;
     color: #252b61;
-    padding: 8px;
+    padding: 7px;
     border-radius: 50%;
   }
 
@@ -69,16 +69,16 @@ export const SearchByTextModuleStyled = styled.div`
       max-width: 100%;
     }
     .pharmacy-search-fields {
-      padding: 10px 10px !important;
+      padding: 0px 0px !important;
     }
 
     .search-input {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 
   @media (max-width: 391px) {
-    .pharmacy-search-fields{
+    .pharmacy-search-fields {
       margin-top: unset;
     }
   }

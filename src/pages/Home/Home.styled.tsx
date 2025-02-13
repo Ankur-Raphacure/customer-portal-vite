@@ -27,7 +27,10 @@ export const CategoryDivcolors = styled.div<CategoryDivcolorsProps>`
 
 export const HomeStyled = styled.div`
   width: 100%;
-
+  .scanCenter-company-logo {
+    img {
+    }
+  }
   .top-header-sec-cont {
     height: 100px;
 
@@ -109,6 +112,12 @@ export const HomeStyled = styled.div`
     @media screen and (max-width: 900px) {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      padding: 10px;
+    }
+  }
+  .discountedServices {
+    .all-services-sec-code-all {
+      grid-template-columns: 1fr;
     }
   }
   .all-services-sec-code-row {
@@ -359,6 +368,67 @@ export const HomeStyled = styled.div`
     gap: 30px;
     margin-bottom: 30px;
   }
+  .mobile-our-services-all {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .cat-img {
+    height: 4rem;
+    width: 4rem;
+  }
+  .sub-mobile-our-services-all {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+  }
+  .mobile-cursor-pointer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px 0px 10px;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    border-radius: 12px !important;
+    .mobile-home-card-image-sub-img {
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .mobile-home-card-image-sub-img {
+    img {
+      /* margin-top: 15px; */
+      height: 38px;
+      width: 38px;
+    }
+  }
+  .sub-mobile-category {
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    font-weight: 600;
+    font-family: Outfit, sans-serif;
+    color: #252b61;
+    opacity: 0.87;
+  }
+  .mobile-category {
+    font-size: 17px;
+    letter-spacing: 0.02em;
+    font-weight: 600;
+    font-family: Outfit, sans-serif;
+    color: #252b61;
+    opacity: 0.87;
+  }
+  .mobile-category-p {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    font-family: Outfit, sans-serif;
+    color: #585656;
+    opacity: 0.7;
+    margin: 0px;
+  }
 
   .our-services-box {
     border-radius: 10px;
@@ -432,6 +502,10 @@ export const HomeStyled = styled.div`
     height: 100%;
     width: 100%;
 
+    & > div:nth-child(2) {
+      background: linear-gradient(90deg, #fff9f9 0%, #ffe7de 100%);
+    }
+
     @media screen and (max-width: 750px) {
       flex-direction: column;
       gap: 0px;
@@ -448,6 +522,24 @@ export const HomeStyled = styled.div`
     letter-spacing: 0.48px;
   }
   .empanel-sec-content-left-div p {
+    color: #000;
+    font-family: Outfit, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.21px;
+  }
+  .network-sec-content-left-div h5 {
+    color: #141414;
+    font-family: Outfit, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.48px;
+  }
+  .network-sec-content-left-div p {
     color: #000;
     font-family: Outfit, sans-serif;
     font-size: 14px;
@@ -909,11 +1001,11 @@ export const HomeStyled = styled.div`
     .hospital-specislist-p-div {
       p {
         font-size: 13px !important;
-        margin: auto;
+        margin-top: 0px !important;
       }
     }
     .our-services-sec1 {
-      padding: 0px 20px;
+      padding: 0px 10px;
     }
     .popup-content {
       width: 98%;
@@ -995,9 +1087,21 @@ export const HomeStyled = styled.div`
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.25);
   }
-
+  .mobile-home-page-card {
+    width: 100%;
+    position: relative;
+    box-shadow: 5px 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background-color: #fff;
+    height: 150px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 10px;
+    color: #252b61;
+    font-family: Outfit;
+  }
   .home-page-card {
-    padding: 0px 15px;
+    padding: 1px 15px;
     width: 100%;
     height: 272px;
     flex-shrink: 0;
@@ -1021,9 +1125,63 @@ export const HomeStyled = styled.div`
     border-radius: 5px 5px 0px 0px;
     height: 134px;
   }
+  .mobile-sub-home-page-card {
+    width: 100%;
+    box-shadow: 5px 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background-color: #fff;
+    height: 55px;
+  }
+  .mobile-our-services-sec {
+    background: #fff;
+    padding: 10px;
+    padding-top: 0;
+  }
+  .offer-banner-text {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+    font-family: Outfit, sans-serif;
+    color: #252b61;
+  }
+  .offer-banner span {
+    img {
+      height: 12px;
+      width: 12px;
+    }
+  }
+  .mobile-home-card-image {
+    width: 100%;
+    position: relative;
+    border-radius: 5px 5px 0px 0px;
+    img {
+    }
+  }
+  .home-card-image-sub-img {
+    img {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
   .home-card-image-img img {
-    width: 149px;
+    width: 162px;
     height: 170px;
+    object-fit: fill;
+  }
+  .mobile-home-card-image-img {
+    display: flex;
+    justify-content: space-between;
+    img {
+      width: 83px;
+      height: 62px;
+      object-fit: contain;
+    }
+    .offer-banner {
+      height: 100%;
+      background: #dff7ea;
+      padding: 5px;
+      border-radius: 20px;
+    }
   }
   .home-card-image-img svg {
     max-height: 100%;
@@ -1048,9 +1206,33 @@ export const HomeStyled = styled.div`
   }
 
   .category {
-    margin-top: 8px;
+    margin-top: 27px !important;
     color: #252b61;
     font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.36px;
+    text-transform: capitalize;
+    font-family: Outfit, sans-serif;
+  }
+  .OurServices-mobile-view {
+    display: none;
+  }
+  .category-mobile-wiew {
+    display: none;
+    color: #252b61;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.36px;
+    text-transform: capitalize;
+    font-family: Outfit, sans-serif;
+  }
+  .category-mobile-wiew1 {
+    color: #252b61;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -1433,8 +1615,10 @@ export const HomeStyled = styled.div`
     width: 0px;
     height: 0px;
   }
-  .multi-carousel-modal p {
+  .multi-carousel-modal {
     padding: 0px 50px;
+  }
+  .multi-carousel-modal p {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -1447,7 +1631,7 @@ export const HomeStyled = styled.div`
     letter-spacing: 0.48px;
     font-family: Outfit, sans-serif;
     margin-top: 18px;
-    margin-bottom: 14px;
+    margin-bottom: 30px;
   }
   .slider {
     margin: 0 20px;
@@ -1584,6 +1768,8 @@ export const HomeStyled = styled.div`
   .scanCenter-company-logo img {
     /* width: 100%; */
     height: 11rem;
+    width: 240px;
+    object-fit: contain;
   }
 
   .scanCenter-company-logo p {
@@ -1856,7 +2042,9 @@ export const HomeStyled = styled.div`
       margin-bottom: 0px;
     }
   }
-
+  .abha-sub-card-mobile-div {
+    display: none;
+  }
   @media (max-width: 1024px) {
     .abha-sub-card-right-img-div img {
       width: 5rem;
@@ -1922,12 +2110,14 @@ export const HomeStyled = styled.div`
       padding: 10px;
     }
 
-    .empanel-sec-content-left-div h5 {
+    .empanel-sec-content-left-div h5,
+    .network-sec-content-left-div h5 {
       font-size: 16px;
       font-weight: 500;
     }
 
-    .empanel-sec-content-left-div p {
+    .empanel-sec-content-left-div p,
+    .network-sec-content-left-div p {
       font-size: 12px;
       opacity: 0.7;
       margin-bottom: 0px;
@@ -1976,7 +2166,8 @@ export const HomeStyled = styled.div`
   @media (max-width: 576px) {
     .our-services-sec1-row {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
     .our-services-sec1-row > .our-services-card.justify-end {
       justify-content: flex-start;
@@ -1997,20 +2188,70 @@ export const HomeStyled = styled.div`
     .Revolutionizing-image-div {
       margin: 0 !important;
     }
-
-    .Revolutionizing-text-div p {
-      font-size: 15px;
-    }
   }
 
   @media (max-width: 768px) {
+    .rapha-main-home-page {
+      display: flex;
+      flex-direction: column;
+      .subdomainImg {
+        width: 100%;
+        display: flex;
+        background-color: #fff;
+        img {
+          margin: auto;
+        }
+      }
+    }
+    .OurServices-mobile-view {
+      display: block;
+    }
+    .hide {
+      display: none !important;
+    }
+    .abha-sub-card-mobile-div {
+      position: relative;
+      display: block;
+      img {
+        width: 100%;
+      }
+      button {
+        width: 95%;
+        border-radius: 45px;
+        background-color: #a3dac2;
+        font-size: 13px;
+        letter-spacing: 0.02em;
+        font-weight: 600;
+        font-family: Outfit, sans-serif;
+        color: #252b61;
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        translate: -50%;
+      }
+    }
+    .category-mobile-wiew {
+      display: block;
+      font-size: 12px !important;
+      letter-spacing: 0.02em;
+      text-align: center;
+      margin-bottom: 0px;
+      margin-top: 5px;
+    }
+    .multi-carousel-modal {
+      display: none;
+    }
+    .Revolutionizing-text-div p {
+      font-size: 10px;
+      letter-spacing: 0.02em;
+    }
     .doctore-card-div {
       display: flex;
       flex-wrap: nowrap;
       overflow-x: auto;
-      gap: 8px;
+      gap: 10px;
       padding: 8px;
-      scrollbar-width: thin;
+      scrollbar-width: none;
       margin-bottom: 0px;
     }
     .download-home-page-div {
@@ -2023,8 +2264,9 @@ export const HomeStyled = styled.div`
       width: 5rem;
     }
     .our-services-sec1 h5 {
-      font-size: 20px;
+      font-size: 18px;
       margin-bottom: 0px;
+      margin-top: 0px;
     }
     .Revolutionizing-image-div img {
       width: 2rem;
@@ -2034,14 +2276,13 @@ export const HomeStyled = styled.div`
       width: 46%;
     }
     .our-services-sec {
-      padding: 30px 20px;
+      padding: 20px 10px;
     }
     .Testimonials-main-div {
       padding: 0px;
       border-radius: 0px;
     }
     .empanel-network-div {
-      flex-direction: row;
       padding: 0px 10px;
       gap: 10px;
     }
@@ -2063,17 +2304,32 @@ export const HomeStyled = styled.div`
     }
     .doctore-card-div {
       display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      padding: 0px 20px;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0px 10px;
+    }
+    .bannerWrapper {
+      display: none;
     }
     .scanCenter-company-logo img {
-      height: 18rem;
+      height: 6rem;
       margin-top: 22px;
+      width: 10rem;
+    }
+    .scanCenter-badge img {
+      width: 15px;
+      height: 15px;
+    }
+    .scanCenter-badge span {
+      font-size: 8px;
+      line-height: 8px;
+    }
+    .scanCenter-card-container {
+      width: 13rem;
+      height: 100%;
+      border-radius: 14px !important;
     }
     .main-welcome-text-rapha {
-      padding: 0px 20px;
-      display: flex;
-      flex-direction: column-reverse;
+      padding: 0px 0px;
     }
     .home-card-image-img {
       display: flex;
@@ -2085,10 +2341,14 @@ export const HomeStyled = styled.div`
       width: 5rem;
     }
     .abha-card-div {
-      padding: 20px;
+      padding: 10px;
+    }
+    .home-page-card {
+      height: auto;
+      border-radius: 12px;
     }
     .abha-sub-card-div {
-      flex-direction: column-reverse;
+      display: none;
     }
     .abha-sub-card-right-div h5 {
       font-size: 18px;
@@ -2120,11 +2380,11 @@ export const HomeStyled = styled.div`
     .empanel-main-card-div {
       width: 100%;
       margin-bottom: 15px;
-      flex-direction: column;
       text-align: unset;
       border-radius: 15px;
     }
     .empanel-sec-content-left-div,
+    .network-sec-content-left-div,
     .empanel-sec-content-right {
       justify-content: center;
     }
@@ -2135,7 +2395,7 @@ export const HomeStyled = styled.div`
       flex-direction: column;
       text-align: center;
       border-radius: 0px;
-      margin-top: 2rem;
+      margin-top: 0rem;
     }
     .left-testimoials-sub-main-div,
     .right-testimoials-sub-main-div {
@@ -2153,8 +2413,7 @@ export const HomeStyled = styled.div`
       text-align: center !important;
     }
     .abha-sub-card-div {
-      flex-direction: column-reverse;
-      padding: 15px;
+      display: none;
     }
     .abha-sub-card-right-div,
     .abha-sub-card-left-div {
@@ -2189,31 +2448,46 @@ export const HomeStyled = styled.div`
 
     .our-services-all {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 0px;
     }
     .category {
-      font-size: 14px;
-      letter-spacing: 0.02em;
+      // display: none;
+      font-size: 16px;
     }
     .our-services-sec h5 {
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: 0.02em;
     }
     .home-page-card p {
-      font-size: 10px;
-      letter-spacing: 0.02em;
+      display: none;
     }
+
     .category-book-app-doctor-btn {
       display: none;
     }
-    .home-page-card {
+
+    .all-services-sec-code-all {
+      .mobileCards {
+        padding: 0;
+        .mobile-home-page-card {
+          height: 100%;
+          display: flex;
+          & > div {
+            margin: auto;
+          }
+        }
+      }
+    }
+    .mobile-home-page-card {
       height: 100%;
-      border-radius: 25px;
+      border-radius: 12px;
+      padding: 10px 0px 0px 10px;
     }
     .home-card-image-img img {
-      height: 114px;
-      width: 120px;
+      height: 45px;
+      width: 45px;
     }
     .catg-image-div svg {
       height: 114px;
@@ -2226,12 +2500,8 @@ export const HomeStyled = styled.div`
       font-weight: 300;
       margin-bottom: 0px;
       margin-top: 0px;
+      letter-spacing: 0.02em;
     }
-    /* .our-services-sec1-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: flex-end;
-    } */
     .custom-right-arrow,
     .custom-left-arrow {
       display: none;
@@ -2246,8 +2516,10 @@ export const HomeStyled = styled.div`
       justify-content: center;
     }
     .associated-with-div h5 {
-      padding: 20px 20px;
-      font-size: 20px;
+      padding: 10px 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-size: 18px;
     }
     .left-testimoials-sub-main-div p {
       margin-top: 1rem;
@@ -2260,9 +2532,11 @@ export const HomeStyled = styled.div`
       margin-bottom: 5px;
     }
     .hospital-specislist-main-div h5 {
-      font-size: 19px;
+      font-size: 18px;
       margin-bottom: 0px;
+      margin-top: 0px;
     }
+
     .category-book-app-doctor {
       width: 2.5rem;
       height: 2.5rem;
@@ -2279,21 +2553,20 @@ export const HomeStyled = styled.div`
       height: 67.6px;
     }
     .perent-search-div {
-      /* margin-top: -2rem; */
-      margin-bottom: 1rem;
+      display: none;
     }
     .welcome-text-rapha {
       border-radius: 25px;
     }
     .home-card-image {
-      height: 122px;
+      height: 70px;
     }
     .perent-BreadCrumbModule-div {
       display: block;
     }
     .search-popup-content {
       width: 100%;
-      height: 20rem;
+      height: 10rem;
     }
     .welcome-text-rapha-img {
       height: 12rem !important;
@@ -2303,13 +2576,10 @@ export const HomeStyled = styled.div`
     }
     .welcome-text-rapha-mobile-viwe {
       display: block;
-      svg {
-        width: 100%;
-      }
     }
     .download-home-page-mobile-viwe-div {
       display: block;
-      svg {
+      img {
         width: 100% !important;
       }
     }
@@ -2322,7 +2592,7 @@ export const HomeStyled = styled.div`
       position: absolute;
       margin-top: -4.5rem;
       img {
-        width: 15px;
+        width: 15px !important;
       }
       button {
         height: 2.5rem;
@@ -2342,17 +2612,9 @@ export const HomeStyled = styled.div`
       margin-bottom: 2rem;
     }
   }
-
-  @media (max-width: 391px) {
-    .scanCenter-card-container {
-    }
-
-    .react-multi-carousel-list {
-      padding: 0px;
-    }
-
-    .doctore-card-div {
-      display: none;
+  @media (max-width: 360px) {
+    .our-services-all {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 `;

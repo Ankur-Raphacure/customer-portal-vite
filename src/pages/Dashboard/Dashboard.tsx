@@ -10,6 +10,7 @@ import DashboardComponent from "./Components/DashboardComponent/DashboardCompone
 import Bookings from "./Components/Bookings/Bookings";
 import Coupons from "./Components/Coupons/Coupons";
 import Wallets from "./Components/Wallets/Wallets";
+import { updateShowLoginModel } from "../../redux/slices/auth/authSlice";
 import Subscriptions from "./Components/Subscriptions/Subscriptions";
 import Packages from "./Components/Packages/Packages";
 // import Helpdesk from "./Components/Helpdesk/Helpdesk";
@@ -22,23 +23,135 @@ import BookAppointment from "./Components/BookAppointment/BookAppointment";
 import Activities from "./Components/Activities/Activities";
 import Wellness from "./Components/MentalWellness/Wellness";
 import ActivitySummery from "./Components/Activities/ActivitySummery";
+import ViewOptions from "./Components/DashboardComponent/ViewOptions";
+import BottomNavBar from "../../components/Footer/BottomNavBar";
+import { checkIsMobile } from "../../Scenes/common";
 const Dashboard = (props: any) => {
   const { sectionName } = props?.match?.params;
-  console.log("sectionName", sectionName);
-
   const [file, setFile] = useState(null);
   const [addressEnabled, setAddressEnabled] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { user } = useSelector((ReduxState: any) => ReduxState.auth);
+  const [moreOptions, setMoreOptions] = useState(false);
+  const [showLoginPopupModel, setShowLoginPopupModel] = useState(false);
+  const { user, subDomainDetails } = useSelector(
+    (ReduxState: any) => ReduxState.auth
+  );
   const { cartItems } = useSelector((ReduxState: any) => ReduxState.checkout);
   const { userDependents, userAddress } = useSelector(
     (ReduxState: any) => ReduxState.profile
   );
   const { myBookings } = useSelector((ReduxState: any) => ReduxState.dashboard);
-  console.log("myBookings", myBookings);
-  console.log("userDependents", userDependents);
-  console.log("userAddress", userAddress);
+  console.log("subdomain_key ", subDomainDetails?.subdomain_key);
+
+  const navBarData = [
+    {
+      name: "Home",
+      path: "/",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653474740.png",
+    },
+    {
+      name: "Pharmacy",
+      path: "/pharmacy",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738652767506.png",
+    },
+    {
+      path: "more",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653109570.png",
+    },
+    {
+      name: "Lab Test",
+      path: "/labtest",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653017645.png",
+    },
+    {
+      name: "Cart",
+      path: "/cart",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653072590.png",
+    },
+  ];
+  const indigridNavbarData = [
+    {
+      name: "Home",
+      path: "/",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653474740.png",
+    },
+    {
+      name: "Doctor",
+      path: "/doctor",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738652767506.png",
+    },
+    {
+      path: "more",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653109570.png",
+    },
+    {
+      name: "Lab Test",
+      path: "/labtest",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653017645.png",
+    },
+    {
+      name: "Cart",
+      path: "/cart",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653072590.png",
+    },
+  ];
+  const navBarMoreData = [
+    {
+      name: "Doctor Consultation",
+      path: "/doctor",
+    },
+    {
+      name: "Radiology",
+      path: "/radiology",
+    },
+    {
+      name: "Ambulance",
+      path: "/ambulance",
+    },
+    {
+      name: "Gymlist",
+      path: "/Gymlist",
+    },
+    {
+      name: "Womenscare",
+      path: "/womenscare",
+    },
+    {
+      name: "Eyecare",
+      path: "/eyecare",
+    },
+    {
+      name: "Dentalcare",
+      path: "/dentalcare",
+    },
+    {
+      name: "Mentalwellness",
+      path: "/mentalwellness",
+    },
+    {
+      name: "Ayurveda",
+      path: "/ayurveda",
+    },
+    {
+      name: "DomiciliaryCare",
+      path: "/domiciliaryCare",
+    },
+    {
+      name: "Bloodbank",
+      path: "/bloodbank",
+    },
+  ];
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -72,7 +185,7 @@ const Dashboard = (props: any) => {
 
   const handleSubmit = async (e: any) => {
     // e.preventDefault();
-    // //import.meta.env.REACT_APP_AZURE_STORAGE_CONNECTION_STRING
+    // //process.env.REACT_APP_AZURE_STORAGE_CONNECTION_STRING
     // const blobServiceClient = new BlobServiceClient();
     // const blockBlobClient = blobServiceClient.getBlockBlobClient(file.name);
     // try {
@@ -144,17 +257,44 @@ const Dashboard = (props: any) => {
         return <DashboardComponent />;
     }
   };
-
+  const handleNavigate = (urlPath: any) => {
+    if (urlPath == "more") {
+      setMoreOptions(true);
+      return;
+    }
+    history.push(urlPath);
+  };
+  const handleLogin = () => {
+    dispatch(updateShowLoginModel(true));
+  };
   return (
     <DashboardStyled>
       <div className="all-full-dashboard">
         <div className="menu-component left-menu-container">
-          <DashboardMenu />
+          <DashboardMenu sectionName={sectionName} />
         </div>
         <div className="content-component right-menu-container">
           {renderContent()}
         </div>
       </div>
+
+      {checkIsMobile() && (
+        <div className="BottomNavBar-mobile-view">
+          <BottomNavBar
+            element={
+              subDomainDetails?.subdomain_key === "indigrid"
+                ? indigridNavbarData
+                : navBarData
+            }
+            from={subDomainDetails?.subdomain_key ? "subdomain" : ""}
+            handleNavigate={handleNavigate}
+            moreOptionsBtn={moreOptions}
+            setMoreOptions={setMoreOptions}
+            navBarMoreData={navBarMoreData}
+            handleLogin={handleLogin}
+          />
+        </div>
+      )}
     </DashboardStyled>
   );
 };

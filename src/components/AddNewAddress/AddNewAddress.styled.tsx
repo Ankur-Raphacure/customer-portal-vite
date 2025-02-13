@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const AddNewAddressStyled = styled.div`
+  font-family: "Outfit", sans-serif;
   .new-option-header {
     display: flex;
     justify-content: space-between;
@@ -56,7 +57,7 @@ export const AddNewAddressStyled = styled.div`
       background: #9747ff;
       color: #fff;
       border: none;
-      height: 45px;
+      /* height: 45px; */
       font-size: 22px;
     }
     .cancel-btn {
@@ -66,7 +67,7 @@ export const AddNewAddressStyled = styled.div`
       color: #000;
       border: 1px solid #000;
       // border: none;
-      height: 45px;
+      /* height: 45px; */
       font-size: 22px;
       margin-right: 20px;
       border-radius: 4px;
@@ -114,5 +115,44 @@ export const AddNewAddressStyled = styled.div`
   .add-new-user-changes1 .form-group label {
     font-size: 18px;
     color: rgb(11, 102, 178);
+  }
+
+  button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    &.selected {
+      background: #252b61;
+      color: #fff;
+    }
+  }
+
+  input {
+    border: 1px solid #aeaeae;
+    border-radius: 0.375rem;
+  }
+  .delta-select__control {
+    border: 1px solid #aeaeae;
+    .delta-select__indicator-separator {
+      display: none;
+    }
+    .delta-select__dropdown-indicator {
+      color: #000;
+    }
+  }
+
+  .address-type-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    .type-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: fit-content;
+      gap: 2px;
+    }
   }
 `;

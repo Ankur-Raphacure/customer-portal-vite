@@ -526,11 +526,102 @@ export const BookingsStyled = styled.div`
       margin-bottom: 12px;
     }
   }
-  .imagesPreview{
+  .imagesPreview {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 1rem;
+  }
+
+  // Bookings Filters
+  .bookings-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0.75rem;
+    @media screen and (max-width: 1200px) {
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+
+  .bookings-header h3 {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 0;
+  }
+
+  .filters-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .filter-dropdown {
+    position: relative;
+  }
+
+  .filter-select {
+    font-family: "Outfit", sans-serif;
+    font-size: 0.875rem;
+    padding: 0.75rem 2rem 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #ffffff;
+    color: #4a5568;
+    cursor: pointer;
+    appearance: none;
+    min-width: 10rem;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  }
+
+  .filter-dropdown::after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 0.3rem solid transparent;
+    border-right: 0.3rem solid transparent;
+    border-top: 0.4rem solid #4a5568;
+    pointer-events: none;
+  }
+
+  .sort-dropdown {
+    /* margin-left: auto; */
+  }
+
+  @media (max-width: 768px) {
+    .filters-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sort-dropdown {
+      margin-left: 0;
+    }
+
+    .filter-select {
+      width: 100%;
+    }
+    .filters-container {
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 `;

@@ -19,6 +19,7 @@ export const RadiologyStyled = styled.div`
     max-height: 180px;
     object-fit: cover;
   }
+
   .scanNow {
     color: #000000;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -27,7 +28,9 @@ export const RadiologyStyled = styled.div`
     font-size: 36px;
     font-weight: 600;
   }
-
+  .headeing-banner-mobile {
+    display: none;
+  }
   .scanSubTxt {
     color: #000;
     // font-family: Poppins;
@@ -244,6 +247,10 @@ export const RadiologyStyled = styled.div`
     width: 100%;
     margin: auto;
     padding: 30px 50px;
+
+    & > .container-fluid {
+      --bs-gutter-x: 0rem !important;
+    }
   }
   .cardsBody {
     padding: unset;
@@ -398,23 +405,79 @@ export const RadiologyStyled = styled.div`
     box-sizing: border-box;
   }
   .common-sub-cards-main-div {
-    padding: 0px 50px;
+    padding: 0px 0px;
   }
   .radiology-cards-main-div {
     background-color: #f0f5ff;
     padding: 50px 50px;
   }
+
+  .mobileview-uploadprescription,
+  .mobile-view-categories {
+    display: none;
+    padding: 0px 10px 30px 10px;
+  }
+
   @media (max-width: 768px) {
+    .bottom-banner {
+      display: none;
+    }
+    .headeing-banner-mobile {
+      display: block;
+    }
     .catCardDiv {
       width: calc(100% - 10px);
       overflow: scroll;
     }
+    .Scan-Category-MultiCarouselModal {
+      display: none;
+    }
+    .mobile-view-categories {
+      display: block;
+    }
+    .Upload-Prescription-mobile-btn {
+      margin-top: 29px;
+      padding: 10px 14px;
+      width: 100%;
+      position: relative;
+      border-radius: 10px;
+      background-color: #a3dac2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        margin-bottom: 0px;
+        font-size: 14px;
+        letter-spacing: 0.02em;
+        font-weight: 600;
+        font-family: Outfit, sans-serif;
+        color: #252b61;
+      }
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 45px;
+        background-color: #252b61;
+        height: 30px;
+        font-size: 12px;
+        color: #fff;
+        font-family: Outfit, sans-serif;
+      }
+    }
+    .mobileview-uploadprescription {
+      display: block;
+    }
     .categoryContainer {
       padding: 24px;
     }
-  }
-
-  @media (max-width: 768px) {
+    .headeing-banner-web {
+      display: none;
+    }
+    .search-by-name {
+      display: none;
+    }
     .scanCeBtnCol {
       flex-direction: column;
       align-items: flex-start;
@@ -431,6 +494,10 @@ export const RadiologyStyled = styled.div`
     .scanCeContainer {
       padding: 9px;
       margin: 2px 12px;
+
+      .healthSaverSection {
+        background: #fff;
+      }
     }
 
     .scanCeBtnCol {
@@ -461,14 +528,20 @@ export const RadiologyStyled = styled.div`
       width: 242px;
     }
     .radiology-heading-div p {
-      font-size: 24px !important;
+      margin-top: 30px;
+      font-size: 18px !important;
     }
     .radiology-heading-div {
       padding: 0px 10px !important;
     }
     .healthCards {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      scrollbar-width: none;
+      margin-bottom: 0px;
       padding: 1rem;
-      flex-direction: column;
     }
     .radiology-cards-main-div {
       padding: 0px 10px;
@@ -481,7 +554,7 @@ export const RadiologyStyled = styled.div`
       margin-bottom: 0px !important;
     }
     .common-sub-cards-title-div h5 {
-      font-size: 24px !important;
+      font-size: 18px !important;
     }
     .common-sub-cards-main-div {
       padding: 0px 10px;
@@ -489,6 +562,7 @@ export const RadiologyStyled = styled.div`
     .common-sub-cards-title-div {
       margin-top: 10px !important;
       margin-bottom: 10px !important;
+      padding: 0px 0px !important;
     }
     .textContent {
       display: flex;
@@ -588,6 +662,7 @@ export const RadiologyStyled = styled.div`
   }
 
   .common-sub-cards-title-div {
+    padding: 0px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -818,6 +893,7 @@ export const RadiologyStyled = styled.div`
   @media (max-width: 768px) {
     .filter-List-module-div {
       width: 100%;
+      padding: 0px 20px;
     }
     .scan-list-data-div {
       display: grid;
@@ -829,7 +905,7 @@ export const RadiologyStyled = styled.div`
       gap: 0px;
     }
     .all-scans-list-content {
-      padding: 10px 10px;
+      padding: 0px 0px;
     }
     .filter-byname-div {
       display: flex;
@@ -852,7 +928,7 @@ export const RadiologyStyled = styled.div`
     }
     .pharmacy-search-fields {
       margin-top: 10px;
-      padding: 0px 10px !important;
+      padding: 0px 0px !important;
     }
     .ant-select-selector {
       margin-top: 0px;
@@ -871,6 +947,9 @@ export const RadiologyStyled = styled.div`
     .search-popup {
       width: 100% !important;
       left: 0rem !important;
+    }
+    .pagination-box-sec-pha {
+      margin-bottom: 1rem;
     }
   }
 `;

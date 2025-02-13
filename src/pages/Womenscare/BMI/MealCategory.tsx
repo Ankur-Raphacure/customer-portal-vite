@@ -1,97 +1,150 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BMICalculatorStyled } from "./BMICalculator.styled";
-import { FaShare } from "react-icons/fa";
-import { FaArrowDown } from "react-icons/fa";
+import { FaShare, FaArrowDown, FaPencilAlt, FaCheck } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import DietPlanPreview from "./DietPlanPreview";
+import { Button } from "antd";
+import Loader from "../../../components/Loader/Loader";
 import ShareModal from "../../../components/ShareModal/ShareModal";
+import {
+  createBkDiet,
+  getBkDiet,
+} from "../../../redux/slices/bookingScreen/bookingScreenService";
 
-type Meals = {
-  "BREAK FAST": { description: string; image: string }[];
-  LUNCH: { description: string; image: string }[];
-  DINNER: { description: string; image: string }[];
-};
 const cardData = [
   { id: 1, title: "Week", number: 1, name: "Week-1" },
   { id: 2, title: "Week", number: 2, name: "Week-2" },
   { id: 3, title: "Week", number: 3, name: "Week-3" },
   { id: 4, title: "Week", number: 4, name: "Week-4" },
 ];
-const dayList = [
-  { day: "Day 1" },
-  { day: "Day 2" },
-  { day: "Day 3" },
-  { day: "Day 4" },
-  { day: "Day 5" },
-  { day: "Day 6" },
-  { day: "Day 7" },
-];
 
-const meals = {
-  "BREAK FAST": [
-    {
-      description: "1 Bowl of oatmeal with mixed berries",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337537066.png",
-    },
-    {
-      description: "1 Boiled egg",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337588253.png",
-    },
-    {
-      description: "Green Tea",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337632530.png",
-    },
-  ],
-  LUNCH: [
-    {
-      description: "Grilled chicken salad with lots of greens",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337676501.png",
-    },
-    {
-      description: "Cherry tomatoes",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337713280.png",
-    },
-    {
-      description: "Cucumber and Olive oil dressing",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337766512.png",
-    },
-  ],
-  DINNER: [
-    {
-      description: "Grilled salmon",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337806360.png",
-    },
-    {
-      description: "Steamed broccoli",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337846750.png",
-    },
-    {
-      description: "Quinoa and Mixed greens salad",
-      image:
-        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736337893659.png",
-    },
-  ],
-};
+// You may still use this array to enforce the order of meal times.
+const timeSlots = ["Breakfast", "Lunch", "Dinner"];
 
-const time = [{ slot: "BREAK FAST" }, { slot: "LUNCH" }, { slot: "DINNER" }];
+const MealCategory = (props: any) => {
+  const { id: bkId } = props.match?.params;
+  const dispatch = useDispatch();
+  const [isLoader, setIsLoader] = useState(false);
+  const [dietPlan, setDietPlan] = useState<any>({});
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
+  const [openShareModel, setOpenShareModel] = useState<boolean>(false);
 
-const MealCategory = () => {
-  const [selectedCard, setSelectedCard] = useState(null);
-  const [openShareModel, setOpenShareModel] = useState<any>(false);
+  // State to track which meal items are being edited.
+  // The keys will be strings in the format: `${dayKey}_${slot}_${index}`
+  const [editing, setEditing] = useState<{ [key: string]: boolean }>({});
 
   const shareURL = window.location.href;
 
-  const handleCardClick = (id: any) => {
+  const handleCardClick = (id: number) => {
     setSelectedCard(id);
   };
+
+  useEffect(() => {
+    if (!bkId) {
+      toast.error("Booking Id is not available");
+      return;
+    }
+    getBkDietData();
+  }, []);
+
+  const addDietToBooking = async (dietPlan: any) => {
+    if (!bkId) {
+      toast.error("Booking Id is not available");
+      return;
+    }
+    const payload = {
+      booking_id: bkId,
+      dietPlan: dietPlan,
+    };
+    const res: any = await dispatch(createBkDiet(payload));
+    if (res?.error) {
+      toast.error(res?.error?.message || "Unknown Error Occured");
+      return;
+    }
+    toast.success("Diet Plan Updated Successfully");
+    getBkDietData();
+  };
+
+  const getBkDietData = async () => {
+    setIsLoader(true);
+    const res: any = await dispatch(getBkDiet(bkId));
+    if (res?.error) {
+      toast.error(res?.error?.message || "Unknown Error Occured");
+      setIsLoader(false);
+      return;
+    }
+    // Assuming the API response has a dietPlan object as shown
+    if (res?.payload?.data?.dietPlan) {
+      // Transform keys from "week_1" to "Week_1", "week_2" to "Week_2", etc.
+      const fetchedDietPlan = res.payload.data.dietPlan;
+      const transformedDietPlan: any = {};
+      Object.keys(fetchedDietPlan).forEach((key) => {
+        // Capitalize the first letter of the key
+        const newKey = key.charAt(0).toUpperCase() + key.slice(1);
+        transformedDietPlan[newKey] = fetchedDietPlan[key];
+      });
+      setDietPlan(transformedDietPlan);
+    }
+    setIsLoader(false);
+  };
+
+  // Get the data for the currently selected week.
+  const selectedWeekData = selectedCard
+    ? dietPlan[`Week_${selectedCard}`]
+    : null;
+
+  // Handler to update a specific meal in the dietPlan state.
+  const handleMealChange = (
+    dayKey: string,
+    mealSlot: string,
+    index: number,
+    newMeal: string
+  ) => {
+    if (!selectedCard) return;
+    const weekKey = `Week_${selectedCard}`;
+
+    // Create a copy of the week data.
+    const updatedWeek = { ...dietPlan[weekKey] };
+    // Create a copy of the meal list for the specific day and meal slot.
+    const updatedMealList = [...updatedWeek[dayKey][mealSlot]];
+
+    // Update the meal at the specified index.
+    updatedMealList[index] = newMeal;
+    // Update the day with the new meal list.
+    updatedWeek[dayKey] = {
+      ...updatedWeek[dayKey],
+      [mealSlot]: updatedMealList,
+    };
+
+    // Update the dietPlan state.
+    setDietPlan({
+      ...dietPlan,
+      [weekKey]: updatedWeek,
+    });
+  };
+
+  // Handler for enabling edit mode on a meal item.
+  const handleEditClick = (mealKey: string) => {
+    setEditing((prev) => ({ ...prev, [mealKey]: true }));
+  };
+
+  // Handler for saving an edited meal item.
+  const handleSaveClick = (mealKey: string) => {
+    setEditing((prev) => ({ ...prev, [mealKey]: false }));
+  };
+
+  // Handler for the update button.
+  const handleUpdate = () => {
+    console.log("Updated dietPlan:", dietPlan);
+    addDietToBooking(dietPlan);
+    // You can add further processing here (e.g., send to backend)
+  };
+
   return (
     <BMICalculatorStyled>
+      {isLoader && <Loader />}
       <ShareModal
         show={openShareModel}
         url={shareURL}
@@ -106,7 +159,7 @@ const MealCategory = () => {
       <div className="banner-div">
         <div className="img-div">
           <img
-            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736336983146.png"
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/106435-1737354499805.png"
             alt="Fruit"
           />
         </div>
@@ -149,175 +202,114 @@ const MealCategory = () => {
           ))}
         </div>
       </div>
+
       <div className="list-div">
-        {selectedCard === 1 && (
-          <div className="name-display">
-            {dayList.map((item, index) => (
-              <div key={index}>
-                <h4 className="day-div">{item.day}</h4>
-
-                <div className="slot-div">
-                  {time.map((slot, slotIndex) => (
-                    <div key={slotIndex}>
-                      <h4 className="slot-title">{slot.slot}</h4>
-                      <ul>
-                        {(meals[slot.slot as keyof Meals] || []).map(
-                          (meal: any, mealIndex: any) => (
-                            <div className="name-div">
-                              <p key={mealIndex}>
-                                <img
-                                  src={meal.image}
-                                  alt={meal.description}
-                                  style={{
-                                    width: "25px",
-                                    height: "25px",
-                                    marginRight: "10px",
-                                  }}
-                                />
-                                {meal.description}
-                              </p>
-                            </div>
-                          )
-                        )}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
+        {/* Render the dynamic content if a week is selected and data exists */}
+        {selectedWeekData ? (
+          Object.entries(selectedWeekData).map(([dayKey, mealTimes]: any) => (
+            <div key={dayKey} className="weeks">
+              <h4 className="day-div">{dayKey.replace("_", " ")}</h4>
+              <div className="slot-div">
+                {timeSlots.map((slot) => (
+                  <div key={slot} className="timeSlot">
+                    <h4 className="slot-title">{slot}</h4>
+                    <ul>
+                      {(mealTimes[slot] || []).map(
+                        (meal: string, index: number) => {
+                          // Create a unique key for the meal item.
+                          const mealKey = `${dayKey}_${slot}_${index}`;
+                          return (
+                            <li key={mealKey} className="name-div">
+                              {editing[mealKey] ? (
+                                <>
+                                  <input
+                                    type="text"
+                                    value={meal}
+                                    onChange={(e) =>
+                                      handleMealChange(
+                                        dayKey,
+                                        slot,
+                                        index,
+                                        e.target.value
+                                      )
+                                    }
+                                  />
+                                  <FaCheck
+                                    style={{
+                                      cursor: "pointer",
+                                      marginLeft: "8px",
+                                      color: "green",
+                                    }}
+                                    onClick={() => handleSaveClick(mealKey)}
+                                  />
+                                </>
+                              ) : (
+                                <>
+                                  <span>{meal}</span>
+                                  <FaPencilAlt
+                                    style={{
+                                      cursor: "pointer",
+                                      marginLeft: "8px",
+                                      color: "#9747ff",
+                                    }}
+                                    onClick={() => handleEditClick(mealKey)}
+                                  />
+                                </>
+                              )}
+                            </li>
+                          );
+                        }
+                      )}
+                    </ul>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))
+        ) : (
+          <p>Please select a week to view the diet plan.</p>
         )}
 
-        {selectedCard === 2 && (
-          <div className="name-display">
-            {dayList.map((item, index) => (
-              <div key={index}>
-                <h4 className="day-div">{item.day}</h4>
-
-                <div className="slot-div">
-                  {time.map((slot, slotIndex) => (
-                    <div key={slotIndex}>
-                      <h4 className="slot-title">{slot.slot}</h4>
-                      <ul>
-                        {(meals[slot.slot as keyof Meals] || []).map(
-                          (meal: any, mealIndex: any) => (
-                            <div className="name-div">
-                              <p key={mealIndex}>
-                                <img
-                                  src={meal.image}
-                                  alt={meal.description}
-                                  style={{
-                                    width: "25px",
-                                    height: "25px",
-                                    marginRight: "10px",
-                                  }}
-                                />
-                                {meal.description}
-                              </p>
-                            </div>
-                          )
-                        )}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        {selectedCard === 3 && (
-          <div className="name-display">
-            {dayList.map((item, index) => (
-              <div key={index}>
-                <h4 className="day-div">{item.day}</h4>
-
-                <div className="slot-div">
-                  {time.map((slot, slotIndex) => (
-                    <div key={slotIndex}>
-                      <h4 className="slot-title">{slot.slot}</h4>
-                      <ul>
-                        {(meals[slot.slot as keyof Meals] || []).map(
-                          (meal: any, mealIndex: any) => (
-                            <div className="name-div">
-                              <p key={mealIndex}>
-                                <img
-                                  src={meal.image}
-                                  alt={meal.description}
-                                  style={{
-                                    width: "25px",
-                                    height: "25px",
-                                    marginRight: "10px",
-                                  }}
-                                />
-                                {meal.description}
-                              </p>
-                            </div>
-                          )
-                        )}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        {selectedCard === 4 && (
-          <div className="name-display">
-            {dayList.map((item, index) => (
-              <div key={index}>
-                <h4 className="day-div">{item.day}</h4>
-
-                <div className="slot-div">
-                  {time.map((slot, slotIndex) => (
-                    <div key={slotIndex}>
-                      <h4 className="slot-title">{slot.slot}</h4>
-                      <ul>
-                        {(meals[slot.slot as keyof Meals] || []).map(
-                          (meal: any, mealIndex: any) => (
-                            <div className="name-div">
-                              <p key={mealIndex}>
-                                <img
-                                  src={meal.image}
-                                  alt={meal.description}
-                                  style={{
-                                    width: "25px",
-                                    height: "25px",
-                                    marginRight: "10px",
-                                  }}
-                                />
-                                {meal.description}
-                              </p>
-                            </div>
-                          )
-                        )}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
         <div className="btn-div">
-          <button className="button me-4" type="button">
-            <span className="button__text">Download</span>
-            <span className="button__icon">
-              {" "}
-              <FaArrowDown className="svg" />
-            </span>
-          </button>
-          <button
-            className="button-with-icon"
-            onClick={() => {
-              setOpenShareModel(true);
-            }}
-          >
-            <FaShare className="icon" />
-            <span className="text">Share</span>
-          </button>
+          {selectedCard && (
+            <>
+              <button
+                className="button"
+                type="button"
+                onClick={() => setShowDownloadModal(true)}
+              >
+                <span className="button__text">
+                  Download Week {selectedCard}
+                </span>
+                <span className="button__icon">
+                  <FaArrowDown className="svg" />
+                </span>
+              </button>
+              <button
+                className="button-with-icon"
+                onClick={() => {
+                  setOpenShareModel(true);
+                }}
+              >
+                <FaShare className="icon" />
+                <span className="text">Share</span>
+              </button>
+              {/* Update button to log the latest dietPlan */}
+              <div className="update-btn-div">
+                <Button className="update-button" onClick={handleUpdate}>
+                  Update Diet Plan
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </div>
+
+      <DietPlanPreview
+        showModal={showDownloadModal}
+        onClose={() => setShowDownloadModal(false)}
+        selectedWeekData={selectedWeekData}
+      />
     </BMICalculatorStyled>
   );
 };

@@ -7,6 +7,7 @@ export const UploadSubPrescriptionStyled = styled.div`
     display: flex;
     gap: 2rem;
     width: 100%;
+    margin-top: 1rem;
   }
   .upload-sub-prescription-left-div {
     display: flex;
@@ -268,7 +269,31 @@ export const UploadSubPrescriptionStyled = styled.div`
       width: 100%;
     }
   }
-
+  .prescription-address-div {
+    width: 60%;
+  }
+  .address-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #313131;
+    margin: 0px;
+  }
+  .prescription-address-btn-div {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .prescription-upload-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 45px;
+    background-color: #252b61;
+    font-size: 14px;
+    color: #fff;
+    font-family: Outfit, sans-serif;
+    border: none;
+  }
   @media (max-width: 768px) {
     padding: 10px 20px;
     .vertical-line {

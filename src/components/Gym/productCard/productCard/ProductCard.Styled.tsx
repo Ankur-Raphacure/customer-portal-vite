@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 
 export const ProductCardStyled = styled.div`
+    width:252px;
+
+    
     .product-deck-container{
         padding:0 5% 0 5%;
         margin:20px 0 20px 0;
@@ -27,15 +30,27 @@ export const ProductCardStyled = styled.div`
         display:flex;
         height:60%
     }
+    .card-rating-div{
+        position:absolute;
+        top: 20px;
+        left: -27px;
+    }
     .card-rating-svg{
         position:absolute;
-        top:20px;
-        left:-12px
+        top:0px;
+        left:0px
+    }
+    .card-rating-p{
+        position:absolute;
+        top:-2px;
+        left:20px;
     }
     .card-img{
         width:100%;
         border-radius:15px;
         height:100%;
+        object-fit:contain;
+        border:1px solid #eaeaea;
     }
     .card-bottom-container{
         display:flex;
@@ -49,8 +64,7 @@ export const ProductCardStyled = styled.div`
     .card-item-nowrap{
         white-space: nowrap;  
         overflow: hidden;    
-        text-overflow: ellipsis;  
-        width: 200px;         
+        text-overflow: ellipsis;       
     }
     .card-item-name{
         height:48px;
@@ -62,5 +76,15 @@ export const ProductCardStyled = styled.div`
         text-overflow: ellipsis; 
         line-height: 1.5em;         
         max-height: 3em;   
+    }
+    .link-to{
+        text-decoration: none;
+        color:black;
+        display:flex;
+        justify-content:center;
+        width:252px;
+    }
+    .place-p{
+        color:rgb(164, 155, 155);
     }
 `

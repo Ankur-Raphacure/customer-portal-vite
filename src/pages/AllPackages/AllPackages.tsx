@@ -7,7 +7,7 @@ import {
   getAllFilteredPackages,
   getAllFilteredTests,
 } from "../../redux/slices/labtest/labtestService";
-import { truncateText } from "../../Scenes/common";
+import { checkIsMobile, truncateText } from "../../Scenes/common";
 import { Select } from "antd";
 import Loader from "../../components/Loader/Loader";
 import SideFilterModule from "../Pharmacy/SideFilterModule";
@@ -22,6 +22,7 @@ import { debounce } from "lodash";
 import { Pagination } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { getAllVendorDetailsAPI } from "../../redux/slices/bookingScreen/bookingScreenService";
+import MobileHeader from "../../components/Header/MobileHeader";
 
 const AllPackages = (props: any) => {
   const history = useHistory();
@@ -89,6 +90,7 @@ const AllPackages = (props: any) => {
         categoryIds: [], // Use the derived array here
         count: currentCount,
         isCorporate: false,
+        type: "diagnostic",
         page: 1,
       },
     };
@@ -104,6 +106,7 @@ const AllPackages = (props: any) => {
         categoryIds: [],
         count: newCount,
         isCorporate: false,
+        type: "diagnostic",
         page: 1,
       },
     };
@@ -136,6 +139,7 @@ const AllPackages = (props: any) => {
         count: currentCount,
         page: 1,
         isCorporate: false,
+        type: "diagnostic",
         sortBy: value,
       },
     };
@@ -155,6 +159,7 @@ const AllPackages = (props: any) => {
         count: currentCount,
         page: 1,
         isCorporate: false,
+        type: "diagnostic",
         minPrice: parseInt(start, 10),
         maxPrice: parseInt(end, 10),
       },
@@ -168,6 +173,7 @@ const AllPackages = (props: any) => {
         count: currentCount,
         page: 1,
         isCorporate: corpToggle,
+        type: "diagnostic",
         searchText,
       },
     };
@@ -179,6 +185,7 @@ const AllPackages = (props: any) => {
       categoryIds: [],
       count: currentCount,
       isCorporate: false,
+      type: "diagnostic",
       page: 1,
       searchText: "",
     },
@@ -207,6 +214,7 @@ const AllPackages = (props: any) => {
         page: 1,
         minDiscount: parseInt(start, 10),
         isCorporate: false,
+        type: "diagnostic",
         maxDiscount: parseInt(end, 10),
       },
     };
@@ -260,6 +268,7 @@ const AllPackages = (props: any) => {
         categoryIds: updatedCategories, // Now using array with all categories
         count: currentCount,
         isCorporate: false,
+        type: "diagnostic",
         page: 1,
       },
     };
@@ -290,6 +299,7 @@ const AllPackages = (props: any) => {
           vendorIds: updatedVendors, // Use updated vendors
           count: currentCount,
           isCorporate: false,
+          type: "diagnostic",
           page: 1,
         },
       };
@@ -308,6 +318,7 @@ const AllPackages = (props: any) => {
         vendorIds: updatedVendors, // Now using array with all categories
         count: currentCount,
         isCorporate: false,
+        type: "diagnostic",
         page: 1,
       },
     };
@@ -407,6 +418,7 @@ const AllPackages = (props: any) => {
           count: currentCount,
           page: 1,
           isCorporate: false,
+          type: "diagnostic",
           testIds: updatedTests,
         },
       };
@@ -432,6 +444,7 @@ const AllPackages = (props: any) => {
               testIds: selectedTests,
               count: currentCount,
               isCorporate: false,
+              type: "diagnostic",
               page: 1,
             },
           })
@@ -481,6 +494,7 @@ const AllPackages = (props: any) => {
           fasting: !fastingToggle,
           count: testsPerPage,
           isCorporate: false,
+          type: "diagnostic",
           page: 1,
         },
       })
@@ -506,6 +520,7 @@ const AllPackages = (props: any) => {
       getAllFilteredPackages({
         filters: {
           isCorporate: !corpToggle,
+          type: "diagnostic",
           count: testsPerPage,
           page: 1,
         },
@@ -531,6 +546,7 @@ const AllPackages = (props: any) => {
     <LabtestStyled>
       <AllPackagesStyled>
         {isLoading && <Loader />}
+
         <div className="all-pharmacy-page-div">
           <div className="filter-module-div">
             <SideFilterModule
@@ -557,6 +573,7 @@ const AllPackages = (props: any) => {
               origin={"package"}
             />
           </div>
+
           <div className="right-card-module-div">
             <BreadCrumbModule
               moduleName={"Labtest"}
@@ -564,11 +581,13 @@ const AllPackages = (props: any) => {
               list={list}
             />
             <div className="d-flex flex-row justify-content-between mb-4 searchSort">
-              <SearchByTextModule
-                details={pharmacySearchTextChange}
-                handleonFilterName={handleonFilterName}
-                origin={"labtest"}
-              />
+              <div className="parent-search-fild-div">
+                <SearchByTextModule
+                  details={pharmacySearchTextChange}
+                  handleonFilterName={handleonFilterName}
+                  origin={"labtest"}
+                />
+              </div>
               <div className="btn-filter-module-div">
                 <div className="selector-filter-sub-module-div">
                   <Select
@@ -600,7 +619,7 @@ const AllPackages = (props: any) => {
 
             <div className="healthCards">
               {allPackagesList?.data?.length === 0 && (
-                <p>No Tests Found for the Selected Filters</p>
+                <p>No Packages Found for the Selected Filters</p>
               )}
               {(Array.isArray(allPackagesList)
                 ? allPackagesList
@@ -611,7 +630,7 @@ const AllPackages = (props: any) => {
                 return (
                   <HealthSaverCard
                     key={testItem?.service_code || index}
-                    title={truncateText(testItem?.service_name, 15) || "N/A"} // Test name
+                    title={testItem?.service_name || "N/A"} // Test name
                     subtitle="Diagnostic Test" // Static subtitle for test cards
                     featureButtonText="Book Test" // Custom button text
                     reportTime="N/A" // Placeholder as report time is not provided

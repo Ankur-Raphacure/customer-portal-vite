@@ -15,6 +15,10 @@ export const RPFooterV2style = styled.div`
 
     gap: 220px;
     margin-bottom: 20px;
+
+    @media (max-width: 1446px) {
+      flex-wrap: nowrap;
+    }
   }
 
   .footer-logo-section {
@@ -50,6 +54,10 @@ export const RPFooterV2style = styled.div`
     display: flex;
     gap: 150px;
     margin-top: 50px;
+
+    @media (max-width: 1446px) {
+      text-wrap: nowrap;
+    }
   }
 
   .footer-column h3 {
@@ -84,6 +92,7 @@ export const RPFooterV2style = styled.div`
     font-size: 14px;
     padding: 20px 0px;
     margin-top: 50px;
+    
   }
 
   .footer-contact-section .consec p {

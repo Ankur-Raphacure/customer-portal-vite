@@ -23,7 +23,10 @@ export const ScanCenterCardsStyled = styled.div`
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
   }
-
+  .scanCenter-company-logo {
+    width: 100%;
+    height: 140px;
+  }
   .scanCenter-company-logo img {
     width: 100%;
     height: 140px;

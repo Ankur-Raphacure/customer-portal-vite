@@ -606,7 +606,10 @@ const BookingReview = (props: any) => {
                 {hDetails?.name}
               </div>
               <div className="doctor-department poppins-medium">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png" alt="" />{" "}
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png"
+                  alt=""
+                />{" "}
                 {hDetails?.address ?? hDetails?.city}
               </div>
             </div>
@@ -650,7 +653,18 @@ const BookingReview = (props: any) => {
             <>
               <div className="doctor-consultation">
                 <p> Name: {dDetails?.service_name}</p>
-                <p> Description: {dDetails?.description}</p>
+                {
+                  hDetails?.type === "gym" 
+                  ? 
+                  (
+                    <p> Description: <p dangerouslySetInnerHTML={{__html:dDetails?.description}}/></p>
+                  )
+                  :
+                  (
+                    <p> Description: {dDetails?.description}</p>
+                  )
+                }
+                
               </div>
             </>
           )}
@@ -963,10 +977,16 @@ const BookingReview = (props: any) => {
               : ittem.consultationType === "VIRTUAL"
               ? "video"
               : null,
-          test_code: ittem?.doctorDetails?.service_code
-            ? ittem?.doctorDetails?.service_code
-            : undefined,
-          package_code: undefined,
+          test_code:
+            ittem?.categoryType === "gym"
+              ? undefined
+              : ittem?.doctorDetails?.service_code
+              ? ittem?.doctorDetails?.service_code
+              : undefined,
+          package_code:
+            ittem?.categoryType === "gym"
+              ? ittem?.doctorDetails?.service_code
+              : undefined,
           useWallet: true, //false,
           doctor_id: ittem?.doctorDetails?.id,
           vendor_id:

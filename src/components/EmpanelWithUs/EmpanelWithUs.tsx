@@ -16,6 +16,7 @@ import { ReactComponent as PickupCircle } from "../../assets/icons/pickupCircle.
 import AutocompleteField from "../AutoComplete";
 import { parseAddress } from "../../Scenes/common";
 import { fromPlaceId } from "react-geocode";
+import { Col, Row } from "react-bootstrap";
 
 const initVal = {
   name: undefined,
@@ -26,6 +27,7 @@ const initVal = {
   state: undefined,
   zip: undefined,
   type: undefined,
+  empWithUsAdd: undefined,
 };
 
 const initValError = {
@@ -292,6 +294,9 @@ const EmpanelWithUs = (props: any) => {
   const [fromLocation, setFromLocation] = useState({} as any);
   const [fromAddressObj, setFromAddressObj] = useState({} as any);
   const [fromPlaceId1, setFromPlaceId1] = useState("");
+  const [latAdd, setLatAdd] = useState("");
+  const [logAdd, setLogAdd] = useState("");
+  const [empWithUsAdd, setEmpWithUsAdd] = useState("");
 
   const [signUpData, setSignUpData] = useState(initVal as any);
   const [errorData, setErrorData] = useState(initValError as any);
@@ -313,18 +318,25 @@ const EmpanelWithUs = (props: any) => {
     value: city.name,
   }));
 
+  console.log(fromAddressObj, "fromAddressObj");
+
   useEffect(() => {
     if (props?.show && props?.selectedMember?.id) {
       const prevD = props?.selectedMember;
       const addr = { ...signUpData };
+      console.log(addr, "addr");
+
       addr.name = prevD?.name;
-      addr.phone = prevD?.phone;
       addr.email = prevD?.email;
+      addr.phone = prevD?.phone;
+      addr.secondary_phone = prevD?.alt_phone;
       addr.city = prevD?.city;
-      addr.state = prevD.state;
-      addr.zip = prevD.zip;
-      addr.type = prevD.type;
-      addr.secondary_phone = prevD.alt_phone;
+      addr.state = prevD?.state;
+      addr.zip = prevD?.zip;
+      addr.type = prevD?.type;
+      addr.latAdd = prevD?.latitude;
+      addr.logAdd = prevD?.longitude;
+      addr.empWithUsAdd = prevD?.address;
 
       setSignUpData({
         ...addr,
@@ -350,6 +362,8 @@ const EmpanelWithUs = (props: any) => {
     }
     setErrorData({ ...errornew });
     if (isValid) {
+      console.log(signUpData, "signupdata");
+
       makeSignUpCall(signUpData);
 
       setShowCancelReqPopup(true);
@@ -418,6 +432,7 @@ const EmpanelWithUs = (props: any) => {
   const handleChangeValue = (e: any) => {
     setPassError("");
     let { name, value } = e.target;
+
     var value1 = value;
     if (value.trim() === "") {
       value1 = value.trim();
@@ -467,36 +482,46 @@ const EmpanelWithUs = (props: any) => {
     }
   };
 
-  const handlePlaceSelected = (place: any) => {
-    let inputRef = document.getElementById("fromAddress") as HTMLInputElement;
-    let selectedAddress = inputRef?.value;
-    inputRef.value = selectedAddress;
-    setFromValue(place?.formatted_address);
-    const place_id = place?.place_id;
-    fromPlaceId(place_id)
-      .then(({ results }) => {
-        const { lat, lng } = results[0].geometry.location;
-        setFromLocation({ latitude: lat, longitude: lng });
-      })
-      .catch(console.error);
-    let { address1, city, state, country, zipcode } = parseAddress(
-      place,
-      selectedAddress
-    );
-    setFromAddressObj({
-      address: selectedAddress,
-      zip: zipcode,
-      city,
-      state,
-    });
+  const handlePlaceSelected = (place: any, lat: any, log: any) => {
+    console.log(place, "rest");
+    setLatAdd(lat);
+    setLogAdd(log);
+    setEmpWithUsAdd(place);
+
+    // console.log(
+    //   place,
+    //   place?.formatted_address,
+    //   place?.place_id,
+    //   "selectedAddress"
+    // );
+
+    // inputRef.value = selectedAddress;
+    // setFromValue(place?.formatted_address);
+    // const place_id = place?.place_id;
+    // fromPlaceId(place_id)
+    //   .then(({ results }) => {
+    //     const { lat, lng } = results[0].geometry.location;
+    //     setFromLocation({ latitude: lat, longitude: lng });
+    //   })
+    //   .catch(console.error);
+    // let { address1, city, state, country, zipcode } = parseAddress(
+    //   place,
+    //   selectedAddress
+    // );
+    // setFromAddressObj({
+    //   address: selectedAddress,
+    //   zip: zipcode,
+    //   city,
+    //   state,
+    // });
 
     // Update city and state in the form
-    setSignUpData({
-      ...signUpData,
-      city: city,
-      state: state,
-      zip: zipcode,
-    });
+    // setSignUpData({
+    //   ...signUpData,
+    //   city: city,
+    //   state: state,
+    //   zip: zipcode,
+    // });
   };
 
   return (
@@ -507,7 +532,13 @@ const EmpanelWithUs = (props: any) => {
         handleImageUploadSuccess={handleImageUploadSuccess}
       />
 
-      <Modal {...props} size="lg" className="add-customer-model-box1" centered>
+      <Modal
+        {...props}
+        size="lg"
+        className="add-customer-model-box1"
+        backdrop="static"
+        keyboard={false}
+      >
         <div className="conformation-model">
           <EmpanelWithUsStyled>
             <Modal.Body>
@@ -520,159 +551,9 @@ const EmpanelWithUs = (props: any) => {
                   <div>
                     <p className="sub-header-sec">Personal Details</p>
                   </div>
-                  <div className="row-item-sec-user">
-                    <Form.Group className="signup-md" controlId="email">
-                      <Form.Label>
-                        Center Name <span className="mand-sign-field">*</span>{" "}
-                      </Form.Label>
-                      <Form.Control
-                        autoFocus
-                        name="name"
-                        type="text"
-                        id="name"
-                        value={signUpData?.name}
-                        onChange={(e) => handleChangeValue(e)}
-                        isInvalid={errorData?.name}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errorData?.name ? <>{errorDataValue?.name}</> : null}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group className="signup-md-left" controlId="email">
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="email"
-                        id="add_customer_email"
-                        value={signUpData?.email}
-                        // isInvalid={errorData?.email}
-                        onChange={(e) => handleChangeValue(e)}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errorData?.email ? <>{errorDataValue?.email}</> : null}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  </div>
-                  <div className="row-item-sec-user">
-                    <Form.Group className="signup-md" controlId="email">
-                      <Form.Label>
-                        Phone Number <span className="mand-sign-field">*</span>
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        maxLength={10}
-                        name="phone"
-                        id="add_customer_phone"
-                        value={signUpData?.phone}
-                        isInvalid={errorData?.phone}
-                        onChange={(e) => handleChangeValue(e)}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errorData?.phone ? <>{errorDataValue?.phone}</> : null}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group className="signup-md-left" controlId="email">
-                      <Form.Label>Alternative Mobile Number </Form.Label>
-                      <Form.Control
-                        type="text"
-                        maxLength={10}
-                        name="alt_phone"
-                        id="add_customer_alt_phone"
-                        value={signUpData?.alt_phone}
-                        isInvalid={errorData?.alt_phone}
-                        onChange={(e) => handleChangeValue(e)}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errorData?.alt_phone ? (
-                          <>{errorDataValue?.alt_phone}</>
-                        ) : null}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  </div>
                 </div>
-
-                <div className="mb-3 mt-3">
-                  <label className="form-label">Address</label>
-                  <div className="input-group">
-                    <div className="input-group-text">
-                      <PickupCircle />
-                    </div>
-                    <AutocompleteField
-                      onPlaceSelected={(place: any) =>
-                        handlePlaceSelected(place)
-                      }
-                      name="fromAddress"
-                      id="fromAddress"
-                      value={fromValue}
-                      placeholder={fromValue ? fromValue : "Pickup Location"}
-                      className="form-control"
-                    />
-                  </div>
-                </div>
-
-                <div className="SignupContainer add-new-user-changes1">
-                  <div className="row-item-sec-user">
-                    <Form.Group className="signup-md" controlId="city">
-                      <Form.Label>
-                        City
-                        <span className="mand-sign-field">*</span>
-                      </Form.Label>
-                      <Select
-                        value={{
-                          label: signUpData.city,
-                          value: signUpData.city,
-                        }}
-                        placeholder="Select Class"
-                        options={CityType}
-                        onChange={handleChangeCity}
-                        className="delta-select"
-                        classNamePrefix="delta-select"
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errorData.city ? <>{errorDataValue.city}</> : null}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-
-                    <Form.Group className="signup-md-left" controlId="email">
-                      <Form.Label>
-                        State
-                        <span className="mand-sign-field">*</span>
-                      </Form.Label>
-                      <Select
-                        value={{
-                          label: signUpData.state,
-                          value: signUpData.state,
-                        }}
-                        placeholder="Select Class"
-                        onChange={handleChangeState}
-                        options={stateList}
-                        className="delta-select"
-                        classNamePrefix="delta-select"
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errorData.state ? <>{errorDataValue.state}</> : null}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  </div>
-                  <div className="row-item-sec-user">
-                    <Form.Group className="signup-md">
-                      <Form.Label>
-                        Pin code <span className="mand-sign-field">*</span>
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="addNewUserAdress1"
-                        maxLength={100}
-                        name="zip"
-                        value={signUpData.zip}
-                        isInvalid={errorData.zip}
-                        onChange={(e) => handleChangeValue(e)}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errorData.zip ? <>{errorDataValue.zip}</> : null}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-
+                <Row className="mb-2">
+                  <Col md={6}>
                     <Form.Group className="signup-md-left" controlId="type">
                       <Form.Label>
                         Empanel type
@@ -693,23 +574,202 @@ const EmpanelWithUs = (props: any) => {
                         {errorData.type ? <>{errorDataValue.type}</> : null}
                       </Form.Control.Feedback>
                     </Form.Group>
-                  </div>
+                  </Col>
+                </Row>
 
+                <Row className="mb-2">
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label>
+                        Center Name <span className="mand-sign-field">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        className="shadow-none"
+                        autoFocus
+                        name="name"
+                        type="text"
+                        id="name"
+                        value={signUpData?.name}
+                        onChange={(e) => handleChangeValue(e)}
+                        isInvalid={errorData?.name}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errorData?.name ? <>{errorDataValue?.name}</> : null}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label>
+                        Email <span className="mand-sign-field">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        className="shadow-none"
+                        type="text"
+                        name="email"
+                        id="add_customer_email"
+                        value={signUpData?.email}
+                        // isInvalid={errorData?.email}
+                        onChange={(e) => handleChangeValue(e)}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errorData?.email ? <>{errorDataValue?.email}</> : null}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                </Row>
+
+                <Row className="mb-2">
+                  <Col md={6}>
+                    <Form.Group className="signup-md" controlId="email">
+                      <Form.Label>
+                        Phone Number <span className="mand-sign-field">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        className="shadow-none"
+                        type="text"
+                        maxLength={10}
+                        name="phone"
+                        id="add_customer_phone"
+                        value={signUpData?.phone}
+                        isInvalid={errorData?.phone}
+                        onChange={(e) => handleChangeValue(e)}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errorData?.phone ? <>{errorDataValue?.phone}</> : null}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="signup-md-left" controlId="email">
+                      <Form.Label>Alternative Mobile Number </Form.Label>
+                      <Form.Control
+                        className="shadow-none"
+                        type="text"
+                        maxLength={10}
+                        name="alt_phone"
+                        id="add_customer_alt_phone"
+                        value={signUpData?.alt_phone}
+                        isInvalid={errorData?.alt_phone}
+                        onChange={(e) => handleChangeValue(e)}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errorData?.alt_phone ? (
+                          <>{errorDataValue?.alt_phone}</>
+                        ) : null}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                </Row>
+
+                <div className="mb-2 ">
+                  <label className="form-label">Address</label>
+                  <div className="input-group">
+                    <div className="input-group-text">
+                      <PickupCircle />
+                    </div>
+                    <AutocompleteField
+                      onPlaceSelected={(place: any, lat: any, log: any) =>
+                        handlePlaceSelected(place, lat, log)
+                      }
+                      name="empWithUsAdd"
+                      id="empWithUsAdd"
+                      value={signUpData?.empWithUsAdd}
+                      isInvalid={errorData?.empWithUsAdd}
+                      placeholder={fromValue ? fromValue : "Pickup Location"}
+                      className="form-control shadow-none"
+                    />
+                  </div>
+                </div>
+
+                <Row className="mb-2">
+                  <Col md={6}>
+                    <Form.Group className="signup-md" controlId="city">
+                      <Form.Label>
+                        City
+                        <span className="mand-sign-field">*</span>
+                      </Form.Label>
+                      <Select
+                        value={{
+                          label: signUpData.city,
+                          value: signUpData.city,
+                        }}
+                        placeholder="Select Class"
+                        options={CityType}
+                        onChange={handleChangeCity}
+                        className="delta-select shadow-none"
+                        classNamePrefix="delta-select"
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errorData.city ? <>{errorDataValue.city}</> : null}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="signup-md-left" controlId="email">
+                      <Form.Label>
+                        State
+                        <span className="mand-sign-field">*</span>
+                      </Form.Label>
+                      <Select
+                        value={{
+                          label: signUpData.state,
+                          value: signUpData.state,
+                        }}
+                        placeholder="Select Class"
+                        onChange={handleChangeState}
+                        options={stateList}
+                        className="delta-select"
+                        classNamePrefix="delta-select shadow-none"
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errorData.state ? <>{errorDataValue.state}</> : null}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                </Row>
+
+                <Row className="mb-2">
+                  <Col md={6}>
+                    <Form.Group>
+                      <Form.Label>
+                        Pin code <span className="mand-sign-field">*</span>
+                      </Form.Label>
+                      <Form.Control
+                        className="shadow-none"
+                        type="text"
+                        id="addNewUserAdress1"
+                        maxLength={100}
+                        name="zip"
+                        value={signUpData.zip}
+                        isInvalid={errorData.zip}
+                        onChange={(e) => handleChangeValue(e)}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errorData.zip ? <>{errorDataValue.zip}</> : null}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <div className="add-new-submit-sec">
+                      <Button
+                        className="save-btn"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                        onClick={createAccountData}
+                        type="submit"
+                      >
+                        {loading ? "Loading" : "Submit"}
+                      </Button>
+                    </div>
+                  </Col>
+                </Row>
+
+                <div className="SignupContainer add-new-user-changes1">
                   {passError && <p className="errorMessage">{passError}</p>}
                   {error && !passError && (
                     <p className="errorMessage">{error}</p>
                   )}
-                  <div className="add-new-submit-sec">
-                    <Button
-                      className="save-btn"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                      onClick={createAccountData}
-                      type="submit"
-                    >
-                      {loading ? "Loading" : "Submit"}
-                    </Button>
-                  </div>
                 </div>
               </div>
             </Modal.Body>

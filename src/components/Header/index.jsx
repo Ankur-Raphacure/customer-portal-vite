@@ -15,19 +15,26 @@ import { CiSearch } from "react-icons/ci";
 import { IoLanguageOutline } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
-
+import MobileTopBanner from "./MobileTopBanner";
+import MobileHeader from "./MobileHeader";
+import { getFormatedAddress } from "../../Scenes/common";
 import {
   Row,
   Col,
   Button,
+  CardDeck,
+  CardColumns,
   InputGroup,
   Dropdown,
 } from "react-bootstrap";
 import "./styles.css";
+import {
+  updateShowLoginModel,
+  updateShowAddressSearchModel,
+} from "../../redux/slices/auth/authSlice";
+
 import { updateUserDetails } from "../../redux/slices/auth/authSlice";
 import { getConfigInfoAPI } from "./../../redux/slices/config/configService";
-import LoginModel from "./../../components/LoginModel/LoginModel";
-import { updateShowLoginModel } from "../../redux/slices/auth/authSlice";
 import { getCityNameAPI } from "../../redux/slices/auth/authService";
 // import GoogleTranslate from "./GoogleTranslate";
 // import { updateNitifySuccessMessage } from "../../redux/slices/checkout/checkoutSlice";
@@ -129,18 +136,12 @@ const Header = (props) => {
   const wyhUserIdFetched = useRef(false);
   const [selectedAddress, setSelectedAddress] = useState({});
   const [selectedUser, setSelectedUser] = useState({});
-  const { userDependents, userAddress } = useSelector(
+  const { userDependents, userAddress, selectedCurrentAddress } = useSelector(
     (ReduxState) => ReduxState.profile
   );
-  const {
-    error,
-    loading,
-    subDomainDetails,
-    user,
-    userCity,
-    showLoginModel,
-    subDomainName,
-  } = useSelector(({ auth }) => auth);
+
+  const { error, loading, subDomainDetails, user, userCity, subDomainName } =
+    useSelector(({ auth }) => auth);
   const { cartItems, nitifySuccessMessage } = useSelector(
     (startR) => startR?.checkout
   );
@@ -154,9 +155,12 @@ const Header = (props) => {
           headerNameList: [{ name: "Doctor Consultation", to: "/doctor" }],
         },
       ]);
-    }
-    else if (subDomainDetails?.subdomain_key === "getafixmd") {
-      setFinalList([{ name: "Doctor Consultation", to: "/doctor" }, { name: "Lab Test", to: "/labtest" }, { name: "Pharmacy", to: "/pharmacy" }]);
+    } else if (subDomainDetails?.subdomain_key === "getafixmd") {
+      setFinalList([
+        { name: "Doctor Consultation", to: "/doctor" },
+        { name: "Lab Test", to: "/labtest" },
+        { name: "Pharmacy", to: "/pharmacy" },
+      ]);
       setHeaderDropdownList([
         {
           headerName: "Consultation",
@@ -165,6 +169,30 @@ const Header = (props) => {
         {
           headerName: "Diagnostic",
           headerNameList: [{ name: "Lab Test", to: "/labtest" }],
+        },
+        {
+          headerName: "Medicines",
+          headerNameList: [{ name: "Pharmacy", to: "/pharmacy" }],
+        },
+      ]);
+    } else if (subDomainDetails?.subdomain_key === "indigrid") {
+      setFinalList([
+        { name: "Doctor Consultation", to: "/doctor" },
+        { name: "Lab Test", to: "/labtest" },
+        { name: "Pharmacy", to: "/pharmacy" },
+        { name: "Radiology", to: "/radiology" },
+      ]);
+      setHeaderDropdownList([
+        {
+          headerName: "Consultation",
+          headerNameList: [{ name: "Doctor Consultation", to: "/doctor" }],
+        },
+        {
+          headerName: "Diagnostic",
+          headerNameList: [
+            { name: "Lab Test", to: "/labtest" },
+            { name: "Radiology", to: "/radiology" },
+          ],
         },
         {
           headerName: "Medicines",
@@ -273,16 +301,17 @@ const Header = (props) => {
   useEffect(() => {
     if (user?.id) {
       dispatch(getCartItemsAPI());
-      dispatch(getCityNameAPI());
+      // dispatch(getCityNameAPI());
       if (!subDomainDetails?.name && (!user?.first_name || !user?.last_name)) {
         // history.push("/dashboard/myProfile?updateProfile=1");
       }
       getUserInfo();
     }
   }, [user?.id]);
-  // useEffect(() => {
-  //   getUserInfo();
-  // }, []);
+
+  useEffect(() => {
+    dispatch(getConfigInfoAPI());
+  }, []);
 
   const getUserInfo = () => {
     dispatch(getConfigInfoAPI());
@@ -310,13 +339,6 @@ const Header = (props) => {
       updateMenuLinks();
     }
   }, [subDomainDetails?.id]);
-
-  useEffect(() => {
-    if (showLoginModel) {
-      dispatch(updateShowLoginModel(false));
-      handleLogin();
-    }
-  }, [showLoginModel]);
 
   // useEffect(() => {
   //   if (nitifySuccessMessage) {
@@ -366,7 +388,7 @@ const Header = (props) => {
         ? user?.data?.lastName.charAt(0).toUpperCase()
         : "";
       shortname = firstName + lastName;
-    } catch (error) { }
+    } catch (error) {}
     return shortname;
   };
   const togglePopover = () => {
@@ -438,7 +460,7 @@ const Header = (props) => {
     return null;
   };
   const handleLogin = () => {
-    setShowLoginPopupModel(true);
+    dispatch(updateShowLoginModel(true));
   };
   const handleClose = () => {
     setShowLoginPopupModel(false);
@@ -468,8 +490,8 @@ const Header = (props) => {
 
   const isSubPage =
     uName?.includes("/checkout") ||
-      uName?.includes("/cart") ||
-      uName?.includes("/dashboard")
+    uName?.includes("/cart") ||
+    uName?.includes("/dashboard")
       ? true
       : true;
 
@@ -599,7 +621,9 @@ const Header = (props) => {
   const selectSavedAddress = (addss) => {
     setSelectedAddress(addss);
   };
-
+  const handleOpenAddressModel = () => {
+    dispatch(updateShowAddressSearchModel(true));
+  };
   useEffect(() => {
     if (userDependents?.length > 0 && !selectedUser?.id) {
       setSelectedUser(userDependents[0]);
@@ -608,18 +632,16 @@ const Header = (props) => {
       setSelectedAddress(userAddress[0]);
     }
   }, []);
-
   return (
     <>
       <div className="nav_bar">
-        <LoginModel show={showLoginPopupModel} handleClose={handleClose} />
         <ToastContainer />
         <div className="bg-body-tertiary">
           <div className="marquee-rotate-sec-con-txt">
             <Marquee>
-              {items.map((item,index) => {
+              {items.map((item) => {
                 return (
-                  <div className="marquee-rotate-div" key={index}>
+                  <div className="marquee-rotate-div">
                     <p>{item}</p>
                   </div>
                 );
@@ -635,22 +657,30 @@ const Header = (props) => {
           <Container fluid>
             <div className="header-left-sec1">
               <Navbar.Brand href="#">
-                <a className="navbar-brand left-image-sec-logo " href="#">
+                <a className="navbar-brand left-image-sec-logo" href="#">
                   <img
                     onClick={navigateToHome}
-                    src={logo_design}
+                    src={
+                      subDomainDetails?.subdomain_key === "indigrid"
+                        ? "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76907-1737435626830.png"
+                        : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/116983-1737552582881.png"
+                    }
                     className="brandImg"
-                    alt="RaphaCure"
-                    width="160"
-                    height="60"
+                    alt={
+                      subDomainDetails?.subdomain_key === "indigrid"
+                        ? "Indigrid"
+                        : "RaphaCure"
+                    }
+                    width="180"
+                    height="80"
                   />
                   {subDomainDetails?.logo_url && (
                     <img
                       onClick={navigateToHome}
                       src={subDomainDetails?.logo_url}
                       alt={subDomainDetails?.name}
-                      width="140"
-                      height="50"
+                      width="180"
+                      height="80"
                     />
                   )}
                   {subDomainDetails?.logo_url && (
@@ -666,19 +696,17 @@ const Header = (props) => {
               </Navbar.Brand>
             </div>
 
-            <div className="header-left-sec4">
-              <HeaderAddress
-                index={0}
-                addressList={userAddress}
-                address={selectedAddress}
-                selectSavedAddress={selectSavedAddress}
-              />
+            <div className="header-left-sec4 cursor-pointer">
+              <p onClick={handleOpenAddressModel} className="mb-0">
+                Select Service Location:{" "}
+                {getFormatedAddress(selectedCurrentAddress, true)}
+              </p>
             </div>
 
             <div className="header-left-sec2">
               <div className="d-flex">
                 <a
-                  className="navbar-brand hide-icon-nav d-block d-md-none "
+                  className="navbar-brand hide-icon-nav d-md-none "
                   onClick={gotoCart}
                   aria-controls={`offcanvasNavbar-expand-${type}`}
                 >
@@ -695,7 +723,7 @@ const Header = (props) => {
                 aria-labelledby={`offcanvasNavbarLabel-expand-${type}`}
                 show={shows}
                 onHide={handleCloses}
-              // placement="end"
+                // placement="end"
               >
                 <Offcanvas.Header closeButton>
                   <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${type}`}>
@@ -730,13 +758,14 @@ const Header = (props) => {
                               {languages.map((language, index) => (
                                 <button
                                   key={index}
-                                  className={`nav-items dropdown-item ${uName === "/"
-                                    ? "no-active"
-                                    : uName === language?.to ||
-                                      !uName?.indexOf(language?.to)
+                                  className={`nav-items dropdown-item ${
+                                    uName === "/"
+                                      ? "no-active"
+                                      : uName === language?.to ||
+                                        !uName?.indexOf(language?.to)
                                       ? ""
                                       : "no-active"
-                                    }`}
+                                  }`}
                                   onClick={() => handleLanguageSelect(language)}
                                 >
                                   {language}
@@ -844,13 +873,14 @@ const Header = (props) => {
                                     {headerDropdownList?.map((item) => (
                                       <NavDropdown
                                         title={item.headerName}
-                                        className={`NavDropdown-title-div ${uName === "/"
-                                          ? "no-active"
-                                          : uName === item?.to ||
-                                            !uName?.indexOf(item?.to)
+                                        className={`NavDropdown-title-div ${
+                                          uName === "/"
+                                            ? "no-active"
+                                            : uName === item?.to ||
+                                              !uName?.indexOf(item?.to)
                                             ? "text-danger"
                                             : "no-active"
-                                          }`}
+                                        }`}
                                         id="basic-nav-dropdown"
                                         key={item.headerName}
                                         style={{
@@ -859,8 +889,8 @@ const Header = (props) => {
                                               ? "black"
                                               : selectedNavItem ===
                                                 item.headerName
-                                                ? "#9747ff"
-                                                : "black",
+                                              ? "#9747ff"
+                                              : "black",
                                         }}
                                         onMouseEnter={() =>
                                           handleMouseEnter(item.headerName)
@@ -874,15 +904,16 @@ const Header = (props) => {
                                           {item.headerNameList.map(
                                             (subItem, index) => (
                                               <NavDropdown.Item
-                                                className={`nav-items ${uName === "/"
-                                                  ? "no-active"
-                                                  : uName === subItem?.to ||
-                                                    !uName?.indexOf(
-                                                      subItem?.to
-                                                    )
+                                                className={`nav-items ${
+                                                  uName === "/"
+                                                    ? "no-active"
+                                                    : uName === subItem?.to ||
+                                                      !uName?.indexOf(
+                                                        subItem?.to
+                                                      )
                                                     ? ""
                                                     : "no-active"
-                                                  }`}
+                                                }`}
                                                 style={{ marginTop: "-10px" }}
                                                 onClick={() =>
                                                   handleMenuItemClick(
@@ -1020,13 +1051,14 @@ const Header = (props) => {
                     {languages.map((language, index) => (
                       <button
                         key={index}
-                        className={`nav-items dropdown-item ${uName === "/"
-                          ? "no-active"
-                          : uName === language?.to ||
-                            !uName?.indexOf(language?.to)
+                        className={`nav-items dropdown-item ${
+                          uName === "/"
+                            ? "no-active"
+                            : uName === language?.to ||
+                              !uName?.indexOf(language?.to)
                             ? ""
                             : "no-active"
-                          }`}
+                        }`}
                         onClick={() => handleLanguageSelect(language)}
                       >
                         {language}

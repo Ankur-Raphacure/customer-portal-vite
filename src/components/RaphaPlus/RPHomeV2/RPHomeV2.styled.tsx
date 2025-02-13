@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const RPHomeV2Styled = styled.div`
   width: 100%;
-  /* display: flex; */
   flex-direction: column;
   gap: 3rem;
   font-family: Inter, sans-serif !important;

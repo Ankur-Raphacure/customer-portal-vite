@@ -211,6 +211,38 @@ export const LabtestStyled = styled.div`
       }
     }
   }
+
+  .Upload-Prescription-mobile-btn {
+    margin-top: 29px;
+    padding: 10px 14px;
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    background-color: #a3dac2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      margin-bottom: 0px;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+      font-family: Outfit, sans-serif;
+      color: #252b61;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 45px;
+      background-color: #252b61;
+      height: 30px;
+      font-size: 12px;
+      color: #fff;
+      font-family: Outfit, sans-serif;
+    }
+  }
   .healthCards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -239,8 +271,12 @@ export const LabtestStyled = styled.div`
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (max-width: 480px) {
-      grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0px;
     }
   }
 
@@ -369,7 +405,10 @@ export const LabtestStyled = styled.div`
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
-
+  .main-Upload-Prescription-mobile-btn {
+    display: none;
+    padding: 10px 10px;
+  }
   .img-fit {
     max-width: 100%;
     height: auto;
@@ -383,13 +422,49 @@ export const LabtestStyled = styled.div`
     color: #333;
     margin: 0;
   }
-
+  .HeadingBannerModule-mobile-view,
+  .Upload-Prescription-upload-btn {
+    display: none;
+  }
   /* Media Queries for responsiveness */
   @media (max-width: 768px) {
     .list-categories-list {
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-
+    .HeadingBannerModule-mobile-view {
+      display: block;
+      padding: 10px 0px;
+    }
+    .Upload-Prescription-upload-btn {
+      display: block;
+      padding: 30px 10px;
+      button {
+        width: 100%;
+        position: relative;
+        border-radius: 45px;
+        background-color: #a3dac2;
+        height: 50px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 11px;
+        box-sizing: border-box;
+        cursor: pointer;
+        text-align: left;
+        font-size: 16px;
+        color: #252b61;
+        font-family: Outfit, sans-serif;
+        font-weight: 500;
+      }
+    }
+    .HeadingBannerModule-web-view {
+      display: none;
+    }
+    .searchFeature {
+      display: none;
+    }
     h3 {
       font-size: 0.9rem;
     }
@@ -430,7 +505,63 @@ export const LabtestStyled = styled.div`
       display: flex;
       flex-direction: column !important;
       align-items: center;
-      
+    }
+  }
+  .mobile-view-privacyImg,
+  .mobile-view-collection {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .healthSaverSection .packageFilters,
+    .healthCards {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      gap: 20px;
+    }
+    .filterButton,
+    .privacyImg {
+      display: none;
+    }
+    .main-Upload-Prescription-mobile-btn {
+      display: block;
+      padding: 10px 10px;
+    }
+    .search-popup {
+      top: 15rem !important;
+      position: absolute;
+    }
+    .nearByLabs .header,
+    .header {
+      padding: 10px 10px;
+    }
+    .header h2 {
+      font-size: 20px;
+    }
+    .why {
+      padding: 10px 10px;
+      display: none;
+    }
+    .mobile-view-collection {
+      padding: 30px 10px;
+    }
+    .mobile-view-privacyImg,
+    .mobile-view-collection {
+      display: block;
+      img {
+        width: 100%;
+      }
+    }
+    .viewAllBtn {
+      background: none;
+      color: #252b61;
+      border: none;
+      text-decoration: none;
+      padding: 0px;
+    }
+    .viewBtn2 {
+      margin-right: 0px;
     }
   }
 `;

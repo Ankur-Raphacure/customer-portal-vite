@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const AddNewMemberStyled = styled.div`
+  font-family: "Outfit", sans-serif;
   .new-option-header {
     display: flex;
     justify-content: space-between;
@@ -13,8 +14,8 @@ export const AddNewMemberStyled = styled.div`
     }
   }
   .userImgWrapper-sec {
-    text-align: center;
-    justify-content: center;
+    /* text-align: center;
+    justify-content: center; */
   }
   .upload-image-sec {
     margin-top: 10px;
@@ -48,7 +49,9 @@ export const AddNewMemberStyled = styled.div`
   .add-new-submit-sec {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: end;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     .save-btn {
       width: 250px;
       margin-top: 30px;
@@ -98,6 +101,7 @@ export const AddNewMemberStyled = styled.div`
   }
   .gender-selection-sec {
     display: flex;
+    gap: 1rem;
     .col-gender {
       margin-right: 20px;
     }
@@ -108,6 +112,16 @@ export const AddNewMemberStyled = styled.div`
     label {
       margin-top: 2px;
       margin-left: 6px;
+    }
+    button {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: #fff;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      &.selected {
+        background: #92bdf6;
+      }
     }
   }
   .add-new-user-changes1 .form-group label {
@@ -121,6 +135,20 @@ export const AddNewMemberStyled = styled.div`
   .userImgWrapper {
     display: flex;
     gap: 2rem;
-    margin: 1rem;
+    margin: 1rem 0rem 1rem 0rem;
+    justify-content: center;
+    align-items: center;
+  }
+  input {
+    border: 1px solid #aeaeae;
+  }
+  .delta-select__control {
+    border: 1px solid #aeaeae;
+    .delta-select__indicator-separator {
+      display: none;
+    }
+    .delta-select__dropdown-indicator {
+      color: #000;
+    }
   }
 `;

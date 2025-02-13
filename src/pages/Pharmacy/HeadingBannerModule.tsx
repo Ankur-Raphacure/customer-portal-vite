@@ -11,7 +11,9 @@ const HeadingBannerModule = (props: any) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { details, section } = props;
-  const { user } = useSelector((ReduxState: any) => ReduxState.auth);
+  const { user, subDomainDetails } = useSelector(
+    (ReduxState: any) => ReduxState.auth
+  );
 
   const handleTOUploadPrescription = () => {
     if (!user?.id) {
@@ -21,11 +23,19 @@ const HeadingBannerModule = (props: any) => {
     }
   };
   const handleTODoctorList = () => {
-    history.push("/doctor/doctorlist", section);
+    // window.location.href = "/doctor/doctorlist";
+    history.push("/doctor/doctorlist");
   };
   return (
     <HeadingBannerModuleStyled>
-      <div className="main-heading-banner">
+      <div
+        style={
+          subDomainDetails?.background_color
+            ? { background: subDomainDetails?.background_color }
+            : (null as any)
+        }
+        className="main-heading-banner"
+      >
         {details?.map((detail: any, index: any) => (
           <div key={index}>
             <div className="heading-banner-text">

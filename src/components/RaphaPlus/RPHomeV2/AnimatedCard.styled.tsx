@@ -28,6 +28,8 @@ export const AnimatedCardStyled = styled.div`
     }
   }
 
+  
+
   .img-wrapper {
     display: flex;
     background: white;
@@ -35,6 +37,7 @@ export const AnimatedCardStyled = styled.div`
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
   }
+  
 
   .wrapper {
     display: flex;
@@ -46,17 +49,16 @@ export const AnimatedCardStyled = styled.div`
     min-height: 260px;
   }
 
+  .wrapper:last-child {
+    
+    .card-content {
+      padding: 15px 10px;
+    }
+  }
+
   .card-container:hover {
     transform: scale(1.05);
   }
-  /* .animatedCardsWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 3.5rem 4.5rem;
-  } */
 
   .card-container:hover::before {
     content: "";

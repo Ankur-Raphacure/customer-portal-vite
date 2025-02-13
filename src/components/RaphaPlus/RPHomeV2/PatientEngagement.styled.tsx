@@ -1,17 +1,11 @@
 import styled from "styled-components";
 
 export const PatientEngagementStyled = styled.div`
-  /* padding: calc(40px + 2rem);
-
-  @media (max-width: 780px) {
-    padding: 40px;
-  } */
     padding: 0rem 4.5rem;
   .wrapper {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to right, #fff4bc99, #ffffff);
+    border: 4px solid #FFF4BC99;
+    background: #fcfdfc;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     @media (max-width: 1024px) {
@@ -20,8 +14,10 @@ export const PatientEngagementStyled = styled.div`
   }
 
   .content {
-    max-width: 50%;
+    width: 100%;
     padding: 5rem;
+    border-radius: 10px;
+    background: linear-gradient(89.88deg, rgba(255, 244, 188, 0.6), rgba(255, 244, 188, 0.59) 28.4%, #fcfdfc);
     @media (max-width: 1024px) {
       max-width: 100%;
     }
@@ -37,6 +33,7 @@ export const PatientEngagementStyled = styled.div`
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 10px;
+    margin-top: 50px;
     @media (max-width: 700px) {
       font-size: 27px;
     }
@@ -65,17 +62,20 @@ export const PatientEngagementStyled = styled.div`
   .video {
     flex-shrink: 0;
     max-width: 50%;
+    border-radius: 15px;
+    background: #fcfdfc;
     @media (max-width: 1024px) {
       max-width: 100%;
     }
   }
 
   .video video {
-    margin-left: 70px;
-    margin-top: 10px;
-    width: 89%;
-    border-radius: 10px;
-  }
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+}
+
+
   @media (max-width: 391px) {
     .wrapper {
       display: none;

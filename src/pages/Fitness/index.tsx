@@ -1,7 +1,6 @@
 import React from "react";
 import { FitnessStyled } from "./FitnessStyled.styled";
 
-
 import Category from "./Category";
 import ProCoarses from "./ProCoarses";
 import Recommendedone from "./Recommendedone";
@@ -29,7 +28,10 @@ const Fitness = () => {
             <button className="subscribe">Subscribe Now</button>
           </div>
           <div className="right-content">
-            <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736403764237.png"} alt="fitness" />
+            <img
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736403764237.png"
+              alt="fitness"
+            />
           </div>
         </div>
       </div>
@@ -49,7 +51,12 @@ const Fitness = () => {
             <button className="subscribe">Subscribe Now</button>
           </div>
           <div className="right-content">
-            <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736406171478.png"} alt="fitness" />
+            <img
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736406171478.png"
+              }
+              alt="fitness"
+            />
           </div>
         </div>
       </div>

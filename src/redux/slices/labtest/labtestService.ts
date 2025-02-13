@@ -239,10 +239,13 @@ export const checkExpressBook = createAsyncThunk(
 
 export const getAllCategoriesAPI = createAsyncThunk(
   "auth/getAllCategoriesAPI",
-  async (body: any) =>
-    await get(
-      `${SERVER_IP}/api/v1/category/getActiveCategories?section_name=${body?.sectionName}`
-    )
+  async (body: any) => {
+    const extraPram =
+      body?.count && body?.count > 0 ? `&count=${body?.count}` : "";
+    return await get(
+      `${SERVER_IP}/api/v1/category/getActiveCategories?section_name=${body?.sectionName}${extraPram}`
+    );
+  }
 );
 export const getAllActiveBodyPartAPI = createAsyncThunk(
   "auth/getAllActiveBodyPartAPI",
@@ -333,13 +336,25 @@ export const getOrdersCountByItem = createAsyncThunk(
 export const getAllFilteredPackages = createAsyncThunk(
   "labtest/getAllFilteredPackages",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/package/getPackages`, body)
+    await post(`${SERVER_IP}/api/v1/package/getPackages`, {
+      ...body,
+      filters: {
+        ...body.filters,
+        status: "active",
+      },
+    })
 );
 
 export const getAllFilteredTests = createAsyncThunk(
   "package/getAllFilteredTests",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/test/get-all-tests`, body)
+    await post(`${SERVER_IP}/api/v1/test/get-all-tests`, {
+      ...body,
+      filters: {
+        ...body.filters,
+        active_status: "active",
+      },
+    })
 );
 
 export const getAllActiveTubes = createAsyncThunk(
@@ -364,4 +379,16 @@ export const getAllPkgVendorsAPI = createAsyncThunk(
   "package/getAllPkgVendorsAPI",
   async (id: any) =>
     await get(`${SERVER_IP}/api/v1/package/get-vendors-by-package/${id}`)
+);
+
+export const getPackageDetailsAPI = createAsyncThunk(
+  "package/getPackageDetailsAPI",
+  async (body: any) =>
+    await post(`${SERVER_IP}/api/v1/package/getPackageDetails`, body)
+);
+
+export const getTestDetailsAPI = createAsyncThunk(
+  "test/getTestDetailsAPI",
+  async (body: any) =>
+    await post(`${SERVER_IP}/api/v1/test/getTestDetails`, body)
 );

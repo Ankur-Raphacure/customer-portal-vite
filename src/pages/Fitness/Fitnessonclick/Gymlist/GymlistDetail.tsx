@@ -159,7 +159,7 @@ const GymlistDetail = (props: any) => {
                             <p>
                               <span className="hide-opacity">Price:</span> ₹
                               {item1?.price?.discounted_price
-                                ?.toFixed(2)
+                                ?.toFixed?.(2)
                                 ?.toLocaleString("en-US")}
                             </p>
                           </div>

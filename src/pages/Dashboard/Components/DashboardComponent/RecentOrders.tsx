@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import OrderItem from "./OrderItem";
 import { RecentOrdersStyled } from "./RecentOrders.styled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBookingsAPI } from "../../../../redux/slices/dashboard/dashboardService";
 
 let docMaleImage =
   "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736338140063.png";
@@ -10,9 +11,29 @@ let docFeMaleImage =
   "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736338333932.png";
 
 const RecentOrders = () => {
-  const { myBookings } = useSelector((ReduxState: any) => ReduxState.dashboard);
-  console.log("myBookings in recent orders : ", myBookings);
+  const { allBookings } = useSelector(
+    (ReduxState: any) => ReduxState.dashboard
+  );
+  console.log("allBookings in recent orders : ", allBookings);
   const [items, setItems] = useState([]);
+  const { user } = useSelector((ReduxState: any) => ReduxState.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!user?.id) {
+      return;
+    }
+    const defaultPayload = {
+      filters: {
+        from: "patient",
+        page: 1, // Page starts from 1
+
+        count: 5,
+        id: `${user?.id}`,
+      },
+    };
+    dispatch(getAllBookingsAPI(defaultPayload));
+  }, [dispatch, user?.id]);
 
   function formatType(type: any) {
     return type
@@ -77,10 +98,10 @@ const RecentOrders = () => {
   }
 
   useEffect(() => {
-    const filteredItems = transformBookings(myBookings);
+    const filteredItems = transformBookings(allBookings);
     setItems(filteredItems);
     console.log("filteredItems : ", filteredItems);
-  }, [myBookings]);
+  }, [allBookings]);
 
   return (
     <RecentOrdersStyled>

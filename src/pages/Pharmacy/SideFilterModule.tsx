@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { Select, Slider, Switch } from "antd";
 import { SideFilterModuleStyled, SidebarMenu } from "./SideFilterModule.styled";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowForward, IoIosSearch } from "react-icons/io";
 
 import { useSelector } from "react-redux";
-
+import { IoArrowBackOutline } from "react-icons/io5";
+import { useHistory } from "react-router-dom";
+import MobileTopBanner from "../../components/Header/MobileTopBanner";
+import { checkIsMobile } from "../../Scenes/common";
 const filterDiscount = [
   { value: ["10", "20"], label: "10 % To 20 %" },
   { value: ["20", "30"], label: "20 % To 30 %" },
@@ -46,11 +49,17 @@ const SideFilterModule = (props: any) => {
     allDiscountList,
     patientReviewsList,
     allBodyTypeList,
+    doctorFilter,
+    doctorFiltersMethod,
+    selectedCheckBox,
+    consultType,
+    specialization,
+    pathName,
+    selectedServiceType,
   } = props;
 
-  console.log("allBodyTypeList : ", allBodyTypeList);
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
-
+  const history = useHistory();
   const [selectedDiscount, setSelectedDiscount] = useState<string | null>(null);
   const [range, setRange] = useState<[number, number]>([0, 5000]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -72,6 +81,28 @@ const SideFilterModule = (props: any) => {
   const [selectedPriceRange, setSelectedPriceRange] = useState<string | null>(
     null
   );
+  const filterLabels = useMemo(() => {
+    if (consultType?.includes("virtual")) {
+      return [
+        "Specialization",
+        "Type",
+        "Available by 90",
+        "Gender",
+        "Languages",
+        "Ratings",
+        "Experience",
+      ];
+    }
+
+    return [
+      "Specialization",
+      "Type",
+      "Gender",
+      "Languages",
+      "Ratings",
+      "Experience",
+    ];
+  }, [consultType]);
 
   const handleClearAll = () => {
     // Reset all selected states
@@ -100,7 +131,7 @@ const SideFilterModule = (props: any) => {
 
   const handleSliderChange = (value: [number, number]) => {
     setRange(value);
-    props.filterPriceRange(value);
+    props?.filterPriceRange(value);
   };
   // document.querySelectorAll('.dropdown-toggle').forEach(button => {
   //   button.addEventListener('click', () => {
@@ -155,10 +186,19 @@ const SideFilterModule = (props: any) => {
     setIsSortDropdownOpen(false);
   };
 
-  console.log({ originPage, d: "doctor" });
-
   return (
-    <SideFilterModuleStyled>
+    <SideFilterModuleStyled className="sideFilterModule">
+      {/* <div className="sort-filter-container-header">
+        <div className="sort-filter-sub-header">
+          <button className="btn" onClick={() => history.push(pathName)}>
+            <IoArrowBackOutline />
+          </button>
+          <button className="btn">
+            <IoIosSearch />
+          </button>
+        </div>
+      </div> */}
+      {/* {checkIsMobile() && <MobileTopBanner pathName={"common"} />} */}
       <div className="main-sort-filter-container cursor-pointer">
         <div className="sort-filter-container">
           <div
@@ -194,6 +234,7 @@ const SideFilterModule = (props: any) => {
               </div>
             )}
           </div>
+
           <div className="divider"></div>
           <div className="filter-section" onClick={() => setIsMenuOpen(true)}>
             <img
@@ -206,11 +247,13 @@ const SideFilterModule = (props: any) => {
         </div>
       </div>
 
-      <SidebarMenu sMenuOpen={isMenuOpen || window.innerWidth >= 768}>
+      <SidebarMenu
+        sMenuOpen={isMenuOpen || window.outerWidth >= 768}
+        className="sidebarMenu"
+      >
         <div
           className="CloseButton"
           onClick={() => {
-            console.log("closebtn");
             setIsMenuOpen(false);
           }}
         >
@@ -265,7 +308,6 @@ const SideFilterModule = (props: any) => {
           </>
         )}
 
-
         {originPage === "labtest" && (
           <>
             <div className="toggle-filter d-flex flex-row gap-2 w-full ">
@@ -281,7 +323,6 @@ const SideFilterModule = (props: any) => {
             <div className="horizontal-line"></div>
           </>
         )}
-
 
         {originPage === "package" && (
           <>
@@ -305,7 +346,6 @@ const SideFilterModule = (props: any) => {
         )}
 
         {/* Filter by Category */}
-
         {originPage === "bookAppointment" && (
           <>
             {/* Gender Filter */}
@@ -502,104 +542,55 @@ const SideFilterModule = (props: any) => {
           </>
         )}
 
-        {originPage !== "bookAppointment" && (
-          <div className="filter-by-type-div">
-            {originPage === "ctmri" ? (
-              <p className="filter-by-title"> By Scan Type</p>
-            ) : (
-              <p className="filter-by-title">By Category</p>
-            )}
-            <div className="alltests">
-              {allCategoriesList?.category_ids?.map((item: any) => {
-                if (!item?.name) {
-                  return null;
-                }
-                console.log(selectedCategories, item.id);
+        {originPage !== "bookAppointment" && originPage !== "doctor" && (
+          <>
+            <div className="filter-by-type-div">
+              {originPage === "ctmri" ? (
+                <p className="filter-by-title"> By Scan Type</p>
+              ) : (
+                <p className="filter-by-title">By Category</p>
+              )}
+              <div className="alltests">
+                {allCategoriesList?.category_ids?.map((item: any) => {
+                  if (!item?.name) {
+                    return null;
+                  }
+                  console.log(selectedCategories, item.id);
 
-                return (
-                  <div className="select-checkbox-div" key={item.id}>
-                    <input
-                      type="checkbox"
-                      checked={selectedCategories?.includes(item.id)}
-                      onChange={() => {
-                        setRange([0, 5000]);
-                        handleCategoryChange(item?.id);
-                      }}
-                      id={`checkbox-${item.id}`}
-                    />
+                  return (
+                    <div className="select-checkbox-div" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={selectedCategories?.includes(item.id)}
+                        onChange={() => {
+                          setRange([0, 5000]);
+                          handleCategoryChange(item?.id);
+                        }}
+                        id={`checkbox-${item.id}`}
+                      />
 
-                    <label
-                      htmlFor={`checkbox-${item.id}`}
-                      title={item?.name || "Unnamed Category"}
-                    >
-                      <p title={item?.name}>{`${
-                        item?.name || "Unnamed Category"
-                      } (${item?.count}) `}</p>
-                    </label>
-                  </div>
-                );
-              })}
+                      <label
+                        htmlFor={`checkbox-${item.id}`}
+                        title={item?.name || "Unnamed Category"}
+                      >
+                        <p title={item?.name}>{`${
+                          item?.name || "Unnamed Category"
+                        } (${item?.count}) `}</p>
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+            <div className="horizontal-line"></div>
+          </>
         )}
 
-        <div className="horizontal-line"></div>
-
         {/* Filter by Vendors */}
         {originPage !== "ctmri" &&
           originPage !== "pharmacy" &&
-          originPage !== "bookAppointment" && (
-            <>
-              <div className="filter-by-type-div">
-                <p className="filter-by-title">By Vendors</p>
-                <div className="alltests">
-                  {allVendors?.map((item: any) => {
-                    if (!item?.name) {
-                      return null;
-                    }
-                    return (
-                      <div className="select-checkbox-div" key={item.id}>
-                        <input
-                          type="checkbox"
-                          checked={selectedVendors?.includes(item.id)}
-                          onChange={() => {
-                            setRange([0, 5000]);
-                            props?.handleChangeVendorFilter(item?.id);
-                          }}
-                          id={`checkbox-${item.id}`}
-                        />
-                        <label
-                          htmlFor={`checkbox-${item.id}`}
-                          title={item?.name || "Unnamed Vendor"}
-                        >
-                          <p
-                            title={`${item?.name || "Unnamed Vendor"} (${
-                              originPage === "labtest"
-                                ? item?.tests?.length || 0
-                                : originPage === "package"
-                                ? item?.packages?.length || 0
-                                : 0
-                            }) `}
-                          >{`${item?.name || "Unnamed Vendor"} (${
-                            originPage === "labtest"
-                              ? item?.tests?.length || 0
-                              : originPage === "package"
-                              ? item?.packages?.length || 0
-                              : 0
-                          }) `}</p>
-                        </label>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <div className="horizontal-line"></div>
-            </>
-          )}
-
-        {/* Filter by Vendors */}
-        {originPage !== "ctmri" &&
-          originPage !== "pharmacy" &&
+          originPage !== "doctor" &&
+          originPage !== "bookAppointment" &&
           originPage !== "vendor" && (
             <>
               <div className="filter-by-type-div">
@@ -759,9 +750,9 @@ const SideFilterModule = (props: any) => {
                     <div className="select-checkbox-div" key={item.name}>
                       <input
                         type="checkbox"
-                        checked={brandFilter?.includes(item.name)}
+                        checked={brandFilter?.includes(item?.id)}
                         onChange={() => handleBrandChange(item?.name)}
-                        id={`checkbox-${item.name}`}
+                        id={`checkbox-${item?.name}`}
                       />
                       <label htmlFor={`checkbox-${item.name}`}>
                         <p title={item?.name}>{`${
@@ -774,6 +765,59 @@ const SideFilterModule = (props: any) => {
               </div>
             </div>
             <div className="horizontal-line"></div>
+          </>
+        )}
+
+        {/* Doctor Filters */}
+        {originPage === "doctor" && (
+          <>
+            {filterLabels.map((title) => {
+              if (!Array.isArray(doctorFilter?.[title])) return null;
+
+              return (
+                <div className="filter-by-type-div" key={title}>
+                  <p className="filter-by-title mt-3">
+                    By {title.charAt(0).toUpperCase() + title.slice(1)}
+                  </p>
+                  <div className="alltests">
+                    {doctorFilter?.[title]?.map((item: any, index: number) => {
+                      if (!item?.name || item?.name == "other") return null;
+                      return (
+                        <div
+                          className="select-checkbox-div"
+                          key={`${title}-${index}`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedCheckBox(title, item?.name, item)}
+                            id={`checkbox-${title}-${index}`}
+                            onChange={() => {
+                              doctorFiltersMethod(title, item?.name, item);
+                            }}
+                          />
+                          <label
+                            htmlFor={`checkbox-${title}-${index}`}
+                            title={item?.name}
+                          >
+                            <p title={String(item?.name)}>
+                              {typeof item?.name === "string"
+                                ? item?.name?.charAt(0).toUpperCase() +
+                                  item?.name?.slice(1)
+                                : String(item?.name).charAt(0).toUpperCase() +
+                                  String(item?.name).slice(1)}{" "}
+                              {selectedServiceType !== "clinic"
+                                ? `(${item?.count})`
+                                : ""}
+                            </p>
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="horizontal-line"></div>
+                </div>
+              );
+            })}
           </>
         )}
 
@@ -815,7 +859,12 @@ const SideFilterModule = (props: any) => {
         {originPage !== "vendor" && (
           <>
             <div className="filter-by-type-div">
-              <p className="filter-by-title">Price Range</p>
+              {originPage === "doctor" ? (
+                <p className="filter-by-title">Consultation Fee</p>
+              ) : (
+                <p className="filter-by-title">Price Range</p>
+              )}
+
               <div className="range-slider">
                 <Slider
                   range
@@ -865,7 +914,7 @@ const SideFilterModule = (props: any) => {
                 </div>
               </div>
             </div>
-            <div className="horizontal-line"></div>
+            {originPage !== "doctor" && <div className="horizontal-line"></div>}
           </>
         )}
 
@@ -930,8 +979,7 @@ const SideFilterModule = (props: any) => {
         )} */}
 
         {/* Discount Range */}
-
-        {originPage !== "bookAppointment" && (
+        {originPage !== "bookAppointment" && originPage !== "doctor" && (
           // <div className="filter-by-type-div">
           //   <p className="filter-by-title">Discount Range</p>
           //   {filterDiscount?.map((item: any) => {
@@ -946,6 +994,7 @@ const SideFilterModule = (props: any) => {
           //           onChange={() => props.handleonFilterDiscount(item?.value)}
           //           id={`checkbox-${item.label}`}
           //         />
+
           <div className="filter-by-type-div">
             <p className="filter-by-title">Discount Range</p>
             {filterDiscount?.map((item: any) => {
@@ -972,8 +1021,25 @@ const SideFilterModule = (props: any) => {
             })}
           </div>
         )}
-
       </SidebarMenu>
+      {(isMenuOpen || window.outerWidth >= 768) && (
+        <div className="btnWrapperDiv">
+          <button
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
+          >
+            Close
+          </button>
+          <button
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
+          >
+            Apply
+          </button>
+        </div>
+      )}
     </SideFilterModuleStyled>
   );
 };

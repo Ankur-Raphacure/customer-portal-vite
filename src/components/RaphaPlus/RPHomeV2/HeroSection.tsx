@@ -1,7 +1,6 @@
 import React from "react";
 import { HeroSectionStyled } from "./HeroSection.styled";
 import { useHistory } from "react-router-dom";
-import { FaArrowRightLong } from "react-icons/fa6";
 
 const HeroSection = () => {
   const history = useHistory();

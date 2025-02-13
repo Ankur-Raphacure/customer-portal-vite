@@ -512,6 +512,9 @@ export const AllPackagesStyled = styled.div`
     font-weight: 400;
   }
   @media (max-width: 768px) {
+    .loadMoreBtn {
+      margin-top: 2rem !important;
+    }
     .card {
       width: 100%;
     }
@@ -550,11 +553,14 @@ export const AllPackagesStyled = styled.div`
     }
     .all-pharmacy-page-div {
       flex-direction: column;
-      padding: 10px 20px;
+      padding: 0px 0px;
+    }
+    .all-pharmacy-page-div {
+      gap: 0px;
     }
     .right-card-module-div {
       width: 100%;
-      margin-top: 3rem;
+      padding: 0px 10px;
     }
   }
   .selector-filter-sub-module-div div.ant-select-selector {
@@ -666,7 +672,7 @@ export const AllPackagesStyled = styled.div`
   }
 
   .imgWrapper {
-    min-height: 10rem;
+    /* min-height: 10rem; */
   }
   .pagination-module {
     ul.pagination {

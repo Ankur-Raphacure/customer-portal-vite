@@ -23,7 +23,7 @@ export const MedicineCardModuleStyled = styled.div`
     background: #eaeaf0;
   }
   .img-div img {
-    width: 100%;
+    width: 11rem;
     height: 10rem;
     object-fit: contain;
   }
@@ -38,13 +38,15 @@ export const MedicineCardModuleStyled = styled.div`
     flex-direction: column;
     align-items: space-around;
   }
+  /* .medicineDetail {
+    max-width: 13rem;
+  } */
   .medicineDetail-unit {
     font-size: 13px !important;
     font-family: Outfit, sans-serif !important;
     color: #9a9898 !important;
     height: 15px !important;
   }
-
   .text-div .h3 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -58,6 +60,22 @@ export const MedicineCardModuleStyled = styled.div`
     font-weight: 500;
     line-height: normal;
     margin-bottom: 0px;
+    /* width: 13rem; */
+  }
+  .text-div .h2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    padding: 0px;
+    color: #141414;
+    font-family: Outfit, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 0px;
+    width: 13rem;
   }
 
   .text-div .p {

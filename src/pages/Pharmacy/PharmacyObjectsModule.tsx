@@ -95,6 +95,7 @@ export const pharmacySearchTextChange = [
 export const radiologySearchTextChange = ["Scan Type"];
 export const doctorSearchTextChange = ["tests or checkups"];
 export const doctorsSearchTextChange = ["Doctor"];
+export const hospitalsSearchTextChange = ["Hospital"];
 
 export const advertisementMedicineImg = [
   {

@@ -17,6 +17,12 @@ export const getMyBookingsAPI = createAsyncThunk(
     )
 );
 
+export const getAllBookingsAPI = createAsyncThunk(
+  "auth/getAllBookingsAPI",
+  async (body: any) =>
+    await post(`${SERVER_IP}/api/v1/booking/getBookings`, body)
+);
+
 export const getMyOrderAPI = createAsyncThunk(
   "auth/getMyOrderAPI",
   async (bookingId: any) =>

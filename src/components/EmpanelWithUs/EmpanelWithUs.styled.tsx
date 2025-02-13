@@ -33,7 +33,7 @@ export const EmpanelWithUsStyled = styled.div`
   }
   .row-item-sec-user {
     width: 100%;
-    display: flex;
+    /* display: flex; */
   }
 
   .add-new-submit-sec {
@@ -41,7 +41,7 @@ export const EmpanelWithUsStyled = styled.div`
     display: flex;
     justify-content: end;
     .save-btn {
-      width: 250px;
+      width: 100%;
       margin-top: 30px;
       background: #9747ff;
       color: #fff;

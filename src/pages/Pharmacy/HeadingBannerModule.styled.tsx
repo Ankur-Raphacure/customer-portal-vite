@@ -35,7 +35,7 @@ export const HeadingBannerModuleStyled = styled.div`
     }
   }
   .heading-banner-img img {
-    margin-top: -5.4rem;
+    margin-top: -2.4rem;
     height: 328px;
   }
   .heading-banner-content h5 {

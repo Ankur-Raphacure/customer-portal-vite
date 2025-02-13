@@ -42,6 +42,8 @@ const UploadSubPrescription = (props: any) => {
   const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(
     null
   );
+  const [selectedMember, setSelectedMember] = useState({});
+  const [showAddMemberModel, setShowAddMemberModel] = useState(false);
   const [addAddressShow, setAddAddressShow] = useState(false);
   const [confPriscriptionShow, setConfPriscriptionShow] = useState(false);
   const [fileData, setFileData] = useState<any>(null);
@@ -79,7 +81,7 @@ const UploadSubPrescription = (props: any) => {
     let ValidFiles = [] as any;
     for (let idx = 0; idx < imgFile.length; idx++) {
       const uploadFile = imgFile[idx];
-      if (uploadFile && uploadFile?.type.startsWith("image/")) {
+      if (uploadFile) {
         const reader = new FileReader();
         reader.onloadstart = () => {
           // setUploadcontainershow(false);
@@ -251,6 +253,12 @@ const UploadSubPrescription = (props: any) => {
 
     setShowSuccessUserPopupText(addSucTet);
   };
+
+  const handleEditAddress = (userInfo: any) => {
+    setSelectedAddress(userInfo);
+    setShowAddAddressModel(true);
+  };
+
   return (
     <UploadSubPrescriptionStyled>
       <div className="">
@@ -331,14 +339,14 @@ const UploadSubPrescription = (props: any) => {
                           </span>
                         </p>
                         <p className="image-format">
-                          JPEG, PNG and PDF formats up to 10 MB
+                          JPEG, PNG PDF formats up to 10 MB
                         </p>
                       </div>
                       <input
                         id="dropzone-file"
-                        accept="image/*"
                         onChange={handleFileChange}
                         type="file"
+                        multiple={false}
                         className="hidden"
                       />
                     </label>
@@ -414,22 +422,43 @@ const UploadSubPrescription = (props: any) => {
                             : "none",
                         cursor: "pointer",
                       }}
-                      onClick={() => handleAddressCardSelect(index, item)}
                     >
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div>
-                          <p>{item?.name}</p>
+                      <div className="d-flex justify-content-between ">
+                        <div
+                          className="prescription-address-div"
+                          title="Select Address "
+                        >
+                          <p className="address-text">Name: {item?.name}</p>
+                          <p className="address-text">
+                            Address: {item?.address}
+                          </p>
+                          <p className="address-text">
+                            House / Building No.: {item?.detail}
+                          </p>
+                          <p className="address-text">
+                            Landmark: {item?.landmark || `NA`}
+                          </p>
+                          <p className="address-text">Zipcode: {item?.zip}</p>
+                          <p className="address-text">City : {item?.city}</p>
+                          <p className="address-text">State: {item?.state}</p>
                         </div>
-                        <div>
-                          <button className="btn me-3">
-                            <RiDeleteBin5Line />
+                        <div className="prescription-address-btn-div">
+                          <button
+                            className="btn prescription-upload-btn"
+                            onClick={() => handleAddressCardSelect(index, item)}
+                          >
+                            Select Address
                           </button>
-                          <button className="btn">
-                            <GoPencil />
+                          <button
+                            className="btn "
+                            onClick={() => {
+                              handleEditAddress(item);
+                            }}
+                          >
+                            Edit{" "}
                           </button>
                         </div>
                       </div>
-                      <p>{item?.address}</p>
                     </div>
                   </div>
                 );

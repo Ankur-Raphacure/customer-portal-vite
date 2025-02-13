@@ -21,7 +21,9 @@ export const DoctorStyled = styled.div`
     font-style: normal;
     font-weight: 400;
   }
-
+  .nearbyCards {
+    padding: 0px;
+  }
   .poppins-medium {
     font-family: Poppins, sans-serif;
     font-style: normal;

@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import { GymModuleCardsStyled } from "./GymModuleCards.styled";
 import GymAddToCartCard from "./GymAddToCartCard";
 
+const defaultImage =
+  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736406811971.png";
+
 const GymModuleCards = (props: any) => {
   const { item } = props;
   const history = useHistory();
@@ -33,7 +36,7 @@ const GymModuleCards = (props: any) => {
             <div className="cardstyle px-2 py-2 d-flex flex-column">
               <div className="relative imgspace">
                 <img
-                  src={item?.image ? item?.image : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736406811971.png"}
+                  src={item?.image || defaultImage}
                   alt="Health360"
                   className="card-img-top object-cover rounded-t-xl"
                 />

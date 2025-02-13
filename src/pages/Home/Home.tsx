@@ -11,7 +11,7 @@ import SubDomainContent from "./SubDomainContent";
 import Marquee from "react-fast-marquee";
 import { getDoctorsListAPI } from "../../redux/slices/doctor/doctorService";
 import { FaArrowRight } from "react-icons/fa6";
-import { categories, subCategories } from "./HomeObjClass";
+import { categories, mobileCategories, subCategories } from "./HomeObjClass";
 import { topHealthcareSpecialist } from "./HomeObjClass";
 import { data } from "./HomeObjClass";
 import { items } from "./HomeObjClass";
@@ -24,22 +24,25 @@ import { debounce } from "lodash";
 import { IoCloseOutline } from "react-icons/io5";
 import { pharmacySearchTextChange } from "../Pharmacy/PharmacyObjectsModule";
 import { checkIsMobile } from "../../Scenes/common";
-import { ReactComponent as BottomHomeBanner } from "../../assets/icons/download banner app.svg";
-import { ReactComponent as HomeBanner } from "../../assets/icons/main banner mob view svg (1).svg";
 import { ReactComponent as RoundImgFrame } from "../../assets/icons/roundImgFrame.svg";
 import { ReactComponent as RoundIcon } from "../../assets/icons/roundIcon.svg";
 import DoctorDetailsCard from "./DoctorDetailsCard";
-
+import MobileTopBanner from "../../components/Header/MobileTopBanner";
+import SubDomainHome from "./WebSubDomain";
+import MobileSubDomain from "./MobileSubDomain";
 const Home = () => {
-  const ref = useRef() as any;
+  const ref = useRef(null) as any;
   const history = useHistory();
   const dispatch = useDispatch();
+  const isMobile = checkIsMobile();
   const [showSearchData, setShowSearchData] = useState(false);
   const [showEmpanelWithUsModel, setShowEmpanelWithUsModel] = useState(false);
   const [searchText, setSearchText] = useState<any>("");
   const [showSearchPopupModel, setShowSearchPopupModel] = useState(false);
   var sowLabTest = false;
-
+  const sectionImg =
+    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1738229659292.png";
+  const parameter = "Your Path to Wellness Begins Here";
   const {
     subDomainName,
     subDomainDetails,
@@ -139,12 +142,12 @@ const Home = () => {
       <>
         <div className="welcome-text-rapha">
           <div className="welcome-text-rapha-left">
-            <EmpanelWithUs
+            {/* <EmpanelWithUs
               show={showEmpanelWithUsModel}
               onHide={() => {
                 setShowEmpanelWithUsModel(false);
               }}
-            />
+            /> */}
             <h3>
               Your Path to Wellness <br /> Begins Here
             </h3>
@@ -182,15 +185,30 @@ const Home = () => {
           </div>
         </div>
         <div className="welcome-text-rapha-mobile-viwe">
-          <HomeBanner />
+          <MobileTopBanner
+            details={pharmacySearchTextChange}
+            handleonFilterName={handleonFilterName}
+            setSearchText={debouncedSearch1}
+            searchText={searchText}
+            searchedData={universalSearchResults}
+            handleSearchGoTo={handleSearchGoTo}
+            showSearchPopupModel={showSearchPopupModel}
+            handleToClosePopUp={handleToClosePopUp}
+            parameter={parameter}
+            sectionName={"home"}
+            sectionImg={sectionImg}
+          />
         </div>
       </>
     );
   };
+
   return (
     <>
-      {isRaphaPlus && !rpSubDomainDetails?.id ? (
+      {isRaphaPlus ? (
         <RPHomeV2 />
+      ) : subDomainDetails?.id ? (
+        <>{isMobile ? <MobileSubDomain /> : <SubDomainHome />}</>
       ) : (
         <HomeStyled>
           <div className="rapha-main-home-page">
@@ -198,7 +216,12 @@ const Home = () => {
               <>
                 <div className="rapha-plus-home-page-top">
                   <div>
-                    <img src={rpSubDomainDetails?.logo_url || "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736409761417.png"} />
+                    <img
+                      src={
+                        rpSubDomainDetails?.logo_url ||
+                        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736409761417.png"
+                      }
+                    />
                   </div>
                   <div className="rapha-main-home-search-section">
                     <div className="rapha-main-home-search">
@@ -330,46 +353,162 @@ const Home = () => {
               </div>
             )}
             {subDomainDetails?.id ? (
-              <SubDomainContent
-                subDomainName={subDomainName}
-                subDomainDetails={subDomainDetails}
-              />
+              <>
+                <div className="welcome-text-rapha-mobile-viwe">
+                  <MobileTopBanner
+                    details={pharmacySearchTextChange}
+                    handleonFilterName={handleonFilterName}
+                    setSearchText={debouncedSearch1}
+                    searchText={searchText}
+                    searchedData={universalSearchResults}
+                    handleSearchGoTo={handleSearchGoTo}
+                    showSearchPopupModel={showSearchPopupModel}
+                    handleToClosePopUp={handleToClosePopUp}
+                    parameter={parameter}
+                    sectionName={"home"}
+                    sectionImg={sectionImg}
+                  />
+                </div>
+                <SubDomainContent
+                  subDomainName={subDomainName}
+                  subDomainDetails={subDomainDetails}
+                />
+              </>
             ) : (
               <>
                 <div className="our-services-sec">
                   <h5 className="">Top Category</h5>
-                  <div className="our-services-all">
-                    {categories.map((category, index: any) => (
-                      <CategoryDivcolors
-                        index={index}
-                        key={index}
-                        className="home-page-card"
-                      >
-                        <div
-                          className="cursor-pointer"
-                          onClick={() => {
-                            navigateToPage(category.navigatePath);
-                          }}
+
+                  <div className="our-services-all hide">
+                    {categories.map((category: any, index: any) => (
+                      <div>
+                        <CategoryDivcolors
+                          index={index}
+                          key={index}
+                          className="home-page-card"
                         >
-                          <div className="category mt-4">{category.title} </div>
-                          <p className="category-p">{category.description}</p>
-                          <div className="home-card-image">
-                            <div className="home-card-image-img">
-                              {/* <img src={category.imageUrl} className="mt-2" /> */}
-                              <div className="catg-image-div">
-                                {category.imageUrl}
-                              </div>
-                              <div className="mb-3 category-book-app-doctor-btn">
-                                <button className="category-book-app-doctor">
-                                  <FaArrowRight />
-                                </button>
+                          <div
+                            className="cursor-pointer"
+                            onClick={() => {
+                              navigateToPage(category.navigatePath);
+                            }}
+                          >
+                            <div className="category mt-4">
+                              {category.title}
+                            </div>
+
+                            <p className="category-p">{category.description}</p>
+                            <div className="home-card-image">
+                              <div className="home-card-image-img">
+                                <img src={category.imageUrl} className="mt-2" />
+
+                                <div className="mb-3 category-book-app-doctor-btn">
+                                  <button className="category-book-app-doctor">
+                                    <FaArrowRight />
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </CategoryDivcolors>
+                        </CategoryDivcolors>
+                      </div>
                     ))}
                   </div>
+                </div>
+                <div className="mobile-our-services-sec">
+                  {checkIsMobile() && (
+                    <div className="mobile-our-services-all">
+                      {mobileCategories.map((category: any, index: any) => {
+                        if (Array.isArray(category)) {
+                          return (
+                            <div
+                              className="sub-mobile-our-services-all"
+                              key={index}
+                            >
+                              {category?.map((catg: any, i: any) => (
+                                <div
+                                  className="mobile-sub-home-page-card"
+                                  key={i}
+                                >
+                                  <div
+                                    className="mobile-cursor-pointer"
+                                    onClick={() => {
+                                      navigateToPage(catg.navigatePath);
+                                    }}
+                                  >
+                                    <div>
+                                      <div className="sub-mobile-category">
+                                        {catg.title}
+                                      </div>
+                                      <p className="mobile-category-p">
+                                        {catg.description}
+                                      </p>
+                                    </div>
+                                    <div className="mobile-sub-home-card-image">
+                                      <div className="mobile-home-card-image-sub-img">
+                                        <img
+                                          src={catg.imageUrl}
+                                          className=""
+                                          alt={catg.title}
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        }
+
+                        return (
+                          <div key={index}>
+                            <div className="mobile-home-page-card">
+                              <div
+                                className="cursor-pointer"
+                                onClick={() => {
+                                  navigateToPage(category.navigatePath);
+                                }}
+                              >
+                                <div className="mobile-category">
+                                  {category.title}
+                                </div>
+                                <div className="mobile-category-p">
+                                  {category.description}
+                                </div>
+                                <div className="home-card-image">
+                                  <div className="mobile-home-card-image-img">
+                                    {category?.instantConnect && (
+                                      <div className="offer-banner">
+                                        <span>
+                                          <img
+                                            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738761212902.png"
+                                            alt="Offer"
+                                          />
+                                        </span>
+                                        <span className="offer-banner-text">
+                                          {category?.instantTime || ""}
+                                        </span>
+                                      </div>
+                                    )}
+                                    <img
+                                      src={category.imageUrl}
+                                      className="mt-2 cat-img"
+                                      alt={category.title}
+                                    />
+                                    <div className="mb-3 category-book-app-doctor-btn">
+                                      <button className="category-book-app-doctor">
+                                        <FaArrowRight />
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
                 <div className="our-services-sec1">
                   <h5>Revolutionizing Healthcare</h5>
@@ -405,6 +544,42 @@ const Home = () => {
                     itemstoShow={5}
                   />
                 </div>
+
+                <div className="OurServices-mobile-view">
+                  <div className="our-services-sec">
+                    <h5 className=""> Our Services</h5>
+                    <div className="our-services-all">
+                      {subCategories.map((category, index: any) => (
+                        <div>
+                          <CategoryDivcolors
+                            index={index}
+                            key={index}
+                            className="home-page-card"
+                          >
+                            <div
+                              className="cursor-pointer"
+                              onClick={() => {
+                                navigateToPage(category.navigatePath);
+                              }}
+                            >
+                              <div className="home-card-image">
+                                <div className="home-card-image-img">
+                                  <img
+                                    src={category.imageUrl}
+                                    className="mt-2"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </CategoryDivcolors>
+                          <p className="category-mobile-wiew ">
+                            {category?.name}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
                 <div className="abha-card-div">
                   <div className="abha-sub-card-div">
                     <div className="abha-sub-card-right-div">
@@ -418,8 +593,8 @@ const Home = () => {
                         and access your ABHA ID.
                       </p>
                       <div className="d-flex justify-content-between align-items-center abha-sub-card-right-img-div">
-                        {AbhaCardImg.map((item: any, index:any) => {
-                          return <img src={item?.img} alt="" key={index} />;
+                        {AbhaCardImg.map((item: any) => {
+                          return <img src={item?.img} alt="" />;
                         })}
                       </div>
                       <div className="d-flex align-items-center">
@@ -443,6 +618,22 @@ const Home = () => {
                         />
                       </div>
                     </div>
+                  </div>
+
+                  <div className="abha-sub-card-mobile-div">
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1738235749179.png"
+                      alt=""
+                    />
+                    <button
+                      className="btn mt-4"
+                      onClick={() => {
+                        navigateToPage(`/abhahealths`);
+                      }}
+                    >
+                      Create ABHA
+                      <FaArrowRight className="ms-3" />
+                    </button>
                   </div>
                 </div>
                 <div className="associated-with-div">
@@ -468,7 +659,12 @@ const Home = () => {
                       </h5>
                     </div>
                     <div className="right-testimoials-sub-main-div">
-                      <img src={dummy_doc} alt="testimoials_image" />
+                      <img
+                        src={
+                          "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76907-1739009205109.png"
+                        }
+                        alt="testimoials_image"
+                      />
 
                       <RoundImgFrame className="round-img-frame" />
                       <RoundIcon className="round-img-icon" />
@@ -488,13 +684,13 @@ const Home = () => {
                     <h5 className="hospital-specislist-h5-div">
                       Our Top Healthcare Specialist
                     </h5>
-                    <div className="hospital-specislist-p-div">
+                    {/* <div className="hospital-specislist-p-div">
                       <p onClick={() => history.push("/doctor")}>View All</p>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="doctore-card-div ">
                     {topHealthcareSpecialist?.map((item: any, index: any) => (
-                      <DoctorDetailsCard item={item} key={index} />
+                      <DoctorDetailsCard item={item} />
                     ))}
                   </div>
                 </div>
@@ -523,7 +719,7 @@ const Home = () => {
                           history.push("/networklist");
                         }}
                       >
-                        <div className="empanel-sec-content-left-div">
+                        <div className="network-sec-content-left-div">
                           <h5>Rapha Network</h5>
                           <p>
                             Search For The Nearest Network Hospital to go
@@ -611,7 +807,10 @@ const Home = () => {
                     </div>
 
                     <div className="download-home-page-mobile-viwe-div">
-                      <BottomHomeBanner />
+                      <img
+                        src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1737118539689.png"
+                        alt=""
+                      />
                       <div className="book-app-doctor-actions-btn-mobile-viwe">
                         <button
                           onClick={handleClickPlay}

@@ -665,14 +665,14 @@ export const DetailBookAppointmentStyled = styled.div`
     transition: all 0.3s;
 
     .day-text {
-      font-size: 18px;
+      font-size: 14px;
       font-family: Inter;
       color: #000;
       text-align: center;
     }
 
     .slot-count {
-      font-size: 16px;
+      font-size: 12px;
       font-family: Inter;
       color: #1aad69;
     }
@@ -720,7 +720,7 @@ export const DetailBookAppointmentStyled = styled.div`
     }
 
     h2 {
-      font-size: 21px;
+      font-size: 14px;
       letter-spacing: 0.02em;
       font-weight: 500;
       font-family: Inter;
@@ -790,7 +790,7 @@ export const DetailBookAppointmentStyled = styled.div`
     cursor: pointer;
     transition: background-color 0.3s;
     height: 49.8px;
-    font-size: 18px;
+    font-size: 14px;
     font-family: Outfit;
     color: #252b61;
     text-align: center;

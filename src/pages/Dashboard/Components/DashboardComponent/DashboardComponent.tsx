@@ -35,13 +35,7 @@ const DashboardComponent = () => {
 
   return (
     <DashboardComponentStyled>
-      <div className="userDetails">
-        {/* <div className="search-bar borderShadow">
-          <input type="text" placeholder="Search" className="search-input" />
-          <FaSearch className="search-icon" />
-          <div className="separator"></div>
-          <FaMicrophone className="microphone-icon" />
-        </div> */}
+      {/* <div className="userDetails">
         <div className="healthInfo">
           <div className="borderShadow healthItem">
             <div className="icon">
@@ -121,7 +115,7 @@ const DashboardComponent = () => {
             <SugarLevels data={sugarData} />
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="recentOrders borderShadow">
         <h2>Recent Orders</h2>
         <RecentOrders />

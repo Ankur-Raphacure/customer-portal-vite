@@ -1,28 +1,37 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-import { Row, Col, Button, Form } from "react-bootstrap";
+import { Row, Col, Button, Form, Modal } from "react-bootstrap";
 import "./styles.css";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import EmpanelWithUs from "../../components/EmpanelWithUs/EmpanelWithUs";
 import banner_img from "../../img/banner_img.png";
 import { Space, Table, Tag } from "antd";
+import MobileTopBanner from "../../components/Header/MobileTopBanner";
+
 import {
   allPackagesList,
   categories,
   getAFixMdPackages,
+  indigridDiscountedPackages,
+  indigridPackages,
+  indigridPackagesMobile,
+  mobileCategories,
   subCategories,
+  wyhPackages,
 } from "./HomeObjClass";
 import { CategoryDivcolors } from "./Home.styled";
 import { FaArrowRight } from "react-icons/fa6";
 
 import { HomeStyled } from "./Home.styled";
 import { checkIfClientUserAvailable } from "../../redux/slices/dashboard/dashboardService";
+import { checkIsMobile } from "../../Scenes/common";
 // import {setallProductsData } from "../../redux/slices/productCart/productCartSlice";
 const SubDomainContent = (props: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
+  const [showAddonModal, setShowAddonModal] = useState(false);
 
   var wid = window.innerWidth;
   var wid1 = wid - 50;
@@ -84,74 +93,10 @@ const SubDomainContent = (props: any) => {
   };
   const navigateToPage = (itemd: any) => {
     console.log("urlurl", itemd);
-    const newurl = itemd?.to || itemd?.navigatePath;
+    const newurl = itemd?.to || itemd?.navigatePath || itemd;
     history.push(newurl);
   };
-  let columns1 = [
-    {
-      title: "No",
-      dataIndex: "no",
-      key: "name",
-      width: 30,
-    },
-    {
-      title: "Product Details",
-      dataIndex: "product_details",
-      key: "product_details",
-      width: 200,
-    },
-    {
-      title: "Coverage",
-      dataIndex: "coverage",
-      key: "coverage",
-      width: 80,
-    },
-    {
-      title: "Service Details",
-      dataIndex: "service_details",
-      key: "service_details",
-      width: 200,
-    },
-    {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
-      width: 100,
-    },
-  ] as any;
-  const clumens2 = [
-    {
-      title: "Action",
-      key: "limits",
-      fixed: "right",
-      width: 90,
-      render: (itemId: any) => {
-        const rrLink = getLinktoRedirect(itemId);
-        console.log("getLinktoRedirect", rrLink);
-        return (
-          <>
-            <div>
-              <button
-                disabled={rrLink === "" ? true : false}
-                onClick={() => {
-                  handleBookNow(itemId);
-                }}
-                className="book-now-sec-btn yo"
-              >
-                Book Now
-              </button>
-            </div>
-          </>
-        );
-      },
-    },
-  ];
-  var columns = [...columns1, ...clumens2];
-  // if (subDomainName === "ocwen") {
-  //   columns = [...columns1, ...clumens2];
-  // } else {
-  //   columns = columns1;
-  // }
+
   console.log("user", user);
 
   function extractParams(urlString: string) {
@@ -169,72 +114,44 @@ const SubDomainContent = (props: any) => {
 
   const services = useMemo(() => {
     const pppList = subDomainDetails?.agreed_services?.services;
-    if (isIndigridUser) return categories;
+    console.log("pppList", pppList);
+
     if (subDomainDetails?.subdomain_key === "getafixmd")
       return getAFixMdPackages;
+    if (subDomainDetails?.subdomain_key === "indigrid") return indigridPackages;
     if (!pppList?.length) {
       return user?.email === "indigrid@gmail.com" ||
         user?.phone === "9820799682"
         ? categories
         : allLists;
     }
-    return pppList;
-  }, [isIndigridUser, subDomainDetails, user, allLists]);
 
-  // const services = useMemo(() => {
-  //   const packageDetails =
-  //     subDomainDetails?.agreed_services?.package_details || [];
-
-  //   console.log("packageDetails : ", packageDetails);
-
-  //   const matchedArray = allPackagesList.filter((packageItem) =>
-  //     packageDetails.some(
-  //       (detail: any) =>
-  //         detail.service_details
-  //           ?.toLowerCase()
-  //           ?.includes(packageItem.name?.toLowerCase()) ||
-  //         detail.type?.toLowerCase()?.includes(packageItem.name?.toLowerCase())
-  //     )
-  //   );
-
-  //   return matchedArray;
-  // }, [subDomainDetails]);
-
-  useEffect(() => {
-    const checkIndigridUser = async () => {
-      if (
-        subDomainDetails?.subdomain_key !== "indigrid" &&
-        subDomainDetails?.subdomain_key !== "wyh"
-      ) {
-        console.log("not indigrid or wyh");
-        return;
-      }
-      if (!user?.wyhMobileNo && !user?.phone) {
-        console.log("phone not found");
-        return;
-      } else {
-        console.log("wyhMobileNo : ", user?.wyhMobileNo || user?.phone);
-      }
-      try {
-        const payload = {
-          phone: user?.wyhMobileNo || user?.phone,
-          clientId: "4de0b98c-cefa-4f8c-992a-2a3ffd4bdd50",
+    // Add instant connect fields for specific services
+    return pppList.map((service: any) => {
+      if (service.to === "/doctor") {
+        return {
+          ...service,
+          instantConnect: true,
+          instantTime: "90 Sec",
         };
-        const res = (await dispatch(
-          checkIfClientUserAvailable(payload)
-        )) as any;
-        console.log("res : ", res);
-
-        const isUserFound = res?.payload?.data?.isUserFound;
-        if (!res?.error) {
-          setIsIndigridUser(isUserFound || false);
-        }
-      } catch (error) {
-        console.error("Error checking Indigrid user:", error);
       }
-    };
-    checkIndigridUser();
-  }, [user, dispatch, subDomainDetails]); // Add proper dependencies
+      if (service.to === "/labtest") {
+        return {
+          ...service,
+          instantConnect: true,
+          instantTime: "60 Min",
+        };
+      }
+      if (service.to === "/pharmacy") {
+        return {
+          ...service,
+          instantConnect: true,
+          instantTime: "90 Min",
+        };
+      }
+      return service;
+    });
+  }, [subDomainDetails, user, allLists]);
 
   useEffect(() => {
     console.log("subDomainDetails : ", subDomainDetails);
@@ -243,84 +160,258 @@ const SubDomainContent = (props: any) => {
   useEffect(() => {
     console.log("services : ", services);
   }, [services]);
-
-  return (
-    <>
-      <HomeStyled>
-        <div className="rapha-main-home-page">
-          <div className="subdomain-text-rapha">
-            <div>
-              <h4>Package Details</h4>
-            </div>
-            <br />
-            <div
-              className="table-home-page-sub-domain"
-              style={{ maxWidth: `${wid1}px` }}
-            >
-              <div className="all-services-sec-code-all">
-                {services?.map((item: any, index: any) => {
-                  const rrLink = getLinktoRedirect(item);
-                  const getServiceD = allLists.find(
-                    (itm: any) =>
-                      itm?.navigatePath?.toLowerCase() ===
-                        item?.to?.toLowerCase() ||
-                      itm?.navigatePath?.toLowerCase() ===
-                        item?.navigatePath?.toLowerCase()
-                  ) as any;
-                  console.log("item", item);
-                  console.log("getServiceD", getServiceD);
-                  console.log("allLists", allLists);
-                  return (
-                    <>
-                      {getServiceD?.imageUrl && (
-                        <CategoryDivcolors
-                          index={index}
-                          key={index}
-                          className="home-page-card"
+  console.log("services", services);
+  const ServicesTabs = ({ services, discountedServices = false }: any) => {
+    return (
+      <div className="subdomain-text-rapha">
+        {/* <div>
+          <h4>{discountedServices ? "" : "Services Covered"}</h4>
+        </div> */}
+        <br />
+        {checkIsMobile() ? (
+          <div className="mobile-our-services-all">
+            {(subDomainDetails?.subdomain_key === "wyh"
+              ? wyhPackages
+              : subDomainDetails?.subdomain_key === "indigrid"
+              ? indigridPackagesMobile
+              : mobileCategories
+            ).map((category: any, index: any) => {
+              if (Array.isArray(category)) {
+                return (
+                  <div className="sub-mobile-our-services-all" key={index}>
+                    {category?.map((catg: any, i: any) => (
+                      <div className="mobile-sub-home-page-card" key={i}>
+                        <div
+                          className="mobile-cursor-pointer"
+                          onClick={() => {
+                            navigateToPage(catg.navigatePath);
+                          }}
                         >
-                          <div
-                            className="cursor-pointer"
-                            onClick={() => {
-                              navigateToPage(item);
-                            }}
-                          >
-                            <div className="category mt-4 ggg">
-                              {" "}
-                              {item?.name || getServiceD?.title}{" "}
+                          <div>
+                            <div className="sub-mobile-category">
+                              {catg.title}
                             </div>
-                            <div className="home-card-image">
-                              <div className="home-card-image-img">
-                                {typeof getServiceD?.imageUrl === "string" ? (
-                                  <img src={getServiceD?.imageUrl} alt="" />
-                                ) : (
-                                  <>{getServiceD?.imageUrl}</>
-                                )}
+                            <p className="mobile-category-p">
+                              {catg.description}
+                            </p>
+                          </div>
+                          <div className="mobile-sub-home-card-image">
+                            <div className="mobile-home-card-image-sub-img">
+                              <img
+                                src={catg.imageUrl}
+                                className=""
+                                alt={catg.title}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
 
-                                <div className="mb-3 category-book-app-doctor-btn">
-                                  <button className="category-book-app-doctor">
-                                    <FaArrowRight />
-                                  </button>
+              return (
+                <div key={index}>
+                  <div className="mobile-home-page-card">
+                    <div
+                      className="cursor-pointer"
+                      onClick={() => {
+                        navigateToPage(category.navigatePath);
+                      }}
+                    >
+                      <div className="mobile-category">{category.title}</div>
+                      <div className="mobile-category-p">
+                        {category.description}
+                      </div>
+                      <div className="home-card-image">
+                        <div className="mobile-home-card-image-img">
+                          {category?.instantConnect && (
+                            <div className="offer-banner">
+                              <span>
+                                <img
+                                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738761212902.png"
+                                  alt="Offer"
+                                />
+                              </span>
+                              <span className="offer-banner-text">
+                                {category?.instantTime || ""}
+                              </span>
+                            </div>
+                          )}
+                          <img
+                            src={category.imageUrl}
+                            className="mt-2 cat-img"
+                            alt={category.title}
+                          />
+                          <div className="mb-3 category-book-app-doctor-btn">
+                            <button className="category-book-app-doctor">
+                              <FaArrowRight />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div
+            className="table-home-page-sub-domain"
+            style={{ maxWidth: `${wid1}px` }}
+          >
+            <div className="all-services-sec-code-all">
+              {services?.map((item: any, index: any) => {
+                const rrLink = getLinktoRedirect(item);
+                console.log("item", item);
+                const newurl33 = item?.to || item?.navigatePath;
+
+                const imgLisnl = allLists?.find(
+                  (itttm: any) => itttm?.navigatePath == newurl33
+                ) as any;
+                console.log("imgLisnl", imgLisnl);
+                const newimgURL = imgLisnl?.imageUrl || item?.imageUrl;
+                return (
+                  <>
+                    {newimgURL && (
+                      <>
+                        {checkIsMobile() ? (
+                          <HomeStyled
+                            key={index}
+                            className="home-page-card mobileCards"
+                          >
+                            <div className="mobile-home-page-card">
+                              <div
+                                className="cursor-pointer"
+                                onClick={() => {
+                                  if (item?.title === "Addon Services") {
+                                    setShowAddonModal(true);
+                                  } else {
+                                    navigateToPage(item);
+                                  }
+                                }}
+                              >
+                                <div className="mobile-category">
+                                  {item?.name || item?.title || imgLisnl?.title}{" "}
+                                </div>
+                                <div className="mobile-category-p">
+                                  {item?.description}
+                                </div>
+                                <div className="home-card-image">
+                                  <div className="mobile-home-card-image-img">
+                                    {item?.instantConnect && (
+                                      <div className="offer-banner">
+                                        <span>
+                                          <img
+                                            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738761212902.png"
+                                            alt="Offer"
+                                          />
+                                        </span>
+                                        <span className="offer-banner-text">
+                                          {item?.instantTime || ""}
+                                        </span>
+                                      </div>
+                                    )}
+                                    {typeof newimgURL === "string" ? (
+                                      <img src={newimgURL} alt="" />
+                                    ) : (
+                                      <>{newimgURL}</>
+                                    )}
+                                    <div className="mb-3 category-book-app-doctor-btn">
+                                      <button className="category-book-app-doctor">
+                                        <FaArrowRight />
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </CategoryDivcolors>
-                      )}
-                    </>
-                  );
-                })}
-              </div>
-              {/* <Table
-                columns={columns}
-                pagination={false}
-                // scroll={{ x: 300, y: 5000 }}
-                scroll={{ x: 1200, y: 500 }}
-                className="table-home-page-sub-domain-table"
-                dataSource={subDomainDetails?.agreed_services?.package_details}
-              /> */}
+                          </HomeStyled>
+                        ) : (
+                          <CategoryDivcolors
+                            index={index}
+                            key={index}
+                            className="home-page-card"
+                          >
+                            <div
+                              className="cursor-pointer"
+                              onClick={() => {
+                                if (item?.title === "Addon Services") {
+                                  setShowAddonModal(true);
+                                } else {
+                                  navigateToPage(item);
+                                }
+                              }}
+                            >
+                              <div className="category mt-4 ggg">
+                                {" "}
+                                {item?.name ||
+                                  item?.title ||
+                                  imgLisnl?.title}{" "}
+                              </div>
+                              <div className="home-card-image">
+                                <div className="home-card-image-img">
+                                  {typeof newimgURL === "string" ? (
+                                    <img src={newimgURL} alt="" />
+                                  ) : (
+                                    <>{newimgURL}</>
+                                  )}
+
+                                  <div className="mb-3 category-book-app-doctor-btn">
+                                    <button className="category-book-app-doctor">
+                                      <FaArrowRight />
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </CategoryDivcolors>
+                        )}
+                      </>
+                    )}
+                  </>
+                );
+              })}
             </div>
           </div>
+        )}
+      </div>
+    );
+  };
+  return (
+    <>
+      <HomeStyled>
+        {/* <MobileTopBanner /> */}
+        <div className="rapha-main-home-page">
+          <ServicesTabs services={services} />
         </div>
+
+        <Modal
+          fullscreen="md-down"
+          dialogClassName="custom_addressmodal"
+          show={showAddonModal}
+          onHide={() => {
+            setShowAddonModal(false);
+          }}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title className="poppins-medium">Addon Services</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <HomeStyled>
+              {subDomainDetails?.subdomain_key === "indigrid" && (
+                <div className="subdomain-text-rapha discountedServices">
+                  <ServicesTabs
+                    services={indigridDiscountedPackages}
+                    discountedServices={true}
+                  />
+                </div>
+              )}
+            </HomeStyled>
+          </Modal.Body>
+        </Modal>
       </HomeStyled>
     </>
   );

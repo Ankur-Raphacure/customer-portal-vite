@@ -13,8 +13,8 @@ export const RescheduleBookingFormStyled = styled.div`
   justify-content: center;
   z-index: 9999999;
 
-  .rescheduleBookingForm{
-    min-width:50%;
+  .rescheduleBookingForm {
+    min-width: 50%;
   }
   .formContainer {
     background-color: white;
@@ -76,5 +76,19 @@ export const RescheduleBookingFormStyled = styled.div`
     border: 1px solid gray;
     padding: 10px;
     border-radius: 5px;
+  }
+
+  .rescheduleBookingForm {
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  .dateselection-container-primary {
+    flex-direction: column !important;
+  }
+  .rescheduleBookingForm {
+    max-width: 60%;
+    max-height: 90%;
+    overflow: scroll;
   }
 `;

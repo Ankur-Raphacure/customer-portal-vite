@@ -162,10 +162,16 @@ const Cart = () => {
   return (
     <CartStyled>
       <div>
-        {paharmacyProducts?.length === 0 ? (
+        {paharmacyProducts?.length === 0 || !paharmacyProducts?.length ? (
           <div className="no-results-sec">
             <p>No Items found in your cart.</p>
-            {/* <button></button> */}
+            <button
+              onClick={() => {
+                history.push("/");
+              }}
+            >
+              Go to home page
+            </button>
           </div>
         ) : (
           <div className="cart-full-page">

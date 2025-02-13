@@ -32,6 +32,9 @@ import { getMyAddressQueryAPI } from "../../redux/slices/Profile/ProfileService"
 import { useLocation } from "react-router-dom";
 import { getAllMedicineAPI } from "../../redux/slices/labtest/labtestService";
 import useHandleImageUrl from "../../components/hooks/useHandleImageUrl";
+import { GoShareAndroid } from "react-icons/go";
+import ShareModal from "../../components/ShareModal/ShareModal";
+import MobileHeader from "../../components/Header/MobileHeader";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -51,7 +54,7 @@ const Item = (props: any) => {
   const [isPageLoading, setIsPageLoading] = useState(false);
   const [selectAdderss, setselectAdderss] = useState("");
   const [selectedAddressVal, setSelectedAddressVal] = useState("");
-
+  const [openShareModel, setOpenShareModel] = useState<any>(false);
   const [selectPinCode, setSelectPinCode] = useState("");
   const history = useHistory();
   const { cartItems } = useSelector((ReduxState: any) => ReduxState.checkout);
@@ -96,9 +99,6 @@ const Item = (props: any) => {
       title: itemDetail?.service_name,
     },
   ];
-
-  console.log(allSimilarMedicinesList, "allSimilarMedicinesList");
-
   useEffect(() => {
     let userPincode = "560068";
     if (userAddress?.length > 0) {
@@ -237,9 +237,21 @@ const Item = (props: any) => {
     ordersCountByItemDetails?.count === "0"
       ? Math.floor(Math.random() * 10) + 1
       : ordersCountByItemDetails?.count;
+  const shareURL = window.location.href;
   return (
     <ItemStyled>
       {isLoading && <Loader />}
+      <ShareModal
+        show={openShareModel}
+        url={shareURL}
+        title="Share on"
+        handleClose={() => {
+          setOpenShareModel(false);
+        }}
+        onCopyClick={() => {
+          navigator.clipboard.writeText(shareURL);
+        }}
+      />
       {!isPageLoading ? (
         <>
           {itemDetail ? (
@@ -281,9 +293,20 @@ const Item = (props: any) => {
                     </div>
 
                     <div className="item-main-detail-div">
-                      <p className="item-title-detail">
-                        {itemDetail.service_name}
-                      </p>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <p className="item-title-detail">
+                          {itemDetail.service_name}
+                        </p>
+                        <button
+                          onClick={() => {
+                            setOpenShareModel(true);
+                          }}
+                          className="btn share-btn-icon"
+                          title="Click to Share"
+                        >
+                          <GoShareAndroid />
+                        </button>
+                      </div>
                       <p className="item-tablet-detail">{itemDetail?.unit}</p>
                       {itemDetail?.salt_key && (
                         <p>Salt Key: {itemDetail.salt_key}</p>

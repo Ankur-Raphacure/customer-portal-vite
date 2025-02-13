@@ -668,21 +668,30 @@ const Checkout = () => {
           return;
         }
       };
-      if (window && window.PhonePeCheckout && window.PhonePeCheckout.transact) {
-        window.PhonePeCheckout.transact({
-          tokenUrl:
-            paymentObj?.order_data?.instrumentResponse?.redirectInfo?.url,
-          callback: window?.phonePecallback,
-          type: "IFRAME",
-        });
-      } else {
-        window.phonePeObj = {
-          tokenUrl:
-            paymentObj?.order_data?.instrumentResponse?.redirectInfo?.url,
-          callback: window.phonePecallback,
-          type: "IFRAME",
-        };
-        loadJS("https://mercury-stg.phonepe.com/web/bundle/checkout.js", true);
+      if (paymentObj?.order_data?.instrumentResponse?.redirectInfo?.url) {
+        if (
+          window &&
+          window.PhonePeCheckout &&
+          window.PhonePeCheckout.transact
+        ) {
+          window.PhonePeCheckout.transact({
+            tokenUrl:
+              paymentObj?.order_data?.instrumentResponse?.redirectInfo?.url,
+            callback: window?.phonePecallback,
+            type: "IFRAME",
+          });
+        } else {
+          window.phonePeObj = {
+            tokenUrl:
+              paymentObj?.order_data?.instrumentResponse?.redirectInfo?.url,
+            callback: window.phonePecallback,
+            type: "IFRAME",
+          };
+          loadJS(
+            "https://mercury-stg.phonepe.com/web/bundle/checkout.js",
+            true
+          );
+        }
       }
     }
   };
@@ -937,6 +946,7 @@ const Checkout = () => {
     setShowSuccessMessageText(msg);
     setShowSuccessMessage(true);
   };
+  console.log("subDomainName", subDomainName);
   const handleOrderTracking = () => {
     if (user?.from_hr && subDomainName !== "wyh") {
       if (user?.loginType == "doctorDashboard") {
@@ -1102,10 +1112,16 @@ ${formatIssues(data.issues)}
           }}
         />
         {isLoading && <Loader />}
-        {cartItems?.carts?.length === 0 ? (
+        {cartItems?.carts?.length === 0 || !cartItems?.carts?.length ? (
           <div className="no-results-sec">
             <p>No Items found in your cart.</p>
-            {/* <button></button> */}
+            <button
+              onClick={() => {
+                history.push("/");
+              }}
+            >
+              Go to home page
+            </button>
           </div>
         ) : (
           <div className="cart-full-page checkout-page-design1">
@@ -1635,7 +1651,7 @@ ${formatIssues(data.issues)}
                                 }
                               }}
                             >
-                              Edit Medical Records
+                              Enter Medical Records
                             </Button>
                           )}
                         </div>

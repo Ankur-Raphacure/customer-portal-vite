@@ -34,7 +34,7 @@ const HealthSaverCard = ({
   return (
     <HealthSaverCardStyled>
       <div
-        className="d-flex flex-column gap-4 cursor-pointer"
+        className="d-flex flex-column cursor-pointer gap10px"
         onClick={() => {
           if (origin !== "packageDetails" && addToCart) {
             addItemToCard();
@@ -56,16 +56,16 @@ const HealthSaverCard = ({
                 }}
               ></h3> */}
             </div>
-            <div className="w-100 d-flex justify-content-end">
+            {/* <div className="w-100 d-flex justify-content-end">
               <button className="featureButton">
                 <img src={TestTubesIcon} alt="Feature Icon" />
                 {featureButtonText}
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="d-flex flex-row w-full justify-content-between px-3">
-          <div className="d-flex flex-row logo align-items-center">
+        <div className="d-flex flex-column w-full justify-content-between px-3">
+          <div className="d-flex flex-row logo align-items-center cardInfoRow">
             {section === "radiology" ? (
               <img
                 src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1733906583474.png"
@@ -78,27 +78,23 @@ const HealthSaverCard = ({
               />
             )}
 
-            <div>
-              {section === "radiology" ? (
-                <h3>In Clinic</h3>
-              ) : (
-                <>
-                  <h3>Report Within</h3>
-                  <h4>{reportTime}</h4>
-                </>
-              )}
-            </div>
+            {section === "radiology" ? (
+              <h3>In Clinic</h3>
+            ) : (
+              <>
+                <h3>Report Within</h3>
+                <h4>{reportTime}</h4>
+              </>
+            )}
           </div>
           {section !== "radiology" && (
-            <div className="d-flex flex-row logo tests">
+            <div className="d-flex flex-row logo tests align-items-center cardInfoRow">
               <img
                 src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76907-1732626189597.png"
                 alt="Lab Tests Logo"
               />
-              <div>
-                <h3>Includes</h3>
-                <h4>{testCount} Tests</h4>
-              </div>
+              <h3>Includes</h3>
+              <h4>{testCount} Tests</h4>
             </div>
           )}
         </div>
@@ -107,12 +103,9 @@ const HealthSaverCard = ({
             <div className="realPrice">₹{originalPrice}</div>
             <div className="discountedPrice">₹{discountedPrice}</div>
           </div>
-          {origin !== "packageDetails" && (
-            <button>
-              Add
-              <BsCart2 />
-            </button>
-          )}
+          <button className="featureButton">
+            Book {origin === "packageDetails" ? "Package" : "Test"}
+          </button>
         </div>
         {origin === "packageDetails" && (
           <div className="more-labs-action-btns">
@@ -127,16 +120,16 @@ const HealthSaverCard = ({
               <button
                 className="add-to-cart-btn poppins-semibold"
                 onClick={() => {
-                  packageDetails.testaddToReview();
+                  packageDetails?.testaddToReview();
                 }}
               >
                 Add to Cart
               </button>
             ) : (
               <PackageQuantityBtn
-                index={packageDetails.isAddedtoList}
+                index={packageDetails?.isAddedtoList}
                 item={packageDetails?.testData}
-                removeToReview={packageDetails.testRemoveToReview}
+                removeToReview={packageDetails?.testRemoveToReview}
               />
             )}
           </div>

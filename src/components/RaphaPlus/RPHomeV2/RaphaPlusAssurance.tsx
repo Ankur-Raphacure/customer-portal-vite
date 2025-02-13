@@ -15,13 +15,16 @@ const RaphaPlusAssurance = () => {
             success.
           </p>
           <div className="buttons">
-            <a 
+            {/* <a 
             href="https://www.raphadoc.com/signin"
             target="_blank"
             rel="noopener noreferrer"
             className="free-trial"
 
-            >Free Trial</a>
+            >Free Trial</a> */}
+            <button className="free-trial" onClick={() => history.push("https://www.raphadoc.com/signin")}>
+            Free Trial
+            </button>
             <button 
             className="book-demo"
             onClick={() => history.push("/bookdemo")}

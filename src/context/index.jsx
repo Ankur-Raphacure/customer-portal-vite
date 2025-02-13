@@ -1,3 +1,4 @@
-import { ViewportProvider } from './ViewportContext';
+import { ViewportProvider } from "./ViewportContext";
+import { SocketProvider } from "./SocketProvider";
 
-export { ViewportProvider };
+export { ViewportProvider, SocketProvider };

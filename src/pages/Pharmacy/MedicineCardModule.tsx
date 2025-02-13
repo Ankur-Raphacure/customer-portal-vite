@@ -33,7 +33,7 @@ const MedicineCardModule = (props: any) => {
           </div>
 
           <div className="text-div">
-            <p className="h3"> {medicineDetail?.service_name} </p>
+            <p className="h2"> {medicineDetail?.service_name} </p>
             <p className="medicineDetail-unit">{medicineDetail?.unit}</p>
             <div className="btn-div">
               <div className="mt-2">

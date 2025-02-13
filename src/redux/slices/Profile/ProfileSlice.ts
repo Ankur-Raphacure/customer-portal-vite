@@ -14,10 +14,13 @@ export interface ProfileState {
   dependentsData: any;
   isNelyAdedUser: boolean;
   userDependents: any;
+  dependentsUserData: any;
   userAddress: any;
   selectedCurrentAddress: any;
   nearbyVendors: any;
 }
+
+const userData: string | null = localStorage.getItem("userSelectedAddress");
 
 const initialState: ProfileState = {
   loading: false,
@@ -27,8 +30,18 @@ const initialState: ProfileState = {
   dependentsData: [],
   isNelyAdedUser: false,
   userDependents: [],
+  dependentsUserData: [],
   userAddress: [],
-  selectedCurrentAddress: {},
+  selectedCurrentAddress:
+    userData !== null
+      ? (() => {
+          try {
+            return JSON.parse(userData);
+          } catch {
+            return {};
+          }
+        })()
+      : {},
   nearbyVendors: [],
 };
 
@@ -49,6 +62,10 @@ export const ProfileSlice = createSlice({
       state: ProfileState,
       action: PayloadAction<any>
     ) => {
+      localStorage.setItem(
+        "userSelectedAddress",
+        JSON.stringify(action.payload)
+      );
       state.selectedCurrentAddress = action.payload;
     },
   },
@@ -62,8 +79,10 @@ export const ProfileSlice = createSlice({
       getUserWithDependentsAPI.fulfilled,
       (state: ProfileState, action: PayloadAction<any>) => {
         let dependentsData = [] as any;
-        if (action.payload?.data?.me?.dependents) {
-          dependentsData = [...action.payload?.data?.me?.dependents] || [];
+        const prevList = action.payload?.data?.me?.dependents || ([] as any);
+        if (prevList) {
+          dependentsData = [...prevList];
+          state.dependentsUserData = prevList;
           dependentsData.unshift(action.payload?.data?.me);
         }
         state.error = null;
@@ -71,6 +90,7 @@ export const ProfileSlice = createSlice({
         state.ProfileData = action.payload?.data?.me;
         state.dependentsData = [...dependentsData];
         state.userDependents = [...dependentsData];
+
         state.isNelyAdedUser = false;
       }
     );
@@ -88,7 +108,8 @@ export const ProfileSlice = createSlice({
     builder.addCase(
       createNewDependentAPI.fulfilled,
       (state: ProfileState, action: PayloadAction<any>) => {
-        let dependentsData = [...action.payload?.data?.user?.dependents] || [];
+        let dependentsData = [...action.payload?.data?.user?.dependents];
+        state.dependentsUserData = action.payload?.data?.me?.dependents;
         dependentsData.unshift(action.payload?.data?.user);
         state.error = null;
         state.loading = false;

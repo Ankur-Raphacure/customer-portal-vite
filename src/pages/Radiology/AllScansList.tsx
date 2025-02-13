@@ -22,6 +22,8 @@ import BreadCrumbModule from "../Pharmacy/BreadCrumbModule";
 import PriceFilterModule from "./PriceFilterModule";
 import ScanCenterCards from "./ScanCenterCards";
 import { radiologySearchTextChange } from "../Pharmacy/PharmacyObjectsModule";
+import { checkIsMobile } from "../../Scenes/common";
+import MobileHeader from "../../components/Header/MobileHeader";
 
 const allTypeList = [
   {
@@ -134,8 +136,8 @@ const AllScansList = (props: any) => {
   const addPackageToCart = (id: any) => {
     history.push(`/radiology/scan-details/${id}`, sections);
   };
-  const navigateToAllScans = (id: any) => {
-    history.push(`/labtest/packages/${id}`);
+  const navigateToAllScans = (item: any) => {
+    history.push(`/labtest/packages/${item?.id}`);
   };
   const handleClearAll = () => {
     setSortBy("");
@@ -298,29 +300,32 @@ const AllScansList = (props: any) => {
           {isNearByAll ? (
             <></>
           ) : (
-            <div className="filter-module-div">
-              <SideFilterModule
-                origin={"ctmri"}
-                handleClearAll={handleClearAll}
-                handleChangeCategoryFilter={handleChangeCategoryFilter}
-                handleonFilterDiscount={handleonFilterDiscount}
-                filterPriceRange={filterPriceRange}
-                handleChangeBodyTypeFilter={handleChangeBodyTypeFilter}
-                handleChangeTypeFilter={handleChangeTypeFilter}
-                setSelectedSortOption={setSelectedSortOption}
-                handleInputChange={handleInputChange}
-                allTypeList={allTypeList}
-                allCategoriesList={allCategoriesList}
-                allBodyTypeList={allActiveBodyPartList}
-                allTimeSlotList={allTimeSlotList}
-                allDiscountList={allDiscountList}
-                patientReviewsList={patientReviewsList}
-                bodyTypeFilter={bodyTypeFilter}
-                minDiscount={minDiscount}
-                maxDiscount={maxDiscount}
-                selectedCategories={categoryFilter}
-              />
-            </div>
+            <>
+              <div className="filter-module-div">
+                <SideFilterModule
+                  origin={"ctmri"}
+                  handleClearAll={handleClearAll}
+                  handleChangeCategoryFilter={handleChangeCategoryFilter}
+                  handleonFilterDiscount={handleonFilterDiscount}
+                  filterPriceRange={filterPriceRange}
+                  handleChangeBodyTypeFilter={handleChangeBodyTypeFilter}
+                  handleChangeTypeFilter={handleChangeTypeFilter}
+                  setSelectedSortOption={setSelectedSortOption}
+                  handleInputChange={handleInputChange}
+                  allTypeList={allTypeList}
+                  allCategoriesList={allCategoriesList}
+                  allBodyTypeList={allActiveBodyPartList}
+                  allTimeSlotList={allTimeSlotList}
+                  allDiscountList={allDiscountList}
+                  patientReviewsList={patientReviewsList}
+                  bodyTypeFilter={bodyTypeFilter}
+                  minDiscount={minDiscount}
+                  maxDiscount={maxDiscount}
+                  selectedCategories={categoryFilter}
+                  pathName={"/radiology"}
+                />
+              </div>
+            </>
           )}
 
           <div className="filter-List-module-div">

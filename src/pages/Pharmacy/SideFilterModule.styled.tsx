@@ -26,10 +26,11 @@ export const SideFilterModuleStyled = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    margin-top: 2rem;
+    /* padding: 10px 20px; */
   }
   .filter-by-type-div {
-    padding: 0px 20px;
+    /* padding: 0px 20px; */
   }
   .alltests {
     max-height: 300px;
@@ -57,6 +58,7 @@ export const SideFilterModuleStyled = styled.div`
     text-decoration-style: solid;
   }
   .filter-by-title {
+    display: flex;
     color: #1e1e1e;
     font-family: Outfit, sans-serif;
     font-size: 18px;
@@ -166,11 +168,31 @@ export const SideFilterModuleStyled = styled.div`
     font-size: 18px;
     color: gray;
   }
-
   .divider {
     width: 1px;
     height: 24px;
     background-color: #ddd;
+  }
+
+  .sort-filter-container-header {
+    background: #023567;
+    width: 100%;
+    height: 80px;
+    display: none !important;
+  }
+  .sort-filter-sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    button {
+      background: #fff;
+      border-radius: 12rem;
+      svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
   }
 
   @media (min-width: 768px) {
@@ -178,17 +200,57 @@ export const SideFilterModuleStyled = styled.div`
     .CloseButton {
       display: none;
     }
+    .main-filter-module-div {
+      margin-top: 30px !important;
+    }
+  }
+
+  .btnWrapperDiv {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    padding: 0px 0px;
+    .btnWrapperDiv {
+      display: block;
+      z-index: 9999;
+      position: absolute;
+      width: 100%;
+      background: #fff;
+      padding: 1rem;
+      bottom: 0;
+      display: flex;
+      flex-direction: row;
+      border: 1px solid #ccc;
+      button {
+        font-family: Outfit, sans-serif;
+        width: 100%;
+        border: none;
+        background-color: #fff;
+        &:first-child {
+          border-right: 1px solid #ccc;
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 0px 0px;
+    .sort-filter-container-header {
+      display: block !important;
+    }
   }
 `;
 
 export const SidebarMenu = styled.div<{ sMenuOpen: boolean }>`
   position: fixed;
-  top: 0;
-  left: ${(props) => (props.sMenuOpen ? "0" : "-100%")};
-  width: 300px;
-  height: 100%;
+  bottom: 0; // Change from top: 0
+  left: 0; // Change from dynamic left
+  width: 100%; // Change to full width
+  height: 85vh; // Adjust height as needed
   background: #ffffff;
-  transition: left 0.3s ease;
+  transform: translateY(
+    ${(props) => (props.sMenuOpen ? "0" : "100%")}
+  ); // Change from left transition to transform
+  transition: transform 0.3s ease;
   z-index: 999;
   overflow-y: auto;
   padding: 1rem;
@@ -208,7 +270,7 @@ export const SidebarMenu = styled.div<{ sMenuOpen: boolean }>`
   }
   @media (max-width: 768px) {
     width: 300px;
-    margin-top: 6rem;
+    margin-top: 8.5rem;
     height: 90%;
   }
 `;

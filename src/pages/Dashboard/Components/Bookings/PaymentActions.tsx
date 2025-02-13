@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,15 @@ const PaymentActions = (props: any) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showSuccessMessageText, setShowSuccessMessageText] = useState(false);
   const [showConformationModel, setShowConformationModel] = useState(false);
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
 
   const fullName = `${item?.user?.first_name} ${item?.user?.last_name}`;
 
@@ -222,20 +231,21 @@ const PaymentActions = (props: any) => {
           history.push("/dashboard/bookings");
         }}
       />
-      {errorMessage && (
-        <div>
-          <p className="error_message"> {errorMessage}</p>
-        </div>
-      )}
-      <div className="payment-actions">
-        <button
-          className="plain-button payment-button-razorpay"
-          onClick={() => handlePayNow("razorPay")}
-        >
-          Pay with Razorpay ₹{" "}
-          {item?.final_amount?.toFixed(2).toLocaleString("en-US")}
-        </button>
-        {/* {!isRaphaPlus && (
+      <div>
+        {errorMessage && (
+          <div>
+            <p className="error_message"> {errorMessage}</p>
+          </div>
+        )}
+        <div className="payment-actions">
+          <button
+            className="plain-button payment-button-razorpay"
+            onClick={() => handlePayNow("razorPay")}
+          >
+            Pay with Razorpay ₹{" "}
+            {item?.final_amount?.toFixed(2).toLocaleString("en-US")}
+          </button>
+          {/* {!isRaphaPlus && (
           <button
             className="plain-button payment-button-phonepe"
             onClick={() => handlePayNow("phonePe")}
@@ -244,6 +254,7 @@ const PaymentActions = (props: any) => {
             {item?.final_amount?.toFixed(2).toLocaleString("en-US")}
           </button>
         )} */}
+        </div>
       </div>
     </>
   );

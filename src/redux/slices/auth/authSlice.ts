@@ -15,6 +15,7 @@ export interface AuthState {
   error: any;
   signUpResponse: any;
   showLoginModel: any;
+  showAddressSearchModel: any;
   subDomainDetails: any;
   subDomainName: any;
   userCity: any;
@@ -33,6 +34,7 @@ const initialState: AuthState = {
   error: null,
   signUpResponse: {},
   showLoginModel: false,
+  showAddressSearchModel: false,
   subDomainDetails: {},
   subDomainName: null,
   isRaphaPlus: false,
@@ -61,6 +63,13 @@ export const authSlice = createSlice({
     ) => {
       state.showLoginModel = action.payload;
     },
+    updateShowAddressSearchModel: (
+      state: AuthState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.showAddressSearchModel = action.payload;
+    },
+
     updateSubDomainDetails: (
       state: AuthState,
       action: PayloadAction<boolean>
@@ -139,22 +148,22 @@ export const authSlice = createSlice({
       state.error = action.error?.message ?? "Something went wrong";
     });
     //requestOtpAPI
-    builder.addCase(requestOtpAPI.pending, (state: any) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(
-      requestOtpAPI.fulfilled,
-      (state: AuthState, action: PayloadAction<any>) => {
-        state.error = null;
-        state.loading = false;
-      }
-    );
-    builder.addCase(requestOtpAPI.rejected, (state: AuthState, action: any) => {
-      console.log({ action });
-      state.loading = false;
-      state.error = action.error?.message ?? "Something went wrong";
-    });
+    // builder.addCase(requestOtpAPI.pending, (state: any) => {
+    //   state.loading = true;
+    //   state.error = null;
+    // });
+    // builder.addCase(
+    //   requestOtpAPI.fulfilled,
+    //   (state: AuthState, action: PayloadAction<any>) => {
+    //     state.error = null;
+    //     state.loading = false;
+    //   }
+    // );
+    // builder.addCase(requestOtpAPI.rejected, (state: AuthState, action: any) => {
+    //   console.log({ action });
+    //   state.loading = false;
+    //   state.error = action.error?.message ?? "Something went wrong";
+    // });
 
     //validateOtpAPI
     builder.addCase(validateOtpAPI.pending, (state: any) => {
@@ -258,6 +267,7 @@ export const {
   updateUserDetails,
   updateErrorMessage,
   updateShowLoginModel,
+  updateShowAddressSearchModel,
   updateIsRaphaPlus,
   updateRpSubDomainDetails,
   updateRpSubDomainName,

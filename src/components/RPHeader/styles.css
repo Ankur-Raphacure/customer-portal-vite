@@ -83,6 +83,11 @@
 .empty-page-sub-header {
   padding-top: 80px !important;
 }
+@media (max-width: 768px) {
+  .empty-page-sub-header {
+    padding-top: 0px !important;
+  }
+}
 .header-text-center1 {
   display: flex;
   gap: 16px;

@@ -32,6 +32,12 @@ export const DoctorCardStyled = styled.div`
       color: #000;
       opacity: 0.5;
     }
+    .divv {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -webkit-line-clamp: 1;
+    }
   }
   .Experience-div {
     display: flex;
@@ -99,6 +105,7 @@ export const DoctorCardStyled = styled.div`
       width: 10rem;
       height: 10rem;
       border-radius: 10px;
+      object-fit: cover;
     }
   }
   .card-right {

@@ -522,7 +522,7 @@ const AllLabTest = (props: any) => {
                 return (
                   <HealthSaverCard
                     key={testItem?.service_code || index}
-                    title={truncateText(testItem?.service_name, 15) || "N/A"} // Test name
+                    title={testItem?.service_name || "N/A"} // Test name
                     subtitle="Diagnostic Test" // Static subtitle for test cards
                     featureButtonText="Book Test" // Custom button text
                     reportTime="N/A" // Placeholder as report time is not provided

@@ -77,7 +77,7 @@ const PackageTestList = (props: any) => {
         <HealthSaverCard
           key={props?.testData?.service_code}
           origin={"packageDetails"}
-          title={truncateText(props?.testData?.service_name, 15) || "N/A"} // Test name
+          title={props?.testData?.service_name || "N/A"} // Test name
           subtitle="Diagnostic Test" // Static subtitle for test cards
           featureButtonText="Book Test" // Custom button text
           reportTime="N/A" // Placeholder as report time is not provided

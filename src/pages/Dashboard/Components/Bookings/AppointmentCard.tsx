@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import ReBook from "../../../../components/ReBook/ReBook";
 import PrescriptionDocument from "./PrescriptionDocument";
 import LeaveFeedback from "./LeaveFeedback";
+import RescheduleBookingForm from "./RescheduleBookingForm";
 
 const AppointmentCard = (props: any) => {
   const { item } = props;
@@ -92,16 +93,16 @@ const AppointmentCard = (props: any) => {
   }
 
   const rescheduleBooking = async () => {
-    // setShowReBookForm(true);
+    setShowReBookForm(true);
     console.log("item : ", item);
 
-    if (item && item.test && item.test.service_code) {
-      window.location.href = `/labTestDetils/${item.test.service_code}`;
-    } else if (item?.doctor?.name) {
-      history.push(`/doctor?q=${item?.doctor.name}`);
-    } else if (item?.vendor?.id) {
-      history.push(`/hospital/${item?.vendor?.id}`);
-    }
+    // if (item && item.test && item.test.service_code) {
+    //   window.location.href = `/labTestDetils/${item.test.service_code}`;
+    // } else if (item?.doctor?.name) {
+    //   history.push(`/doctor?q=${item?.doctor.name}`);
+    // } else if (item?.vendor?.id) {
+    //   history.push(`/hospital/${item?.vendor?.id}`);
+    // }
   };
 
   const handleOk = () => {
@@ -232,159 +233,10 @@ const AppointmentCard = (props: any) => {
         }`}
       >
         <div className="appointment-card-left">
-          <div className="doctor-info justify-content-evenly">
-            <div>
-              {item?.doctor?.name ? (
-                <>
-                  <img
-                    src={item?.doctor?.image || docImage}
-                    alt="Doctor"
-                    className="doctor-image"
-                  />
-                  <div>
-                    {/* {console.log("item?.doctor?.name : ", item?.doctor?.name)}
-                    {console.log("item : ", item)} */}
-                    <h2>Dr. {item?.doctor?.name}</h2>
-                    <p>
-                      {item?.type === "opd_consultation"
-                        ? "OPD Consultation"
-                        : "Virtual Consultation"}
-                    </p>
-                  </div>{" "}
-                </>
-              ) : item?.type == "pharmacy" ? (
-                <>
-                  <div>
-                    <h2>{`Medicines`}</h2>
-                  </div>
-                </>
-              ) : item?.test?.type == "diagnostic" ? (
-                <>
-                  <div>
-                    <h2>{`Lab Test - ${item?.test?.service_name}`}</h2>
-                  </div>
-                </>
-              ) : item?.test?.type == "ctmri" ? (
-                <>
-                  <div>
-                    <h2>{`CTMRI - ${item?.test?.service_name}`}</h2>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <img src={docImage} alt="Doctor" className="doctor-image" />
-                  <div>
-                    <h2>{item?.test?.service_name}</h2>
-                    <p>{item?.test?.type} </p>
-                  </div>
-                </>
-              )}
-            </div>
-
-            <div className="vendor-setails-sec-box">
-              {item?.vendor?.name && (
-                <>
-                  <p>
-                    <span>Vendor Name:</span> {item?.vendor?.name}
-                  </p>
-                  <p>
-                    <span>Address: </span> {item?.vendor?.address},{" "}
-                    {item?.vendor?.city}{" "}
-                  </p>
-                </>
-              )}
-              <p>
-                <span>Booked for:</span>{" "}
-                {`${item?.user?.first_name || ""} ${
-                  item?.user?.last_name || ""
-                }`}
-              </p>
-              {item?.type == "pharmacy" && (
-                <p>
-                  <span>Address:</span>{" "}
-                  {`${item?.address?.address} ${item?.user?.last_name}`}
-                </p>
-              )}
-            </div>
-
-            {item?.doctor?.id && (
-              <button
-                className="plain-button"
-                onClick={() => {
-                  history.push(`/chat?docId=${item?.doctor?.id}`);
-                }}
-              >
-                Chat
-              </button>
-            )}
-          </div>
-          <div className="appointment-details">
-            <div className="detailsDiv">
-              <p>
-                <strong>Booking ID:</strong> #{item?.id}
-              </p>
-              <p>
-                <strong>Scheduled Date:</strong>{" "}
-                {formatDate(item?.collection_1_date)}
-              </p>
-              <p>
-                <strong>Scheduled Time:</strong> {item?.collection_1_slot}
-              </p>
-
-              <p>
-                <strong>Booked Date:</strong>
-                {moment(booked_date).format(" MMMM DD, YYYY")}
-              </p>
-              <p>
-                <strong>Total:</strong> ₹{item?.final_amount}
-              </p>
-              <p>
-                <strong>Status:</strong>
-                <span className={statusColor}>
-                  {" "}
-                  {formatStatus(item?.status)}
-                </span>
-              </p>
-            </div>
-          </div>
+         
         </div>
-        {bType1 === "virtual_consultation" && item?.show_virtual_call && (
-          <div className="book-video-call-sec">
-            <button onClick={joinVideoCall}>Join Video Call </button>
-          </div>
-        )}
-        {item?.medicines?.length > 0 && (
-          <div className="medicines-sec-box">
-            {/* <h4>Medicines</h4> */}
-            <div className="item-box-all">
-              {item?.medicines?.slice(0, 3)?.map((item1: any, index: any) => {
-                return (
-                  <React.Fragment key={index}>
-                    <div className="item-box">
-                      <p className="item-name">
-                        <img
-                          title={item1?.service_name}
-                          src={
-                            item1?.image ||
-                            "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/medicine-2.png"
-                          }
-                        />{" "}
-                        <span>{item1?.service_name}</span>
-                      </p>
-                      <p className="item-type">{item1?.unit}</p>
-                      <p className="item-type">Quantity: {item1?.count}</p>
-                    </div>
-                  </React.Fragment>
-                );
-              })}
-            </div>
-            {item?.medicines?.length > 3 && (
-              <div className="view-all-items-sec">
-                <button>View All Items</button>
-              </div>
-            )}
-          </div>
-        )}
+      
+      
         {/* <div className="btnWrapperDiv">
           <a href="#" className="view-details-link">
             View Details
@@ -457,6 +309,7 @@ const AppointmentCard = (props: any) => {
           item.status !== "cancelled" &&
           item.status !== "completed" &&
           item.status !== "report_delivered" &&
+          item.status !== "prescription_sent_successfully" &&
           item.status !== "payment_pending" && (
             <button
               className="plain-button"
@@ -530,14 +383,14 @@ const AppointmentCard = (props: any) => {
         />
       )}
       {showReBookForm && (
-        // <RescheduleBookingForm
-        //   bookingId={item?.id}
-        //   onClose={() => setShowReBookForm(false)}
-        // />
-        <ReBook
-          show={showReBookForm}
+        <RescheduleBookingForm
+          booking={item}
           onClose={() => setShowReBookForm(false)}
         />
+        // <ReBook
+        //   show={showReBookForm}
+        //   onClose={() => setShowReBookForm(false)}
+        // />
       )}
       {showCancelForm && (
         <CancelForm

@@ -77,7 +77,7 @@ export const parseAddress = (place, addressStr) => {
   };
 };
 export const checkIsMobile = () => {
-  return window.innerWidth <= 675;
+  return window.innerWidth <= 768;
 };
 export const gotoLoginPage = () => {
   var userC = localStorage.getItem("userCity");
@@ -85,6 +85,19 @@ export const gotoLoginPage = () => {
   localStorage.clear();
   localStorage.setItem("userCity", userC1);
   window.location.href = "/";
+};
+export const getFormatedAddress = (address1, isdesktop) => {
+  let forrAddres = address1?.zip
+    ? `${address1?.address1}, ${address1?.city}, ${address1?.zip}`
+    : address1?.address1
+    ? `${address1?.address1}, ${address1?.city}`
+    : address1?.city;
+  if (isdesktop) {
+    forrAddres = address1?.zip
+      ? `${address1?.city}, ${address1?.zip}`
+      : address1?.city;
+  }
+  return forrAddres;
 };
 export const getAttachmentIds = (seName) => {
   const raphaPrescriptionsL = localStorage.getItem("raphaPrescriptions");
@@ -227,28 +240,34 @@ export const htmlTemplate = async (data) => {
           <img src=${logoUrl} alt="RaphaCure" style="height: 8vh; width: auto; float: right;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; margin-left: 1rem; margin-top: 1rem;">
               <h2 id="dr">Dr. ${data?.doctor?.name || "N/A"}</h2>
-              <p style="margin-top: -1rem; margin-left: 1rem;">${data?.doctor?.specialization || "N/A"
-    }</p>
-              <p style="margin-top: -3rem; margin-left: 1rem;">${data?.type || "N/A"
-    }</p>
+              <p style="margin-top: -1rem; margin-left: 1rem;">${
+                data?.doctor?.specialization || "N/A"
+              }</p>
+              <p style="margin-top: -3rem; margin-left: 1rem;">${
+                data?.type || "N/A"
+              }</p>
           </div>
       </div>
 
       <div class="content">
           <div class="pt-details">
               <div>
-                  <p><strong>Booked for:</strong> ${data?.user?.first_name || "N/A"
-    }</p>
-                  <p><strong>Age:</strong> ${calculateAge(data?.user?.dob) || "N/A"
-    }</p>
+                  <p><strong>Booked for:</strong> ${
+                    data?.user?.first_name || "N/A"
+                  }</p>
+                  <p><strong>Age:</strong> ${
+                    calculateAge(data?.user?.dob) || "N/A"
+                  }</p>
                   <p><strong>Gender:</strong> ${data?.user?.gender || "N/A"}</p>
                   <p><strong>Email:</strong> ${data?.user?.email || "N/A"}</p>
               </div>
               <div>
-                  <p><strong>Consultation Date:</strong> ${data?.collection_1_date || "N/A"
-    }</p>
-                  <p><strong>Time Slot:</strong> ${data?.collection_1_slot || "N/A"
-    }</p>
+                  <p><strong>Consultation Date:</strong> ${
+                    data?.collection_1_date || "N/A"
+                  }</p>
+                  <p><strong>Time Slot:</strong> ${
+                    data?.collection_1_slot || "N/A"
+                  }</p>
                   <p><strong>Phone:</strong> ${data?.user?.phone || "N/A"}</p>
               </div>
           </div>
@@ -269,22 +288,24 @@ export const htmlTemplate = async (data) => {
                   </thead>
                   <tbody>
                       ${medicines
-      .map(
-        (medicine, index) => `
+                        .map(
+                          (medicine, index) => `
                           <tr>
                               <td>${index + 1}</td>
-                              <td>${medicine?.medicine?.service_name || "N/A"
-          }</td>
+                              <td>${
+                                medicine?.medicine?.service_name || "N/A"
+                              }</td>
                               <td>${medicine?.dosage || "N/A"}</td>
                               <td>${medicine?.frequency || "N/A"}</td>
                               <td>${medicine?.no_of_days || "N/A"}</td>
                               <td>${medicine?.intake || "N/A"}</td>
-                              <td>${medicine?.medicine?.price?.actual_cost || "N/A"
-          }</td>
+                              <td>${
+                                medicine?.medicine?.price?.actual_cost || "N/A"
+                              }</td>
                           </tr>
                       `
-      )
-      .join("")}
+                        )
+                        .join("")}
                   </tbody>
               </table>
           </div>
@@ -304,25 +325,27 @@ export const htmlTemplate = async (data) => {
                   </thead>
                   <tbody>
                       ${tests
-      .map(
-        (test, index) => `
+                        .map(
+                          (test, index) => `
                           <tr>
                               <td>${index + 1}</td>
                               <td>${test?.test?.service_name || "N/A"}</td>
                               <td>${test?.diagnosis || "N/A"}</td>
                               <td>${test?.symptoms || "N/A"}</td>
-                               <td>${test?.next_visit
-            ? new Date(
-              test.next_visit
-            ).toLocaleDateString()
-            : "N/A"
-          }</td>
-                              <td>${test?.test?.price?.actual_cost || "N/A"
-          }</td>
+                               <td>${
+                                 test?.next_visit
+                                   ? new Date(
+                                       test.next_visit
+                                     ).toLocaleDateString()
+                                   : "N/A"
+                               }</td>
+                              <td>${
+                                test?.test?.price?.actual_cost || "N/A"
+                              }</td>
                           </tr>
                       `
-      )
-      .join("")}
+                        )
+                        .join("")}
                   </tbody>
               </table>
           </div>
@@ -360,19 +383,22 @@ export const truncateText = (text, maxLength) => {
 export const getToken = () => {
   const accessToken =
     localStorage.getItem("user") &&
-      JSON.parse(localStorage.getItem("user")) &&
-      JSON.parse(localStorage.getItem("user"))?.accessToken
+    JSON.parse(localStorage.getItem("user")) &&
+    JSON.parse(localStorage.getItem("user"))?.accessToken
       ? JSON.parse(localStorage.getItem("user")).accessToken
       : undefined;
   return accessToken;
 };
 
 export function formatStatus(status) {
+  if (!status) {
+    return "N/A";
+  }
   return status
-    .toLowerCase()
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+    ?.toLowerCase()
+    ?.split("_")
+    ?.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    ?.join(" ");
 }
 
 export const decryptWyhData = async (encryptedStr) => {
@@ -401,5 +427,65 @@ export const decryptWyhData = async (encryptedStr) => {
 
   const decryptedStr = decryptionData.data[0].decryptedStr;
   console.log("Decrypted String: ", decryptedStr);
-  return decryptedStr
+  return decryptedStr;
+};
+
+export function formatDate(dateString) {
+  if (!dateString) return "N/A";
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  try {
+    const [year, month, day] = dateString.split("-");
+    const monthIndex = parseInt(month) - 1;
+
+    if (
+      isNaN(monthIndex) ||
+      monthIndex < 0 ||
+      monthIndex >= 12 ||
+      !year ||
+      !month ||
+      !day
+    ) {
+      return "N/A";
+    }
+
+    const monthName = months[monthIndex];
+    return `${parseInt(day)} ${monthName} ${year}`;
+  } catch (error) {
+    return "N/A";
+  }
 }
+export const generateDates = () => {
+  const today = new Date();
+
+  return Array.from({ length: 10 }, (_, index) => {
+    const date = new Date(today);
+    date.setDate(today.getDate() + index);
+
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}-${String(date.getDate()).padStart(2, "0")}`;
+  });
+};
+export const capitalizeWords = (str) => {
+  if (!str) return "";
+  return str
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+};

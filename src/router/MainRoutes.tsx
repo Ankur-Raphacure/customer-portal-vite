@@ -12,28 +12,27 @@ import Doctor from "../pages/Doctor";
 import Hospital from "../pages/Hospital";
 
 import Pharmacy from "../pages/Pharmacy/Pharmacy";
-import ChatComponent from "../pages/Chat/Chat";
-
+import ChatComponent from "../pages/Chat/v1/Chat";
+import Chat2 from "../pages/Chat/Chat";
+import LabTestV2 from "../pages/LabTestv2/LabTest";
+import AllPackages from "../pages/AllPackages/AllPackages";
+import AllLabTest from "../pages/AllTests/AllLabTests";
+import UploadPrescription from "../pages/UploadPrescription/UploadPrescription";
+import NewPrescription from "../pages/NewPrescription/NewPrescription";
+import UploadSubPrescription from "../pages/UploadPrescription/UploadSubPrescription";
+import ScanMedicineModule from "../pages/ScanByMedicine/ScanMedicineModule";
+import ChatContextProvider from "../pages/Chat/context/ChatConext";
 const BloodBanks = lazy(() => import("../pages/BloodBank/BloodBanks"));
-
-const LabTestV2 = lazy(() => import("../pages/LabTestv2/LabTest"));
-const AllPackages = lazy(() => import("../pages/AllPackages/AllPackages"));
-const AllLabTest = lazy(() => import("../pages/AllTests/AllLabTests"));
-const UploadPrescription = lazy(
-  () => import("../pages/UploadPrescription/UploadPrescription")
-);
-const NewPrescription = lazy(
-  () => import("../pages/NewPrescription/NewPrescription")
-);
-const UploadSubPrescription = lazy(
-  () => import("../pages/UploadPrescription/UploadSubPrescription")
-);
-const ScanMedicineModule = lazy(
-  () => import("../pages/ScanByMedicine/ScanMedicineModule")
-);
 const EPrescription = lazy(
   () => import("../pages/EPrescription/EPrescription")
 );
+const FitnessProductPage = lazy(
+  () =>
+    import(
+      "../pages/Fitness_v2/productPage/fitnessCenterPage/FitnessProductPage"
+    )
+);
+const FitnessPackageSelection = lazy(()=>import("../pages/Fitness_v2/productPage/fitnessCenterPage/packageSelection/PackageSelection"))
 const Gallery = lazy(() => import("../pages/Gallery/Gallery"));
 const BookDemo = lazy(() => import("../pages/BookDemo/BookDemo"));
 const NextForm = lazy(() => import("../pages/BookDemo/NextForm"));
@@ -49,12 +48,13 @@ const DetailBookAppointment = lazy(
   () =>
     import("../pages/ClinicPage/DetailBookAppointment/DetailBookAppointment")
 );
-const DashboardPage = lazy(
-  () => import("../../src/components/RaphaPlus/DoctorDashboard/DashboardPage")
-);
+
 const AllVendors = lazy(() => import("../pages/AllVendors/AllVendors"));
 const DoctorDetails = lazy(() => import("../pages/Doctor/DoctorDetails"));
 const DoctorsList = lazy(() => import("../pages/Doctor/DoctorsList"));
+const ClinicDetails = lazy(
+  () => import("../pages/Doctor/ClinicDetails/ClinicDetails")
+);
 const SpecializationList = lazy(
   () => import("../pages/Doctor/SpecializationList")
 );
@@ -209,6 +209,7 @@ const SecurityPolicies = lazy(
   () => import("../pages/policy/SecurityPolicies/SecurityPolicies")
 );
 const Disclaimer = lazy(() => import("../pages/policy/Disclaimer/Disclaimer"));
+
 // const LabTest = lazy(() => import("../pages/LabTest/LabTest"));
 
 // const ChatRoom = lazy(() => import("../pages/ChatRoom/ChatRoom"));
@@ -251,13 +252,32 @@ const MainRoutes: React.FC = () => {
         component={AllScansList}
       />
       <Route exact path="/radiology/allScansNearMe" component={AllScansList} />
+      <Route exact path="/doctor/doctorlist/:id" component={DoctorsList} />
       <Route exact path="/doctor/doctorlist" component={DoctorsList} />
-      <Route exact path="/doctorv2" component={Doctors} />
       <Route
         exact
         path="/doctor/specializationList"
         component={SpecializationList}
       />
+      <Route
+        exact
+        path="/doctor/nearbyhospitals/:vendorId"
+        component={DoctorsList}
+      />
+      <Route
+        exact
+        path="/doctor/clinicDetails/:vendorId/:categoryId"
+        component={ClinicDetails}
+      />
+      <Route
+        exact
+        path="/doctor/clinicDetails/:vendorId"
+        component={ClinicDetails}
+      />
+      <Route exact path="/doctor/:sectionName" component={DoctorsList} />
+      <Route exact path="/dietReport/:id" component={MealCategory} />
+      {/* <Route exact path="/doctorv2/:sectionName" component={DoctorsList} /> */}
+      <Route exact path="/doctor" component={Doctors} />
       <Route exact path="/doctor/doctordetails/:id" component={DoctorDetails} />
       <Route exact path="/allpackages" component={AllPackages} />
       <Route exact path="/alllabtests" component={AllLabTest} />
@@ -271,7 +291,7 @@ const MainRoutes: React.FC = () => {
       <Route exact path="/newprescription" component={NewPrescription} />
       <Route exact path="/signin" component={Signin} />
       <Route exact path="/myProfile" component={MyProfile} />
-      <Route exact path="/doctor" component={Doctor} />
+      <Route exact path="/doctorv2" component={Doctor} />
       <Route
         exact
         path="/:bookingtype/bookingReview/"
@@ -303,7 +323,9 @@ const MainRoutes: React.FC = () => {
       <Route exact path="/fitness_v2" component={Fitness_v2} />
       <Route exact path="/fitnessonclick" component={Fitnessonclick} />
       <Route exact path="/Gymlist" component={Gymlist} />
-      <Route exact path="/Gymlist_v2" component={Gymlist_v2} />
+      <Route exact path="/fitnessCenters" component={Gymlist_v2} />
+      <Route exact path="/fitnessCenters/:productName/:productId" component={FitnessProductPage} />
+      <Route exact path="/fitnessCenters/bookingConformation/:fitnessCenterID/:packageID" component={FitnessPackageSelection} />
       {/* <Route exact path="/Gymlist" component={Gymlist} /> */}
       <Route exact path="/newGymlist" component={GymIndex} />
       <Route exact path="/Gymlist/gymcenterlist" component={GymCenterList} />
@@ -413,7 +435,16 @@ const MainRoutes: React.FC = () => {
       <Route exact path="/eyecare/visiontest" component={Visiontest} />
       <Route exact path="/eyecare/accessories" component={Accessories} />
       <Route exact path="/UploadImages" component={UploadImages} />
-      <Route exact path="/chat" component={ChatComponent} />
+      <Route exact path="/chat2" component={ChatComponent} />
+      <Route
+        exact
+        path="/chat"
+        component={() => (
+          <ChatContextProvider>
+            <Chat2 />
+          </ChatContextProvider>
+        )}
+      />
       <Route
         exact
         path="/eyecare/accessories/glasses"
@@ -435,7 +466,6 @@ const MainRoutes: React.FC = () => {
         path="/bookappointment/DetailBookAppointment"
         component={DetailBookAppointment}
       />
-      <Route exact path="/doctordashboardv2" component={DashboardPage} />
     </Switch>
   );
 };

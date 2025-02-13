@@ -20,7 +20,7 @@ const PhamacyHeader = (props: any) => {
 
   const handleSubmit = async (e: any) => {
     // e.preventDefault();
-    // //import.meta.env.REACT_APP_AZURE_STORAGE_CONNECTION_STRING
+    // //process.env.REACT_APP_AZURE_STORAGE_CONNECTION_STRING
     // const blobServiceClient = new BlobServiceClient();
     // const blockBlobClient = blobServiceClient.getBlockBlobClient(file.name);
     // try {

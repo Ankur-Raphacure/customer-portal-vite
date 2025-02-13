@@ -27,6 +27,12 @@ import {
 import { truncateText } from "../../Scenes/common";
 import { toast } from "react-toastify";
 import { getNearbyVendorsAPI } from "../../redux/slices/Profile/ProfileService";
+import { updateShowLoginModel } from "../../redux/slices/auth/authSlice";
+import MobileTopBanner from "../../components/Header/MobileTopBanner";
+import { checkIsMobile } from "../../Scenes/common";
+const parameter = "BOOK LAB TEST";
+const sectionImg =
+  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1738326258163.png";
 
 const containerStyle = {
   width: "100%",
@@ -36,6 +42,11 @@ const containerStyle = {
 const MapComponent = () => {
   const [currentPosition, setCurrentPosition] = useState<any>(null);
 
+  let addr: any = null;
+  const storedAddress = localStorage.getItem("selectedAddress");
+  if (storedAddress) {
+    addr = JSON.parse(storedAddress);
+  }
   // Load the Google Maps JavaScript API
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: MAP_KEY, // Replace with your API key
@@ -43,23 +54,40 @@ const MapComponent = () => {
 
   // Get user's current location
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setCurrentPosition({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (error) => {
-          toast.error(`Error fetching geolocation: ${error?.message}`);
-          console.error("Error fetching geolocation:", error);
-        }
-      );
+    const setPosition = () => {
+      if (addr?.latitude && addr?.longitude) {
+        setCurrentPosition({
+          lat: addr.latitude,
+          lng: addr.longitude,
+        });
+      }
+    };
+
+    const getCurrentLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setCurrentPosition({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+          },
+          (error) => {
+            toast.error(`Error fetching geolocation: ${error?.message}`);
+            console.error("Error fetching geolocation:", error);
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    };
+
+    if (addr?.latitude && addr?.longitude) {
+      setPosition();
     } else {
-      console.error("Geolocation is not supported by this browser.");
+      getCurrentLocation();
     }
-  }, []);
+  }, [addr?.latitude, addr?.longitude]); // Only depend on specific addr properties
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -97,7 +125,9 @@ const LabTestV2 = () => {
     allNearByLabssList,
     allPackagesList,
   } = useSelector((ReduxState: any) => ReduxState.labtest);
-  const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
+  const { userCity, user, subDomainDetails } = useSelector(
+    (ReduxState: any) => ReduxState.auth
+  );
   const [labtestCategories, setLabtestCategories] = useState([]);
   const [labPackageCategories, setLabPackageCategories] = useState([]);
   const [activeLabtestCategory, setActiveLabtestCategory] = useState(0); // Default to the first category
@@ -158,6 +188,7 @@ const LabTestV2 = () => {
             categoryIds: [activePackageCategory],
             count: 20,
             isCorporate: false,
+            type: "diagnostic",
             page: 1,
           },
         })
@@ -212,6 +243,7 @@ const LabTestV2 = () => {
         filters: {
           ...body.filters,
           isCorporate: false,
+          type: "diagnostic",
         },
       })
     );
@@ -329,6 +361,19 @@ const LabTestV2 = () => {
       recognitionRef.current = null;
     };
   };
+  const handleToPharmacyUploadPrescription = () => {
+    if (!user?.id) {
+      dispatch(updateShowLoginModel(true));
+    } else {
+      history.push("/uploadprescription");
+    }
+  };
+
+  const handleonFilterName = (e: any) => {
+    setSearchText(e);
+    fetchSearchResults(e);
+    setShowSearchPopupModel(true);
+  };
   return (
     <LabtestStyled>
       {/* <div className="heroImg">
@@ -338,11 +383,54 @@ const LabTestV2 = () => {
           <FaArrowRight />
         </div>
       </div> */}
-      <HeadingBannerModule
-        details={labtestBannerDetails}
-        handleBuyMedicine={handleBuyMedicine}
-        section="labtest"
-      />
+
+      <div className="HeadingBannerModule-web-view">
+        <HeadingBannerModule
+          details={labtestBannerDetails}
+          handleBuyMedicine={handleBuyMedicine}
+          section="labtest"
+        />
+      </div>
+      <div className="HeadingBannerModule-mobile-view">
+        {/* <img
+          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1738044181623.png"
+          alt=""
+        /> */}
+        {checkIsMobile() && (
+          <MobileTopBanner
+            details={labtestBannerDetails}
+            handleonFilterName={handleonFilterName}
+            setSearchText={setSearchText}
+            searchText={searchText}
+            searchedData={universalSearchResults}
+            handleSearchGoTo={handleSearchGoTo}
+            showSearchPopupModel={showSearchPopupModel}
+            parameter={parameter}
+            sectionName={"labtest"}
+            sectionImg={sectionImg}
+          />
+        )}
+      </div>
+
+      <div className="main-Upload-Prescription-mobile-btn">
+        <div className="Upload-Prescription-mobile-btn ">
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1734771002662.png"
+            alt="upload_icon"
+          />
+          <p>Order With Prescription</p>
+          <button className="btn" onClick={handleToPharmacyUploadPrescription}>
+            Order Now
+          </button>
+        </div>
+      </div>
+
+      <div className="mobile-view-collection">
+        <img
+          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1738560790295.png"
+          alt=""
+        />
+      </div>
 
       <div className="searchFeature">
         <div className="searchBar">
@@ -371,13 +459,15 @@ const LabTestV2 = () => {
           Lab Tests
           <img src={HealthDropIcon} alt="Lab Tests" />
         </button>
-        <button
-          className="featureButton"
-          onClick={() => navigateTo("/allpackages")}
-        >
-          Packages
-          <img src={TestTubesIcon} alt="Packages" />
-        </button>
+        {subDomainDetails?.subdomain_key !== "indigrid" && (
+          <button
+            className="featureButton"
+            onClick={() => navigateTo("/allpackages")}
+          >
+            Packages
+            <img src={TestTubesIcon} alt="Packages" />
+          </button>
+        )}
       </div>
 
       {showSearchPopupModel && (
@@ -440,66 +530,70 @@ const LabTestV2 = () => {
         </PharmacyStyled>
       )}
 
-      <div className="healthSaverSection">
-        <div className="header">
-          <h2>Top Packages</h2>
-          {/* <Link to={"/allpackages"} className="viewAllBtn">
+      {subDomainDetails?.subdomain_key !== "indigrid" && (
+        <div className="healthSaverSection">
+          <div className="header">
+            <h2>Top Packages</h2>
+            {/* <Link to={"/allpackages"} className="viewAllBtn">
             View All Packages
           </Link> */}
-        </div>
-        {labPackageCategories?.length > 0 && (
-          <div className="packageFilters">
-            {labPackageCategories?.slice(0, 10)?.map((item: any, index) => (
-              <button
-                key={index}
-                className={`filterButton ${
-                  activePackageCategory === item?.id ? "active" : ""
-                }`}
-                onClick={() => {
-                  setActivePackageCategory(item?.id);
-                }}
-              >
-                {item?.name}
-              </button>
-            ))}
           </div>
-        )}
-        <div className="healthCards">
-          {allPackagesList?.data?.length > 0 &&
-            allPackagesList?.data
-              ?.filter(
-                (packageItem: any) => packageItem?.price?.actual_cost > 0
-              ) // Filter for actual_cost > 0
-              ?.slice(0, 6) // Slice the filtered list
-              ?.map((packageItem: any, index: any) => (
-                <HealthSaverCard
-                  key={packageItem?.service_code || index}
-                  title={truncateText(packageItem?.service_name, 30)} // Truncate title
-                  subtitle={truncateText(packageItem?.description, 30)} // Truncate subtitle
-                  featureButtonText="Package" // You can customize this text
-                  reportTime="N/A" // If no data provided for report time
-                  testCount={(packageItem?.tests?.length || 0).toString()} // Number of tests
-                  originalPrice={(
-                    packageItem?.price?.actual_cost || 0
-                  ).toString()}
-                  discountedPrice={(
-                    packageItem?.price?.discounted_price || 0
-                  ).toString()}
-                  discount={(
-                    packageItem?.price?.discount_percentage || 0
-                  ).toString()}
-                  addToCart={() => {
-                    addPackageToCart(packageItem?.service_code);
+          {labPackageCategories?.length > 0 && (
+            <div className="packageFilters">
+              {labPackageCategories?.slice(0, 10)?.map((item: any, index) => (
+                <button
+                  key={index}
+                  className={`filterButton ${
+                    activePackageCategory === item?.id ? "active" : ""
+                  }`}
+                  onClick={() => {
+                    setActivePackageCategory(item?.id);
                   }}
-                />
+                >
+                  {item?.name}
+                </button>
               ))}
+            </div>
+          )}
+          <div className="healthCards">
+            {allPackagesList?.data?.length > 0 &&
+              allPackagesList?.data
+                ?.filter(
+                  (packageItem: any) => packageItem?.price?.actual_cost > 0
+                ) // Filter for actual_cost > 0
+                ?.slice(0, 6) // Slice the filtered list
+                ?.map((packageItem: any, index: any) => (
+                  <HealthSaverCard
+                    key={packageItem?.service_code || index}
+                    title={packageItem?.service_name} // Truncate title
+                    subtitle={truncateText(packageItem?.description, 30)} // Truncate subtitle
+                    featureButtonText="Package" // You can customize this text
+                    reportTime="N/A" // If no data provided for report time
+                    testCount={(packageItem?.tests?.length || 0).toString()} // Number of tests
+                    originalPrice={(
+                      packageItem?.price?.actual_cost || 0
+                    ).toString()}
+                    discountedPrice={(
+                      packageItem?.price?.discounted_price || 0
+                    ).toString()}
+                    discount={(
+                      packageItem?.price?.discount_percentage || 0
+                    ).toString()}
+                    addToCart={() => {
+                      addPackageToCart(packageItem?.service_code);
+                    }}
+                  />
+                ))}
 
-          {allPackagesList?.data?.length === 0 && <p>No Packages Available</p>}
+            {allPackagesList?.data?.length === 0 && (
+              <p>No Packages Available</p>
+            )}
+          </div>
+          <Link to={"/allpackages"} className="viewAllBtn ml-auto viewBtn2">
+            View All Packages
+          </Link>
         </div>
-        <Link to={"/allpackages"} className="viewAllBtn ml-auto viewBtn2">
-          View All Packages
-        </Link>
-      </div>
+      )}
 
       <div className="healthSaverSection">
         <div className="header">
@@ -548,8 +642,12 @@ const LabTestV2 = () => {
                   ).toString()} // Test's actual cost
                   discountedPrice={(
                     testItem?.price?.discounted_price ||
-                    testItem?.raphacure_cost ||
-                    0
+                    testItem?.actual_cost -
+                      0.01 *
+                        (testItem?.price?.discount_percentage ||
+                          testItem?.discount_percentage ||
+                          0) *
+                        testItem?.actual_cost
                   ).toString()} // Discounted price
                   discount={(
                     testItem?.price?.discount_percentage ||
@@ -576,8 +674,8 @@ const LabTestV2 = () => {
           </Link>
         </div>
         <div className="nearbyCards">
-          {nearbyVendors?.filteredVendors || nearbyVendors?.vendors ? (
-            (nearbyVendors?.filteredVendors || nearbyVendors?.vendors)
+          {nearbyVendors?.vendors?.length > 0 && nearbyVendors?.vendors ? (
+            nearbyVendors?.vendors
               ?.slice(0, 5)
               .map((vendor: any, index: any) => (
                 <NearbyCard
@@ -623,6 +721,12 @@ const LabTestV2 = () => {
       <div className="privacyImg">
         <img
           src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76907-1732271995719.png"
+          alt=""
+        />
+      </div>
+      <div className="mobile-view-privacyImg">
+        <img
+          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1738560074659.png"
           alt=""
         />
       </div>

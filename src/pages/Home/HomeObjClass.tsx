@@ -4,10 +4,6 @@ import { ReactComponent as Carporate } from "../../assets/icons/carporate.svg";
 import { ReactComponent as DocDS } from "../../assets/icons/docDS.svg";
 import { ReactComponent as HospitalDs } from "../../assets/icons/hospitalDs.svg";
 import { ReactComponent as UsersList } from "../../assets/icons/usersList.svg";
-import { ReactComponent as DoctorCtr } from "../../assets/icons/doctorCtr.svg";
-import { ReactComponent as RadiologyCtr } from "../../assets/icons/radiologyCtr.svg";
-import { ReactComponent as LabTestCtr } from "../../assets/icons/labtestCtr.svg";
-import { ReactComponent as PharmacyCtr } from "../../assets/icons/pharmacyCtr.svg";
 import styled from "styled-components";
 
 const Icons = styled.div`
@@ -25,31 +21,136 @@ export const getAFixMdPackages = [
   {
     title: "Doctor Consultation Virtual",
     description: "Connect with a Doctor Anytime",
-    imageUrl: <DoctorCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
     navigatePath: "/doctor",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+    instantConnect: true,
+    instantTime: "90 Sec",
   },
   {
     title: "Pharmacy",
     description: "Pharmacy Services Tailored for You",
-    imageUrl: <PharmacyCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890011266.png",
     navigatePath: "/pharmacy",
     background: "linear-gradient(229deg, #DFF7EA 10.71%, #EFFFF6 98.52%)",
+    instantConnect: true,
+    instantTime: "90 Min",
   },
   {
     title: "Lab Test",
     description: "Comprehensive Lab Testing Services",
-    imageUrl: <LabTestCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
     navigatePath: "/labtest",
     background:
       "linear-gradient(235deg,#feefc1 8.72%,rgba(254, 239, 193, 0.1) 97.2%)",
+    instantConnect: true,
+    instantTime: "60 Min",
   },
   {
     title: "Inclinic Consultation",
     description: "Connect with a OPD Hospitals Anytime",
-    imageUrl: <DoctorCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
     navigatePath: "/doctor?tab=opd",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+  },
+];
+
+export const indigridPackages = [
+  {
+    title: "Doctor Consultation",
+    description: "Connect with a Doctor Anytime",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
+    navigatePath: "/doctor",
+    background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+    instantConnect: true,
+    instantTime: "90 Sec",
+  },
+  {
+    title: "Lab Test",
+    description: "Comprehensive Lab Testing Services",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
+    navigatePath: "/labtest",
+    background:
+      "linear-gradient(235deg,#feefc1 8.72%,rgba(254, 239, 193, 0.1) 97.2%)",
+    instantConnect: true,
+    instantTime: "60 Mins",
+  },
+  {
+    title: "Radiology",
+    description: "Quick and Accurate Radiology Tests",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890067550.png",
+
+    navigatePath: "/radiology",
+    background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+  },
+  {
+    title: "Addon Services",
+    description: "Extra Services",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/56426-1737461805017.png",
+
+    navigatePath: "#",
+    background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+  },
+];
+
+export const indigridPackagesMobile = [
+  {
+    title: "Doctor Consultation",
+    description: "Connect with a Doctor Anytime",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
+    navigatePath: "/doctor",
+    background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+    instantConnect: true,
+    instantTime: "90 Sec",
+  },
+  {
+    title: "Lab Test",
+    description: "Comprehensive Lab Testing Services",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
+    navigatePath: "/labtest",
+    background:
+      "linear-gradient(235deg,#feefc1 8.72%,rgba(254, 239, 193, 0.1) 97.2%)",
+    instantConnect: true,
+    instantTime: "60 Mins",
+  },
+  {
+    title: "Radiology",
+    description: "Quick and Accurate Radiology Tests",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890067550.png",
+
+    navigatePath: "/radiology",
+    background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+  }
+];
+
+export const indigridDiscountedPackages = [
+  {
+    title: "Lab Packages",
+    description: "Comprehensive Lab Testing Services",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
+    navigatePath: "/allpackages",
+    background:
+      "linear-gradient(235deg,#feefc1 8.72%,rgba(254, 239, 193, 0.1) 97.2%)",
+  },
+  {
+    title: "Pharmacy",
+    description: "Pharmacy Services Tailored for You",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890011266.png",
+    navigatePath: "/pharmacy",
+    background: "linear-gradient(229deg, #DFF7EA 10.71%, #EFFFF6 98.52%)",
   },
 ];
 
@@ -57,43 +158,107 @@ export const categories = [
   {
     title: "Doctor Consultation",
     description: "Connect with a Doctor Anytime",
-    imageUrl: (
-      // "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
-      <DoctorCtr />
-    ),
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1737439759988.png",
     navigatePath: "/doctor",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+    instantConnect: true,
+    instantTime: "90 Sec",
   },
   {
     title: "Pharmacy",
     description: "Pharmacy Services Tailored for You",
-    imageUrl: (
-      // "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730885024252.png",
-      <PharmacyCtr />
-    ),
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730885024252.png",
     navigatePath: "/pharmacy",
     background: "linear-gradient(229deg, #DFF7EA 10.71%, #EFFFF6 98.52%)",
+    instantConnect: true,
+    instantTime: "90 Mins",
   },
   {
     title: "Lab Test",
     description: "Comprehensive Lab Testing Services",
-    imageUrl: (
-      // "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730885092327.png",
-      <LabTestCtr />
-    ),
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730885092327.png",
     navigatePath: "/labtest",
     background:
       "linear-gradient(235deg,#feefc1 8.72%,rgba(254, 239, 193, 0.1) 97.2%)",
+    instantConnect: true,
+    instantTime: "60 Mins",
   },
   {
     title: "Radiology",
     description: "Quick and Accurate Radiology Tests",
-    imageUrl: (
-      // "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730885140318.png",
-      <RadiologyCtr />
-    ),
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730885140318.png",
+
     navigatePath: "/radiology",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+  },
+] as any;
+
+export const mobileCategories = [
+  {
+    title: "Doctor Consult",
+    description: "Connect a Doctor Anytime",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730870595281.png",
+    navigatePath: "/doctor",
+    background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+    instantConnect: true,
+    instantTime: "90 Sec",
+  },
+  {
+    title: "Pharmacy",
+    description: "Connect a Doctor Anytime",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890011266.png",
+    navigatePath: "/pharmacy",
+    background: "linear-gradient(229deg, #DFF7EA 10.71%, #EFFFF6 98.52%)",
+    instantConnect: true,
+    instantTime: "90 Mins",
+  },
+  {
+    title: "Lab Test",
+    description: "Connect a Doctor Anytime",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
+    navigatePath: "/labtest",
+    background:
+      "linear-gradient(235deg,#feefc1 8.72%,rgba(254, 239, 193, 0.1) 97.2%)",
+    instantConnect: true,
+    instantTime: "60 Mins",
+  },
+  [
+    {
+      title: "Radiology",
+      description: "Connect to Scan Center",
+      imageUrl:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890067550.png",
+
+      navigatePath: "/radiology",
+      background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+    },
+    {
+      title: "Fitness",
+      description: "Connect to Center",
+      imageUrl:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738760513827.png",
+      navigatePath: "/Gymlist",
+      background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+    },
+  ],
+];
+export const wyhPackages = [
+  {
+    title: "Doctor Consult",
+    description: "Connect a Doctor Anytime",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730870595281.png",
+    navigatePath: "/doctor",
+    background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
+    instantConnect: true,
+    instantTime: "90 Sec",
   },
 ];
 export const subCategories = [
@@ -108,12 +273,6 @@ export const subCategories = [
     imageUrl:
       " https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731387492180.png",
     navigatePath: "/Gymlist",
-  },
-  {
-    name: "Domiciliary Care",
-    imageUrl:
-      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731387522381.png",
-    navigatePath: "/domiciliarycare",
   },
   {
     name: "Women’s Care",
@@ -148,8 +307,66 @@ export const subCategories = [
   {
     name: "Domiciliary Care",
     imageUrl:
-      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388141135.png",
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1737541175516.png",
     navigatePath: "/domiciliaryCare",
+  },
+  {
+    name: "Blood Bank",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1737541235266.png",
+    navigatePath: "/bloodbank",
+  },
+];
+
+export const berryBoxCategories = [
+  {
+    name: "Ambulance",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731387359120.png",
+    navigatePath: "/ambulance",
+  },
+
+  {
+    name: "Women’s Care",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731387586052.png",
+    navigatePath: "/womenscare",
+  },
+  {
+    name: "Eye Care",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388032965.png",
+    navigatePath: "/eyecare",
+  },
+  {
+    name: "Dental Care",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388076089.png",
+    navigatePath: "/dentalcare",
+  },
+  {
+    name: "Mental Wellness",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388112106.png",
+    navigatePath: "/mentalwellness",
+  },
+  {
+    name: "Ayurveda",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388141135.png",
+    navigatePath: "/ayurveda",
+  },
+  {
+    name: "Domiciliary Care",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1737541175516.png",
+    navigatePath: "/domiciliaryCare",
+  },
+  {
+    name: "Blood Bank",
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1737541235266.png",
+    navigatePath: "/bloodbank",
   },
 ];
 
@@ -158,7 +375,8 @@ export const allPackagesList = [
     key: "opd_consultation",
     name: "Opd",
     description: "Connect with a OPD Hospitals Anytime",
-    imageUrl: <DoctorCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
     navigatePath: "/doctor?tab=opd",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
   },
@@ -166,7 +384,8 @@ export const allPackagesList = [
     key: "virtual_consultation",
     name: "Virtual Consultation",
     description: "Connect with a Doctor Anytime",
-    imageUrl: <DoctorCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
     navigatePath: "/doctor",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
   },
@@ -188,7 +407,8 @@ export const allPackagesList = [
     key: "diagnostic_test",
     name: "Diagnostic Test",
     description: "Comprehensive Lab Testing Services",
-    imageUrl: <LabTestCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
     navigatePath: "/labtest",
     background:
       "linear-gradient(235deg,#feefc1 8.72%,rgba(254, 239, 193, 0.1) 97.2%)",
@@ -203,7 +423,8 @@ export const allPackagesList = [
     key: "pharmacy",
     name: "Pharmacy",
     description: "Pharmacy Services Tailored for You",
-    imageUrl: <PharmacyCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890011266.png",
     navigatePath: "/pharmacy",
     background: "linear-gradient(229deg, #DFF7EA 10.71%, #EFFFF6 98.52%)",
   },
@@ -225,7 +446,8 @@ export const allPackagesList = [
     key: "ctmri_tests",
     name: "Ctmri Tests",
     description: "Quick and Accurate Radiology Tests",
-    imageUrl: <RadiologyCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890067550.png",
     navigatePath: "/radiology",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
   },
@@ -233,7 +455,8 @@ export const allPackagesList = [
     key: "virtual_consultation_specific",
     name: "Virtual Consultation Specific",
     description: "Connect with a Doctor Anytime",
-    imageUrl: <DoctorCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
     navigatePath: "/doctor",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
   },
@@ -248,7 +471,8 @@ export const allPackagesList = [
     key: "diagnostic_packages",
     name: "Diagnostic Packages",
     description: "Comprehensive Lab Package Services",
-    imageUrl: <LabTestCtr />,
+    imageUrl:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
     navigatePath: "/labtest",
     background:
       "linear-gradient(235deg,#feefc1 8.72%,rgba(254, 239, 193, 0.1) 97.2%)",

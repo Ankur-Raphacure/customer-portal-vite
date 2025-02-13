@@ -50,6 +50,7 @@ export const ManagementStyled = styled.div`
   .clinic-management-features {
     display: flex;
     flex-direction: column;
+    
     /* gap: 1rem; */
   }
 

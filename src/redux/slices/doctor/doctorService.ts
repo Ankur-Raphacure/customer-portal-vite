@@ -14,6 +14,12 @@ export const getDoctorsListAPI = createAsyncThunk(
     await post(`${SERVER_IP}/graphql`, constructDoctorsListQuery(obj))
 );
 
+export const getDoctorsUsersAPI = createAsyncThunk(
+  "doctor/getDoctorsListAPI",
+  async (id: number) =>
+    await get(`${SERVER_IP}/api/v1/doctor/${id}/user-details`)
+);
+
 export const getDoctorHospitalListAPI = createAsyncThunk(
   "doctor/getDoctorHospitalListAPI",
   async (id: string) =>
@@ -65,8 +71,62 @@ export const googleTranslateAPI = createAsyncThunk(
 
 export const getAllDoctorAPI = createAsyncThunk(
   "auth/getAllDoctorAPI",
+  async ({ body, id }: { body: any; id?: any }) => {
+    return await post(
+      `${SERVER_IP}/api/v1/doctor/getAllDoctors?${id ? `vendorId=${id}` : ""}`,
+      body
+    );
+  }
+);
+export const getSearchAllDoctorAPI = createAsyncThunk(
+  "auth/getSearchAllDoctorAPI",
   async (body: any) => {
     return await post(`${SERVER_IP}/api/v1/doctor/getAllDoctors`, body);
+  }
+);
+export const getSpecializationAPI = createAsyncThunk(
+  "auth/getSpecializationAPI",
+  async () => {
+    return await get(`${SERVER_IP}/api/v1/doctor/active-specialization`);
+  }
+);
+export const getDoctorRelatedHospitalAPI = createAsyncThunk(
+  "auth/getDoctorRelatedHospitalAPI",
+  async (id: any) => {
+    return await get(
+      `${SERVER_IP}/api/v1/doctor/doctor-vendor?doctor_id=${id}`
+    );
+  }
+);
+export const getDoctorFiltersAPI = createAsyncThunk(
+  "auth/getDoctorFiltersAPI",
+  async (data: any) => {
+    return await post(`${SERVER_IP}/api/v1/doctor/getFilters`, data);
+  }
+);
+export const getTypeFiltersAPI = createAsyncThunk(
+  "auth/getTypeFiltersAPI",
+  async (data: any) => {
+    return await post(`${SERVER_IP}/api/v1/doctor/getFilters`, data);
+  }
+);
+export const getTimeslotsAPI = createAsyncThunk(
+  "auth/getTimeslotsAPI",
+  async (body: any) => {
+    let newUrl1 = `doctor_id=${body?.doctor_id}&type=${body?.type}`;
+    if (body?.vendor_id) {
+      newUrl1 += `&vendor_id=${body?.vendor_id}`;
+    }
+    return await post(
+      `${SERVER_IP}/api/v1/doctor/doctor-timeslots?${newUrl1}`,
+      body?.body
+    );
+  }
+);
+export const getNearByHospitalAPI = createAsyncThunk(
+  "auth/getNearByHospitalAPI",
+  async (body: any) => {
+    return await post(`${SERVER_IP}/api/v1/vendor/get-nearest`, body);
   }
 );
 export const getDoctorDetailAPI = createAsyncThunk(
@@ -75,6 +135,24 @@ export const getDoctorDetailAPI = createAsyncThunk(
     return await post(
       `${SERVER_IP}/api/v1/doctor/getAllDoctors?doctorId=${id}`,
       { filters: {} }
+    );
+  }
+);
+export const getClinicDetailsAPI = createAsyncThunk(
+  "auth/getClinicDetailsAPI",
+  async (body: any) => {
+    return await post(
+      `${SERVER_IP}/api/v1/doctor/getAllDoctors?vendorId=${body?.id}`,
+      body?.body
+    );
+  }
+);
+export const getClinicFiltersAPI = createAsyncThunk(
+  "auth/getClinicFiltersAPI",
+  async (body: any) => {
+    return await post(
+      `${SERVER_IP}/api/v1/doctor/getFilters?vendorId=${body?.id}`,
+      body?.body
     );
   }
 );

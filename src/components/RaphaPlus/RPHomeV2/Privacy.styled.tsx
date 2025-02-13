@@ -9,7 +9,7 @@ export const PrivacyStyled = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 4rem;
-    background-color: #f7fcf7;
+    background-color: rgba(163, 218, 194, 0.2);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
@@ -95,7 +95,7 @@ export const PrivacyStyled = styled.div`
 
   @media (max-width: 391px) {
     .main {
-      padding: 0 1rem;
+      padding: 1.25rem 1rem;
     }
     .secure-practice-container {
       flex-direction: column;

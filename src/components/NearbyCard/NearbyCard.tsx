@@ -3,15 +3,33 @@ import { AiFillStar } from "react-icons/ai"; // Star icon
 import { HiOutlineLocationMarker } from "react-icons/hi"; // Location icon
 import { NearbyCardStyled } from "./NearbyCard.styled";
 import { useHistory } from "react-router-dom";
+import { updateSelectedHospitalData } from "../../redux/slices/doctor/doctorSlice";
+import { useDispatch } from "react-redux";
 
-const NearbyCard = ({ title, rating, distance, location, image, id }: any) => {
+const NearbyCard = ({
+  title,
+  rating,
+  distance,
+  location,
+  image,
+  id,
+  fromSection,
+  item,
+}: any) => {
+  const dispatch = useDispatch();
+
   const history = useHistory();
   return (
     <NearbyCardStyled>
       <div
         className="nearby-card cursor-pointer"
         onClick={() => {
-          history.push(`/labtest/packages/${id}`);
+          if (fromSection === "doctor") {
+            dispatch(updateSelectedHospitalData(item));
+            history.push(`/doctor/clinicDetails/${id}`);
+          } else {
+            history.push(`/labtest/packages/${id}`);
+          }
         }}
       >
         <img

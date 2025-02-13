@@ -22,6 +22,9 @@ import CloseButton from "react-bootstrap/CloseButton";
 import ImageUploadModel from "../ImageUploadModel/ImageUploadModel";
 import AutocompleteField from "../../components/AutoComplete";
 import { parseAddress } from "../../Scenes/common";
+import { HiOutlineHome } from "react-icons/hi";
+import { MdWorkOutline } from "react-icons/md";
+import { GrLocation } from "react-icons/gr";
 // import "./styles.css";
 const initVal = {
   address: undefined,
@@ -62,84 +65,6 @@ const initValErrorData = {
   city: "Please Select City",
   gender: "Please Select Gender",
 };
-const admissionList = [
-  {
-    label: "Spouse",
-    value: "Spouse",
-  },
-  {
-    label: "Father",
-    value: "Father",
-  },
-  {
-    label: "Mother",
-    value: "Mother",
-  },
-  {
-    label: "Grand Mother",
-    value: "Grand Mother",
-  },
-  {
-    label: "Grand Father",
-    value: "Grand Father",
-  },
-  {
-    label: "Child 1",
-    value: "Child 1",
-  },
-  {
-    label: "Child 2",
-    value: "Child 2",
-  },
-  {
-    label: "Child 3",
-    value: "Child 3",
-  },
-  {
-    label: "Sibling",
-    value: "Sibling",
-  },
-  {
-    label: "Mother In Law",
-    value: "Mother In Law",
-  },
-  {
-    label: "Father In Law",
-    value: "Father In Law",
-  },
-  {
-    label: "Other",
-    value: "Other",
-  },
-  // {
-  //   label: "Self",
-  //   value: "Self",
-  // },
-  {
-    label: "Sister",
-    value: "Sister",
-  },
-  {
-    label: "Brother",
-    value: "Brother",
-  },
-  {
-    label: "Daughter",
-    value: "Daughter",
-  },
-  {
-    label: "Husband",
-    value: "Husband",
-  },
-  {
-    label: "Son",
-    value: "Son",
-  },
-  {
-    label: "Wife",
-    value: "Wife",
-  },
-];
 
 const AddNewAddress = (props: any) => {
   // console.log("propsprops", props);
@@ -153,6 +78,7 @@ const AddNewAddress = (props: any) => {
 
   // const [isEdit, setIsEdit] = useState(false);
   const [signUpData, setSignUpData] = useState(initVal as any);
+  const [selectedAddrType, setSelectedAddrType] = useState("home");
   const [errorData, setErrorData] = useState(initValError as any);
   const [errorDataValue, setErrorDataValue] = useState(initValErrorData as any);
   const { error, loading, user } = useSelector((Route: any) => Route.auth);
@@ -163,6 +89,7 @@ const AddNewAddress = (props: any) => {
 
   useEffect(() => {
     if (props?.show && props?.selectedAddress?.id) {
+      console.log("props : ", props);
       const prevD = props?.selectedAddress;
       const addr = { ...signUpData };
       addr.address = prevD?.address;
@@ -171,18 +98,24 @@ const AddNewAddress = (props: any) => {
       addr.landmark = prevD?.landmark;
       addr.detail = prevD?.detail;
       addr.city = prevD?.city;
-      addr.latitude = 9.6031088;
-      addr.longitude = 77.161458;
+      addr.latitude = prevD?.latitude;
+      addr.longitude = prevD?.longitude;
       setSignUpData({
         ...addr,
       });
+      setSelectedAddrType(prevD?.type || "home");
     } else {
       setSignUpData(initVal);
       setUpdateData(!updateData);
     }
   }, [props?.selectedAddress?.id, props?.show]);
 
-  const handlePlaceSelected = (place: any) => {
+  const handlePlaceSelected = (place: any, lat: any, lng: any) => {
+    console.log("handlePlaceSelected");
+    console.log("place", place);
+    console.log("lat", lat);
+    console.log("lng", lng);
+
     let inputRef: any = document.getElementById("address")!;
     console.log("place", place);
     let selectedAddress = inputRef?.value;
@@ -200,8 +133,8 @@ const AddNewAddress = (props: any) => {
       // ["country"]: country,
       ["zip"]: zipcode,
       ["detail"]: address1,
-      ["latitude"]: 9.6031088,
-      ["longitude"]: 77.161458,
+      ["latitude"]: lat,
+      ["longitude"]: lng,
     };
     console.log("addressNew", addressNew);
     setSignUpData(addressNew);
@@ -264,6 +197,8 @@ const AddNewAddress = (props: any) => {
     setPassError("");
     var isValid = true;
     var errornew = { ...errorData };
+    console.log("signUpData : ", signUpData);
+
     for (var key in initValError1) {
       if (signUpData[key] === "" || !signUpData[key]) {
         errornew[key] = true;
@@ -282,9 +217,14 @@ const AddNewAddress = (props: any) => {
     setIsLoading(true);
     const resp = props?.selectedAddress?.id
       ? ((await dispatch(
-          editNewAddressAPI({ id: props?.selectedAddress?.id, user: data })
+          editNewAddressAPI({
+            id: props?.selectedAddress?.id,
+            user: { ...data, type: selectedAddrType },
+          })
         )) as any)
-      : ((await dispatch(addNewAddressAPI({ address: data }))) as any);
+      : ((await dispatch(
+          addNewAddressAPI({ address: { ...data, type: selectedAddrType } })
+        )) as any);
 
     if (resp?.payload?.success) {
       setSignUpData(initVal as any);
@@ -343,19 +283,32 @@ const AddNewAddress = (props: any) => {
                   <div className="row-item-sec-user address-line1-user">
                     <Form.Group className="signup-md-full" controlId="email">
                       <Form.Label>
-                        Enter Address Line 1{" "}
-                        <span className="mand-sign-field">*</span>{" "}
+                        Enter Address <span className="mand-sign-field">*</span>{" "}
                       </Form.Label>
                       <AutocompleteField
-                        onPlaceSelected={(place: any) =>
-                          handlePlaceSelected(place)
-                        }
+                        onAddressSelected={(
+                          address: any,
+                          lat: any,
+                          lng: any,
+                          place: any
+                        ) => {
+                          console.log(address);
+
+                          return handlePlaceSelected(place, lat, lng);
+                        }}
                         autoFocus={true}
                         name="address"
                         id="address"
                         defaultValue={signUpData?.address}
-                        placeholder="Street address, House No"
+                        placeholder="Enter Your Address"
                         onChange={(e: any) => {
+                          setSignUpData((prev: any) => ({
+                            ...prev,
+                            address: e.target.value,
+                            latitude: 0,
+                            longitude: 0,
+                          }));
+
                           // if (!e.target.value) {
                           //   setFieldValue("city", "");
                           //   setFieldValue("state", "");
@@ -446,12 +399,56 @@ const AddNewAddress = (props: any) => {
                         ) : null}
                       </Form.Control.Feedback>
                     </Form.Group>
+
+                    <Form.Group className="signup-md-left">
+                      <Form.Label>
+                        Type
+                        {/* <span className="mand-sign-field">*</span> */}
+                      </Form.Label>
+
+                      <div className="gender-selection-sec">
+                        <div className="address-type-buttons">
+                          <button
+                            className={`type-btn ${
+                              selectedAddrType === "home" ? "selected" : ""
+                            }`}
+                            onClick={() => {
+                              setSelectedAddrType("home");
+                            }}
+                          >
+                            <HiOutlineHome />
+                            Home
+                          </button>
+                          <button
+                            className={`type-btn ${
+                              selectedAddrType === "work" ? "selected" : ""
+                            }`}
+                            onClick={() => {
+                              setSelectedAddrType("work");
+                            }}
+                          >
+                            <MdWorkOutline />
+                            Work
+                          </button>
+                          <button
+                            className={`type-btn ${
+                              selectedAddrType === "other" ? "selected" : ""
+                            }`}
+                            onClick={() => {
+                              setSelectedAddrType("other");
+                            }}
+                          >
+                            <GrLocation />
+                            Other
+                          </button>
+                        </div>
+                      </div>
+                    </Form.Group>
                   </div>
                   <div className="row-item-sec-user">
                     <Form.Group className="signup-md" controlId="email">
                       <Form.Label>
-                        Home/Office/Others{" "}
-                        <span className="mand-sign-field">*</span>
+                        Save as <span className="mand-sign-field">*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"

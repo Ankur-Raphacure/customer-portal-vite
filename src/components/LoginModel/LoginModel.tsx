@@ -201,6 +201,8 @@ const LoginModel = (props: any) => {
       dispatch(updateSubDomainDetails(response?.data?.data?.client));
     }
   };
+  console.log("Props, ffff", props);
+  console.log("otpSent", otpSent);
   return (
     <Modal
       {...props}

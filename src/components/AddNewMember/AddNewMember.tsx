@@ -406,8 +406,66 @@ const AddNewMember = (props: any) => {
                         ) : null}
                       </Form.Control.Feedback>
                     </Form.Group>
+
+                    <div className="gender-selection-sec1 ">
+                      <div>
+                        <label>Gender</label>
+                      </div>
+                      <div className="gender-selection-sec">
+                        <button
+                          type="button"
+                          className={`gender-btn ${
+                            signUpData?.gender === "male" ? "selected" : ""
+                          }`}
+                          onClick={(e) =>
+                            handleChangeValue({
+                              target: {
+                                name: "gender",
+                                value: "male",
+                              },
+                            })
+                          }
+                        >
+                          Male
+                        </button>
+                        <button
+                          type="button"
+                          className={`gender-btn ${
+                            signUpData?.gender === "female" ? "selected" : ""
+                          }`}
+                          onClick={(e) =>
+                            handleChangeValue({
+                              target: {
+                                name: "gender",
+                                value: "female",
+                              },
+                            })
+                          }
+                        >
+                          Female
+                        </button>
+                      </div>
+                    </div>
                   </div>
                   <div className="row-item-sec-user">
+                    <Form.Group className="signup-md-left" controlId="email">
+                      <Form.Label>
+                        Contact Number
+                        {/* <span className="mand-sign-field">*</span> */}
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        maxLength={10}
+                        name="phone"
+                        id="add_customer_phone"
+                        value={signUpData?.phone}
+                        isInvalid={errorData?.phone}
+                        onChange={(e) => handleChangeValue(e)}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errorData?.phone ? <>{errorDataValue?.phone}</> : null}
+                      </Form.Control.Feedback>
+                    </Form.Group>
                     <Form.Group className="signup-md" controlId="email">
                       <Form.Label>
                         Email
@@ -425,44 +483,23 @@ const AddNewMember = (props: any) => {
                         {errorData?.email ? <>{errorDataValue?.email}</> : null}
                       </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group className="signup-md-left" controlId="email">
-                      <Form.Label>
-                        Phone Number
-                        {/* <span className="mand-sign-field">*</span> */}
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        maxLength={10}
-                        name="phone"
-                        id="add_customer_phone"
-                        value={signUpData?.phone}
-                        isInvalid={errorData?.phone}
-                        onChange={(e) => handleChangeValue(e)}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errorData?.phone ? <>{errorDataValue?.phone}</> : null}
-                      </Form.Control.Feedback>
-                    </Form.Group>
                   </div>
+
                   <div className="row-item-sec-user">
-                    <Form.Group className="signup-md">
-                      <Form.Label>
-                        Age <span className="mand-sign-field">*</span>
-                      </Form.Label>
+                    <Form.Group className="signup-md dob-div" controlId="date">
+                      <Form.Label>Date of Birth</Form.Label>
                       <Form.Control
-                        type="text"
-                        id="addNewUserAdress1"
-                        maxLength={2}
-                        name="age"
-                        value={signUpData?.age}
-                        isInvalid={errorData?.age}
+                        type="date"
+                        name="dob"
+                        id="add_customer_dob"
+                        value={signUpData?.dob}
                         onChange={(e) => handleChangeValue(e)}
+                        isInvalid={errorData?.dob}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errorData?.age ? <>{errorDataValue?.age}</> : null}
+                        {errorData?.dob ? <>{errorDataValue?.dob}</> : null}
                       </Form.Control.Feedback>
                     </Form.Group>
-
                     <Form.Group className="signup-md-left" controlId="email">
                       <Form.Label>
                         Select Relation
@@ -487,66 +524,22 @@ const AddNewMember = (props: any) => {
                       </Form.Control.Feedback>
                     </Form.Group>
                   </div>
-
                   <div className="row-item-sec-user">
-                    <div className="gender-selection-sec1 me-4">
-                      <div>
-                        <label>Gender</label>
-                      </div>
-                      <div className="gender-selection-sec">
-                        <div className="col-gender ">
-                          <input
-                            type="radio"
-                            className="form-check-input"
-                            name="gender"
-                            id="gender-selection-male"
-                            value="male"
-                            checked={
-                              signUpData?.gender === "male" ? true : false
-                            }
-                            onChange={handleChangeValue}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="gender-selection-male"
-                          >
-                            Male
-                          </label>
-                        </div>
-                        <div className="col-gender  ">
-                          <input
-                            type="radio"
-                            className="form-check-input"
-                            name="gender"
-                            id="gender-selection-female"
-                            value="female"
-                            checked={
-                              signUpData?.gender === "female" ? true : false
-                            }
-                            onChange={handleChangeValue}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="gender-selection-female"
-                          >
-                            Female
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <Form.Group className="signup-md dob-div" controlId="date">
-                      <Form.Label>Date of Birth</Form.Label>
+                    <Form.Group className="signup-md">
+                      <Form.Label>
+                        Age <span className="mand-sign-field">*</span>
+                      </Form.Label>
                       <Form.Control
-                        type="date"
-                        name="dob"
-                        id="add_customer_dob"
-                        value={signUpData?.dob}
+                        type="text"
+                        id="addNewUserAdress1"
+                        maxLength={2}
+                        name="age"
+                        value={signUpData?.age}
+                        isInvalid={errorData?.age}
                         onChange={(e) => handleChangeValue(e)}
-                        isInvalid={errorData?.dob}
                       />
                       <Form.Control.Feedback type="invalid">
-                        {errorData?.dob ? <>{errorDataValue?.dob}</> : null}
+                        {errorData?.age ? <>{errorDataValue?.age}</> : null}
                       </Form.Control.Feedback>
                     </Form.Group>
                   </div>
@@ -577,11 +570,11 @@ const AddNewMember = (props: any) => {
                 </div>
               </div>
             </Modal.Body>
-            <Modal.Footer>
+            {/* <Modal.Footer>
               <div className="new-option-body-actions">
-                {/* <Button onClick={handleSubmitFn}>Submit</Button> */}
+                <Button onClick={handleSubmitFn}>Submit</Button>
               </div>
-            </Modal.Footer>
+            </Modal.Footer> */}
           </AddNewMemberStyled>
         </div>
       </Modal>

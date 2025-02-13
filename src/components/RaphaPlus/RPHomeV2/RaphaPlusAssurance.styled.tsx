@@ -8,7 +8,7 @@ export const RaphaPlusAssuranceStyled = styled.div`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 4rem;
+    padding: 3rem 4rem;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -45,11 +45,11 @@ export const RaphaPlusAssuranceStyled = styled.div`
 
   .buttons {
     display: flex;
-    gap: 10px;
+    gap: 24px;
   }
 
   .buttons button {
-    padding: 10px 40px;
+    padding: 0px 30px;
     font-size: 1rem;
     border: none;
     border-radius: 25px;
@@ -59,14 +59,14 @@ export const RaphaPlusAssuranceStyled = styled.div`
   .buttons .free-trial {
     background-color: #252b61;
     color: white;
-    width: 139px;
+    text-wrap : nowrap;
     text-align: center;
     border-radius: 50px;
     border: 12px solid #252b61;
   }
 
   .buttons .book-demo {
-    background-color: #ffffff;
+    background-color: #EAEDFC;
     color: #252b61;
     border: 1px solid #252b61;
     /* width: 139px; */
@@ -83,7 +83,7 @@ export const RaphaPlusAssuranceStyled = styled.div`
     position: relative;
     max-width: 100%;
     overflow: hidden;
-    height: 259.3px;
+    height: 297.3px;
     object-fit: cover;
   }
 

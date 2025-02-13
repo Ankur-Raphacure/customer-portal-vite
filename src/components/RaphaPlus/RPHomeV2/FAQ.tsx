@@ -239,6 +239,7 @@ const FAQ = () => {
                   className="contact-button"
                   onClick={() => history.push("/connectus")}
                 >
+                  
                   Contact Us
                 </button>
               </div>

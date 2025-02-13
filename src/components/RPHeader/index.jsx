@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "./styles.css";
 import { getConfigInfoAPI } from "./../../redux/slices/config/configService";
 import LoginModel from "./../../components/LoginModel/LoginModel";
@@ -29,7 +29,6 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 import { updateUniversalSearchResults } from "../../redux/slices/generic/genericSlice";
-
 
 const finalList = [
   { name: "Home", to: "/home" },
@@ -113,12 +112,7 @@ const RPHeader = (props) => {
   }, [subDomainDetails?.id]);
 
   console.log("showLoginModel", showLoginModel);
-  useEffect(() => {
-    if (showLoginModel) {
-      dispatch(updateShowLoginModel(false));
-      handleLogin();
-    }
-  }, [showLoginModel]);
+
   useEffect(() => {
     if (nitifySuccessMessage) {
       dispatch(updateNitifySuccessMessage(null));
@@ -220,14 +214,7 @@ const RPHeader = (props) => {
     return user?.image;
   };
   const handleLogin = () => {
-    if (rpSubDomainDetails?.id) {
-      setShowLoginPopupModel(true);
-    } else {
-      // history.push("/login");
-      setShowLoginPopupModel(true);
-    }
-
-    // setShowLoginPopupModel(true);
+    dispatch(updateShowLoginModel(true));
   };
   const handleClose = () => {
     setShowLoginPopupModel(false);
@@ -289,7 +276,6 @@ const RPHeader = (props) => {
   return (
     <>
       <div>
-        <LoginModel show={showLoginPopupModel} handleClose={handleClose} />
         <ToastContainer />
         <Navbar expand={type} className="bg-body-tertiary mb-0 nav_bar">
           <Container fluid>

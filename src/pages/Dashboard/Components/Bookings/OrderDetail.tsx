@@ -235,16 +235,17 @@ const OrderDetail = ({ item, itemId, onClose }: any) => {
   const ProductCards = () => {
     return (
       <div>
-        {orderItem.medicines.map((medicine: any, index: any) => (
-          <ProductCard
-            key={index}
-            image={medicine?.image}
-            title={medicine?.service_name}
-            quantity={medicine?.count}
-            originalPrice={100}
-            discountedPrice={100 - medicine?.count * 10}
-          />
-        ))}
+        {orderItem?.medicines?.length > 0 &&
+          orderItem?.medicines?.map((medicine: any, index: any) => (
+            <ProductCard
+              key={index}
+              image={medicine?.image}
+              title={medicine?.service_name}
+              quantity={medicine?.count}
+              originalPrice={100}
+              discountedPrice={100 - medicine?.count * 10}
+            />
+          ))}
       </div>
     );
   };

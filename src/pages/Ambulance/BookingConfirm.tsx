@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
-import { ReactComponent as BookingConfirmImg } from "../../assets/icons/bookingConfirm.svg";
 
 const Overlay = styled.div`
   position: fixed;
@@ -74,7 +73,7 @@ const BookingConfirm = ({ setShowContent, onClose, bkId }: any) => {
         <CloseButton onClick={onClose}>
           <AiOutlineClose />
         </CloseButton>
-        <BookingConfirmImg />
+        {/* <BookingConfirmImg /> */}
         <Title>Booking Confirmed</Title>
         <Message>
           Your booking ID is {bkId}. We will share the details via Whatsapp,

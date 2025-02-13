@@ -10,6 +10,7 @@ import MultiCarouselModal from "../Home/MultiCarouselModal";
 import { useDispatch, useSelector } from "react-redux";
 import HealthSaverCard from "../../components/HealthSaverCard/HealthSaverCard";
 import ScanCenterCards from "./ScanCenterCards";
+import { checkIsMobile } from "../../Scenes/common";
 import {
   getAllCategoriesListAPI,
   getAllScansCityAPI,
@@ -24,14 +25,24 @@ import {
 } from "../../redux/slices/labtest/labtestService";
 import { IoCloseOutline } from "react-icons/io5";
 import useHandleImageUrl from "../../components/hooks/useHandleImageUrl";
+import NearbyCard from "../../components/NearbyCard/NearbyCard";
+import { truncateText } from "../../Scenes/common";
+import { LabtestStyled } from "../LabTestv2/LabTest.styled";
+import { getNearbyVendorsAPI } from "../../redux/slices/Profile/ProfileService";
+import MobileTopBanner from "../../components/Header/MobileTopBanner";
+import { updateShowLoginModel } from "../../redux/slices/auth/authSlice";
+import CategorieCard from "../Pharmacy/CategorieCard";
 
 const Radiologys = () => {
+  const parameter = "Book Scan";
+  const sectionImg =
+    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1733743522813.png";
   const history = useHistory();
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
   const [showSearchPopupModel, setShowSearchPopupModel] = useState(false);
   const sectionName = "ctmri";
-  const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
+  const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
   const { allScansNearBy } = useSelector((ReduxState: any) => ReduxState.ctmri);
   const { allTestsList, allCategoriesList } = useSelector(
     (ReduxState: any) => ReduxState.labtest
@@ -41,14 +52,17 @@ const Radiologys = () => {
     dispatch(getAllScansCityAPI({ city: city?.toLowerCase() }));
     dispatch(getAllScansNearByAPI({ city: city?.toLowerCase(), count: 4 }));
   };
+  const { nearbyVendors, selectedCurrentAddress } = useSelector(
+    (ReduxState: any) => ReduxState.profile
+  );
   const handleBuyMedicine = (item: any) => {
     history.push(`/radiology/allScans/${item?.id}`, item);
   };
   const navigateTo = (id: any) => {
     history.push(`/radiology/scan-details/${id}`, sectionName);
   };
-  const navigateToAllScans = (id: any) => {
-    history.push(`/labtest/packages/${id}`);
+  const navigateToAllScans = (item: any) => {
+    history.push(`/labtest/packages/${item?.id}`);
   };
   const addPackageToCart = (option: any) => {
     navigateTo(option);
@@ -71,6 +85,17 @@ const Radiologys = () => {
     };
     dispatch(getAllFilteredTests(body));
   };
+
+  useEffect(() => {
+    console.log("selectedCurrentAddress : ", selectedCurrentAddress);
+    const nearbyVendorsBody = {
+      latitude: selectedCurrentAddress?.latitude,
+      longitude: selectedCurrentAddress?.longitude,
+      section_name: "radiology",
+    };
+    dispatch(getNearbyVendorsAPI(nearbyVendorsBody));
+  }, [selectedCurrentAddress]);
+
   useEffect(() => {
     getAllRadiologyData();
     dispatch(getAllCategoriesAPI({ sectionName: "ctmri" }));
@@ -86,10 +111,57 @@ const Radiologys = () => {
       console.log(showSearchPopupModel, "showSearchPopupModel");
     }
   };
+
+  const handleToPharmacyUploadPrescription = () => {
+    if (!user?.id) {
+      dispatch(updateShowLoginModel(true));
+    } else {
+      history.push("/uploadprescription");
+    }
+  };
   return (
     <RadiologyStyled>
       <div>
-        <HeadingBannerModule details={radiologyBannerDetails} section="ctmri" />
+        <div className="headeing-banner-web">
+          <HeadingBannerModule
+            details={radiologyBannerDetails}
+            section="ctmri"
+          />
+        </div>
+        <div className="headeing-banner-mobile">
+          {/* <PharmacyBannerImage /> */}
+          {checkIsMobile() && (
+            <MobileTopBanner
+              details={radiologyBannerDetails}
+              handleonFilterName={handleonFilterName}
+              setSearchText={setSearchText}
+              searchText={searchText}
+              searchedData={allTestsList?.data}
+              handleSearchGoTo={handleSearchGoTo}
+              showSearchPopupModel={showSearchPopupModel}
+              // handleToClosePopUp={handleToClosePopUp}
+              parameter={parameter}
+              sectionName={"ctmri"}
+              sectionImg={sectionImg}
+            />
+          )}
+        </div>
+
+        <div className="mobileview-uploadprescription">
+          <div className="Upload-Prescription-mobile-btn ">
+            <img
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1734771002662.png"
+              alt="upload_icon"
+            />
+            <p>Order With Prescription</p>
+            <button
+              className="btn"
+              onClick={handleToPharmacyUploadPrescription}
+            >
+              Order Now
+            </button>
+          </div>
+        </div>
 
         <div className="search-by-name">
           <SearchByTextModule
@@ -163,7 +235,12 @@ const Radiologys = () => {
             allCategoriesList={allCategoriesList?.category_ids}
           />
         </div>
-
+        <div className="mobile-view-categories">
+          <CategorieCard
+            allCategoriesList={allCategoriesList?.category_ids}
+            catogorySelect={handleBuyMedicine}
+          />
+        </div>
         <div className="radiology-cards-main-div">
           <div className="radiology-sub-cards-title-div">
             <h5>Targeted Body Scans</h5>
@@ -214,20 +291,35 @@ const Radiologys = () => {
                 View All
               </button>
             </div>
-            <div className="allScansNearBy-main-div">
-              {allScansNearBy?.vendors
-                ?.slice(0, 4)
-                .map((item: any, index: number) => (
-                  <ScanCenterCards
-                    viewScanCards={item}
-                    handleNavigateDetails={navigateToAllScans}
-                  />
-                ))}
-            </div>
+            <LabtestStyled>
+              <div className="nearbyCards">
+                {nearbyVendors?.filteredVendors || nearbyVendors?.vendors ? (
+                  (nearbyVendors?.filteredVendors || nearbyVendors?.vendors)
+                    ?.slice(0, 5)
+                    .map((vendor: any, index: any) => (
+                      <NearbyCard
+                        key={vendor?.id || index}
+                        title={vendor?.name || "N/A"} // Vendor name
+                        image={vendor?.image}
+                        rating={(vendor?.rating || "0").toString()}
+                        distance={`${parseFloat(
+                          vendor?.distance_km || 0
+                        ).toFixed(2)} Km`}
+                        location={truncateText(vendor?.address, 40) || "N/A"}
+                        id={vendor?.id}
+                      />
+                    ))
+                ) : (
+                  <p> No Nearby Radiology Centres Found</p>
+                )}
+              </div>
+            </LabtestStyled>
           </div>
         </div>
 
-        <BottomBanner />
+        <div className="bottom-banner">
+          <BottomBanner />
+        </div>
       </div>
     </RadiologyStyled>
   );

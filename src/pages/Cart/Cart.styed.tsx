@@ -59,6 +59,17 @@ export const CartStyled = styled.div`
     text-align: center;
     padding-top: 100px;
     min-height: 600px;
+    button {
+      border-radius: 45px;
+      border: none;
+      /* width: 100%; */
+      font-size: 18px;
+      color: #252b61;
+      font-family: Outfit, sans-serif;
+      background: #252b61;
+      color: #fff;
+      padding: 5px 20px;
+    }
   }
   .cart-content-left {
     border-radius: 10px;
@@ -106,7 +117,7 @@ export const CartStyled = styled.div`
   }
   .cart-address-left {
     width: 70%;
-    @media (max-width:760px){
+    @media (max-width: 760px) {
       width: 100%;
     }
   }
@@ -195,9 +206,9 @@ export const CartStyled = styled.div`
     margin-bottom: 20px;
     display: flex;
     gap: 30px;
-    @media (max-width:760px){
+    @media (max-width: 760px) {
       flex-direction: column;
-      button{
+      button {
         width: 100%;
       }
     }

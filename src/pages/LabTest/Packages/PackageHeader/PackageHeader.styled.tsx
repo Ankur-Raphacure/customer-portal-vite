@@ -107,6 +107,7 @@ export const PackageheaderStyled = styled.div`
       img {
         width: 18.563rem;
         height: 10.688rem;
+        object-fit: contain;
         opacity: 0.9;
         border-radius: 0.625rem;
       }

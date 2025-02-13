@@ -32,7 +32,10 @@ import { toast, ToastContainer } from "react-toastify";
 import ComparisonMedicineCardModule from "./ComparisonMedicineCardModule";
 import useHandleImageUrl from "../../components/hooks/useHandleImageUrl";
 import { ReactComponent as PharmacyBannerImage } from "../../assets/icons/pharmacyBannerImage.svg";
-
+import MobileTopBanner from "../../components/Header/MobileTopBanner";
+import { CategoryDivcolors } from "../Home/Home.styled";
+import CategorieCard from "./CategorieCard";
+import { checkIsMobile } from "../../Scenes/common";
 const Pharmacy = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -42,6 +45,9 @@ const Pharmacy = () => {
   const [categoryId, setCategoryId] = useState([] as any);
   const [btnCategoryId, setBtnCategoryId] = useState([] as any);
   const [typeFilter, setTypeFilter] = useState("branded");
+  const parameter = "12 Minutes Delivery On  All  Medications";
+  const sectionImg =
+    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730983520236.png";
 
   const {
     allMedicinesList,
@@ -184,11 +190,15 @@ const Pharmacy = () => {
     getAllUsersCall(e);
   };
   const handleSearchGoTo = (searR: any) => {
+    console.log(searR, "searR");
+
     history.push(
       `/item/${searR?.category_key}/${
         searR?.service_code
       }?categoryids=${searR?.category_ids?.join(",")}`
     );
+
+    // history.push(`/pharmacy/item/${searR}`);
   };
   const getAllMedicineList = async () => {
     let body = { displayOrder: [1, 2, 3] } as any;
@@ -219,6 +229,13 @@ const Pharmacy = () => {
     }
   };
 
+  const handleShowSearchPopupModel = () => {
+    setShowSearchPopupModel(false);
+    setSearchText("");
+  };
+
+  console.log({ searchText, showSearchPopupModel }, "123333");
+
   return (
     <PharmacyStyled>
       <ToastContainer />
@@ -227,18 +244,20 @@ const Pharmacy = () => {
         {isLoading && <Loader />}
 
         <div className="header-banner-filter-div">
-          <div className="Upload-Prescription-mobile-btn ">
-            <button
-              className="btn"
-              onClick={handleToPharmacyUploadPrescription}
-            >
+          <div className="mobileview-uploadprescription">
+            <div className="Upload-Prescription-mobile-btn ">
               <img
                 src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1734771002662.png"
                 alt="upload_icon"
-                className="me-3"
               />
-              Upload Prescription for quick Order{" "}
-            </button>
+              <p>Order With Prescription</p>
+              <button
+                className="btn"
+                onClick={handleToPharmacyUploadPrescription}
+              >
+                Order Now
+              </button>
+            </div>
           </div>
           <div className="web-viwe-div">
             <HeadingBannerModule
@@ -248,7 +267,22 @@ const Pharmacy = () => {
             />
           </div>
           <div className="mobile-viwe-div">
-            <PharmacyBannerImage />
+            {/* <PharmacyBannerImage /> */}
+            {checkIsMobile() && (
+              <MobileTopBanner
+                details={pharmacySearchTextChange}
+                handleonFilterName={handleonFilterName}
+                setSearchText={setSearchText}
+                searchText={searchText}
+                searchedData={allMedicinesList}
+                handleSearchGoTo={handleSearchGoTo}
+                showSearchPopupModel={showSearchPopupModel}
+                // handleToClosePopUp={handleToClosePopUp}
+                parameter={parameter}
+                sectionName={"pharmacy"}
+                sectionImg={sectionImg}
+              />
+            )}
           </div>
           <div className="filter-by-name">
             <SearchByTextModule
@@ -260,63 +294,62 @@ const Pharmacy = () => {
           </div>
         </div>
 
-        {(searchText?.length > 0 || showSearchPopupModel) && (
-          <div className="search-popup">
-            <div className="search-popup-content">
-              <div className="search-heading-text-div">
-                <p>Showing Result for {searchText}</p>
-                <button
-                  className="btn"
-                  onClick={() => setShowSearchPopupModel(false)}
-                >
-                  <IoCloseOutline />
-                </button>
-              </div>
-              {searchText?.length > 2 && allMedicinesList?.length > 0 ? (
-                allMedicinesList.map((item: any, index: number) => (
-                  <div
-                    key={index}
-                    className="search-popup-item"
-                    onClick={() => handleSearchGoTo(item)}
-                  >
-                    {item?.image && (
-                      <div className="search-popup-image">
-                        <img
-                          src={getFirstImageUrl(item?.image)}
-                          alt={item?.name || "Search Result"}
-                        />
-                      </div>
-                    )}
-                    <div className="search-popup-details">
-                      <p className="search-popup-name">
-                        {item?.name || item?.service_name}
-                      </p>
-                      <p className="search-popup-type">
-                        <img
-                          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1732179533099.png"
-                          alt=""
-                        />
-                      </p>
-                    </div>
-                  </div>
-                ))
-              ) : searchText?.length > 3 ? (
-                <div className="search-popup-no-results">
-                  <p className="search-popup-title">
-                    No result found for {searchText}
-                  </p>
-                  <p className="search-popup-sub-title">
-                    Search with another brand or category
-                  </p>
-                  <img
-                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1732181068454.png"
-                    alt=""
-                  />
+        <div className="search-popUpDiv">
+          {(searchText?.length > 0 || showSearchPopupModel) && (
+            <div className="search-popup">
+              <div className="search-popup-content">
+                <div className="search-heading-text-div">
+                  <p>Showing Result for {searchText}</p>
+                  <button className="btn" onClick={handleShowSearchPopupModel}>
+                    <IoCloseOutline />
+                  </button>
                 </div>
-              ) : null}
+                {searchText?.length > 2 && allMedicinesList?.length > 0 ? (
+                  allMedicinesList?.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className="search-popup-item"
+                      onClick={() => handleSearchGoTo(item)}
+                    >
+                      {item?.image && (
+                        <div className="search-popup-image">
+                          <img
+                            src={getFirstImageUrl(item?.image)}
+                            alt={item?.name || "Search Result"}
+                          />
+                        </div>
+                      )}
+                      <div className="search-popup-details">
+                        <p className="search-popup-name">
+                          {item?.name || item?.service_name}
+                        </p>
+                        <p className="search-popup-type">
+                          <img
+                            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1732179533099.png"
+                            alt=""
+                          />
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                ) : searchText?.length > 3 ? (
+                  <div className="search-popup-no-results">
+                    <p className="search-popup-title">
+                      No result found for {searchText}
+                    </p>
+                    <p className="search-popup-sub-title">
+                      Search with another brand or category
+                    </p>
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1732181068454.png"
+                      alt=""
+                    />
+                  </div>
+                ) : null}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         <div className="Category-heading-div">
           <p>Top Category's</p>
@@ -337,6 +370,13 @@ const Pharmacy = () => {
               View All
             </button>
           </div>
+        </div>
+
+        <div className="mobile-view-categories">
+          <CategorieCard
+            allCategoriesList={allSubCategoriesList?.category_ids}
+            catogorySelect={handleBuyMedicine}
+          />
         </div>
 
         <div className=" comparison-carousel-div">
@@ -383,13 +423,17 @@ const Pharmacy = () => {
                   item2.sort(
                     (a: any, b: any) => a.discounted_price - b.discounted_price
                   );
+                  // console.log("totLen", totLen);
+                  // console.log("totLen1", totLen1);
+                  // console.log("item2", item2);
                   const isAddedToCarts = pProducts?.medicines;
+
                   return (
                     <ComparisonMedicineCardModule
                       key={index}
                       addToCart={addToCart}
                       isAddedtoCart={isAddedToCarts}
-                      generic={item2?.[1]}
+                      generic={item2?.[0]}
                       branded={item2?.[totLen1]}
                     />
                   );
@@ -599,6 +643,11 @@ const Pharmacy = () => {
                   Online
                 </p>
               </div>
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1738308891511.png"
+                alt=""
+                className="Assistance-cl-img"
+              />
               <button
                 className="btn Assistance-cl-btn"
                 onClick={() => history.push("/doctor?q=General Physician")}
@@ -616,6 +665,11 @@ const Pharmacy = () => {
                   care of everything for you
                 </p>
               </div>
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1738308851827.png"
+                alt=""
+                className="Assistance-cl-img"
+              />
               <button
                 className="btn Assistance-cl-btn"
                 onClick={navigateToCall}

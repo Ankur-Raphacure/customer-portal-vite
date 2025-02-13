@@ -11,6 +11,20 @@ export const ScanDetailsStyled = styled.div`
   .time-section1 span {
     margin-right: 10px;
   }
+  .my-prefrance-btn {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: fit-content !important;
+    border-radius: 45px;
+    background: #252b61 !important;
+    color: #fff;
+    text-align: center;
+    font-family: Outfit, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.27px;
+    text-transform: capitalize;
+  }
   .bodyScanDiv {
     width: 97%;
     // height: 175px;
@@ -116,7 +130,11 @@ export const ScanDetailsStyled = styled.div`
     line-height: 174.5%; /* 20.94px */
     opacity: 0.5;
   }
-
+  .share-btn-icon svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    opacity: 0.5;
+  }
   .scanDespVideoRow {
     margin-top: 2rem;
   }
@@ -159,10 +177,16 @@ export const ScanDetailsStyled = styled.div`
       line-height: normal;
       margin-bottom: 0;
     }
+    .toggle-filter {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+    }
     .btn-filter-module-div {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       .toggle-filter {
         display: flex;
         flex-direction: row;
@@ -176,9 +200,10 @@ export const ScanDetailsStyled = styled.div`
       }
     }
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     padding: 10px;
+    flex-direction: column;
   }
   .availableCentersRow {
     width: 100%;
@@ -553,7 +578,7 @@ export const ScanDetailsStyled = styled.div`
       // height: auto;
     }
     .scanDetailsContainer {
-      padding: 24px 24px 0px 24px;
+      padding: 0px;
     }
     .offerCol {
       position: relative; /* Ensure relative positioning */
@@ -923,16 +948,16 @@ export const ScanDetailsStyled = styled.div`
     width: fit-content;
     padding: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-
-    @media (min-width: 1100px) {
-      min-width: 460px;
-    }
-    @media (min-width: 800px) and (max-width: 1000px) {
-      width: min-content;
-    }
-    @media (max-width: 480px) {
-      width: min-content;
-    }
+    width: 90%;
+    // @media (min-width: 1100px) {
+    //   min-width: 460px;
+    // }
+    // @media (min-width: 800px) and (max-width: 1000px) {
+    //   width: min-content;
+    // }
+    // @media (max-width: 480px) {
+    //   width: min-content;
+    // }
 
     button {
       background: #252b61;
@@ -1022,15 +1047,30 @@ export const ScanDetailsStyled = styled.div`
     margin-top: 10px;
   }
 
-  .info-item {
-    display: flex;
-    align-items: center;
+  .info-item-address-sec {
+    // display: flex;
+    // align-items: center;
     font-size: 14px;
     color: #252b61;
     margin: 5px 0;
   }
+  .info-item-address-sec {
+    margin-bottom: 10px;
+    padding-right: 16px;
+    .km_distance_sec {
+      color: green;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    svg {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-top: -10px;
+    }
+  }
 
-  .info-item svg {
+  .info-item-address-sec svg {
     margin-right: 5px;
     color: #141414;
   }
@@ -1275,7 +1315,7 @@ export const ScanDetailsStyled = styled.div`
         flex-wrap: wrap;
       }
       .imgWrapper {
-        min-height: 10rem;
+        /* min-height: 10rem; */
       }
     }
   }
@@ -1341,6 +1381,10 @@ export const ScanDetailsStyled = styled.div`
     height: 6rem;
     background-color: black;
   }
+  .add-btn-package-sec-code {
+    margin-left: 12px !important;
+    margin-top: -5px;
+  }
   .graph-container {
     padding: 1rem;
   }
@@ -1375,23 +1419,43 @@ export const ScanDetailsStyled = styled.div`
         align-items: center;
       }
       @media screen and (max-width: 1100px) {
-        flex-wrap: wrap;
-        .otherInfo {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        & > div,
-        .otherInfo > div {
-          width: 100%;
-          display: flex;
-          flex-direction: row;
-          gap: 1rem;
-          justify-content: center;
-        }
-        & input {
-          width: fit-content;
-        }
+        // flex-wrap: wrap;
+        // .otherInfo {
+        //   flex-direction: column;
+        //   align-items: flex-start;
+        // }
+        // & > div,
+        // .otherInfo > div {
+        //   width: 100%;
+        //   display: flex;
+        //   flex-direction: row;
+        //   gap: 1rem;
+        //   justify-content: center;
+        // }
+        // & input {
+        //   width: fit-content;
+        // }
       }
     }
+  }
+  @media (max-width: 768px) {
+    .mobile-header {
+      padding: 20px;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .slot-row {
+      gap: 5px;
+      font-size: 13px;
+      .gender-section {
+        display: none;
+      }
+      .time-section1 span {
+        margin-right: 0px;
+      }
+    }
+  }
+  .selector-filter-sub-module-div {
+    height: 100%;
   }
 `;

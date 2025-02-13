@@ -24,6 +24,17 @@ export const CheckoutStyled = styled.div`
     text-align: center;
     padding-top: 100px;
     min-height: 600px;
+    button {
+      border-radius: 45px;
+      border: none;
+      /* width: 100%; */
+      font-size: 18px;
+      color: #252b61;
+      font-family: Outfit, sans-serif;
+      background: #252b61;
+      color: #fff;
+      padding: 5px 20px;
+    }
   }
   .cart-content-left {
     border-radius: 10px;

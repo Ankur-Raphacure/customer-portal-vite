@@ -7,13 +7,19 @@ import { FaArrowRight } from "react-icons/fa6";
 const DoctorDetailsCard = (props: any) => {
   const { item, sectionName } = props;
   const history = useHistory();
-  const defaultImage =
+  const defaultDoctImage =
     "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/1732785725785EMTYDOCTORIMAGE.png-1732785730293.png";
   return (
     <HomeStyled>
       <div
         className="scanCenter-card-container"
-        // onClick={() => history.push(`/doctor?q=${item?.name}`)}
+        onClick={() => {
+          if (sectionName !== "doctor") {
+            history.push(`/doctor?q=${item?.name}`);
+          } else {
+            props.handleToBookSlot(item);
+          }
+        }}
       >
         <div className="rating-banner-div">
           <div className="bannerWrapper">
@@ -28,7 +34,7 @@ const DoctorDetailsCard = (props: any) => {
         <div className="scanCenter-card-header">
           <div className="scanCenter-company-logo">
             <img
-              src={item?.img || item?.image || defaultImage}
+              src={item?.img || item?.image || defaultDoctImage}
               alt={item?.name}
             />
           </div>

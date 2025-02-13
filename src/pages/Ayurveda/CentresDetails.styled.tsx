@@ -236,6 +236,9 @@ export const CentresDetailsstyled = styled.div`
 
     @media (max-width: 768px) {
       text-align: center;
+      .full-content-sec-page-design {
+        margin-top: 0px;
+      }
     }
   }
   .SubHeading {

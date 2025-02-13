@@ -165,7 +165,9 @@ export const PharmacyStyled = styled.div`
     display: flex;
     justify-content: space-between;
   }
-
+  .mobile-view-categories {
+    display: none;
+  }
   .assistance-main-div {
     padding: 30px 50px;
   }
@@ -308,7 +310,18 @@ export const PharmacyStyled = styled.div`
   .mobile-viwe-div {
     display: none;
   }
+  .Assistance-cl-img {
+    display: none;
+    height: 4.6rem;
+    width: 4rem;
+  }
   @media (max-width: 768px) {
+    .Branded-Medicines-MultiCarouselModal {
+      padding: 0px 10px;
+    }
+    .filter-by-name {
+      display: none;
+    }
     .renderCard-div h5 {
       font-size: 14px;
       margin-bottom: 0px;
@@ -323,7 +336,7 @@ export const PharmacyStyled = styled.div`
         background: none;
         color: #252b61;
         border: none;
-        width: 7rem;
+        width: 5rem;
       }
     }
     .header-banner-filter-div {
@@ -332,9 +345,6 @@ export const PharmacyStyled = styled.div`
     }
     .mobile-viwe-div {
       display: block;
-      svg {
-        width: 100%;
-      }
     }
     .web-viwe-div {
       display: none;
@@ -343,12 +353,16 @@ export const PharmacyStyled = styled.div`
       padding: 0px 10px;
     }
     .Category-heading-div p {
+      margin-top: 32px;
       font-size: 20px;
       letter-spacing: 0.02em;
       font-weight: 500;
       font-family: Outfit, sans-serif;
       color: #131313;
       margin-bottom: 5px;
+    }
+    .Top-Category-MultiCarouselModal {
+      display: none;
     }
     .health-theme-month {
       padding: 0px 20px;
@@ -358,20 +372,20 @@ export const PharmacyStyled = styled.div`
     }
     .common-sub-cards-main-div h5 {
       font-size: 18px;
-      padding: 0px;
+      padding: 10px;
       text-align: left;
     }
     .common-cards-main-div {
-      padding: 10px;
       height: auto;
     }
     .common-sub-cards-main-div {
+      margin-top: 0px;
       text-align: center;
     }
     .common-sub-cards-main-div p {
       font-size: 14px;
       line-height: 1.5;
-      padding: 0px;
+      padding: 0px 10px 0px 10px;
       text-align: start;
     }
     .common-sub-cards-main-div .multi-carousel-modal {
@@ -395,7 +409,7 @@ export const PharmacyStyled = styled.div`
       border-bottom-left-radius: 0px;
     }
     .video-main-left-title {
-      padding: 0px 20px;
+      padding: 0px 10px;
       font-size: 20px;
       text-align: start;
     }
@@ -405,7 +419,7 @@ export const PharmacyStyled = styled.div`
     .video-main-left-sub-title {
       font-size: 12px;
       text-align: start;
-      padding: 0px 20px;
+      padding: 0px 10px;
     }
     .video-main-left-div img {
       max-width: 100%;
@@ -423,7 +437,7 @@ export const PharmacyStyled = styled.div`
     }
 
     .advertisement-main-left-div {
-      padding: 10px 20px;
+      padding: 10px 10px;
       width: 100%;
       text-align: center;
     }
@@ -444,14 +458,13 @@ export const PharmacyStyled = styled.div`
       width: 100%;
     }
     .advertisement-main-img {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: start;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       width: 100%;
-      margin-bottom: 20px;
+      gap: 15px;
     }
     .advertisement-main-img img {
-      width: 62px;
+      width: 100%;
       margin-right: 5px;
     }
     .advertisement-main-div {
@@ -479,14 +492,21 @@ export const PharmacyStyled = styled.div`
       align-items: center;
       gap: 1rem;
     }
-    .assistance-left-card-div,
-    .assistance-right-card-div {
+    .assistance-left-card-div {
+      border-radius: 15px;
+      border: 1.5px solid #e7c2d4;
+      background: #fff;
       width: 100%;
-      height: 100%;
-      padding: 20px;
-      display: flex;
-      gap: 1rem;
-      border-radius: 20px;
+      height: 87px;
+      padding: 10px 15px 0px 15px;
+    }
+    .assistance-right-card-div {
+      border-radius: 15px;
+      border: 1.5px solid #a3dac2;
+      background: #fff;
+      width: 100%;
+      height: 87px;
+      padding: 10px 15px 0px 15px;
     }
     .assistance-main-title {
       display: none;
@@ -499,16 +519,20 @@ export const PharmacyStyled = styled.div`
 
     .assistance-left-card-title {
       font-size: 18px;
-      font-weight: 400;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      font-family: Outfit, sans-serif;
+      color: #252b61;
     }
 
     .assistance-left-card-sub-title {
       font-size: 12px;
+      letter-spacing: 0.02em;
       color: #51546a;
       width: 100%;
     }
     .comparison-carousel-div {
-      padding: 0px 20px;
+      padding: 32px 10px 0px 10px;
     }
     .comparison-carousel-title {
       font-size: 20px;
@@ -518,7 +542,6 @@ export const PharmacyStyled = styled.div`
       flex-wrap: nowrap;
       overflow-x: auto;
       gap: 8px;
-      padding: 8px;
       scrollbar-width: thin;
     }
     .btn {
@@ -540,8 +563,10 @@ export const PharmacyStyled = styled.div`
     }
     .assistance-left-card-div button,
     .assistance-right-card-div button {
-      background: #fff;
-      border: none;
+      display: none;
+    }
+    .Assistance-cl-img {
+      display: block;
     }
     .Assistance-cl-btn-icon {
       color: #252b61;
@@ -566,11 +591,13 @@ export const PharmacyStyled = styled.div`
     width: 80%;
   }
   .card-module-div {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     margin-top: 2rem;
     /* width: 80%; */
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
   }
   .btn-filter-module-div {
     /* display: flex;
@@ -649,8 +676,8 @@ export const PharmacyStyled = styled.div`
     margin-top: 20px;
   }
   .parent-search-left-div {
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
   }
   .all-compare-medicines-list {
     margin-top: 2rem;
@@ -668,35 +695,45 @@ export const PharmacyStyled = styled.div`
     .card {
       width: 100%;
     }
+    .mobileview-uploadprescription {
+      padding: 0px 10px;
+    }
     .Upload-Prescription-mobile-btn {
-      display: block;
-      padding: 30px 10px;
-      button {
-        width: 100%;
-        position: relative;
-        border-radius: 45px;
-        background-color: #a3dac2;
-        height: 50px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 11px;
-        box-sizing: border-box;
-        cursor: pointer;
-        text-align: left;
-        font-size: 16px;
-        color: #252b61;
+      margin-top: 29px;
+      padding: 10px 14px;
+      width: 100%;
+      position: relative;
+      border-radius: 10px;
+      background-color: #a3dac2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        margin-bottom: 0px;
+        font-size: 14px;
+        letter-spacing: 0.02em;
+        font-weight: 600;
         font-family: Outfit, sans-serif;
-        font-weight: 500;
+        color: #252b61;
+      }
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 45px;
+        background-color: #252b61;
+        height: 30px;
+        font-size: 12px;
+        color: #fff;
+        font-family: Outfit, sans-serif;
       }
     }
     .card-module-div {
       margin-top: 2rem;
       width: 100%;
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
+      display: grid !important;
+      grid-template-columns: repeat(1, 1fr) !important;
       gap: 16px;
     }
     .all-compare-medicines-list {
@@ -704,13 +741,16 @@ export const PharmacyStyled = styled.div`
       flex-wrap: nowrap;
       overflow-x: auto;
       gap: 8px;
-      padding: 8px;
       scrollbar-width: thin;
       margin-bottom: 0px;
     }
     .all-compare-medicines-list {
       -ms-overflow-style: none;
       scrollbar-width: none;
+    }
+    .mobile-view-categories {
+      display: block;
+      padding: 10px 10px;
     }
     .btn-filter-module-div {
       flex-direction: column;
@@ -726,11 +766,14 @@ export const PharmacyStyled = styled.div`
       border: none;
     }
     .pharmacy-search-fields {
-      padding: 30px 0px !important;
       margin-top: 0px;
+      padding: 0px !important;
     }
     .sidefilters {
       width: 100%;
+    }
+    .search-popUpDiv {
+      display: none;
     }
     .selector-filter-sub-module-div {
       width: 100%;
@@ -740,11 +783,12 @@ export const PharmacyStyled = styled.div`
     }
     .all-pharmacy-page-div {
       flex-direction: column;
-      padding: 10px 20px;
+      padding: 0px 0px;
       gap: 0px;
     }
     .right-card-module-div {
       width: 100%;
+      padding: 0px 10px;
     }
     .search-popup {
       width: 100% !important;
@@ -764,7 +808,7 @@ export const PharmacyStyled = styled.div`
     }
     .mobile-view-video-main-right-div {
       display: block;
-      padding: 15px 15px 0px 15px;
+      padding: 10px 10px 0px 10px;
       video {
         border-radius: 25px;
       }

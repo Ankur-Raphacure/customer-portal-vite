@@ -191,6 +191,9 @@ export const FooterStyled = styled.div`
       display: flex;
       justify-content: space-between;
     }
+    .marginbottom {
+      margin-bottom: 4rem;
+    }
 
     .toggle-btn {
       display: block;
@@ -215,9 +218,12 @@ export const FooterStyled = styled.div`
     .our-services-sec,
     .our-services-sec1,
     .empanel-sec,
-    .about-us-section,
-    .footer-section-nme {
+    .about-us-section {
       padding: 30px 20px;
+      display: block;
+    }
+    .footer-section-nme {
+      padding: 30px 10px;
       display: block;
     }
     .welcome-text-rapha-left,
@@ -258,11 +264,11 @@ export const FooterStyled = styled.div`
       display: grid;
     }
     .footer-section-content {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       display: grid;
     }
     .footer-section-content {
-      gap: 20px;
+      gap: 10px;
     }
     .footer-row {
       /* margin-top: 40px; */
@@ -274,6 +280,7 @@ export const FooterStyled = styled.div`
       width: 100%;
     }
     .bottom-footer {
+      display: none;
       p {
         width: 90%;
         margin: auto;
@@ -321,6 +328,166 @@ export const FooterStyled = styled.div`
   .hideFooterSection {
     @media screen and (max-width: 768px) {
       display: none !important;
+    }
+  }
+
+  /* Bootom Nav Bar */
+
+  .bottom-nav-main-div,
+  .BottomNavBar-mobile-view {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .BottomNavBar-mobile-view {
+      display: block;
+    }
+    .bottom-nav-main-div {
+      z-index: 1;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 2px 2px 19px rgba(0, 0, 0, 0.19);
+      border-radius: 18px 18px 0px 0px;
+      background-color: #fff;
+      border: 0.5px solid rgba(222, 219, 219, 0.5);
+      box-sizing: border-box;
+      height: 82px;
+      display: flex;
+    }
+    .bottom-nav-div {
+      padding: 15px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .bottom-nav-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      p {
+        color: #6b6b6b;
+        font-family: Outfit, sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        margin-bottom: 0px;
+      }
+    }
+
+    .modal.fade .modal-dialog {
+      transform: translateY(100%);
+      transition: transform 0.3s ease-out;
+    }
+
+    .modal.show .modal-dialog {
+      transform: translateY(0);
+    }
+
+    .custom-modal {
+      margin: 0px !important;
+      width: 100% !important;
+    }
+    .bottomSheetFrame {
+      width: 100vw;
+      height: 100vh;
+      /* background-color: #00000057; */
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: transform 1s ease-in-out;
+    }
+    .bottomsheetOpen {
+      transform: translateY(-10%);
+    }
+    .bottomsheetClose {
+      transform: translateY(100%);
+    }
+    .maped-div-data {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      padding: 1rem;
+    }
+    .bottomSheetFrame {
+      /* position: relative;  */
+    }
+
+    .bottomSheetOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+      z-index: 1; /* Ensure it stays behind bottomSheetContent */
+    }
+
+    .bottomSheetContent {
+      position: relative;
+      z-index: 2; /* Keep above the overlay */
+      background: white; /* Ensure content remains visible */
+    }
+
+    .bottomSheetContent {
+      /* max-height: 55vh;
+      overflow: scroll; */
+      width: 100%;
+      background-color: white;
+      margin-top: 100%;
+      border-radius: 16px 16px 0 0;
+      /* transition: transform 0.3s cubic-bezier(0.4, 0, 1, 1); */
+      .homeStyled {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+        max-height: 52vh;
+        overflow: scroll;
+      }
+      .categories-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-radius: 20px 20px 0 0;
+      }
+      p {
+        color: #000;
+        font-family: Outfit, sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 0px;
+        line-height: 32px;
+      }
+    }
+
+    .subdomain {
+      margin-top: 33rem;
+    }
+
+    .login-btn-div {
+      display: flex;
+      padding: 1rem;
+      justify-content: end;
+    }
+    .banner-profile-img {
+      margin-top: -2rem;
+      height: 3.5rem;
+      width: 3.5rem;
+      border-radius: 12rem;
+      padding: 5px;
+      background: #dad8d8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        height: 3rem;
+        width: 3rem;
+        border-radius: 12rem;
+      }
     }
   }
 `;

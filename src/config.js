@@ -49,7 +49,7 @@ if (typeof window !== "undefined") {
 export const SERVER_IP = SERVER_IP_URL;
 export const CHAT_API = CHAT_API_URL;
 const map_url =
-  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDILWRZ3d-zi2xIjmATRtOUNkFJ8kEr4p0&libraries=places";
+  "https://maps.googleapis.com/maps/api/js?key=AIzaSyDiKV3OLHnGFYI4qhcIKjk7tzG-RXeUI5s&libraries=places";
 export const GOOGLE_MAP_URL = map_url;
 export const MIXPANEL_ID = MIXPANEL_ID1;
 

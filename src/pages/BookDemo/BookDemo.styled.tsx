@@ -125,12 +125,12 @@ export const BookDemoStyled = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 7rem;
+    padding: 4.5rem 7rem;
     background-color: #ffffff;
     border-radius: 15px;
 
     h2 {
-      font-weight: 600px;
+      font-weight: 600;
       font-size: 20.8px;
       margin-top: 10px;
       width: 210px;
@@ -269,7 +269,7 @@ export const BookDemoStyled = styled.div`
     font-weight: 600;
     cursor: pointer;
     text-align: center;
-    width: 150px ;
+    width: 154px ;
   }
 
   .time-slot-button:hover {
@@ -506,7 +506,7 @@ export const BookDemoStyled = styled.div`
     justify-content: center;
     align-items: center;
     margin: 20px 0;
-    gap: 50px;
+    gap: 20px;
   }
 
   .calendar-navigation button {
@@ -821,11 +821,10 @@ export const BookDemoStyled = styled.div`
     }
     .time-slots {
       text-align: center;
-      overflow-y: scroll;
+      
     }
     .time-slot-container {
       margin: auto;
-      /* width: 100%; */
     }
   }
 `;

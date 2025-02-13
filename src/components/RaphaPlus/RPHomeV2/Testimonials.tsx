@@ -54,7 +54,7 @@ const Testimonials = () => {
   return (
     <TestimonialsStyled>
       <div className="testimonials-container">
-        <h2 className="title">Clients Testimonial</h2>
+        <h2 className="title">Clients Testimonial's</h2>
         <div className="testimonial-card">
           <div className="testimonial-content">
             <img
@@ -63,10 +63,21 @@ const Testimonials = () => {
               className="testimonial-image"
             />
             <div className="testimonials">
-              <h3 className="testimonial-name">{currentTestimonial.name}</h3>
-              <h4 className="testimonial-specialization">
-                {currentTestimonial.specialization}
-              </h4>
+              <div className="prevNextBtns">
+                <button className="nav-btn prev" onClick={handlePrev}>
+                  <FaArrowLeftLong color="#fff" size={30} />
+                </button>
+
+                <button className="nav-btn next" onClick={handleNext}>
+                  <FaArrowRightLong color="#fff" size={30} />
+                </button>
+              </div>
+              <div className="name-spec">
+                <h3 className="testimonial-name">{currentTestimonial.name}</h3>
+                <h4 className="testimonial-specialization">
+                  {currentTestimonial.specialization}
+                </h4>
+              </div>
               <div className="testimonial">
                 <p className="testimonial-text">
                   {currentTestimonial.testimonial}
@@ -78,6 +89,22 @@ const Testimonials = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="dots-container">
+          {testimonialsData.map((_, index) => (
+            <span
+              key={index}
+              className={`dot ${index === currentIndex ? "active" : ""}`}
+              onClick={() => setCurrentIndex(index)}
+            ></span>
+          ))}
+        </div>
+      </div>
+
+      <div className="testimonials-moblie-look">
+        <div className="heading-arrow">
+          <h2 className="title">Clients Testimonial's</h2>
           <div className="prevNextBtns">
             <button className="nav-btn prev" onClick={handlePrev}>
               <FaArrowLeftLong color="#fff" size={30} />
@@ -89,6 +116,33 @@ const Testimonials = () => {
           </div>
         </div>
 
+        <div className="testimonial-card">
+          <div className="mobile-header">
+            <div className="header-lh">
+              <img
+                src={currentTestimonial.image}
+                alt={currentTestimonial.name}
+                className="testimonial-image"
+              />
+              <div className="specs">
+                <h3 className="testimonial-name">{currentTestimonial.name}</h3>
+                <h4 className="testimonial-specialization">
+                  {currentTestimonial.specialization}
+                </h4>
+              </div>
+            </div>
+            <div className="header-rh">
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76907-1733287966580.png"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div className="testimonial">
+            <p className="testimonial-text">{currentTestimonial.testimonial}</p>
+          </div>
+        </div>
         <div className="dots-container">
           {testimonialsData.map((_, index) => (
             <span

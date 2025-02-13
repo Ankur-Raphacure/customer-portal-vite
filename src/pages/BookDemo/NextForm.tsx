@@ -123,7 +123,7 @@ const NextForm = () => {
         date: selectedDate,
         time: convertTo24HourFormat(selectedTime),
         email: formData.email,
-        guestEmail: formData.guestEmail || "N/A",
+        guestEmail: formData.guestEmail || "",
         phone: formData.phone,
         city: formData.city,
         message: formData.message,

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { PackagesStyled } from "./Packages.styled";
 import {
@@ -19,13 +19,19 @@ import AddNewMember from "../../../../components/AddNewMember/AddNewMember";
 import CustomModal from "../../../../components/CustomModel";
 import BestPackages from "../../../LabTest/BestPackages/BestPackages";
 import { updateShowLoginModel } from "../../../../redux/slices/auth/authSlice";
-import { getHealthPackagesAPI } from "../../../../redux/slices/labtest/labtestService";
+import {
+  getAllCategoriesAPI,
+  getHealthPackagesAPI,
+} from "../../../../redux/slices/labtest/labtestService";
 import { getAllScansCityAPI } from "../../../../redux/slices/ctmri/ctmriService";
 import { Col, Container, Row } from "react-bootstrap";
 import Cards from "../../../Radiology/Cards/Cards";
 import allscan from "../../../../assets/images/ctmri/allscan.png";
 import { RadiologyStyled } from "../../../Radiology/RadiologyStyled.styled";
 import { LabTestStyled } from "../../../LabTest/LabText.styled";
+import HealthSaverCard from "../../../../components/HealthSaverCard/HealthSaverCard";
+import { truncateText } from "../../../../Scenes/common";
+import { LabtestStyled } from "../../../LabTestv2/LabTest.styled";
 
 let imageMale =
   "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736338140063.png";
@@ -37,6 +43,7 @@ const Packages = () => {
   const dispatch = useDispatch();
   const [showSuccessUserPopupText, setShowSuccessUserPopupText] = useState("");
   const [showSuccessUserPopup, setShowSuccessUserPopup] = useState(false);
+  const [labPackageCategories, setLabPackageCategories] = useState([]);
 
   const [showAddMemberModel, setShowAddMemberModel] = useState(false);
   const [selectedUser, setSelectedUser] = useState({} as any);
@@ -46,6 +53,21 @@ const Packages = () => {
   const { myAllPackages } = useSelector(
     (ReduxState: any) => ReduxState.dashboard
   );
+  const { userCity, user, subDomainDetails } = useSelector(
+    (ReduxState: any) => ReduxState.auth
+  );
+
+  const getPackagesCategoriesAPI = async () => {
+    const res = (await dispatch(
+      getAllCategoriesAPI({ sectionName: "packages" })
+    )) as any;
+    setLabPackageCategories(res?.payload?.data?.category_ids);
+  };
+
+  useEffect(() => {
+    getPackagesCategoriesAPI();
+  }, []);
+
   console.log("myAllPackages", myAllPackages);
   console.log("userDependents", userDependents);
   useEffect(() => {
@@ -94,8 +116,7 @@ const Packages = () => {
     history.push(`/labPackageDetils/${item?.service_code}`);
   };
 
-  const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
-  const { healthPackagesList } = useSelector(
+  const { healthPackagesList, allPackagesList } = useSelector(
     (ReduxState: any) => ReduxState.labtest
   );
   const { allCityList } = useSelector((ReduxState: any) => ReduxState.ctmri);
@@ -139,7 +160,11 @@ const Packages = () => {
   const navigateTo = (id: string) => {
     history.push(`/radiology/scan-details/${id}`);
   };
-
+  const addPackageToCart = (testId: any) => {
+    if (testId) {
+      history.push(`/radiology/scan-details/${testId}`);
+    }
+  };
   return (
     <div>
       <PackagesStyled>
@@ -292,7 +317,7 @@ const Packages = () => {
                   </LabTestStyled>
                   <RadiologyStyled>
                     <Container fluid className="scanCeContainer">
-                      <Row>
+                      {/* <Row>
                         <Col className="scanCeBtnCol">
                           <p className="scanCeText">Scan Centre's Near Me </p>
                           <button className="scanSgtBtn">Popular</button>
@@ -300,42 +325,95 @@ const Packages = () => {
                           <button className="scanSgtBtn">Nearest</button>
                           <button className="scanSgtBtn">24*7</button>
                         </Col>
-                      </Row>
-                      <Row className="scanCeRow ">
-                        {allCityList?.tests?.slice(0, 4)?.map((item: any) => (
-                          <Col key={item.service_name}>
-                            <Cards
-                              title={item.service_name}
-                              cardTxtOne={item.city}
-                              vendors={item.vendores}
-                              cardTxtTwo={item.type}
-                              cardBdImgUrl={allscan}
-                              navigateTo={() => {
-                                navigateTo(item?.service_code);
+                      </Row> */}
+                      {/* <Row className="scanCeRow ">
+                        {allCityList?.tests?.slice(0, 4)?.map((item: any) => {
+                          return (
+                            <HealthSaverCard
+                              key={item?.service_code}
+                              title={item?.service_name} // Truncate title
+                              subtitle={truncateText(item?.description, 30)} // Truncate subtitle
+                              featureButtonText="Package" // You can customize this text
+                              reportTime="N/A" // If no data provided for report time
+                              testCount={(item?.tests?.length || 0).toString()} // Number of tests
+                              originalPrice={(
+                                item?.price?.actual_cost || 0
+                              ).toString()}
+                              discountedPrice={(
+                                item?.price?.discounted_price || 0
+                              ).toString()}
+                              discount={(
+                                item?.price?.discount_percentage || 0
+                              ).toString()}
+                              addToCart={() => {
+                                addPackageToCart(item?.service_code);
                               }}
-                              from="scanCenter"
-                              isRating={true}
-                              cardTxtOneImgIsPresent={true}
-                              cardTxtOneImgClassName={"scanCenterTxtOneBefImg"}
-                              cardTxtOneImg="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png"
-                              cardTxtOneTxtClassName={
-                                "scanCenterCardTxtOneSpan"
-                              }
-                              cardTxtTwoImgIsPresent={true}
-                              cardTxtTwoImgClassName={"scanCenterTxtTwoBefImg"}
-                              cardTxtTwoImg={medicinBoxSvg}
-                              cardTxtTwoTxtClassName={
-                                "scanCenterCardTxtTwoSpan"
-                              }
-                              cardBtnBtmTxt={"View Scans"}
-                              cardBtnBtmClassName={"scanCenterCardButton"}
                             />
-                          </Col>
-                        ))}
-                      </Row>
-                      <Row className="viewAllSec d-flex justify-content-end pt-4">
+                          );
+                        })}
+                      </Row> */}
+                      <LabtestStyled>
+                        {subDomainDetails?.subdomain_key !== "indigrid" && (
+                          <div className="healthSaverSection">
+                           
+
+                            <div className="healthCards">
+                              {allPackagesList?.data?.length > 0 &&
+                                allPackagesList?.data
+                                  ?.filter(
+                                    (packageItem: any) =>
+                                      packageItem?.price?.actual_cost > 0
+                                  ) // Filter for actual_cost > 0
+                                  ?.slice(0, 6) // Slice the filtered list
+                                  ?.map((packageItem: any, index: any) => (
+                                    <HealthSaverCard
+                                      key={packageItem?.service_code || index}
+                                      title={packageItem?.service_name} // Truncate title
+                                      subtitle={truncateText(
+                                        packageItem?.description,
+                                        30
+                                      )} // Truncate subtitle
+                                      featureButtonText="Package" // You can customize this text
+                                      reportTime="N/A" // If no data provided for report time
+                                      testCount={(
+                                        packageItem?.tests?.length || 0
+                                      ).toString()} // Number of tests
+                                      originalPrice={(
+                                        packageItem?.price?.actual_cost || 0
+                                      ).toString()}
+                                      discountedPrice={(
+                                        packageItem?.price?.discounted_price ||
+                                        0
+                                      ).toString()}
+                                      discount={(
+                                        packageItem?.price
+                                          ?.discount_percentage || 0
+                                      ).toString()}
+                                      addToCart={() => {
+                                        addPackageToCart(
+                                          packageItem?.service_code
+                                        );
+                                      }}
+                                    />
+                                  ))}
+
+                              {allPackagesList?.data?.length === 0 && (
+                                <p>No Packages Available</p>
+                              )}
+                            </div>
+                            <Link
+                              to={"/allpackages"}
+                              className="viewAllBtn ml-auto viewBtn2"
+                            >
+                              View All Packages
+                            </Link>
+                          </div>
+                        )}
+                      </LabtestStyled>
+
+                      {/* <Row className="viewAllSec d-flex justify-content-end pt-4">
                         <span>View All</span>
-                      </Row>
+                      </Row> */}
                     </Container>
                   </RadiologyStyled>
                 </div>

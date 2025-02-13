@@ -79,3 +79,20 @@ export const getAllVendorDetailsAPI = createAsyncThunk(
   async () =>
     await post(`${SERVER_IP}/graphql`, JSON.stringify(getAllVendorDetailsQuery))
 );
+
+export const getBkInvoiceAPI = createAsyncThunk(
+  "bookingScreen/getBkInvoiceAPI",
+  async (id: any) =>
+    await get(`${SERVER_IP}/api/v1/invoice/getInvoice?id=${id}`)
+);
+
+
+export const createBkDiet = createAsyncThunk(
+  "diet/createBkDiet",
+  async (body: any) => await post(`${SERVER_IP}/api/v1/diet`, body)
+);
+
+export const getBkDiet = createAsyncThunk(
+  "diet/getBkDiet",
+  async (id: any) => await get(`${SERVER_IP}/api/v1/diet/${id}`)
+);

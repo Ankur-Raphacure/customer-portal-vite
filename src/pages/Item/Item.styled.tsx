@@ -7,6 +7,9 @@ export const ItemStyled = styled.div`
   .item-detail-main-div {
     padding: 30px 50px;
   }
+  .MobileHeader-main-div {
+    display: none;
+  }
   .new-loader-sec {
     margin-top: 50px;
     text-align: center;
@@ -20,6 +23,11 @@ export const ItemStyled = styled.div`
   }
   .delivery0time-sec-note {
     color: green !important;
+  }
+  .share-btn-icon svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    opacity: 0.5;
   }
   .change-pin-code-sec {
     border: 1px solid #e2e2e2;
@@ -607,8 +615,11 @@ export const ItemStyled = styled.div`
   }
 
   @media (max-width: 768px) {
+    .MobileHeader-main-div {
+      display: block;
+    }
     .card-module-div {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
     }
     .similar-product-section,
     .compare-details-table {
@@ -643,7 +654,7 @@ export const ItemStyled = styled.div`
       gap: 5px;
     }
     .item-detail-main-div {
-      padding: 10px 20px;
+      padding: 60px 20px;
     }
     .item-sub-detail-main-div {
       width: 100%;

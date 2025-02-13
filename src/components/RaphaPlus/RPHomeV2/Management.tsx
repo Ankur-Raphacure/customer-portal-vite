@@ -13,7 +13,7 @@ const Management = () => {
     {
       title: "Billing and invoicing made simple",
       description:
-        "Streamline your clinic's billing and invoicing process with our intuitive tools.",
+        "Easily manage billing and invoicing with an intuitive system that ensures accuracy and efficiency.",
       imageSrc:
         "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76907-1733136672214.png",
     },

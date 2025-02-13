@@ -55,7 +55,10 @@ const ProCoarses = (props: any) => (
       {cards?.map((item: any, index: number) => (
         <div className="proCardDiv" key={index}>
           <div className="proimageDiv">
-            <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736404166575.png"} className="roundedImages" />
+            <Image
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736404166575.png"
+              className="roundedImages"
+            />
             <p>
               {item.hasSaving && (
                 <div className="savingsTag">

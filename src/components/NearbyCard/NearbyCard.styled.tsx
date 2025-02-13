@@ -17,7 +17,7 @@ export const NearbyCardStyled = styled.div`
     height: 100%;
     img {
       margin: auto;
-      max-width: 225px;
+      max-width: 100%;
       max-height: 225px;
       object-fit: contain;
     }
@@ -77,6 +77,16 @@ export const NearbyCardStyled = styled.div`
     font-weight: 500;
     span {
       font-weight: 300;
+    }
+  }
+  @media (max-width: 768px) {
+    background: #fff;
+    .nearby-card img {
+      max-height: 65px;
+    }
+    .nearby-card {
+      width: 15rem;
+      border-radius: 14px;
     }
   }
 `;

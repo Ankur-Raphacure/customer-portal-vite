@@ -18,6 +18,7 @@ import {
   getCartItemsAPI,
 } from "../../redux/slices/checkout/checkoutService";
 import ComparisonMedicineCardModule from "./ComparisonMedicineCardModule";
+import { checkIsMobile } from "../../Scenes/common";
 
 import { updateShowLoginModel } from "../../redux/slices/auth/authSlice";
 import Loader from "../../components/Loader/Loader";
@@ -27,10 +28,12 @@ import { pharmacySearchTextChange } from "./PharmacyObjectsModule";
 import MedicineCardModule from "./MedicineCardModule";
 import BreadCrumbModule from "./BreadCrumbModule";
 import Paginations from "../../components/PaginationModule/Paginations";
+import MobileHeader from "../../components/Header/MobileHeader";
 
 const AllPharmacyList = (props: any) => {
   let { sectionName } = props?.match?.params;
   sectionName = sectionName === "all" ? "" : sectionName;
+
   const [medicines, setMedicines] = useState([]);
   const location = useLocation<any>();
   const SelectedCategory = location?.state;
@@ -321,6 +324,7 @@ const AllPharmacyList = (props: any) => {
   return (
     <PharmacyStyled>
       {isLoading && <Loader />}
+
       {sectionName === "allProductsBySalt" ? (
         <div className="allProductsBySalt-div">
           <div>
@@ -425,6 +429,7 @@ const AllPharmacyList = (props: any) => {
               handleChangeTypeFilter={handleChangeTypeFilter}
               setSelectedSortOption={setSelectedSortOption}
               origin={"pharmacy"}
+              pathName={"/pharmacy"}
             />
           </div>
           <div className="right-card-module-div">

@@ -8,10 +8,11 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
 } from "react-icons/fa";
-import { CiLocationOn } from "react-icons/ci";
+import { useHistory } from "react-router-dom";
 import RPFooterMobileV2 from "./RPFooterMobileV2";
 
 const RPFooterV2 = () => {
+  const history = useHistory();
   return (
     <RPFooterV2style>
       <div className="footer-container">
@@ -44,7 +45,15 @@ const RPFooterV2 = () => {
               <a href="#">About us</a>
               <a href="#">Portfolio</a>
               <a href="#">Careers</a>
-              <a href="#">Contact us</a>
+              <a
+                onClick={(e) => {
+                  e.preventDefault(); 
+                  history.push("/connectus");
+                }}
+                className="contact-link"
+              >
+                Contact Us
+              </a>
             </div>
             <div className="footer-column">
               <h3>Explore</h3>
@@ -66,7 +75,6 @@ const RPFooterV2 = () => {
                 className="icon"
               />
               <p>+91 9606997170</p>
-
             </div>
 
             <div className="consec">
@@ -76,7 +84,6 @@ const RPFooterV2 = () => {
                 className="icon"
               />
               <p>wellness@raphaplus.in</p>
-
             </div>
 
             <div className="consec">

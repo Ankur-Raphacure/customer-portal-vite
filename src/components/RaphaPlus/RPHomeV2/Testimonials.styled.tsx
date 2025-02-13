@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 export const TestimonialsStyled = styled.div`
-  /* Container styles */
   .testimonials-container {
+    display: block;
     text-align: center;
     padding: 5rem 4.5rem;
     margin: auto;
     font-family: Poppins, sans-serif;
     @media (max-width: 780px) {
       padding: 40px;
+    }
+    @media (max-width: 391px) {
+      display: none;
     }
   }
 
@@ -20,18 +23,11 @@ export const TestimonialsStyled = styled.div`
     color: #011632;
     text-align: left;
   }
-
-  /* Testimonial card */
   .testimonial-card {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
-    /* padding: 20px; */
-    /* border: 1px solid #ccc;
-    border-radius: 10px;
-    background: #f9f9f9;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
     @media screen and (max-width: 1024px) {
       flex-direction: column-reverse;
       align-items: center;
@@ -60,8 +56,6 @@ export const TestimonialsStyled = styled.div`
     }
   }
 
-  
-
   .testimonial-name {
     font-size: 32px;
     font-weight: 600;
@@ -73,20 +67,17 @@ export const TestimonialsStyled = styled.div`
     font-family: Inter;
     color: #252b61;
     font-size: 18px;
-    margin-top: -70px;
-    margin-bottom: 10px;
   }
 
   .testimonial-text {
-    font-size: 14px;
+    font-size: 18px;
     color: #555;
   }
-  .testimonial img {
-    margin-left: 32px;
-    margin-top: -57px;
-  }
 
-  
+  .name-spec {
+    display: flex;
+    flex-direction: column;
+  }
 
   /* Navigation buttons */
   .nav-btn {
@@ -120,14 +111,14 @@ export const TestimonialsStyled = styled.div`
   }
 
   .dot.active {
-    background-color: #333;
-    width: 2rem;
+    background-color: #252b61;
+    width: 4rem;
     border-radius: 10px;
   }
 
   .prevNextBtns {
     display: flex;
-    margin-right: 6px;
+    justify-content: end;
     gap: 0.5rem;
     button.prev {
       background: #c4c4c4;
@@ -151,8 +142,10 @@ export const TestimonialsStyled = styled.div`
   .testimonials {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     margin-left: 40px;
+    gap: 40px;
+    margin-top: 10px;
     .testimonial {
       display: flex;
       flex-direction: row;
@@ -164,10 +157,14 @@ export const TestimonialsStyled = styled.div`
       }
     }
   }
+
+  .testimonials-moblie-look {
+    display: none;
+  }
   @media (max-width: 391px) {
-    .testimonials-container {
+    .testimonials-moblie-look {
+      display: block;
       padding: 1.25rem 1rem;
-      width: 100%;
     }
 
     .title {
@@ -183,9 +180,7 @@ export const TestimonialsStyled = styled.div`
     }
 
     .testimonial-card {
-      flex-direction: column;
-      gap: 15px;
-      margin-top: -11px;
+      display: contents;
     }
 
     .testimonial-content {
@@ -200,7 +195,6 @@ export const TestimonialsStyled = styled.div`
       height: 50px;
       position: relative;
       border-radius: 50%;
-      margin-bottom: 109px;
     }
 
     .testimonial-name {
@@ -246,21 +240,23 @@ export const TestimonialsStyled = styled.div`
     }
 
     .prevNextBtns {
-      /* justify-content: center;
-      margin-top: 10px;
+      display: flex;
+      gap: 0.2rem;
 
-      button.prev,
+      button.prev {
+        width: 25px;
+        height: 25px;
+      }
+
       button.next {
         width: 25px;
         height: 25px;
-      } */
-      display: none;
+      }
     }
 
     .dots-container {
       display: flex;
       justify-content: center;
-      margin-top: 37px;
     }
 
     .dot {
@@ -270,8 +266,33 @@ export const TestimonialsStyled = styled.div`
     }
 
     .dot.active {
-      width: 16px;
+      width: 42px;
       height: 8px;
+    }
+
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0px;
+    }
+
+    .header-lh {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-rh {
+      img {
+        width: 100%;
+        height: 22.3px;
+      }
+    }
+
+    .heading-arrow {
+      display: flex;
+      justify-content: space-between;
     }
   }
 `;

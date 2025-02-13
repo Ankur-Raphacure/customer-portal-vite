@@ -1,16 +1,258 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FooterStyled } from "./Footer.styled";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { ViewportContext } from "../../context/ViewportContext";
+import { checkIsMobile } from "../../Scenes/common";
+import BottomNavBar from "./BottomNavBar";
+import LoginModel from "../LoginModel/LoginModel";
+import cartIcon from "../../assets/images/cartNew.svg";
+import docIcon from "../../assets/images/docNew.svg";
+import moreIcon from "../../assets/images/moreNew.svg";
+import homeIcon from "../../assets/images/homeNew.svg";
+import docOnCall from "../../assets/images/docNew.svg";
+import labtestIcon from "../../assets/images/labtestNew.svg";
+import instantIcon from "../../assets/images/instantNew.svg";
+import hospIcon from "../../assets/images/hospNew.svg";
+import { indigridDiscountedPackages } from "../../pages/Home/HomeObjClass";
 
 const Footer = (props) => {
+  const [isFooterOpen, setIsFooterOpen] = useState(false);
+  const { isMobileView } = useContext(ViewportContext);
+  const [moreOptions, setMoreOptions] = useState(false);
+  const history = useHistory();
 
-  const [isFooterOpen, setIsFooterOpen] = useState(true);
+  const [showLoginPopupModel, setShowLoginPopupModel] = useState(false);
+  const { user } = useSelector((ReduxState) => ReduxState.auth);
+
   // const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
-
+  console.log("user user", user);
+  const pathNa = window.location.pathname?.toLowerCase();
 
   const { subDomainDetails } = useSelector(({ auth }) => auth);
+
+  const navBarData = [
+    {
+      name: "Home",
+      path: "/",
+      image: homeIcon,
+    },
+    {
+      name: "Doctor on Call",
+      path: "/doctor",
+      image: docOnCall,
+    },
+    {
+      name: "More",
+      path: "more",
+      image: moreIcon,
+    },
+    {
+      name: "Lab Test",
+      path: "/labtest",
+      image: labtestIcon,
+    },
+    {
+      name: "Cart",
+      path: "/cart",
+      image: cartIcon,
+    },
+  ];
+  if (pathNa === "/" && user?.id) {
+    navBarData[1] = {
+      name: "Booking",
+      path: "/dashboard/bookings",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/110207-1738934483450.png",
+    };
+    navBarData[3] = {
+      name: "Package",
+      path: "/dashboard/packages",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/110207-1738934500610.png",
+    };
+  } else if (pathNa.includes("doctor")) {
+    navBarData[1] = {
+      name: "Instant",
+      path: "/doctor#instantConnect",
+      image: instantIcon,
+    };
+    navBarData[3] = {
+      name: "In Clinic",
+      path: "/doctor/doctorlist?type=clinic",
+      image: hospIcon,
+    };
+  } else if (pathNa.includes("pharmacy")) {
+    navBarData[1] = {
+      name: "Prescription",
+      path: "/uploadprescription",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/110207-1738934112359.png",
+    };
+    navBarData[3] = {
+      name: "Doctor",
+      path: "/doctor",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/110207-1738934131122.png",
+    };
+  } else if (pathNa.includes("labtest")) {
+    navBarData[1] = {
+      name: "Home Visit",
+      path: "/labtest?visittype=home",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/110207-1738934309783.png",
+    };
+    navBarData[3] = {
+      name: "Clinic Visit",
+      path: "/labtest?visittype=clinic",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/110207-1738934326066.png",
+    };
+  }
+  console.log("navBarData", navBarData);
+  const indigridNavbarData = [
+    {
+      name: "Home",
+      path: "/",
+      image: homeIcon,
+    },
+    {
+      name: "Doctor",
+      path: "/doctor",
+      image: docIcon,
+    },
+    {
+      name: "Addon Services",
+      path: "more",
+      image: moreIcon,
+    },
+    {
+      name: "Lab Test",
+      path: "/labtest",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738653017645.png",
+    },
+    {
+      name: "Cart",
+      path: "/cart",
+      image: cartIcon,
+    },
+  ];
+  const navBarMoreData = [
+    {
+      name: "Doctor on Call",
+      path: "/doctor",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
+    },
+    {
+      name: "Pharmacy",
+      path: "/pharmacy",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890011266.png",
+    },
+    {
+      name: "Lab Test",
+      path: "/labtest",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
+    },
+    {
+      name: "Radiology",
+      path: "/radiology",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890067550.png",
+    },
+    {
+      name: "Ambulance",
+      path: "/ambulance",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731387359120.png",
+    },
+    {
+      name: "Gymlist",
+      path: "/Gymlist",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738760513827.png",
+    },
+    {
+      name: "Womenscare",
+      path: "/womenscare",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731387586052.png",
+    },
+    {
+      name: "Eyecare",
+      path: "/eyecare",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388032965.png",
+    },
+    {
+      name: "Dentalcare",
+      path: "/dentalcare",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388076089.png",
+    },
+    {
+      name: "Mentalwellness",
+      path: "/mentalwellness",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388112106.png",
+    },
+    {
+      name: "Ayurveda",
+      path: "/ayurveda",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1731388141135.png",
+    },
+    {
+      name: "DomiciliaryCare",
+      path: "/domiciliaryCare",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1737541175516.png",
+    },
+    {
+      name: "Bloodbank",
+      path: "/bloodbank",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1737541235266.png",
+    },
+  ];
+
+  const indigridNavBarMoreData = [
+    {
+      name: "Doctor Consultatio",
+      path: "/doctor",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730956721614.png",
+    },
+    {
+      name: "Labtest",
+      path: "/labtest",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
+    },
+    {
+      name: "Radiology",
+      path: "/radiology",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890067550.png",
+    },
+
+    {
+      name: "Lab Packages",
+      path: "/labtest",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890046328.png",
+    },
+    {
+      name: "Pharmacy",
+      path: "/pharmacy",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1738890011266.png",
+    },
+  ];
 
   // const toggleFooter = () => {
   //   setIsFooterOpen((prev) => !prev);
@@ -35,12 +277,31 @@ const Footer = (props) => {
   //   }
   // }, [isMobileView, subDomainDetails]);
 
+  const handleNavigate = (urlPath) => {
+    if (urlPath == "more") {
+      setMoreOptions(true);
+      return;
+    }
+    history.push(urlPath);
+  };
+
   return (
     <>
       <FooterStyled>
         <div className="footer-wrapper">
-          <div className="footer-section-nme">
-            <div className="footer-row logo-row">
+          <div
+            style={
+              subDomainDetails?.background_color
+                ? { background: subDomainDetails?.background_color }
+                : null
+            }
+            className={`footer-section-nme `}
+          >
+            <div
+              className={`footer-row logo-row ${
+                isFooterOpen ? "" : "marginbottom"
+              }`}
+            >
               <img
                 src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/76741-1730871439101.png"
                 className="brandImg"
@@ -49,9 +310,16 @@ const Footer = (props) => {
                 height="60"
               />
 
-
               {/* Toggle button and footer only in subdomain's mobile view */}
-              {subDomainDetails?.subdomain_key &&
+
+              {checkIsMobile ? (
+                <button
+                  className={`toggle-btn showToggleOnMobile  `}
+                  onClick={() => setIsFooterOpen(!isFooterOpen)}
+                >
+                  {isFooterOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                </button>
+              ) : (
                 subDomainDetails?.subdomain_key?.trim() !== "" && (
                   <button
                     className="toggle-btn showToggleOnMobile"
@@ -59,13 +327,14 @@ const Footer = (props) => {
                   >
                     {isFooterOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
                   </button>
-                )}
+                )
+              )}
             </div>
 
             {/* Footer content */}
             <div
               className={`footer-section-content ${
-                isFooterOpen ? "" : "hideFooterSection"
+                isFooterOpen ? "marginbottom" : "hideFooterSection"
               }`}
             >
               <div className="footer-row">
@@ -156,8 +425,25 @@ const Footer = (props) => {
             {/* {isFooterOpen && (
               <></>
             )} */}
+          </div>
 
-            
+          <div className="BottomNavBar-mobile-view">
+            <BottomNavBar
+              element={
+                subDomainDetails?.subdomain_key === "indigrid"
+                  ? indigridNavbarData
+                  : navBarData
+              }
+              from={subDomainDetails?.subdomain_key ? "subdomain" : ""}
+              handleNavigate={handleNavigate}
+              moreOptionsBtn={moreOptions}
+              setMoreOptions={setMoreOptions}
+              navBarMoreData={
+                subDomainDetails?.subdomain_key === "indigrid"
+                  ? indigridDiscountedPackages
+                  : navBarMoreData
+              }
+            />
           </div>
 
           <div className="bottom-footer">

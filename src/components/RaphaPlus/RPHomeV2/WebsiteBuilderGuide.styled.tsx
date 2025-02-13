@@ -20,7 +20,7 @@ export const WebsiteBuilderGuideStyled = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     background: #edeffc;
-    border-radius: 25px;
+    border-radius: 16px;
     padding: 40px;
 
     h2 {
@@ -114,17 +114,18 @@ export const WebsiteBuilderGuideStyled = styled.div`
       }
     }
   }
-  .stepsWrapper:first-child {
-    margin-top: 0px;
-  }
-
-  .stepsWrapper:last-child {
-    margin-top: -5px;
-  }
+  
   .active h5 {
     background-color: #252b61 !important;
     color: #fff !important;
     
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 30px;
   }
 
   .active .inner-content {

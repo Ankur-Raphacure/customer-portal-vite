@@ -5,11 +5,11 @@ export const HealthSaverCardStyled = styled.div`
   background: #fff;
   border-radius: 2rem;
   box-shadow: 0 4px 23px rgba(0, 0, 0, 0.2);
-
+  height: fit-content;
   h2 {
     /* font-size: 1.2rem;
     font-weight: 500; */
-    font-size: 16px;
+    font-size: 1.2rem;
     letter-spacing: 0.02em;
     font-weight: 600;
     font-family: Outfit, sans-serif;
@@ -36,6 +36,10 @@ export const HealthSaverCardStyled = styled.div`
     }
   }
 
+  .gap10px {
+    gap: 10px;
+  }
+
   .logo {
     gap: 1rem;
     padding: 5px;
@@ -46,12 +50,13 @@ export const HealthSaverCardStyled = styled.div`
     h3 {
       color: #008080;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 1.2rem;
+      text-wrap: nowrap;
     }
     h4 {
       color: #141414;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
   }
 
@@ -64,7 +69,7 @@ export const HealthSaverCardStyled = styled.div`
     .prices {
       display: flex;
       flex-direction: row;
-      gap: 1rem;
+      gap: 0.5rem;
       .realPrice {
         color: #d1d1d1;
         text-decoration: line-through;
@@ -78,13 +83,14 @@ export const HealthSaverCardStyled = styled.div`
       }
     }
     button {
-      background: #252b61;
+      background: #f2e09a;
       border-radius: 25px;
       border: none;
-      color: #fff;
+      color: #000;
       padding: 0.5rem 1rem;
       display: flex;
       align-items: center;
+      font-size: 18px;
       gap: 0.5rem;
     }
   }
@@ -192,7 +198,10 @@ export const HealthSaverCardStyled = styled.div`
       border: none;
     }
   }
-  button:disabled{
+  button:disabled {
     opacity: 0.5;
+  }
+  .cardInfoRow {
+    gap: 2rem;
   }
 `;

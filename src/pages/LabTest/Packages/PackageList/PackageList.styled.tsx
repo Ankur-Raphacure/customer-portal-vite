@@ -11,7 +11,7 @@ export const PackagelistStyled = styled.div`
     padding-bottom: 1rem;
   }
   .imgWrapper {
-    min-height: 10rem;
+    /* min-height: 10rem; */
   }
   .poppins-regular {
     font-family: Poppins, sans-serif;
@@ -123,6 +123,7 @@ export const PackagelistStyled = styled.div`
         width: 227px;
         height: 184px;
         border-radius: 10px;
+        object-fit: contain;
       }
     }
 

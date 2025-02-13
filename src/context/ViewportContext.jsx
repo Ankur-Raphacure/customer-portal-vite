@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from "react";
 
 const ViewportContext = React.createContext({});
 
@@ -9,12 +9,16 @@ const ViewportProvider = ({ children }) => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     handleResize();
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // const isMobileView = useMemo(() => {
+  //   return width <= 768;
+  // }, [width]);
 
   return (
     <ViewportContext.Provider value={{ width }}>

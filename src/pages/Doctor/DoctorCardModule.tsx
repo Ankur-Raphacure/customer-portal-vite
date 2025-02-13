@@ -4,7 +4,8 @@ import { IoIosStar } from "react-icons/io";
 import { useHistory } from "react-router-dom";
 import { ReactComponent as EductIcon } from "../../assets/icons/educIcon.svg";
 import { ReactComponent as TimeSlot } from "../../assets/icons/timeSlt.svg";
-
+const defaultDoctImage =
+  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/1732785725785EMTYDOCTORIMAGE.png-1732785730293.png";
 type DoctorCardModuleProp = {
   appointment: {
     id: number | string;
@@ -22,7 +23,11 @@ type DoctorCardModuleProp = {
     rating: number;
     image: any;
     availableIn90: boolean;
+    doctoreType: string;
   };
+  DoctorBookingReviewProp: Function;
+  DoctorChatProp: Function;
+  DoctorBookConsultProp: Function;
 };
 
 const Banner = ({ rating }: any) => {
@@ -38,8 +43,16 @@ const Banner = ({ rating }: any) => {
   );
 };
 
-const DoctorCardModule = ({ appointment }: DoctorCardModuleProp) => {
+const DoctorCardModule = ({
+  appointment,
+  DoctorBookingReviewProp,
+  DoctorChatProp,
+  DoctorBookConsultProp,
+}: DoctorCardModuleProp) => {
   const history = useHistory();
+
+  console.log(appointment, "appointment");
+
   return (
     <DoctorCardStyled>
       <div className="detail-card">
@@ -52,11 +65,20 @@ const DoctorCardModule = ({ appointment }: DoctorCardModuleProp) => {
           >
             <div className="card-left">
               <Banner rating={appointment?.rating} />
-              <img src={appointment?.image} alt={appointment?.name} />
+              <div className="doctor-image-mobile-view">
+                <img
+                  src={appointment?.image || defaultDoctImage}
+                  alt={appointment?.name}
+                />
+              </div>
+              <div className="doctor-title-mobile-view">
+                <p className="doctor-title">{appointment.name}</p>
+                <p className="specelization-text">{appointment.department}</p>
+              </div>
             </div>
             <div className="card-right">
               <div className="d-flex justify-content-between align-items-center">
-                <div>
+                <div className="doctor-title-web-view">
                   <p className="doctor-title">{appointment.name}</p>
                   <p className="specelization-text">{appointment.department}</p>
                 </div>
@@ -75,7 +97,10 @@ const DoctorCardModule = ({ appointment }: DoctorCardModuleProp) => {
 
               <p className="eduction-details">
                 <EductIcon className="me-2" />
-                <span> {appointment?.education}</span>
+                <span className="education-span">
+                  {" "}
+                  {appointment?.education}
+                </span>
               </p>
               <div className="d-flex align-items-center exp-div">
                 <div className=" Experience-div ">
@@ -85,7 +110,10 @@ const DoctorCardModule = ({ appointment }: DoctorCardModuleProp) => {
                     className="me-2"
                   />
                   <p className="eduction-details">
-                    <span> {appointment.experience} Experience</span>
+                    <span className="divv">
+                      {" "}
+                      {appointment.experience}+ Year Experience
+                    </span>
                   </p>
                 </div>
                 <div className=" Experience-div ">
@@ -95,7 +123,9 @@ const DoctorCardModule = ({ appointment }: DoctorCardModuleProp) => {
                     className="me-2"
                   />
                   <p className="eduction-details">
-                    <span> {appointment?.languages}</span>
+                    <span className="languages-span">
+                      {appointment?.languages}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -106,40 +136,60 @@ const DoctorCardModule = ({ appointment }: DoctorCardModuleProp) => {
             </div>
           </div>
           <div className="main-contect-div">
-            <div
-              className="contect-div"
-              // onClick={() =>
-              //   history.push(`/doctor/doctordetails/${appointment?.id}`)
-              // }
-            >
-              <p className="contect-text">
-                <img
-                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736245507200.png"
-                  alt=" chat"
-                  className="me-2"
-                />
-                Chat
-              </p>
-              <p className="contect-text">
-                <img
-                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736245537447.png"
-                  alt="Virtual"
-                  className="me-2"
-                />
-                Virtual Consult
-              </p>
-              <p className="contect-text">
-                <img
-                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736245570436.png"
-                  alt="Clinic"
-                  className="me-2"
-                />
-                In Clinic Visit
-              </p>
+            <div className="contect-div">
+              {appointment?.doctoreType !== "opd" && (
+                <p
+                  className="contect-text"
+                  onClick={() => DoctorChatProp(appointment)}
+                >
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736245507200.png"
+                    alt=" chat"
+                    className="me-2"
+                  />
+                  Chat
+                </p>
+              )}
+              {(appointment?.doctoreType == "both" ||
+                appointment?.doctoreType == "virtual") && (
+                <p
+                  className="contect-text"
+                  onClick={() => DoctorBookingReviewProp(appointment)}
+                >
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736245537447.png"
+                    alt="Virtual"
+                    className="me-2"
+                  />
+                  Virtual Consult
+                </p>
+              )}
+
+              {(appointment?.doctoreType == "both" ||
+                appointment?.doctoreType == "opd") && (
+                <>
+                  <p
+                    className="contect-text"
+                    onClick={() => DoctorBookingReviewProp(appointment)}
+                  >
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736245570436.png"
+                      alt="Clinic"
+                      className="me-2"
+                    />
+                    In Clinic Visit
+                  </p>
+                </>
+              )}
             </div>
 
             <div className="contect-book-btn-div">
-              <button className="btn contect-book-btn">book Consult</button>
+              <button
+                className="btn contect-book-btn"
+                onClick={() => DoctorBookConsultProp(appointment)}
+              >
+                Book Consult
+              </button>
             </div>
           </div>
         </div>

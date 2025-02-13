@@ -10,6 +10,8 @@ const UploadPrescription = () => {
   const location = useLocation();
   const section = location?.state;
 
+  console.log(section, "section");
+
   return (
     <UploadPrescriptionStyled>
       <div className="topGrid">

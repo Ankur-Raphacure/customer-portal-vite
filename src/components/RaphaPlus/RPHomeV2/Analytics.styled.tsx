@@ -4,8 +4,8 @@ export const AnalyticsStyled = styled.div`
   .practice-analytics-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 40px;
+
+    padding: 60px 40px;
   }
 
   .practice-analytics-card {
@@ -23,9 +23,9 @@ export const AnalyticsStyled = styled.div`
 
   .practice-analytics-image {
     width: 50%;
+
     display: flex;
     justify-content: center;
-    align-items: center;
 
     @media (max-width: 1024px) {
       width: 80%;
@@ -43,10 +43,10 @@ export const AnalyticsStyled = styled.div`
 
   .practice-analytics-content {
     width: 50%;
-    padding: 2rem;
+    justify-content: center;
+    padding: 4rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 
     @media (max-width: 1024px) {
       width: 80%;
@@ -72,7 +72,6 @@ export const AnalyticsStyled = styled.div`
     color: #3c4959;
     margin-bottom: 1.5rem;
   }
-  
 
   .practice-analytics-features {
     list-style-type: none;
@@ -99,12 +98,9 @@ export const AnalyticsStyled = styled.div`
     color: #374151;
   }
 
-
   @media (max-width: 391px) {
-
     .practice-analytics-container {
       display: none;
     }
-    
   }
 `;

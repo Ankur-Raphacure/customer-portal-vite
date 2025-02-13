@@ -10,16 +10,19 @@ import "./responsive.css";
 // redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { SocketProvider } from "./context/SocketProvider";
 
 const App: React.FC = () => {
   return (
     <ViewportProvider>
       <Provider store={store}>
-        <BrowserRouter>
-          <Switch>
-            <Main />
-          </Switch>
-        </BrowserRouter>
+        <SocketProvider>
+          <BrowserRouter>
+            <Switch>
+              <Main />
+            </Switch>
+          </BrowserRouter>
+        </SocketProvider>
       </Provider>
     </ViewportProvider>
   );

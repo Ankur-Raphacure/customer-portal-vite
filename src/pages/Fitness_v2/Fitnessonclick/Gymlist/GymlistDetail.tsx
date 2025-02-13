@@ -69,6 +69,8 @@ const GymlistDetail = (props: any) => {
     dispatch(getCategoriesAPI({ type: "gym", city: city?.toLowerCase() }));
   };
   const handleBookNow = async (test: any, vendor: any) => {
+    console.log("test",test)
+    console.log("vendor",vendor)
     if (!user?.id) {
       dispatch(updateShowLoginModel(true));
     } else {
@@ -148,7 +150,9 @@ const GymlistDetail = (props: any) => {
             {vendorInfo?.id === item?.id && (
               <div className="gym-tests-all">
                 {vendorInfo?.tests?.map((item1: any) => {
+                  console.log("item", item);
                   console.log("item1", item1);
+                  
                   return (
                     <div className="gym-tests-box">
                       <div>
@@ -159,7 +163,7 @@ const GymlistDetail = (props: any) => {
                             <p>
                               <span className="hide-opacity">Price:</span> ₹
                               {item1?.price?.discounted_price
-                                ?.toFixed(2)
+                                ?.toFixed?.(2)
                                 ?.toLocaleString("en-US")}
                             </p>
                           </div>

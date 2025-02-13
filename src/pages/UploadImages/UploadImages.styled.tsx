@@ -7,6 +7,19 @@ export const UploadImagesStyled = styled.div`
     font-weight: 400;
   }
 
+  .main-heading {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    padding: 29px 0px 0px 0px;
+    font-weight: 600;
+    font-family: inter;
+  }
+
+  .main-content {
+    padding: 0rem 20rem;
+  }
+
   .poppins-medium {
     font-family: Poppins, sans-serif;
     font-style: normal;
@@ -116,29 +129,49 @@ export const UploadImagesStyled = styled.div`
     margin-top: 30px;
     position: relative;
     border-radius: 10px;
-    background-color: rgba(0, 165, 255, 0.1);
-    border: 3px dashed #00a5ff;
+    background-color: rgba(37, 43, 97, 0.1);
+    border: 3px dashed #252b61;
     box-sizing: border-box;
-    height: 271px;
+    height: 300px;
     text-align: center;
     padding-top: 92px;
     cursor: pointer;
 
     &:hover {
-      background: #00a5ff33;
+      background: #252b6133;
     }
+  }
+
+  .uploaded-image-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 30px;
+    border: 3px dashed #252b61;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(37, 43, 97, 0.1);
+  }
+
+  .uploaded-image {
+    margin: 10px 0px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
   .progress-container {
     width: 100%;
     margin-top: 15px;
     height: 231px;
-    border: 3px dashed #00a5ff;
+    border: 3px dashed #252b61;
     border-radius: 10px;
     cursor: pointer;
-    background: rgba(0, 165, 255, 0.1);
+    background: rgba(37, 43, 97, 0.1);
 
     &:hover {
-      background: #00a5ff33;
+      background: #252b6133;
     }
 
     .progress-barwrap {
@@ -158,14 +191,50 @@ export const UploadImagesStyled = styled.div`
           transition-width: auto;
           transition-duration: 300ms;
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-          background: #00a5ff;
+          background: #252b61;
           height: 100%;
         }
       }
     }
   }
 
-  
+  .upload-prescription-url {
+    display: flex;
+    justify-content: center;
+  }
+  .copy-url-btn {
+    position: relative;
+    border-radius: 10px;
+    background-color: #252b61;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-family: inter;
+    line-height: 27px;
+    @media only screen and (min-width: 1024px) {
+      padding: 15px 20px;
+    }
+  }
+
+  .copy-success-message {
+    margin-left: 10px;
+    font-size: 1rem;
+    font-family: inter;
+    font-weight: 600;
+    color: #252b61;
+  }
+
+  .drag-drop {
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-family: inter;
+    opacity: 0.7;
+  }
+
   .actions-btn-sec-content {
     display: flex;
     flex-wrap: wrap;
@@ -173,6 +242,7 @@ export const UploadImagesStyled = styled.div`
     margin-bottom: 16px;
     justify-content: flex-end;
     align-items: center;
+    padding: 0rem 20rem;
 
     @media (max-width: 760px) {
       flex-direction: column;
@@ -210,11 +280,11 @@ export const UploadImagesStyled = styled.div`
     position: relative;
     border-radius: 10px;
     background-color: #fff;
-    border: 1px solid #9747ff;
+    border: 1px solid #252b61;
     box-sizing: border-box;
     width: 100%;
     padding: 7.5px 9px;
-    color: #9747ff;
+    color: #252b61;
     white-space: nowrap;
     @media only screen and (min-width: 1024px) {
       padding: 15px 18px;
@@ -240,11 +310,12 @@ export const UploadImagesStyled = styled.div`
   .submit-prescription-btn {
     position: relative;
     border-radius: 10px;
-    background-color: #9747ff;
+    background-color: #252b61;
     padding: 7px 22px;
     border: none;
     color: #fff;
     font-size: 18px;
+    font-family: inter;
     line-height: 27px;
     @media only screen and (min-width: 1024px) {
       padding: 13px 44px;
@@ -252,10 +323,12 @@ export const UploadImagesStyled = styled.div`
   }
   .support-text-box-sec {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
     margin-top: 16px;
     position: relative;
-    font-size: 16px;
+    font-size: 18px;
+    font-family: inter;
     color: #000;
     white-space: pre-wrap;
     text-align: left;
@@ -341,6 +414,3 @@ export const UploadImagesStyled = styled.div`
     opacity: 0.5;
   }
 `;
-
-
-

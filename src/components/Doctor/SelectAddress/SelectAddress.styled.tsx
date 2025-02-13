@@ -94,4 +94,14 @@ export const SelectAddressStyled = styled.div`
       padding: 1rem;
     }
   }
+
+  input#address {
+    display: flex;
+    margin: 2rem 1rem;
+    width: 90%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    height: 42px;
+    padding-left: 10px;
+  }
 `;

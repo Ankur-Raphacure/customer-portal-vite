@@ -85,29 +85,54 @@ export const BMICalculatorStyled = styled.div`
     padding: 2rem;
   }
   .day-div {
-    width: 45px;
+    /* width: 45px; */
     font-size: 16px;
     letter-spacing: 0.06em;
     line-height: 31px;
     font-weight: 600;
     color: #9747ff;
-    height: 12px;
+    /* height: 12px; */
   }
   .list-div {
     background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   .slot-div {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 4rem;
+    padding: 2rem;
   }
   .slot-title {
-    width: 90px;
+    /* width: 90px; */
     font-size: 14px;
     letter-spacing: 0.06em;
     line-height: 31px;
     font-weight: 600;
     color: #424346;
-    height: 12px;
+    /* height: 12px; */
+  }
+  .timeSlot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ul {
+      padding: 0;
+      width: 100%;
+      li {
+        justify-content: center;
+        padding: 10px;
+        input {
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          width: 100%;
+        }
+      }
+    }
   }
   .name-div {
     padding: 15px;
@@ -218,7 +243,6 @@ export const BMICalculatorStyled = styled.div`
   }
 
   .button .button__text {
-    transform: translateX(22px);
     color: #fff;
     font-weight: 600;
   }
@@ -258,5 +282,20 @@ export const BMICalculatorStyled = styled.div`
 
   .button:active {
     border: 1px solid #146c54;
+  }
+
+  .weeks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-div {
+    gap: 1rem;
+    align-items: center;
+    .update-button {
+      height: 100%;
+    }
   }
 `;

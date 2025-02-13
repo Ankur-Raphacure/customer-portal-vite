@@ -4,31 +4,18 @@ import ViewDetails from "./ViewDetails";
 import RescheduleBookingForm from "../Bookings/RescheduleBookingForm";
 import { useHistory } from "react-router-dom";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
+import { formatStatus } from "../../../../Scenes/common";
+import { BsPersonCircle } from "react-icons/bs";
+import moment from "moment";
+import { TbReportMedical } from "react-icons/tb";
+import { toast } from "react-toastify";
 
 const OrderItem = ({ item }: any) => {
   const history = useHistory();
   const [showDetails, setShowDetails] = useState(false);
-  const {
-    image,
-    name,
-    type,
-    schDate,
-    bookDate,
-    service_code,
-    price,
-    status,
-    orgBookingObj,
-  } = item;
+  const { service_code, orgBookingObj } = item;
   const [showReBookForm, setShowReBookForm] = useState(false);
   console.log("orgBookingObj : ", orgBookingObj);
-
-  function formatStatus(status: any) {
-    return status
-      .toLowerCase()
-      .split("_")
-      .map((word: any) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  }
 
   const navigateTo = () => {
     history.push("/cart");
@@ -65,54 +52,111 @@ const OrderItem = ({ item }: any) => {
     }
   };
 
+  const handleOpenEPrescription = () => {
+    if (!orgBookingObj?.id) {
+      toast.error("Prescription ID Not found");
+    } else {
+      history.push(`/eprescription/${orgBookingObj?.id}`);
+    }
+  };
+
   return (
     <div className="borderShadow">
       <div className="consultation-card">
         <div className="consultation-header">
-          <div className="avatar-placeholder">
-            <img src={image} alt="Doc" />
+          <div className="">
+            {orgBookingObj?.doctor?.image ? (
+              <img
+                src={orgBookingObj?.doctor?.image}
+                alt={orgBookingObj?.doctor?.name}
+                className="doctor-image"
+              />
+            ) : (
+              <BsPersonCircle className="default-image" size={32} />
+            )}
           </div>
           <div className="consultation-info">
-            <h2>{name}</h2>
-            <p>{orgBookingObj?.test?.type || type}</p>
+            <h2>{orgBookingObj?.doctor?.name}</h2>
+            <p>{formatStatus(orgBookingObj?.type)}</p>
+          </div>
+          <div className="ml-auto">
+            <h2>#{orgBookingObj?.id}</h2>
           </div>
         </div>
         <div className="consultation-details">
           <div className="detail">
             <p>Scheduled Date:</p>
-            <p>{schDate}</p>
+            <p>{orgBookingObj?.collection_1_date || ""}</p>
           </div>
           <div className="detail">
             <p>Booked Date:</p>
-            <p>{bookDate}</p>
+            <p>
+              {" "}
+              {orgBookingObj?.created_at
+                ? moment(orgBookingObj?.created_at).format(
+                    "MMMM DD, YYYY, h:mm A"
+                  )
+                : "N/A"}
+            </p>
           </div>
         </div>
         <div className="consultation-footer">
           <p className="price">
-            <MdOutlineCurrencyRupee /> {price}.00
+            <MdOutlineCurrencyRupee /> {orgBookingObj?.final_amount || 0}.00
           </p>
-          {(status === "completed" || status === "report_delivered") && (
+
+          <>
+            {(() => {
+              const isVirtualOrTestBooking =
+                orgBookingObj?.type === "virtual_consultation" ||
+                orgBookingObj?.type === "test_booking";
+
+              const isStatusEligible = [
+                "completed",
+                "prescription_sent_successfully",
+                "report_delivered",
+              ].includes(orgBookingObj?.status);
+
+              const hasAttachments =
+                orgBookingObj?.attachments?.length > 0 &&
+                orgBookingObj?.attachments[0]?.id;
+
+              return isVirtualOrTestBooking &&
+                (isStatusEligible || hasAttachments) ? (
+                <button
+                  className="eprescription-btn"
+                  onClick={handleOpenEPrescription}
+                >
+                  <TbReportMedical size={25} /> E Prescription
+                </button>
+              ) : null;
+            })()}
+          </>
+
+          {(orgBookingObj?.status === "completed" ||
+            orgBookingObj?.status === "report_delivered") && (
             <>
               <div className="status">
                 <div className="status-icon"></div>
-                <p>{formatStatus(status)}</p>
+                <p>{formatStatus(orgBookingObj?.status)}</p>
               </div>
               <button className="book-again-btn" onClick={() => reOrder()}>
                 Book Again
               </button>
             </>
           )}
-          {(status === "ongoing" ||
-            status === "open" ||
-            status === "confirmation_pending" ||
-            status === "client_confirmation_pending" ||
-            status === "booking_scheduled" ||
-            status === "awaiting_report" ||
-            status === "work_in_progress") && (
+
+          {(orgBookingObj?.status === "ongoing" ||
+            orgBookingObj?.status === "open" ||
+            orgBookingObj?.status === "confirmation_pending" ||
+            orgBookingObj?.status === "client_confirmation_pending" ||
+            orgBookingObj?.status === "booking_scheduled" ||
+            orgBookingObj?.status === "awaiting_report" ||
+            orgBookingObj?.status === "work_in_progress") && (
             <>
               <div className="status">
                 <div className="status-icon-scheduled"></div>
-                <p>{formatStatus(status)}</p>
+                <p>{formatStatus(orgBookingObj?.status)}</p>
               </div>
               <button className="chat-btn">
                 <HiChatAlt2 size={25} /> Chat
@@ -125,11 +169,13 @@ const OrderItem = ({ item }: any) => {
               </button>
             </>
           )}
-          {(status === "cancelled" || status === "payment_pending") && (
+
+          {(orgBookingObj?.status === "cancelled" ||
+            orgBookingObj?.status === "payment_pending") && (
             <>
               <div className="status">
                 <div className="status-icon-cancelled"></div>
-                <p>{formatStatus(status)}</p>
+                <p>{formatStatus(orgBookingObj?.status)}</p>
               </div>
               <button
                 className="reorder-btn"

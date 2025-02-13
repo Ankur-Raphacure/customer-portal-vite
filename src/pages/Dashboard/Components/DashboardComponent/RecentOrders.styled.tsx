@@ -68,6 +68,10 @@ export const RecentOrdersStyled = styled.div`
     justify-content: space-between;
   }
 
+  .doctor-image {
+    max-width: 80px;
+  }
+
   .price {
     font-size: 16px;
     font-weight: bold;
@@ -123,6 +127,15 @@ export const RecentOrdersStyled = styled.div`
     display: none; //we have to enable this
     padding: 8px 16px;
     background-color: #40d7bf;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .eprescription-btn {
+    padding: 8px 16px;
+    background-color: #faab98;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -353,5 +366,23 @@ export const RecentOrdersStyled = styled.div`
   .total-value {
     font-weight: bold;
     color: #9c27b0; /* Purple color for emphasis */
+  }
+  @media screen and (max-width: 480px) {
+    .consultation-footer {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    .consultation-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .consultation-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
   }
 `;

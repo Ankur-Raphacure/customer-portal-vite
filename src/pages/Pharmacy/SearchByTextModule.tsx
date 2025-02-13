@@ -2,20 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa6";
 import { SearchByTextModuleStyled } from "./SearchByTextModule.styled";
+import { LuMic } from "react-icons/lu";
 
 const SearchByTextModule = (props: any) => {
   const { details, value, setSearchText } = props;
+  console.log("details : ", details);
   const recognitionRef = useRef<any>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
   const [placeholderText, setPlaceholderText] = useState(
-    `Search For ‘${details[0]}’` || "Search"
+    `Search ‘${details[0]}’` || "Search"
   );
+
   const [originPage, setOriginPage] = useState("");
 
   useEffect(() => {
     setOriginPage(props?.origin || "");
-  }, [props]);
+    setPlaceholderText(`Search ‘${details[0]}’` || "Search");
+  }, [props, details]);
 
   const handleVoiceInput = () => {
     setSearchTerm("");
@@ -70,16 +74,13 @@ const SearchByTextModule = (props: any) => {
           <input
             type="text"
             placeholder={
-              originPage === "labtest" ? "Search For Labtest" : placeholderText
+              originPage === "labtest" ? "Search Labtest" : placeholderText
             }
             className="search-input"
             value={searchTerm}
             onChange={handleInputChange}
           />
-          <FaMicrophone
-            className="searchicon mic-icon"
-            onClick={handleVoiceInput}
-          />
+          <LuMic className="searchicon mic-icon" onClick={handleVoiceInput} />
         </div>
       </div>
     </SearchByTextModuleStyled>

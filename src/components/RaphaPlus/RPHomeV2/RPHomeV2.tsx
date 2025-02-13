@@ -13,6 +13,7 @@ import FAQ from "./FAQ";
 import Privacy from "./Privacy";
 
 const RPHomeV2 = () => {
+  
   const cardData = [
     {
       image:

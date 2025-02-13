@@ -50,7 +50,7 @@ const WebsiteBuilderGuide = () => {
       <div className="website-builder-guide">
         <div className="steps">
           <h2>How to Build your Website in Minutes</h2>
-          <div className="">
+          <div className="content">
             {steps.map((step, index) => (
               <div
                 key={index}
