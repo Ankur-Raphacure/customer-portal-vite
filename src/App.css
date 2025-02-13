@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 .bodySection {
   margin: auto;
   color: #333;
@@ -27,14 +28,19 @@ iframe {
   width: 100%;
   margin: auto;
   padding-bottom: 0px;
-  background-color: #fff;
+  background-color: #f6f9fd;
   min-height: 720px;
 }
 .full-content-sec-page-design {
   width: 100%;
   /* display: flex; */
-  margin-top: 22px;
+  margin-top: 24px;
   gap: 20px;
+}
+@media (max-width: 768px) {
+  .full-content-sec-page-design {
+    margin-top: 0px;
+  }
 }
 .left-menu-side-content {
   width: 30%;
@@ -79,6 +85,32 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: 400;
   color: #141414;
 }
-.w-fit{
+.w-fit {
   width: fit-content;
+}
+.highlightLink {
+  color: #1890ff;
+  cursor: pointer;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.navbar-header-text-div {
+  visibility: visible;
+}
+
+/* in doctor list page we need to stop overflow of main div since filter will take full height */
+@media screen and (max-width: 768px) {
+  .wrapper-hide-header:has(
+      .full-content-sec-page-design
+        .doctor-list-main-div
+        .side-filter-p-div
+        .sideFilterModule
+        .btnWrapperDiv
+    ) {
+    height: 100vh; /* Make body equal to the viewport height */
+    overflow: hidden; /* Disable scrolling */
+  }
 }

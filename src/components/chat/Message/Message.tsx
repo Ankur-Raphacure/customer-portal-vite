@@ -4,8 +4,8 @@ import { ChatContext } from "../../../pages/Chat/context/ChatConext";
 import { messageDto } from "../../../pages/Chat/type";
 import UserProfileImage from "../UserProfileImage";
 import { Dropdown, Tooltip } from "antd";
-import data from '@emoji-mart/data'
-import Picker from '@emoji-mart/react'
+// import data from '@emoji-mart/data'
+// import Picker from '@emoji-mart/react'
 import { LuReplyAll, LuSmilePlus } from "react-icons/lu";
 import ShareMessages from "../ShareMessages";
 import { FaAngleDown } from "react-icons/fa";
@@ -86,12 +86,12 @@ const Message = ({ msg }: { msg: messageDto }) => {
           placement="topCenter"
           menu={{
             items: [
-              {
-                key: "1",
-                label: <Picker data={data} onEmojiSelect={(e: any) => {
-                  handleReact({ chatType: currentChat?.chatType || "INDIVIDUAL_CHAT", emoji: e?.native, messageId: msg?._id, to: currentChat?.chatId || "", from: userChatId })
-                }} />
-              }
+              // {
+              //   key: "1",
+              //   label: <Picker data={data} onEmojiSelect={(e: any) => {
+              //     handleReact({ chatType: currentChat?.chatType || "INDIVIDUAL_CHAT", emoji: e?.native, messageId: msg?._id, to: currentChat?.chatId || "", from: userChatId })
+              //   }} />
+              // }
             ]
           }} >
           <LuSmilePlus />

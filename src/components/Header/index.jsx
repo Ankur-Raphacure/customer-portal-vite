@@ -22,8 +22,6 @@ import {
   Row,
   Col,
   Button,
-  CardDeck,
-  CardColumns,
   InputGroup,
   Dropdown,
 } from "react-bootstrap";

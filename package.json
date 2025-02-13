@@ -1,7 +1,7 @@
 {
   "name": "customer-portal-vite",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -48,8 +48,6 @@
     "react-bootstrap": "^2.10.4",
     "react-calendar": "^5.0.0",
     "react-device-detect": "^2.2.3",
-    "@emoji-mart/data": "^1.2.1",
-    "@emoji-mart/react": "^1.1.1",
     "motion": "^12.0.11",
     "react-content-loader": "^7.0.2",
     "react-datetime": "^3.2.0",

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
 
-import { Row, Col, Button, Form, CardDeck, CardColumns } from "react-bootstrap";
 // import "./styles.css";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
