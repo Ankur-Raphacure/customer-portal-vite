@@ -22,7 +22,7 @@ const NetworkList = (props: any) => {
   const [doctorsCount, setDoctorsCount] = useState(0);
 
   const { hospitalList, doctorsList, tablist } = useSelector(
-    (ReduxState: any) => ReduxState.doctor
+    (ReduxState: any) => ReduxState.doctor,
   );
 
   useEffect(() => {

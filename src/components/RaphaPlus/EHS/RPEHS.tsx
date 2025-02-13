@@ -3,7 +3,11 @@ import { RPEHSStyled } from "./RPEHS.styled";
 import appStore from "../../../assets/images/appstore.png";
 import googlePlay from "../../../assets/images/googleplay.png";
 
-const images = ["https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405809788.png", "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405893675.png", "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405932429.png"]; // Array of images
+const images = [
+  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405809788.png",
+  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405893675.png",
+  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405932429.png",
+]; // Array of images
 
 const RPEHS = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

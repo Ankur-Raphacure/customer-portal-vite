@@ -18,7 +18,7 @@ const uploadFileToAzure = async (
   sasToken: string,
   file: File | null,
   fileName: string,
-  contentDir: string = contentGuId
+  contentDir: string = contentGuId,
 ): Promise<string | null> => {
   try {
     if (!file) return "";
@@ -26,12 +26,11 @@ const uploadFileToAzure = async (
     // get Container - full public read access
 
     const blobServiceClient = new BlobServiceClient(
-      `https://${account}.blob.core.windows.net?${sasToken}`
+      `https://${account}.blob.core.windows.net?${sasToken}`,
     );
 
-    const containerClient: ContainerClient = blobServiceClient.getContainerClient(
-      `${contentDir}`
-    );
+    const containerClient: ContainerClient =
+      blobServiceClient.getContainerClient(`${contentDir}`);
 
     if (!containerClient.exists()) {
       await containerClient.createIfNotExists({
@@ -50,7 +49,7 @@ const uploadFileToAzure = async (
 const createBlobInContainer = async (
   containerClient: ContainerClient,
   file: any,
-  fileName: String
+  fileName: String,
 ) => {
   const new_name = `${fileName}`;
   const type = file.type ? file.type : file.split(";")[0].split(":")[1];
@@ -97,7 +96,7 @@ const uploadImageNew = async (file: any, sasToken: any) => {
 export const uploadImage = async (
   sasToken: string,
   file: any,
-  contentDir: string = "image"
+  contentDir: string = "image",
 ) => {
   const imgFile = file;
 
@@ -106,8 +105,8 @@ export const uploadImage = async (
   const type = imgFile?.name
     ? ""
     : imgFile
-    ? imgFile.split(";")[0].split("/")[1]
-    : "";
+      ? imgFile.split(";")[0].split("/")[1]
+      : "";
 
   const actual_name = imgFile?.name
     ? `_${imgFile.name.replace(/ /g, "")}`
@@ -118,7 +117,7 @@ export const uploadImage = async (
     sasToken,
     imgFile,
     fileName,
-    contentDir
+    contentDir,
   );
 
   const responseData = {
@@ -130,15 +129,15 @@ export const uploadImage = async (
 export const uploadPDF = async (
   sasToken: string,
   pdfFile: any,
-  contentDir: string = "pdf"
+  contentDir: string = "pdf",
 ) => {
   const mille_sec = moment.now();
 
   const type = pdfFile?.name
     ? ""
     : pdfFile
-    ? pdfFile.split(";")[0].split("/")[1]
-    : "";
+      ? pdfFile.split(";")[0].split("/")[1]
+      : "";
 
   const actual_name = pdfFile?.name
     ? `_${pdfFile.name.replace(/ /g, "")}`
@@ -149,7 +148,7 @@ export const uploadPDF = async (
     sasToken,
     pdfFile,
     fileName,
-    contentDir
+    contentDir,
   );
 
   const responseData = {

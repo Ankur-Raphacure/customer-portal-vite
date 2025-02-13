@@ -199,4 +199,4 @@ export const SpecializationStyled = styled.div`
       cursor: pointer;
     }
   }
-`
+`;

@@ -6,7 +6,7 @@ export interface HypersiteState {
   error: any;
   services: {};
   sites: any;
-} 
+}
 
 const initialState: HypersiteState = {
   loading: false,
@@ -25,7 +25,7 @@ export const hypersiteSlice = createSlice({
 
     updateErrorMessage: (
       state: HypersiteState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.error = action.payload;
     },
@@ -43,7 +43,7 @@ export const hypersiteSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.services = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllFrontendServices.rejected,
@@ -51,7 +51,7 @@ export const hypersiteSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     // HyperSite Reducers
@@ -66,7 +66,7 @@ export const hypersiteSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.sites = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllHyperSites.rejected,
@@ -74,7 +74,7 @@ export const hypersiteSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
   },
 });

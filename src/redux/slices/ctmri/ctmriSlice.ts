@@ -51,7 +51,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allScansList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllScansListAPI.rejected,
@@ -59,7 +59,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     builder.addCase(getAllScansCityAPI.pending, (state: any) => {
@@ -73,7 +73,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allCityList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllScansCityAPI.rejected,
@@ -81,7 +81,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //scanDetails
@@ -96,7 +96,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allCategoriessList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllCategoriesListAPI.rejected,
@@ -104,7 +104,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     builder.addCase(getCtmriDetailsQueryAPI.pending, (state: any) => {
@@ -118,7 +118,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.scanDetails = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getCtmriDetailsQueryAPI.rejected,
@@ -126,7 +126,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //getPackageDetailsQueryAPI
     builder.addCase(getPackageDetailsQueryAPI.pending, (state: any) => {
@@ -140,7 +140,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.scanDetails = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getPackageDetailsQueryAPI.rejected,
@@ -148,7 +148,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //getAllScansNearByAPI
     builder.addCase(getAllScansNearByAPI.pending, (state: any) => {
@@ -162,7 +162,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allScansNearBy = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllScansNearByAPI.rejected,
@@ -170,7 +170,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
   },
 });

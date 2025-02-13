@@ -78,7 +78,7 @@ const SlotSelectionPopup = (props: any) => {
         response.payload &&
           response.payload.data &&
           response.payload.data.timeslots &&
-          response.payload.data.timeslots.length > 0
+          response.payload.data.timeslots.length > 0,
       );
     } catch (error) {
       setSlotsAvailable(false);
@@ -104,8 +104,8 @@ const SlotSelectionPopup = (props: any) => {
       const vvvID = props.item.hospitalDetails?.id
         ? props.item.hospitalDetails?.id
         : props.item.hospitalDetails?.vendorId
-        ? parseInt(props.item.hospitalDetails?.vendorId)
-        : undefined;
+          ? parseInt(props.item.hospitalDetails?.vendorId)
+          : undefined;
       getDoctorsSlots({
         date: getDateStr(),
         doctorId: props?.item?.doctorDetails?.id,

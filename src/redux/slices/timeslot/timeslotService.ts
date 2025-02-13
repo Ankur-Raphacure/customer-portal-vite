@@ -21,5 +21,5 @@ export const getDoctorSlotsAPI = createAsyncThunk(
             test_code: obj?.test_code,
           };
     return await patch(`${SERVER_IP}/api/v1/timeslot/${urlN}`, objbody);
-  }
+  },
 );

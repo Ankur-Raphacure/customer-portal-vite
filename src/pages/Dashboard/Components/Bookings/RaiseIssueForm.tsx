@@ -88,8 +88,8 @@ const RaiseIssueForm = ({ bookingId, onClose }: any) => {
       mobileNumber: !formData.mobileNumber
         ? "Mobile number is required"
         : formData.mobileNumber.length !== 10
-        ? "Mobile number must be 10 digits"
-        : "",
+          ? "Mobile number must be 10 digits"
+          : "",
       concerns: !formData.concerns ? "Please describe your concerns" : "",
     };
 

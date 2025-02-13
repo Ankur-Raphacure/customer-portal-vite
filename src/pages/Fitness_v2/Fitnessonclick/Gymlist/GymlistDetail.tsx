@@ -50,7 +50,7 @@ const GymlistDetail = (props: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { allGymVendorsList, allGymCategoriesList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
   console.log("allGymVendorsList", allGymVendorsList);
@@ -69,8 +69,8 @@ const GymlistDetail = (props: any) => {
     dispatch(getCategoriesAPI({ type: "gym", city: city?.toLowerCase() }));
   };
   const handleBookNow = async (test: any, vendor: any) => {
-    console.log("test",test)
-    console.log("vendor",vendor)
+    console.log("test", test);
+    console.log("vendor", vendor);
     if (!user?.id) {
       dispatch(updateShowLoginModel(true));
     } else {
@@ -81,7 +81,7 @@ const GymlistDetail = (props: any) => {
           categoryType: "gym",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push(`/gym/bookingReview`);
     }
@@ -104,7 +104,12 @@ const GymlistDetail = (props: any) => {
           <div className="gyminside">
             <div className="item">
               <div className="column image">
-                <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736336185030.png"} alt="Gym Details Image" />
+                <img
+                  src={
+                    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736336185030.png"
+                  }
+                  alt="Gym Details Image"
+                />
                 <div className="image-caption">
                   <Badgetwo /> 20% Saving Use Coupon Rapha 4
                 </div>
@@ -152,7 +157,7 @@ const GymlistDetail = (props: any) => {
                 {vendorInfo?.tests?.map((item1: any) => {
                   console.log("item", item);
                   console.log("item1", item1);
-                  
+
                   return (
                     <div className="gym-tests-box">
                       <div>

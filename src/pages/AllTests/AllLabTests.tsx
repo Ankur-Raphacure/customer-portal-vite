@@ -36,10 +36,10 @@ const AllLabTest = (props: any) => {
   const [minDiscount, setMinDiscount] = useState(0);
   const [maxDiscount, setMaxDiscount] = useState(0);
   const { allTestsList, MedicinesCount } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
   const { vendors } = useSelector(
-    (ReduxState: any) => ReduxState.bookingReview
+    (ReduxState: any) => ReduxState.bookingReview,
   );
   const [maxLabtestsCount, setMaxLabtestsCount] = useState(20);
   const [selectedCategories, setSelectedCategories] = useState<any>([]);
@@ -211,7 +211,7 @@ const AllLabTest = (props: any) => {
     setFastingToggle(false);
     if (!selected) {
       const updatedTubes = selectedTubes.filter(
-        (tube: any) => tube !== test.tube_name
+        (tube: any) => tube !== test.tube_name,
       );
       setSelectedTubes(updatedTubes);
       const newFilter = {
@@ -244,7 +244,7 @@ const AllLabTest = (props: any) => {
               count: currentCount,
               page: 1,
             },
-          })
+          }),
         )) as any;
 
         if (res?.error) {
@@ -264,7 +264,7 @@ const AllLabTest = (props: any) => {
 
       // Remove newCategory from selectedCategories
       const updatedCategories = selectedCategories.filter(
-        (category: any) => category !== newCategory
+        (category: any) => category !== newCategory,
       );
 
       setSelectedCategories(updatedCategories);
@@ -311,7 +311,7 @@ const AllLabTest = (props: any) => {
 
       // Remove newVendor from selectedVendors
       const updatedVendors = selectedVendors.filter(
-        (vendr: any) => vendr !== newVendor
+        (vendr: any) => vendr !== newVendor,
       );
 
       setSelectedVendors(updatedVendors);
@@ -352,7 +352,7 @@ const AllLabTest = (props: any) => {
 
   const getLabtestCategoriesAPI = async () => {
     const res = (await dispatch(
-      getAllCategoriesAPI({ sectionName: "labtest" })
+      getAllCategoriesAPI({ sectionName: "labtest" }),
     )) as any;
     setLabtestCategories(res?.payload?.data);
   };
@@ -421,7 +421,7 @@ const AllLabTest = (props: any) => {
           count: testsPerPage,
           page: 1,
         },
-      })
+      }),
     )) as any;
 
     if (res?.error) {
@@ -516,7 +516,8 @@ const AllLabTest = (props: any) => {
                 : allTestsList?.data || []
               )?.map((testItem: any, index: any) => {
                 const isAddedToCart = pProducts?.tests?.find(
-                  (item2: any) => item2?.service_code === testItem?.service_code
+                  (item2: any) =>
+                    item2?.service_code === testItem?.service_code,
                 );
 
                 return (

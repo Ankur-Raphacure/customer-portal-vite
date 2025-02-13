@@ -13,7 +13,8 @@ const EquipmentCard = (props: any) => {
       size: '20" Wheelchair Holds up to 280 lbs',
       price_per_day: 250,
       unit: "Daily",
-      image: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501954993.png",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501954993.png",
     },
     {
       id: 2,
@@ -21,7 +22,8 @@ const EquipmentCard = (props: any) => {
       size: '22" Wheelchair Holds up to 300 lbs',
       price_per_day: 500,
       unit: "Daily",
-      image: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501954993.png",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501954993.png",
     },
     {
       id: 2,
@@ -29,7 +31,8 @@ const EquipmentCard = (props: any) => {
       size: '22" Wheelchair Holds up to 300 lbs',
       price_per_day: 500,
       unit: "Daily",
-      image: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501954993.png",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501954993.png",
     },
     {
       id: 2,
@@ -38,7 +41,8 @@ const EquipmentCard = (props: any) => {
       description: '22" Wheelchair Holds up to 300 lbs',
       price_per_day: 500,
       unit: "Daily",
-      image: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501954993.png",
+      image:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501954993.png",
     },
   ];
 
@@ -47,7 +51,11 @@ const EquipmentCard = (props: any) => {
       <div className="col-md-3 col-sm-6 equipment-card">
         <div className="equipment-image-container">
           <img
-            src={item?.image ? item?.image : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736503040591.png"}
+            src={
+              item?.image
+                ? item?.image
+                : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736503040591.png"
+            }
             alt={item?.name}
             className="equipment-image"
           />

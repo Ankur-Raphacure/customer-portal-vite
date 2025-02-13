@@ -32,7 +32,7 @@ export const hospitalSlice = createSlice({
 
     updateErrorMessage: (
       state: HospitalState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.error = action.payload;
     },
@@ -49,14 +49,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.hospitalDetails = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getHospitalDetailsAPI.rejected,
       (state: HospitalState, action: any) => {
         state.loading = false;
         state.hospitalDetails = null;
-      }
+      },
     );
 
     //getHospitalDoctorsListAPI
@@ -70,14 +70,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.doctorsList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getHospitalDoctorsListAPI.rejected,
       (state: HospitalState, action: any) => {
         state.loading = false;
         state.doctorsList = [];
-      }
+      },
     );
     builder.addCase(getInHouseDoctorsAPI.pending, (state: any) => {
       state.loading = true;
@@ -89,14 +89,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.doctorsListNew = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getInHouseDoctorsAPI.rejected,
       (state: HospitalState, action: any) => {
         state.loading = false;
         state.doctorsListNew = [];
-      }
+      },
     );
   },
 });

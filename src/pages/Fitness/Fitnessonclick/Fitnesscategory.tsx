@@ -50,7 +50,11 @@ const CategoryCards = () => (
         <Link to={`/Gymlist`} key={item.id} className="card-link">
           <div className="catCardDiv">
             <div className="imageDiv">
-              <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405441317.png"} />
+              <Image
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405441317.png"
+                }
+              />
             </div>
             <p className="imageName">{item.text}</p>
           </div>

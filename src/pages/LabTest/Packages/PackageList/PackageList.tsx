@@ -4,7 +4,10 @@ import { truncateText } from "../../../../Scenes/common";
 
 const PackageList = (props: any) => {
   const getPackageImage = () => {
-    return props.package?.image ?? "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736494444858.png";
+    return (
+      props.package?.image ??
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736494444858.png"
+    );
   };
   const packageDetails = {
     testData: props?.package,

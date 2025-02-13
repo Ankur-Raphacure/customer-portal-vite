@@ -35,10 +35,10 @@ const MobileTopBanner = (props) => {
   const [location, setLocation] = useState(false);
 
   const { user, subDomainDetails } = useSelector(
-    (ReduxState) => ReduxState.auth
+    (ReduxState) => ReduxState.auth,
   );
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState) => ReduxState.profile
+    (ReduxState) => ReduxState.profile,
   );
   const selectSavedAddress = (addss) => {
     setSelectedAddress(addss);

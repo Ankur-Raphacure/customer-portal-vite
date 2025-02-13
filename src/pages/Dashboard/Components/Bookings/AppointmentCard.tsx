@@ -177,7 +177,7 @@ const AppointmentCard = (props: any) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ htmlContent }),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -232,11 +232,8 @@ const AppointmentCard = (props: any) => {
           showDetails ? "slide-out" : ""
         }`}
       >
-        <div className="appointment-card-left">
-         
-        </div>
-      
-      
+        <div className="appointment-card-left"></div>
+
         {/* <div className="btnWrapperDiv">
           <a href="#" className="view-details-link">
             View Details

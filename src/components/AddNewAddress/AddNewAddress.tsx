@@ -122,7 +122,7 @@ const AddNewAddress = (props: any) => {
     console.log("selectedAddress", selectedAddress);
     let { address1, city, state, country, zipcode } = parseAddress(
       place,
-      selectedAddress
+      selectedAddress,
     );
     const addr = { ...signUpData };
     const addressNew = {
@@ -220,10 +220,10 @@ const AddNewAddress = (props: any) => {
           editNewAddressAPI({
             id: props?.selectedAddress?.id,
             user: { ...data, type: selectedAddrType },
-          })
+          }),
         )) as any)
       : ((await dispatch(
-          addNewAddressAPI({ address: { ...data, type: selectedAddrType } })
+          addNewAddressAPI({ address: { ...data, type: selectedAddrType } }),
         )) as any);
 
     if (resp?.payload?.success) {
@@ -283,14 +283,16 @@ const AddNewAddress = (props: any) => {
                   <div className="row-item-sec-user address-line1-user">
                     <Form.Group className="signup-md-full" controlId="email">
                       <Form.Label>
-                        Enter Address <span className="mand-sign-field">*</span>{" "}
+                        Enter Address <span className="mand-sign-field">
+                          *
+                        </span>{" "}
                       </Form.Label>
                       <AutocompleteField
                         onAddressSelected={(
                           address: any,
                           lat: any,
                           lng: any,
-                          place: any
+                          place: any,
                         ) => {
                           console.log(address);
 
@@ -484,8 +486,8 @@ const AddNewAddress = (props: any) => {
                       {loading
                         ? "Loading"
                         : props?.selectedAddress?.id
-                        ? "Update Address"
-                        : "Add Address"}
+                          ? "Update Address"
+                          : "Add Address"}
                     </Button>
                   </div>
                 </div>

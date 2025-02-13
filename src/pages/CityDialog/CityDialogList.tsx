@@ -22,7 +22,7 @@ const CityDialogList = (props: any) => {
     dispatch(updateCityNameAPI({ city: item?.id }));
   };
   const filteredCities = configInfo?.cities?.filter((city: any) =>
-    city.name.toLowerCase().includes(searchTerm.toLowerCase())
+    city.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
   return (
     <CityPopupStyled>

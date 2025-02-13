@@ -27,7 +27,7 @@ export const DentalCare = (props: any) => {
   const ref = useRef(null as any);
 
   const { allEyeCareCategoriesList, allEyeCareHospitalsList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
   console.log("allEyeCareCategoriesList", allEyeCareCategoriesList);
@@ -67,12 +67,12 @@ export const DentalCare = (props: any) => {
           categoryType: cName === "/dentalcare" ? "dentalcare" : "eyecare",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push(
         cName === "/dentalcare"
           ? `/dentalcare/bookingReview`
-          : `/eyecare/bookingReview`
+          : `/eyecare/bookingReview`,
       );
     }
   };
@@ -91,7 +91,7 @@ export const DentalCare = (props: any) => {
             image={cName === "/dentalcare" ? deltal_img : lab_test_banner_img}
             section="eyecare"
           /> */}
-          <Banner section="dentalcare"/>
+          <Banner section="dentalcare" />
         </div>
         <div className=" lab-test-data-content">
           <div className="margin-top-bottom-sec">

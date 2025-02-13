@@ -76,7 +76,7 @@ const DoctorDetails = () => {
   const [selectedSlot1, setSelectedSlot1] = useState<any | null>("" as any);
   const [selectedSlot2, setSelectedSlot2] = useState<any | null>("" as any);
   const [selectedDateForSlot, setSelectedDateForSlot] = useState<any | null>(
-    "" as any
+    "" as any,
   );
   const [days, setDays] = useState<DaySlot[]>([]);
   const [selectedDay, setSelectedDay] = useState<number>(0);
@@ -340,10 +340,10 @@ const DoctorDetails = () => {
       const today = new Date();
       const format = (num: number) => (num <= 9 ? `0${num}` : num);
       const todayDate = `${format(today.getFullYear())}-${format(
-        today.getMonth() + 1
+        today.getMonth() + 1,
       )}-${format(today.getDate())}`;
       const todayIndex = allTimeslotsIList.findIndex(
-        (day: any) => day.total_slots > 0
+        (day: any) => day.total_slots > 0,
       );
       // const todayIndex = allTimeslotsIList.findIndex(
       //   (day: any) => day.date === todayDate
@@ -413,7 +413,7 @@ const DoctorDetails = () => {
   const formatNumber = (num: number) => String(num).padStart(2, "0");
   const formatDate = (date: Date) =>
     `${date.getFullYear()}-${formatNumber(date.getMonth() + 1)}-${formatNumber(
-      date.getDate()
+      date.getDate(),
     )}`;
 
   const today = new Date();
@@ -424,7 +424,7 @@ const DoctorDetails = () => {
   const formattedTomorrow = formatDate(tomorrow);
   const totalSlots = allTimeslotsIList?.reduce(
     (sum: any, day: any) => sum + day.total_slots,
-    0
+    0,
   );
 
   return (
@@ -628,7 +628,7 @@ const DoctorDetails = () => {
                                   <span className="stars">
                                     {"★".repeat(item?.vendor?.rating || 0)}
                                     {"☆".repeat(
-                                      5 - (item?.vendor?.rating || 0)
+                                      5 - (item?.vendor?.rating || 0),
                                     )}
                                   </span>
                                 </div>
@@ -695,7 +695,7 @@ const DoctorDetails = () => {
                                         key={imgIndex}
                                         className="hospital-image"
                                       />
-                                    )
+                                    ),
                                   )}
                               </div>
                               <div>
@@ -705,7 +705,7 @@ const DoctorDetails = () => {
                               </div>
                             </div>
                           </div>
-                        )
+                        ),
                       )
                     ) : (
                       <div className="vendors-warning-msg">
@@ -848,8 +848,8 @@ const DoctorDetails = () => {
                                   {itemtype === "video"
                                     ? "call"
                                     : itemtype === "instant"
-                                    ? "90 Sec"
-                                    : ""}
+                                      ? "90 Sec"
+                                      : ""}
                                 </label>
                               </div>
                             )}
@@ -864,12 +864,12 @@ const DoctorDetails = () => {
                         {selectedVirtualType === "call"
                           ? doctorDetails?.call_consultation_cost
                           : selectedVirtualType === "chat"
-                          ? doctorDetails?.chat_consultation_cost
-                          : selectedVirtualType === "video"
-                          ? doctorDetails?.virtual_consultation_cost
-                          : selectedVirtualType === "instant"
-                          ? doctorDetails?.instant_consultation_cost
-                          : doctorDetails?.virtual_consultation_cost || 0}
+                            ? doctorDetails?.chat_consultation_cost
+                            : selectedVirtualType === "video"
+                              ? doctorDetails?.virtual_consultation_cost
+                              : selectedVirtualType === "instant"
+                                ? doctorDetails?.instant_consultation_cost
+                                : doctorDetails?.virtual_consultation_cost || 0}
                       </h2>
                     </div>
                     <br />
@@ -987,8 +987,8 @@ const DoctorDetails = () => {
                                     day?.date === formattedToday
                                       ? "Today"
                                       : day?.date === formattedTomorrow
-                                      ? "Tomorrow"
-                                      : reverseDateFormat(formattedIncoming);
+                                        ? "Tomorrow"
+                                        : reverseDateFormat(formattedIncoming);
                                   return (
                                     <>
                                       {day?.total_slots > 0 && (
@@ -1013,7 +1013,7 @@ const DoctorDetails = () => {
                                       )}
                                     </>
                                   );
-                                }
+                                },
                               )}
                           </div>
                           <button
@@ -1091,11 +1091,11 @@ const DoctorDetails = () => {
                                 {selectedSlot1?.split("_")[0] === formattedToday
                                   ? "Today"
                                   : selectedSlot1?.split("_")[0] ===
-                                    formattedTomorrow
-                                  ? "Tomorrow"
-                                  : `${reverseDateFormat(
-                                      selectedSlot1?.split("_")[0]
-                                    )}`}{" "}
+                                      formattedTomorrow
+                                    ? "Tomorrow"
+                                    : `${reverseDateFormat(
+                                        selectedSlot1?.split("_")[0],
+                                      )}`}{" "}
                                 <span>
                                   {" "}
                                   {`${selectedSlot1?.split("_")[1]}`}
@@ -1112,11 +1112,11 @@ const DoctorDetails = () => {
                                   formattedToday
                                     ? "Today"
                                     : selectedSlot2?.split("_")[0] ===
-                                      formattedTomorrow
-                                    ? "Tomorrow"
-                                    : `${reverseDateFormat(
-                                        selectedSlot2?.split("_")[0]
-                                      )}`}{" "}
+                                        formattedTomorrow
+                                      ? "Tomorrow"
+                                      : `${reverseDateFormat(
+                                          selectedSlot2?.split("_")[0],
+                                        )}`}{" "}
                                   <span>
                                     {" "}
                                     {`${selectedSlot2?.split("_")[1]}`}

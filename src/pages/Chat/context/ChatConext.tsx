@@ -66,9 +66,9 @@ const ChatContextProvider = ({ children }: any) => {
   const [showShareOptions, setShowShareOptions] = useState(false);
 
   const [messages, setMessages] = useState<messageDto[]>([]);
-  const [reply, setReply] = useState<messageDto | null>(null)
+  const [reply, setReply] = useState<messageDto | null>(null);
 
-  const [isPipMode, setIsPipMode] = useState(false)
+  const [isPipMode, setIsPipMode] = useState(false);
 
   const { state, hash } = useLocation();
   const location = useLocation();
@@ -88,18 +88,18 @@ const ChatContextProvider = ({ children }: any) => {
     if (event.data?.type === "AUTH_TOKEN_WITH_USER_DETAILS") {
       localStorage.setItem("token", event.data.data.token);
       localStorage.setItem("user", event.data.data.user);
-      setCurrentChat(event?.data?.data?.oppenentDetails)
-      setIsPipMode(true)
+      setCurrentChat(event?.data?.data?.oppenentDetails);
+      setIsPipMode(true);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     window.addEventListener("message", pipHandler);
 
     return () => {
       window.removeEventListener("message", pipHandler);
-    }
-  }, [pipHandler])
+    };
+  }, [pipHandler]);
 
   useEffect(() => {
     if (hash == "#share") {
@@ -167,7 +167,6 @@ const ChatContextProvider = ({ children }: any) => {
   //   }
   // }, [userChatId, dispatch, patientDoctorsAPI]);
 
-
   //   get all initiated chat users list
   const allInitiatedChatUsersApi = useCallback(async () => {
     if (!userChatId) return;
@@ -188,7 +187,7 @@ const ChatContextProvider = ({ children }: any) => {
         getMessages({
           from: userChatId,
           to: currentChat.chatId,
-        })
+        }),
       );
 
       setMessages(data?.payload);
@@ -209,7 +208,7 @@ const ChatContextProvider = ({ children }: any) => {
         updateReadMessagStatus({
           from: userChatId,
           to: opponent?.chatId,
-        })
+        }),
       );
       allInitiatedChatUsersApi();
     }
@@ -233,7 +232,7 @@ const ChatContextProvider = ({ children }: any) => {
         const uniqueUsers = new Set(
           Array.isArray(usersList)
             ? [...usersList, data.fromUser]
-            : [data.fromUser]
+            : [data.fromUser],
         );
 
         newTypingStatus[from] = Array.from(uniqueUsers);
@@ -242,14 +241,13 @@ const ChatContextProvider = ({ children }: any) => {
           delete newTypingStatus[from];
         } else {
           newTypingStatus[from] = usersList?.filter(
-            (user: string) => user !== data?.fromUser
+            (user: string) => user !== data?.fromUser,
           );
         }
       }
       return newTypingStatus;
     });
   }, []);
-
 
   useEffect(() => {
     if (userChatId && socket) {
@@ -271,24 +269,18 @@ const ChatContextProvider = ({ children }: any) => {
     (data: any) => {
       allInitiatedChatUsersApi();
     },
-    [allInitiatedChatUsersApi]
+    [allInitiatedChatUsersApi],
   );
 
   useEffect(() => {
     // listining on userId-notification
     if (userChatId) {
-      socket?.on(
-        `${userChatId}-notification`,
-        onUserNotificationHandler
-      );
+      socket?.on(`${userChatId}-notification`, onUserNotificationHandler);
     }
 
     return () => {
       if (userChatId) {
-        socket?.off(
-          `${userChatId}-notification`,
-          onUserNotificationHandler
-        );
+        socket?.off(`${userChatId}-notification`, onUserNotificationHandler);
       }
     };
   }, [userChatId, onUserNotificationHandler, socket]);
@@ -299,12 +291,12 @@ const ChatContextProvider = ({ children }: any) => {
         updateReadMessagStatus({
           from: userChatId,
           to: chat?.from,
-        })
+        }),
       );
 
       allInitiatedChatUsersApi();
     },
-    [userChatId, dispatch, allInitiatedChatUsersApi]
+    [userChatId, dispatch, allInitiatedChatUsersApi],
   );
 
   const onIndividualChatNotificationHandler = useCallback(
@@ -332,24 +324,18 @@ const ChatContextProvider = ({ children }: any) => {
       toggleTitle,
       updateReadMessagStatusApiCall,
       allInitiatedChatUsersApi,
-    ]
+    ],
   );
 
   useEffect(() => {
     if (socket) {
-      socket?.on(
-        `msg-notification`,
-        onIndividualChatNotificationHandler
-      );
+      socket?.on(`msg-notification`, onIndividualChatNotificationHandler);
     }
 
     return () => {
       if (socket) {
         socket?.off(`group-chat-notification`);
-        socket?.off(
-          `msg-notification`,
-          onIndividualChatNotificationHandler
-        );
+        socket?.off(`msg-notification`, onIndividualChatNotificationHandler);
       }
     };
   }, [socket, onIndividualChatNotificationHandler]);
@@ -382,7 +368,7 @@ const ChatContextProvider = ({ children }: any) => {
       socket,
       user?.first_name,
       user?.last_name,
-    ]
+    ],
   );
 
   const handleSendEvent = useCallback(
@@ -411,11 +397,10 @@ const ChatContextProvider = ({ children }: any) => {
       }
     },
 
-    [user, userChatId]
-  );  
+    [user, userChatId],
+  );
 
   console.log(reply, "reply");
-  
 
   const handleSendMsg = useCallback(
     async ({
@@ -458,7 +443,7 @@ const ChatContextProvider = ({ children }: any) => {
 
       if (result?.data?.success) {
         playAudio();
-        body._id = result?.data?.data?._id
+        body._id = result?.data?.data?._id;
       }
 
       body.to = currentChat?.chatId;
@@ -475,11 +460,11 @@ const ChatContextProvider = ({ children }: any) => {
         _id: result?.data?.data?._id,
         replyTo: reply || undefined,
         shared_message: null,
-        isShared: false
+        isShared: false,
       };
 
       setMessages((prev: messageDto[]) => [...prev, newMsg]);
-      setReply(null)
+      setReply(null);
       allInitiatedChatUsersApi();
     },
     [
@@ -491,47 +476,69 @@ const ChatContextProvider = ({ children }: any) => {
       sendGroupMessageRoute,
       sendMessageRoute,
       allInitiatedChatUsersApi,
-      reply
-    ]
+      reply,
+    ],
   );
 
-
   // react to message
-  const reactToMessage = useCallback(async (data: inCommingReactionsDto) => {
-    dispatch(saveReactToMessage({ user_id: userChatId, body: data }))
-  }, [dispatch, userChatId])
+  const reactToMessage = useCallback(
+    async (data: inCommingReactionsDto) => {
+      dispatch(saveReactToMessage({ user_id: userChatId, body: data }));
+    },
+    [dispatch, userChatId],
+  );
 
-  const handleReact = useCallback(async ({ emoji, messageId, to, chatType }: { emoji: string, to: string, messageId: string, chatType: chatTypeDto }) => {
-    const body: inCommingReactionsDto = {
-      to, messageId, emoji, chatType, from: userChatId
-    }
-    socket.emit("react-to-message", body)
-    await reactToMessage(body)
-    setMessages((prev: messageDto[]) =>
-      prev?.map((msg: messageDto) => {
-        if (msg._id == messageId) {
-          const count = msg?.reactions?.[emoji] ?? 0;
-          return { ...msg, reactions: { ...msg?.reactions, [emoji]: count + 1 } }
-        }
-        return msg;
-      })
-    )
-  }, [socket, reactToMessage, userChatId])
-
+  const handleReact = useCallback(
+    async ({
+      emoji,
+      messageId,
+      to,
+      chatType,
+    }: {
+      emoji: string;
+      to: string;
+      messageId: string;
+      chatType: chatTypeDto;
+    }) => {
+      const body: inCommingReactionsDto = {
+        to,
+        messageId,
+        emoji,
+        chatType,
+        from: userChatId,
+      };
+      socket.emit("react-to-message", body);
+      await reactToMessage(body);
+      setMessages((prev: messageDto[]) =>
+        prev?.map((msg: messageDto) => {
+          if (msg._id == messageId) {
+            const count = msg?.reactions?.[emoji] ?? 0;
+            return {
+              ...msg,
+              reactions: { ...msg?.reactions, [emoji]: count + 1 },
+            };
+          }
+          return msg;
+        }),
+      );
+    },
+    [socket, reactToMessage, userChatId],
+  );
 
   const onMessageRecieve = useCallback(
     (message: any) => {
       let msg = JSON.parse(message);
       if (msg && currentChat?.chatId === msg?.from) {
         console.log("Message is incomming");
-        
+
         // Send notification only if the message is sent by opponent
         sendNotification(msg?.name, msg?.message);
 
         // Start toggling the title when a new message is received
         toggleTitle({
-          title: `${msg?.name}: ${msg?.message?.substring(0, 10)} ${msg?.message?.length > 10 ? "..." : ""
-            }`,
+          title: `${msg?.name}: ${msg?.message?.substring(0, 10)} ${
+            msg?.message?.length > 10 ? "..." : ""
+          }`,
         });
 
         setMessages((prev: any) => [
@@ -555,24 +562,29 @@ const ChatContextProvider = ({ children }: any) => {
         // }
       }
     },
-    [currentChat]
+    [currentChat],
   );
 
+  const onMessageReactionRecieved = useCallback(
+    (data: inCommingReactionsDto) => {
+      setMessages((prev: messageDto[]) =>
+        prev?.map((msg) => {
+          if (msg._id == data?.messageId) {
+            const emoji = data?.emoji;
+            const count = msg?.reactions?.[emoji] ?? 0;
 
-  const onMessageReactionRecieved = useCallback((data: inCommingReactionsDto) => {
-    setMessages((prev: messageDto[]) =>
-      prev?.map((msg) => {
-        if (msg._id == data?.messageId) {
-          const emoji = data?.emoji;
-          const count = msg?.reactions?.[emoji] ?? 0;
-
-          return { ...msg, reactions: { ...msg?.reactions, [emoji]: count + 1 } }
-          // ...( ? msg?.reactions : {}), {data?.emoji, from : data?.from }
-        }
-        return msg;
-      })
-    )
-  }, [])
+            return {
+              ...msg,
+              reactions: { ...msg?.reactions, [emoji]: count + 1 },
+            };
+            // ...( ? msg?.reactions : {}), {data?.emoji, from : data?.from }
+          }
+          return msg;
+        }),
+      );
+    },
+    [],
+  );
 
   useEffect(() => {
     if (socket) {
@@ -585,7 +597,6 @@ const ChatContextProvider = ({ children }: any) => {
       socket?.off("reactions-recieve", onMessageReactionRecieved);
     };
   }, [messages, onMessageRecieve, socket, onMessageReactionRecieved]);
-
 
   // helper functions
 

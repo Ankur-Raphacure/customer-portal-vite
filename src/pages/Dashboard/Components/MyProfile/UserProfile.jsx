@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Row, Col, Button, Form  } from "react-bootstrap";
+import { Row, Col, Button, Form } from "react-bootstrap";
 import "./styles.css";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -72,7 +72,7 @@ const UserProfile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { error, loading, user, loginStoreDetails, isParentSite } = useSelector(
-    ({ auth }) => auth
+    ({ auth }) => auth,
   );
   const sDetails = loginStoreDetails;
   const [isProfileEdit, setIsProfileEdit] = useState(true);
@@ -188,7 +188,7 @@ const UserProfile = () => {
         };
         const autocomplete = new google.maps.places.Autocomplete(
           document.getElementById("editProfileaddCreateUserAdress1"),
-          options
+          options,
         );
         autocomplete.setFields(["address_components", "formatted_address"]);
         autocomplete.addListener("place_changed", () => {

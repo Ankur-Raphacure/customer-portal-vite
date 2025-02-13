@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const ProductCardStyled = styled.div`
     width:252px;
 
@@ -87,4 +86,4 @@ export const ProductCardStyled = styled.div`
     .place-p{
         color:rgb(164, 155, 155);
     }
-`
+`;

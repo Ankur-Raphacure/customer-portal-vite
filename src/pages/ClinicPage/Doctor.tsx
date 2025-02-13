@@ -131,7 +131,7 @@ const Doctor = ({ siteDetails }: any) => {
             <div className="d-flex flex-column">
               <h5 className="hospital-specislist-h5-div">Our Doctors</h5>
               <p className="docDesc">
-                Do consectetur proident proident id eiusmod deserunt consequat 
+                Do consectetur proident proident id eiusmod deserunt consequat
                 pariatur ad ex velit do Lorem reprehenderit.
               </p>
             </div>

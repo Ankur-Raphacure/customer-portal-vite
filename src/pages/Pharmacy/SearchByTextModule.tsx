@@ -11,7 +11,7 @@ const SearchByTextModule = (props: any) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [placeholderText, setPlaceholderText] = useState(
-    `Search ‘${details[0]}’` || "Search"
+    `Search ‘${details[0]}’` || "Search",
   );
 
   const [originPage, setOriginPage] = useState("");

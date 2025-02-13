@@ -12,7 +12,7 @@ const Panchakarmas = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { allPanchakarmaList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
 

@@ -17,13 +17,13 @@ export const getAllCategoriesListAPI = createAsyncThunk(
   async () =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(constructAllCtMriCategoryQuery)
-    )
+      JSON.stringify(constructAllCtMriCategoryQuery),
+    ),
 );
 export const getAllScansListAPI = createAsyncThunk(
   "auth/getAllScansListAPI",
   async () =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(constructAllScansQuery))
+    await post(`${SERVER_IP}/graphql`, JSON.stringify(constructAllScansQuery)),
 );
 
 export const getCtMriByCategoryAPI = createAsyncThunk(
@@ -31,8 +31,8 @@ export const getCtMriByCategoryAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(constructgetCtMriByCategoryQuery(body))
-    )
+      JSON.stringify(constructgetCtMriByCategoryQuery(body)),
+    ),
 );
 
 export const getAllScansCityAPI = createAsyncThunk(
@@ -40,8 +40,8 @@ export const getAllScansCityAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(constructAllScansCityQuery(body))
-    )
+      JSON.stringify(constructAllScansCityQuery(body)),
+    ),
 );
 
 export const getCtmriDetailsQueryAPI = createAsyncThunk(
@@ -49,22 +49,22 @@ export const getCtmriDetailsQueryAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(constructgetCtmriDetailsQuery(body))
-    )
+      JSON.stringify(constructgetCtmriDetailsQuery(body)),
+    ),
 );
 export const getPackageDetailsQueryAPI = createAsyncThunk(
   "auth/getPackageDetailsQueryAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(constructgetPackageDetailsQuery(body))
-    )
+      JSON.stringify(constructgetPackageDetailsQuery(body)),
+    ),
 );
 export const getAllScansNearByAPI = createAsyncThunk(
   "auth/getAllScansNearByAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(constructgetAllScansNearByQuery(body))
-    )
+      JSON.stringify(constructgetAllScansNearByQuery(body)),
+    ),
 );

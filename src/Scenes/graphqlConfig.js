@@ -377,18 +377,18 @@ export const medicinesQuery = (
   discStart,
   discEnd,
   startPrice,
-  endPrice
+  endPrice,
 ) => {
   const queryObj = {
     query: `
         {
           medicines (searchText:"${searchText}", category: "${category}",sort:"${
-      selectedRecomonded || ""
-    }",discountStart:${discStart || null},discountEnd:${
-      discEnd || null
-    }, startPrice: ${startPrice ? startPrice : null}, endPrice: ${
-      endPrice ? endPrice : null
-    }, page: 0){
+            selectedRecomonded || ""
+          }",discountStart:${discStart || null},discountEnd:${
+            discEnd || null
+          }, startPrice: ${startPrice ? startPrice : null}, endPrice: ${
+            endPrice ? endPrice : null
+          }, page: 0){
               service_code,
               search_keys,
               service_name,
@@ -683,8 +683,8 @@ export const constructgetCtmriDetailsQuery = (body) => {
   const queryObj = {
     query: `{
       test(service_code: "${body?.service_code}", city: "${
-      body?.city || ""
-    }", sort: "${body?.sort || "discount"}") {
+        body?.city || ""
+      }", sort: "${body?.sort || "discount"}") {
         service_code,
         service_name,
         description,
@@ -1436,8 +1436,8 @@ export const constructgetPackageDetailsQuery = (body) => {
   const queryObj = {
     query: `{
       package(service_code:"${body?.service_code}", city:"${
-      body?.city ?? ""
-    }", collection_type: "${body?.collection_type || "center"}"
+        body?.city ?? ""
+      }", collection_type: "${body?.collection_type || "center"}"
     ,  sort: "${body?.sort || "discount"}"){
         service_code
         service_name

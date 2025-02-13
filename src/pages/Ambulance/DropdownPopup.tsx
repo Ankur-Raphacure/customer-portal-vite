@@ -93,7 +93,7 @@ const DropdownPopup = ({ onClose }: any) => {
 
   const removeFile = (fileName: string) => {
     const updatedFiles = uploadedFiles.filter(
-      (file: any) => file.name !== fileName
+      (file: any) => file.name !== fileName,
     );
     setUploadedFiles(updatedFiles);
     setFileLimit(false);

@@ -15,8 +15,8 @@ const MoodDairy = () => {
               <div className="col-lg-6 col-md-6">
                 <div className="banner-text">
                   <h1>
-                    Unlock the Power of Emotional Awareness with Our Online<br/> <span>Mood
-                    Diary</span>
+                    Unlock the Power of Emotional Awareness with Our Online
+                    <br /> <span>Mood Diary</span>
                   </h1>
                   <div className="button-container mt-5">
                     <button className="trailbtn">Trail Mood Diary</button>
@@ -38,7 +38,10 @@ const MoodDairy = () => {
             </div>
             <div className="row mt-4">
               <div className="col-md-2 text-center">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736506844367.png" alt="imagesmiley" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736506844367.png"
+                  alt="imagesmiley"
+                />
               </div>
               <div className="col-md-10">
                 <p>

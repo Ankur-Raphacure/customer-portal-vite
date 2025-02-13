@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-
-
-
 export const MentalWellnessStyled = styled.div`
   width: 100%;
   

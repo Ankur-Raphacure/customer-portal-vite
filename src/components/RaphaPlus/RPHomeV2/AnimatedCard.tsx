@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { AnimatedCardStyled } from "./AnimatedCard.styled";
 import { FaAngleDown, FaAngleRight } from "react-icons/fa";
-import {MobileDropdown} from "./AnimatedCardMobile.styled"
+import { MobileDropdown } from "./AnimatedCardMobile.styled";
 
 const AnimatedCard = ({ image, title, description }: any) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -34,7 +34,6 @@ const AnimatedCard = ({ image, title, description }: any) => {
     </AnimatedCardStyled>
   );
 };
-
 
 const DropdownMenu = ({
   items,

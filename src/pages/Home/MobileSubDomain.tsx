@@ -50,10 +50,10 @@ const MobileDomainHome = () => {
     rpSubDomainName,
   } = useSelector((ReduxState: any) => ReduxState.auth);
   const { universalSearchResults } = useSelector(
-    (ReduxState: any) => ReduxState?.generic
+    (ReduxState: any) => ReduxState?.generic,
   );
   const aggservice = subDomainDetails?.agreed_services?.services?.find(
-    (itttm: any) => itttm?.to == "/labtest"
+    (itttm: any) => itttm?.to == "/labtest",
   );
   if (!subDomainDetails?.id || aggservice) {
     sowLabTest = true;
@@ -66,7 +66,7 @@ const MobileDomainHome = () => {
         count: 10,
         page: 0,
         searchText: "",
-      })
+      }),
     );
   }, []);
 
@@ -95,7 +95,7 @@ const MobileDomainHome = () => {
   };
   const debouncedSearch1 = useCallback(
     debounce((searchQuery) => setSearchText(searchQuery), 500),
-    []
+    [],
   );
   const navigateTo = (url: any) => {
     history.push(url);

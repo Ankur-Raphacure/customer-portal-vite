@@ -62,7 +62,7 @@ const Specialization = ({ siteDetails }: any) => {
         }
         return result;
       },
-      []
+      [],
     );
     setMatchedSpecializations(foundSpecializations);
   }, [specializations, allServices]);

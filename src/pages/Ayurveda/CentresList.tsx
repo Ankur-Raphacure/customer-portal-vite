@@ -9,7 +9,7 @@ const CentresList = () => {
   const dispatch = useDispatch();
   const [activeButton, setActiveButton] = useState("Nearest");
   const { allAyurvedsCenterList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
 

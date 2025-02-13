@@ -152,7 +152,7 @@ const TreatmentPopup = ({ item, onClose, fromPackage }: any) => {
                     history.push(
                       fromPackage
                         ? `/labPackageDetils/${item?.service_code}`
-                        : `/labTestDetils/${item?.service_code}`
+                        : `/labTestDetils/${item?.service_code}`,
                     );
                   }}
                   className="cursor-pointer btn-book-now cartbtn bg-[#9747FF] hover:bg-blue-700 text-white text-center justify-center items-center"

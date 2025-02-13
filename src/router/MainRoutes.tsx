@@ -24,44 +24,49 @@ import ScanMedicineModule from "../pages/ScanByMedicine/ScanMedicineModule";
 import ChatContextProvider from "../pages/Chat/context/ChatConext";
 const BloodBanks = lazy(() => import("../pages/BloodBank/BloodBanks"));
 const EPrescription = lazy(
-  () => import("../pages/EPrescription/EPrescription")
+  () => import("../pages/EPrescription/EPrescription"),
 );
 const FitnessProductPage = lazy(
   () =>
     import(
       "../pages/Fitness_v2/productPage/fitnessCenterPage/FitnessProductPage"
-    )
+    ),
 );
-const FitnessPackageSelection = lazy(()=>import("../pages/Fitness_v2/productPage/fitnessCenterPage/packageSelection/PackageSelection"))
+const FitnessPackageSelection = lazy(
+  () =>
+    import(
+      "../pages/Fitness_v2/productPage/fitnessCenterPage/packageSelection/PackageSelection"
+    ),
+);
 const Gallery = lazy(() => import("../pages/Gallery/Gallery"));
 const BookDemo = lazy(() => import("../pages/BookDemo/BookDemo"));
 const NextForm = lazy(() => import("../pages/BookDemo/NextForm"));
 const Card = lazy(() => import("../pages/BookDemo/Card"));
 const ConnectUs = lazy(
-  () => import("../components/RaphaPlus/RPHomeV2/ConnectUs")
+  () => import("../components/RaphaPlus/RPHomeV2/ConnectUs"),
 );
 const HyperSitePage = lazy(() => import("../pages/ClinicPage/HyperSitePage"));
 const BookAppointment = lazy(
-  () => import("../pages/ClinicPage/BookAppointment/BookAppointment")
+  () => import("../pages/ClinicPage/BookAppointment/BookAppointment"),
 );
 const DetailBookAppointment = lazy(
   () =>
-    import("../pages/ClinicPage/DetailBookAppointment/DetailBookAppointment")
+    import("../pages/ClinicPage/DetailBookAppointment/DetailBookAppointment"),
 );
 
 const AllVendors = lazy(() => import("../pages/AllVendors/AllVendors"));
 const DoctorDetails = lazy(() => import("../pages/Doctor/DoctorDetails"));
 const DoctorsList = lazy(() => import("../pages/Doctor/DoctorsList"));
 const ClinicDetails = lazy(
-  () => import("../pages/Doctor/ClinicDetails/ClinicDetails")
+  () => import("../pages/Doctor/ClinicDetails/ClinicDetails"),
 );
 const SpecializationList = lazy(
-  () => import("../pages/Doctor/SpecializationList")
+  () => import("../pages/Doctor/SpecializationList"),
 );
 const Doctors = lazy(() => import("../pages/Doctor/Doctors"));
 
 const AllLabTests = lazy(
-  () => import("../pages/LabTest/AllLabTests/AllLabTests")
+  () => import("../pages/LabTest/AllLabTests/AllLabTests"),
 );
 const Packages = lazy(() => import("../pages/LabTest/Packages"));
 // const Pharmacy = lazy(() => import("../pages/Pharmacy/Pharmacy"));
@@ -78,7 +83,7 @@ const MyProfile = lazy(() => import("../pages/MyProfile"));
 //   () => import("../pages/Hospital/BookingReview/BookingReview")
 // );
 const PrivacyPolicy = lazy(
-  () => import("../pages/policy/PrivacyPolicy/PrivacyPolicy")
+  () => import("../pages/policy/PrivacyPolicy/PrivacyPolicy"),
 );
 const Ayurveda = lazy(() => import("../pages/Ayurveda/Ayurveda"));
 const Radiology = lazy(() => import("../pages/Radiology"));
@@ -87,21 +92,21 @@ const Fitness = lazy(() => import("../pages/Fitness/index"));
 const ScanDetails = lazy(() => import("../pages/ScanDetails"));
 const Fitnessonclick = lazy(() => import("../pages/Fitness/Fitnessonclick"));
 const Detailedgym = lazy(
-  () => import("../pages/Fitness/Fitnessonclick/Gymlist/Detailedgym")
+  () => import("../pages/Fitness/Fitnessonclick/Gymlist/Detailedgym"),
 );
 const AllScansList = lazy(() => import("../pages/Radiology/AllScansList"));
 const HealthArticles = lazy(
-  () => import("../pages/HealthArticles/HealthArticles")
+  () => import("../pages/HealthArticles/HealthArticles"),
 );
 const Ambulance = lazy(() => import("../pages/Ambulance/Ambulance"));
 const LabScan = lazy(() => import("../pages/LabScan/LabScan"));
 const Item = lazy(() => import("../pages/Item/Item"));
 const CityDialogList = lazy(() => import("../pages/CityDialog/CityDialogList"));
 const MentalWellness = lazy(
-  () => import("../pages/MentalWellness/MentalWellness")
+  () => import("../pages/MentalWellness/MentalWellness"),
 );
 const DomiciliaryCare = lazy(
-  () => import("../pages/Domiciliary/DomiciliaryCare")
+  () => import("../pages/Domiciliary/DomiciliaryCare"),
 );
 const Career = lazy(() => import("../pages/Career"));
 const JobDescription = lazy(() => import("../pages/Career/JobDescription"));
@@ -110,61 +115,61 @@ const AboutUs = lazy(() => import("../pages/AboutUs/AboutUs"));
 const Doctordashboard = lazy(() => import("../pages/Doctordashboard"));
 const Womenscare = lazy(() => import("../pages/Womenscare"));
 const HospitalList = lazy(
-  () => import("../pages/Doctor/hospitalList/hospitalList")
+  () => import("../pages/Doctor/hospitalList/hospitalList"),
 );
 const NetworkList = lazy(() => import("../pages/NetworkHospitals/NetworkList"));
 const ContactUs = lazy(() => import("../pages/ContactUs/ContactUs"));
 const AbhaHealths = lazy(() => import("../pages/AbhaHealth/AbhaHealths"));
 const RaphaPlus = lazy(() => import("../pages/RaphaPlus/RaphaPlus"));
 const HealthsArticle = lazy(
-  () => import("../pages/HealthArticles/HealthsArticle")
+  () => import("../pages/HealthArticles/HealthsArticle"),
 );
 const CreateBlog = lazy(() => import("../pages/HealthArticles/CreateBlog"));
 const RaphacureApp = lazy(() => import("../pages/RaphacureApp"));
 const RPLogin = lazy(() => import("../components/RaphaPlus/Login/RPLogin"));
 const ComingSoon = lazy(() => import("../pages/ComingSoon/ComingSoon"));
 const AllTreatmentList = lazy(
-  () => import("../pages/Ayurveda/AllTreatmentList")
+  () => import("../pages/Ayurveda/AllTreatmentList"),
 );
 const AllCentresList = lazy(() => import("../pages/Ayurveda/AllCentresList"));
 const CentresDetails = lazy(() => import("../pages/Ayurveda/CentresDetails"));
 const Panchakarmas = lazy(
-  () => import("../pages/Ayurveda/Panchakarma/Panchakarmas")
+  () => import("../pages/Ayurveda/Panchakarma/Panchakarmas"),
 );
 const Naturopathys = lazy(
-  () => import("../pages/Ayurveda/Naturopathy/Naturopathys")
+  () => import("../pages/Ayurveda/Naturopathy/Naturopathys"),
 );
 const Gynecologists = lazy(
-  () => import("../pages/Womenscare/Gynecologist/Gynecologists")
+  () => import("../pages/Womenscare/Gynecologist/Gynecologists"),
 );
 const PeriodTrackers = lazy(
-  () => import("../pages/Womenscare/PeriodTracker/PeriodTrackers")
+  () => import("../pages/Womenscare/PeriodTracker/PeriodTrackers"),
 );
 const LactationSupports = lazy(
-  () => import("../pages/Womenscare/LactationSupport/LactationSupports")
+  () => import("../pages/Womenscare/LactationSupport/LactationSupports"),
 );
 const WomanActivitys = lazy(
-  () => import("../pages/Womenscare/Womanactivity/WomanActivitys")
+  () => import("../pages/Womenscare/Womanactivity/WomanActivitys"),
 );
 const NutritionDiets = lazy(
-  () => import("../pages/Womenscare/NutritionDiet/NutritionDiets")
+  () => import("../pages/Womenscare/NutritionDiet/NutritionDiets"),
 );
 const HealthJourney = lazy(
-  () => import("../pages/Womenscare/BMIHealthJourney/HealthJourney")
+  () => import("../pages/Womenscare/BMIHealthJourney/HealthJourney"),
 );
 const MealCategory = lazy(() => import("../pages/Womenscare/BMI/MealCategory"));
 const SkinCares = lazy(() => import("../pages/Womenscare/SkinCare/SkinCares"));
 const KeyAspects = lazy(
-  () => import("../pages/Womenscare/KeyAspect/KeyAspects")
+  () => import("../pages/Womenscare/KeyAspect/KeyAspects"),
 );
 const NursesHome = lazy(() => import("../pages/Domiciliary/NursesHome"));
 const MedicalEquipments = lazy(
-  () => import("../pages/Domiciliary/MedicalEquipments")
+  () => import("../pages/Domiciliary/MedicalEquipments"),
 );
 const RemotePatient = lazy(() => import("../pages/Domiciliary/RemotePatient"));
 const Vaccine = lazy(() => import("../pages/Domiciliary/Vaccine"));
 const EquipmentDetail = lazy(
-  () => import("../pages/Domiciliary/EquipmentDetail")
+  () => import("../pages/Domiciliary/EquipmentDetail"),
 );
 const IcuHome = lazy(() => import("../pages/Domiciliary/IcuatHome"));
 const ADHD = lazy(() => import("../pages/MentalWellness/Adhd"));
@@ -183,30 +188,30 @@ const ShopGlasses = lazy(() => import("../pages/Eyecare/ShopGlasses"));
 const SpecsDetail = lazy(() => import("../pages/Eyecare/SpecsDetail"));
 const GymIndex = lazy(() => import("../pages/Fitness/GymIndex"));
 const GymCenterList = lazy(
-  () => import("../pages/Fitness/GymCategory/GymCenterList")
+  () => import("../pages/Fitness/GymCategory/GymCenterList"),
 );
 const GymViewDetails = lazy(
-  () => import("../pages/Fitness/GymCategory/GymViewDetails")
+  () => import("../pages/Fitness/GymCategory/GymViewDetails"),
 );
 // const Gymlist = lazy(() => import("../pages/Fitness/Fitnessonclick/Gymlist"));
 const Gymlist_v2 = lazy(
-  () => import("../pages/Fitness_v2/fitnessCenters/FitnessCentersPage")
+  () => import("../pages/Fitness_v2/fitnessCenters/FitnessCentersPage"),
 );
 const Gymlist = lazy(() => import("../pages/Fitness/Fitnessonclick/Gymlist"));
 const UploadImages = lazy(() => import("../pages/UploadImages/UploadImages"));
 const ActivitySummery = lazy(
-  () => import("../pages/Dashboard/Components/Activities/ActivitySummery")
+  () => import("../pages/Dashboard/Components/Activities/ActivitySummery"),
 );
 
 const Terms = lazy(() => import("../pages/policy/Terms/Terms"));
 const ReturnRefund = lazy(
-  () => import("../pages/policy/ReturnRefund/ReturnRefund")
+  () => import("../pages/policy/ReturnRefund/ReturnRefund"),
 );
 const ShippingPolicies = lazy(
-  () => import("../pages/policy/ShippingPolicies/ShippingPolicies")
+  () => import("../pages/policy/ShippingPolicies/ShippingPolicies"),
 );
 const SecurityPolicies = lazy(
-  () => import("../pages/policy/SecurityPolicies/SecurityPolicies")
+  () => import("../pages/policy/SecurityPolicies/SecurityPolicies"),
 );
 const Disclaimer = lazy(() => import("../pages/policy/Disclaimer/Disclaimer"));
 
@@ -324,8 +329,16 @@ const MainRoutes: React.FC = () => {
       <Route exact path="/fitnessonclick" component={Fitnessonclick} />
       <Route exact path="/Gymlist" component={Gymlist} />
       <Route exact path="/fitnessCenters" component={Gymlist_v2} />
-      <Route exact path="/fitnessCenters/:productName/:productId" component={FitnessProductPage} />
-      <Route exact path="/fitnessCenters/bookingConformation/:fitnessCenterID/:packageID" component={FitnessPackageSelection} />
+      <Route
+        exact
+        path="/fitnessCenters/:productName/:productId"
+        component={FitnessProductPage}
+      />
+      <Route
+        exact
+        path="/fitnessCenters/bookingConformation/:fitnessCenterID/:packageID"
+        component={FitnessPackageSelection}
+      />
       {/* <Route exact path="/Gymlist" component={Gymlist} /> */}
       <Route exact path="/newGymlist" component={GymIndex} />
       <Route exact path="/Gymlist/gymcenterlist" component={GymCenterList} />

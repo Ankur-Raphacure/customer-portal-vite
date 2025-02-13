@@ -43,7 +43,7 @@ const OrderItem = ({ item }: any) => {
       orgBookingObj?.test?.service_code
     ) {
       history.push(
-        `/radiology/scan-details/${orgBookingObj?.test?.service_code}`
+        `/radiology/scan-details/${orgBookingObj?.test?.service_code}`,
       );
     } else if (orgBookingObj?.test?.type === "eye_care") {
       history.push(`/eyecare`);
@@ -94,7 +94,7 @@ const OrderItem = ({ item }: any) => {
               {" "}
               {orgBookingObj?.created_at
                 ? moment(orgBookingObj?.created_at).format(
-                    "MMMM DD, YYYY, h:mm A"
+                    "MMMM DD, YYYY, h:mm A",
                   )
                 : "N/A"}
             </p>

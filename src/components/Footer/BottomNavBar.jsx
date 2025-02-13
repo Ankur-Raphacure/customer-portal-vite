@@ -88,7 +88,9 @@ const BottomNavBar = (props) => {
                     className="cursor-pointer"
                     onClick={() => {
                       navigateToPage(
-                        category.path || category?.url || category?.navigatePath
+                        category.path ||
+                          category?.url ||
+                          category?.navigatePath,
                       );
                       handleClose();
                     }}

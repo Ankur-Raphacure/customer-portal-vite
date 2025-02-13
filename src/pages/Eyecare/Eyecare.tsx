@@ -18,7 +18,7 @@ const Eyecare = () => {
   const [errorMsg, setErrorMsg] = useState("");
 
   const { allAppoinmentList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   const TreatmentList = allAppoinmentList?.eyecare;
@@ -43,7 +43,7 @@ const Eyecare = () => {
   };
 
   const { alleyecareNearClinic } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const handleViewAllClick = () => {
     history.push("eyecare/allclinics");
@@ -106,7 +106,7 @@ const Eyecare = () => {
 
     try {
       const resultAction: any = await dispatch(
-        bookAppointmentAPI(appointmentObjBody)
+        bookAppointmentAPI(appointmentObjBody),
       );
       if (resultAction.payload.success === "true") {
         setShowConform(true);

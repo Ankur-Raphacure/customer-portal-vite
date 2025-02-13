@@ -44,7 +44,11 @@ const CategoryCards = () => (
         <Link to="" key={item.id} className="card-link">
           <div className="catCardDiv">
             <div className="imageDiv">
-              <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736403910580.png"} />
+              <Image
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736403910580.png"
+                }
+              />
             </div>
             <p className="imageName">{item.text}</p>
           </div>

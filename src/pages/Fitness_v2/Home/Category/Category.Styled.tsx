@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const CategoryStyled = styled.div`
     .category-container{
         width:100%; 
@@ -51,4 +50,4 @@ export const CategoryStyled = styled.div`
         max-width: 350px;
     }
 
-`
+`;

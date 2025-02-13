@@ -33,7 +33,7 @@ export const dashboardSlice = createSlice({
 
     updateErrorMessage: (
       state: DashboardState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.error = action.payload;
     },
@@ -50,7 +50,7 @@ export const dashboardSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.myBookings = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getMyBookingsAPI.rejected,
@@ -58,7 +58,7 @@ export const dashboardSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     // getAllBookingsAPI
@@ -72,14 +72,14 @@ export const dashboardSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allBookings = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllBookingsAPI.rejected,
       (state: DashboardState, action: any) => {
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //getAllSubscriptions
@@ -93,7 +93,7 @@ export const dashboardSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.myAllSubscriptions = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllSubscriptions.rejected,
@@ -101,7 +101,7 @@ export const dashboardSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //getMyPackageDetailsAPI
     builder.addCase(getMyPackageDetailsAPI.pending, (state: any) => {
@@ -114,7 +114,7 @@ export const dashboardSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.myAllPackages = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getMyPackageDetailsAPI.rejected,
@@ -122,7 +122,7 @@ export const dashboardSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
   },
 });

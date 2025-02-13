@@ -7,14 +7,20 @@ import { messageTypeDto } from "../../pages/Chat/type";
 
 type prop = {
   data: {
-    data: any, type?: messageTypeDto,
-    isKeyValuedData: boolean,
+    data: any;
+    type?: messageTypeDto;
+    isKeyValuedData: boolean;
   };
   replacePath: boolean;
   iconType?: "SHARE" | "FORWARD";
-  tooltipTitle?: string
+  tooltipTitle?: string;
 };
-const ShareMessages = ({ data, replacePath, iconType = "SHARE", tooltipTitle }: prop) => {
+const ShareMessages = ({
+  data,
+  replacePath,
+  iconType = "SHARE",
+  tooltipTitle,
+}: prop) => {
   const history = useHistory();
 
   const handleShare = useCallback(() => {

@@ -12,12 +12,12 @@ export const getBloodBankVendorsAPI = createAsyncThunk(
   async (city: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getBloodBankVendors(city))
-    )
+      JSON.stringify(getBloodBankVendors(city)),
+    ),
 );
 
 export const getAllBloodTestsAPI = createAsyncThunk(
   "auth/getAllBloodTestsAPI",
   async () =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(fetchBloodTests))
+    await post(`${SERVER_IP}/graphql`, JSON.stringify(fetchBloodTests)),
 );

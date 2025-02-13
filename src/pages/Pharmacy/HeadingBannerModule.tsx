@@ -12,7 +12,7 @@ const HeadingBannerModule = (props: any) => {
   const history = useHistory();
   const { details, section } = props;
   const { user, subDomainDetails } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
 
   const handleTOUploadPrescription = () => {

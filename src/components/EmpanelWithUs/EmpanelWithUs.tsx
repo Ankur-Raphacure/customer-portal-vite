@@ -384,7 +384,7 @@ const EmpanelWithUs = (props: any) => {
     setIsLoading(true);
     const resp = props?.selectedMember?.id
       ? ((await dispatch(
-          editEmpanelAPI({ id: props?.selectedMember?.id, user: data })
+          editEmpanelAPI({ id: props?.selectedMember?.id, user: data }),
         )) as any)
       : ((await dispatch(createNewEmpanelAPI(data))) as any);
     if (resp?.payload?.success) {

@@ -28,7 +28,7 @@ const Wallets: React.FC<WalletsProps> = ({ handleBookNow }: any) => {
   const dispatch = useDispatch();
 
   const { myAllSubscriptions } = useSelector(
-    (state: ReduxState) => state.dashboard
+    (state: ReduxState) => state.dashboard,
   );
 
   console.log("myAllSubscriptions : ", myAllSubscriptions);
@@ -48,7 +48,7 @@ const Wallets: React.FC<WalletsProps> = ({ handleBookNow }: any) => {
       { title: "Balance Amount", dataIndex: "amount", key: "amount" },
       { title: "Action", key: "action" },
     ],
-    []
+    [],
   );
 
   const [columns, setColumns] = useState(initialColumns);
@@ -94,7 +94,7 @@ const Wallets: React.FC<WalletsProps> = ({ handleBookNow }: any) => {
           ),
         };
       }),
-    [columns, handleBookNow]
+    [columns, handleBookNow],
   );
 
   useEffect(() => {
@@ -128,7 +128,7 @@ const Wallets: React.FC<WalletsProps> = ({ handleBookNow }: any) => {
       }
       setColumns(newColumns); // Update the column state in Wallets
     },
-    []
+    [],
   );
 
   const handleAddColumn = (newColumn: any, items: string[]) => {

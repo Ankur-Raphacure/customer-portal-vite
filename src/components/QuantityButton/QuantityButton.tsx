@@ -30,11 +30,11 @@ const QuantityButton = (props: any) => {
   console.log("cartItems", cartItems);
   console.log("index", index);
   const pProducts = cartItems?.carts?.find(
-    (itemv: any) => itemv?.section_key === "pharmacy"
+    (itemv: any) => itemv?.section_key === "pharmacy",
   );
   console.log("pProducts", pProducts);
   const curentItem = pProducts?.medicines?.find(
-    (itemv: any) => itemv?.service_code === item.service_code
+    (itemv: any) => itemv?.service_code === item.service_code,
   ); //cartItems[index];
   console.log("curentItem", curentItem);
 

@@ -45,7 +45,7 @@ const DoctorsList = (props: any) => {
   const count = 25;
   const [page, setPage] = useState(1);
   const [specialization, setSpecialization] = useState<number[]>(
-    specializationId ? [Number(specializationId)] : ([] as any)
+    specializationId ? [Number(specializationId)] : ([] as any),
   );
   const [languages, setLanguages] = useState([] as any);
   const [gender, setGender] = useState([] as any);
@@ -63,10 +63,10 @@ const DoctorsList = (props: any) => {
   const [isPageLoading, setIsPageLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { allNearByHospitalList, allDoctorsFiltersData } = useSelector(
-    (ReduxState: any) => ReduxState.doctor
+    (ReduxState: any) => ReduxState.doctor,
   );
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
   const [doctorsListData, setDoctorsListData] = useState<any>([]);
@@ -75,7 +75,7 @@ const DoctorsList = (props: any) => {
   const [showHospitalDoctors, setShowHospitalDoctors] = useState(true);
   const [isLoadMoreClick, setIsLoadMoreClick] = useState(false);
   const [selectedServiceType, setSelectedServiceType] = useState(
-    pathUrl?.includes("nearbyhospitals") ? "clinic" : ("online" as any)
+    pathUrl?.includes("nearbyhospitals") ? "clinic" : ("online" as any),
   );
 
   const [updatedFilters, setUpdatedFilters] = useState(false);
@@ -186,7 +186,7 @@ const DoctorsList = (props: any) => {
             type: ["virtual"],
           },
         },
-      })
+      }),
     );
     setIsPageLoading(false);
     console.log("res?.payload?.data", res?.payload?.data);
@@ -286,7 +286,7 @@ const DoctorsList = (props: any) => {
           type: selectedServiceType === "online" ? ["virtual"] : ["opd"],
           availabilities: true,
         },
-      })
+      }),
     );
     setIsPageLoading(false);
     setTimeout(() => {
@@ -813,7 +813,7 @@ const DoctorsList = (props: any) => {
                                               {speItem?.name}
                                             </>
                                           );
-                                        }
+                                        },
                                       )}
                                     </p>
                                     <p className="doctor-lang-name">

@@ -52,7 +52,7 @@ const UploadPrescription = (props: any) => {
   const [saveprescriptiondata, setSaveprescriptiondata] = useState(
     raphaPrescriptionsSection?.[categoryName]
       ? raphaPrescriptionsSection?.[categoryName]
-      : []
+      : [],
   );
 
   const [deleteIndexArray, setDeleteIndexArray] = useState<any>(null);
@@ -76,7 +76,7 @@ const UploadPrescription = (props: any) => {
   };
 
   const { userDependents, userAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
 
   const path = window.location.pathname?.replace("/", "");
@@ -215,7 +215,7 @@ const UploadPrescription = (props: any) => {
               remarks,
               address_id,
               type,
-            })
+            }),
           )) as any;
           const signedUrl = resp1?.payload?.signedUrl;
           const aID = resp1?.payload?.attachment?.id;
@@ -235,14 +235,14 @@ const UploadPrescription = (props: any) => {
             prevItems[categoryName] = [...prevItemsCat];
             localStorage.setItem(
               "raphaPrescriptions",
-              JSON.stringify(prevItems)
+              JSON.stringify(prevItems),
             );
             setSaveprescriptiondata([...prevItemsCat]);
             fileInput.current = null;
             showSavedPrescription();
             setShowUploadPecModel(false);
             dispatch(
-              updateNitifySuccessMessage("Prescription Uploaded Successfully")
+              updateNitifySuccessMessage("Prescription Uploaded Successfully"),
             );
             setIsLoading(false);
           } else {
@@ -563,7 +563,7 @@ const UploadPrescription = (props: any) => {
                                   </div>
                                 </div>
                               );
-                            }
+                            },
                           )}
                         </div>
                         <div className="savedprescription-btns flex_wrapbetween">

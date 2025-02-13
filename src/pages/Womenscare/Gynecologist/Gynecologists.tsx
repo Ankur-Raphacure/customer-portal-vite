@@ -38,9 +38,9 @@ const Gynecologists = () => {
     timeoutRef.current = setTimeout(
       () =>
         setIndex((prevIndex) =>
-          prevIndex === articles.length - 1 ? 0 : prevIndex + 1
+          prevIndex === articles.length - 1 ? 0 : prevIndex + 1,
         ),
-      delay
+      delay,
     );
     return () => {
       resetTimeout();
@@ -53,7 +53,7 @@ const Gynecologists = () => {
         count: 1000,
         page: 0,
         searchText: "",
-      })
+      }),
     );
   }, [0]);
 

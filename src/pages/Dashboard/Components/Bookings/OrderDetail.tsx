@@ -127,7 +127,7 @@ const OrderDetail = ({ item, itemId, onClose }: any) => {
       steps?.push({
         label: `Out for collection on ${formatDate(
           order?.collection_1_date,
-          false
+          false,
         )}`,
         completed: true,
       });
@@ -141,7 +141,7 @@ const OrderDetail = ({ item, itemId, onClose }: any) => {
     }
     if (order?.collection_1_date) {
       const reachedLabDate = new Date(
-        parseInt(order?.collection_1_date) + 3600000
+        parseInt(order?.collection_1_date) + 3600000,
       ).getTime();
       steps.push({
         label: `Reached Lab for testing on ${formatDate(reachedLabDate)}`,

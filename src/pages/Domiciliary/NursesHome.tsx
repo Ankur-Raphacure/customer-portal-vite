@@ -10,7 +10,7 @@ const NursesHome = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { allDomiciliaryNursesAPI } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
   const item = allDomiciliaryNursesAPI?.nurses;

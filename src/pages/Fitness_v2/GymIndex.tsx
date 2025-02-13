@@ -73,7 +73,7 @@ const allNearByLabssList = [
 const GymIndex = () => {
   const dispatch = useDispatch();
   const { allFitnessList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   useEffect(() => {
@@ -110,8 +110,20 @@ const GymIndex = () => {
             </div>
             <div className="right-content">
               <div className="fitness-img-div">
-                <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337611321.png"} alt="fitness" className="fitness-girl-img" />
-                <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332127320.png"} alt="fitness" className="fitness-text-img" />
+                <img
+                  src={
+                    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337611321.png"
+                  }
+                  alt="fitness"
+                  className="fitness-girl-img"
+                />
+                <img
+                  src={
+                    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332127320.png"
+                  }
+                  alt="fitness"
+                  className="fitness-text-img"
+                />
               </div>
             </div>
           </div>
@@ -167,7 +179,12 @@ const GymIndex = () => {
               <button className="shopnow">SHOP NOW</button>
             </div>
             <div className="right-content">
-              <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736331648413.png"} alt="fitness" />
+              <img
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736331648413.png"
+                }
+                alt="fitness"
+              />
             </div>
           </div>
         </div>

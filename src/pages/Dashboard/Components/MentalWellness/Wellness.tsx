@@ -14,7 +14,8 @@ const cardData = [
     title: "Interactive Mind Games",
     description:
       "Cognitive games that challenge and stimulate the mind, helping improve mental agility and emotional balance.",
-    image: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507934910.png",
+    image:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507934910.png",
     component: "MindGames", // Store the component's name
   },
   {
@@ -22,7 +23,8 @@ const cardData = [
     title: "Mindful Activities",
     description:
       "Engaging mental exercises designed to enhance focus, reduce stress, and promote inner calm.",
-    image: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507664059.png",
+    image:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507664059.png",
     component: "MindfulActivities", // Store the component's name
   },
   {
@@ -30,7 +32,8 @@ const cardData = [
     title: "Serenity Scenes",
     description:
       "Peaceful visuals and sounds that help create a tranquil mental space, perfect for relaxation and reflection.",
-    image: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507712296.png",
+    image:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507712296.png",
     component: "SerenityScenes", // Store the component's name
   },
   {
@@ -38,7 +41,8 @@ const cardData = [
     title: "Community Chat",
     description:
       "A supportive chat platform to connect, share experiences, and discuss mental wellness.",
-    image: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507801035.png",
+    image:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507801035.png",
     component: "ChatRoom", // Store the component's name
   },
 ];
@@ -100,7 +104,12 @@ const Wellness = () => {
       icon: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507712296.png",
       component: "SerenityScenes",
     },
-    { id: 3, title: "Community Chat", icon: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507801035.png", component: "ChatRoom" },
+    {
+      id: 3,
+      title: "Community Chat",
+      icon: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507801035.png",
+      component: "ChatRoom",
+    },
   ];
 
   return (
@@ -114,7 +123,10 @@ const Wellness = () => {
               </div>
               <div className="row">
                 <div className="col-lg-4 col-md-4">
-                  <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736508005403.png" alt="Imag-sec" />
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736508005403.png"
+                    alt="Imag-sec"
+                  />
                 </div>
                 <div className="col-lg-8 col-md-8">
                   <h4>Mood Diary</h4>

@@ -87,7 +87,7 @@ const DynamicSelect = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { hospitalList, doctorsList, tablist } = useSelector(
-    (ReduxState: any) => ReduxState.doctor
+    (ReduxState: any) => ReduxState.doctor,
   );
   useEffect(() => {
     const doctorRequestOBj = {

@@ -39,13 +39,13 @@ const Testimonials = () => {
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1
+      prevIndex === 0 ? testimonialsData.length - 1 : prevIndex - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === testimonialsData.length - 1 ? 0 : prevIndex + 1
+      prevIndex === testimonialsData.length - 1 ? 0 : prevIndex + 1,
     );
   };
 

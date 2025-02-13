@@ -39,7 +39,7 @@ const BookDemo = () => {
 
   const handlePanelChange = (newMonth: any) => {
     setCurrentMonth(newMonth);
-    setSelectedDate(null); 
+    setSelectedDate(null);
   };
 
   const handleMonthChange = (direction: "prev" | "next") => {
@@ -112,10 +112,10 @@ const BookDemo = () => {
             <div className="doctor-tool-card">
               {/* Header Section */}
               <div className="header">
-                <AiOutlineArrowLeft 
-                size={32} 
-                className="back-icon" 
-                onClick={() => history.push("/")}
+                <AiOutlineArrowLeft
+                  size={32}
+                  className="back-icon"
+                  onClick={() => history.push("/")}
                 />
                 <h3 className="company-name">Raphaplus</h3>
                 <h2 className="title">
@@ -145,8 +145,7 @@ const BookDemo = () => {
                 className={`key-features-container ${isActive ? "active" : ""}`}
                 onClick={toggleActiveState}
               >
-                
-                <h3 >
+                <h3>
                   Key Features:
                   {isActive ? (
                     <FaAngleDown className="arrow-icon" />
@@ -154,10 +153,7 @@ const BookDemo = () => {
                     <FaAngleRight className="arrow-icon" />
                   )}
                 </h3>
-                <ul
-                  className="key-features-list"
-                  
-                >
+                <ul className="key-features-list">
                   <li>Effortless Multi-Clinic Management</li>
                   <li>Patient Management</li>
                   <li>Customize Rx</li>
@@ -171,7 +167,7 @@ const BookDemo = () => {
                 <div className="calendar-navigation">
                   <button
                     onClick={() => handleMonthChange("prev")}
-                    disabled={currentMonth.isSame(moment(), "month")} 
+                    disabled={currentMonth.isSame(moment(), "month")}
                   >
                     {"<"}
                   </button>
@@ -183,16 +179,20 @@ const BookDemo = () => {
 
                 <Calendar
                   fullscreen={false}
-                  value={currentMonth} 
-                  onPanelChange={(newMonth) => setCurrentMonth(newMonth)} 
+                  value={currentMonth}
+                  onPanelChange={(newMonth) => setCurrentMonth(newMonth)}
                   onSelect={(date) => {
-                    setSelectedDate(date); 
-                    setCurrentMonth(date); 
+                    setSelectedDate(date);
+                    setCurrentMonth(date);
                   }}
-                  disabledDate={(date) =>
-                    date && (date < moment().startOf("day") || date.day() === 0 || date.day() === 6) // Disable past dates and weekends
+                  disabledDate={
+                    (date) =>
+                      date &&
+                      (date < moment().startOf("day") ||
+                        date.day() === 0 ||
+                        date.day() === 6) // Disable past dates and weekends
                   }
-                  headerRender={() => null} 
+                  headerRender={() => null}
                 />
               </div>
             </div>

@@ -146,7 +146,10 @@ const RPContactUs = () => {
                 <button className="">Send Message</button>
               </div>
               <div className="img-div">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736415549127.png" alt="" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736415549127.png"
+                  alt=""
+                />
               </div>
             </div>
           </div>

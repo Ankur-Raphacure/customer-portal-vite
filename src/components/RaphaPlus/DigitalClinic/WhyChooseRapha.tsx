@@ -10,7 +10,10 @@ const WhyChooseRapha = () => {
       </h1>
       <div className="why-choose-rapha">
         <div className="image-section">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736416074738.png" alt="Woman holding a heart" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736416074738.png"
+            alt="Woman holding a heart"
+          />
         </div>
         <div className="text-section">
           <h2>Redefining Corporate Healthcare</h2>

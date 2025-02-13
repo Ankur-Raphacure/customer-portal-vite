@@ -34,7 +34,10 @@ function PlystorePopUp(props: any) {
               <h5>Download Raphacure App Now</h5>
             </div>
             <div className="download-app-qr-div">
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736505583010.png" alt="" />
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736505583010.png"
+                alt=""
+              />
               <div className="download-app-sub-text-div">
                 <h5>Scan Here to download App</h5>
               </div>

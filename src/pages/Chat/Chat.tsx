@@ -30,7 +30,7 @@ const Chat = () => {
     messages,
     sendMessage,
     getRelativeTimeDifference,
-    isPipMode
+    isPipMode,
   } = useContext(ChatContext);
   const scrollRef: any = useRef(null);
 
@@ -48,31 +48,37 @@ const Chat = () => {
 
   return (
     <ChatStyle>
-      <div className={`chatMainDiv ${isPipMode ? 'p-0' : ''}`}>
-      { !isPipMode && <div className="leftSideBar">
-          {/* input header */}
-          <ul className="d-flex justify-content-between align-items-center header p-0">
-            <li className="inputFame d-flex align-items-center">
-              <LuSearch className="mt-1" size={20} />
-              <input type="text" name="" placeholder="Search name" id="" />
-            </li>
-            <li></li>
-          </ul>
+      <div className={`chatMainDiv ${isPipMode ? "p-0" : ""}`}>
+        {!isPipMode && (
+          <div className="leftSideBar">
+            {/* input header */}
+            <ul className="d-flex justify-content-between align-items-center header p-0">
+              <li className="inputFame d-flex align-items-center">
+                <LuSearch className="mt-1" size={20} />
+                <input type="text" name="" placeholder="Search name" id="" />
+              </li>
+              <li></li>
+            </ul>
 
-          {/* /options */}
-          <ul className="d-flex align-items-center options">
-            <li className={`${"active"}`}>Direct Chat</li>
-          </ul>
+            {/* /options */}
+            <ul className="d-flex align-items-center options">
+              <li className={`${"active"}`}>Direct Chat</li>
+            </ul>
 
-          {/* list */}
-          <div className="userCardListFrame">
-            {allDirectChatLists?.map((item: any, i: number) => {
-              return (
-                <SideBarListCard tabName="INDIVIDUAL_CHAT" data={item} key={i} />
-              );
-            })}
+            {/* list */}
+            <div className="userCardListFrame">
+              {allDirectChatLists?.map((item: any, i: number) => {
+                return (
+                  <SideBarListCard
+                    tabName="INDIVIDUAL_CHAT"
+                    data={item}
+                    key={i}
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>}
+        )}
 
         <div className="rightSideBar">
           {currentChat ? (
@@ -101,7 +107,9 @@ const Chat = () => {
                     prevDate == date ? (
                       <></>
                     ) : (
-                      <Divider>{date === new Date()?.toDateString() ? "Today" : date}</Divider>
+                      <Divider>
+                        {date === new Date()?.toDateString() ? "Today" : date}
+                      </Divider>
                     );
                   prevDate = date;
                   if (msg?.event && Object.keys(msg?.event)?.length != 0) {

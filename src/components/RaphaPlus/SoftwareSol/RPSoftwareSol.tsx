@@ -39,7 +39,10 @@ const Innovation = () => {
           <button className="view-button">VIEW</button>
         </div>
         <div className="image-container">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407854580.png" alt="Hospital Management" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407854580.png"
+            alt="Hospital Management"
+          />
         </div>
       </div>
       <div className="hospital-management-container rightOriented">
@@ -52,7 +55,10 @@ const Innovation = () => {
           <button className="view-button">VIEW</button>
         </div>
         <div className="image-container">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407854580.png" alt="Hospital Management" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407854580.png"
+            alt="Hospital Management"
+          />
         </div>
       </div>
       <div className="hospital-management-container leftOriented">
@@ -65,7 +71,10 @@ const Innovation = () => {
           <button className="view-button">VIEW</button>
         </div>
         <div className="image-container">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407854580.png" alt="Hospital Management" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407854580.png"
+            alt="Hospital Management"
+          />
         </div>
       </div>
       <div className="hospital-management-container rightOriented">
@@ -78,7 +87,10 @@ const Innovation = () => {
           <button className="view-button">VIEW</button>
         </div>
         <div className="image-container">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407854580.png" alt="Hospital Management" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407854580.png"
+            alt="Hospital Management"
+          />
         </div>
       </div>
     </div>
@@ -205,12 +217,18 @@ const RPSoftwareSol = () => {
           </div>
         </div>
         <div className="image-container">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407712828.png" alt="Meeting" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407712828.png"
+            alt="Meeting"
+          />
         </div>
       </div>
       <Innovation />
       <div className="trustedBy">
-        <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407965060.png" alt="" />
+        <img
+          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736407965060.png"
+          alt=""
+        />
       </div>
       <Approach />
     </RPSoftwareSolStyled>

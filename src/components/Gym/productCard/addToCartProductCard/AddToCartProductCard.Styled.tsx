@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const AddToCartProductCardStyled = styled.div`
     .card-div{
         width:220px;
@@ -41,4 +40,4 @@ export const AddToCartProductCardStyled = styled.div`
         display:flex;
         justify-content:end;
     }
-`
+`;

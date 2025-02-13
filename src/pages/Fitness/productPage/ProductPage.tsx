@@ -11,7 +11,7 @@ const ProductPage = () => {
   const { productId } = useParams() as any;
   const [selectedSize, setSelectedSize] = useState("XL");
   const [pincode, setPincode] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const sizes = [
     { label: "M", value: "M" },
@@ -47,7 +47,10 @@ const ProductPage = () => {
               <div className="save-tag">Save 20%</div>
 
               <div className="main-image">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1737932988347.png" alt="Blue Sports Shoe" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1737932988347.png"
+                  alt="Blue Sports Shoe"
+                />
               </div>
 
               <div className="thumbnail-container">

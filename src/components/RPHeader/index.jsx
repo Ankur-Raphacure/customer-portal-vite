@@ -55,7 +55,7 @@ const RPHeader = (props) => {
     rpSubDomainDetails,
   } = useSelector(({ auth }) => auth);
   const { cartItems, nitifySuccessMessage } = useSelector(
-    (startR) => startR?.checkout
+    (startR) => startR?.checkout,
   );
   const { configInfo } = useSelector(({ config }) => config);
   const { universalSearchResults } = useSelector(({ generic }) => generic);
@@ -66,10 +66,10 @@ const RPHeader = (props) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [show, setShow] = useState(false);
   const [headerList, setHeaderList] = useState(
-    rpSubDomainDetails?.id ? finalList?.slice(0, 1) : finalList?.slice(0, 20)
+    rpSubDomainDetails?.id ? finalList?.slice(0, 1) : finalList?.slice(0, 20),
   );
   const [headerSelectList, setHeaderSelectList] = useState(
-    finalList?.slice(20, 40)
+    finalList?.slice(20, 40),
   );
   const [selectedNavItem, setSelectedNavItem] = useState("");
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);

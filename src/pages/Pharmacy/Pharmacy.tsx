@@ -108,7 +108,7 @@ const Pharmacy = () => {
     const prevcaids = [...btnCategoryId];
     if (prevcaids?.includes(btnName)) {
       const findINdex = prevcaids.findIndex(
-        (itemId: any) => itemId === btnName
+        (itemId: any) => itemId === btnName,
       );
       prevcaids.splice(findINdex, 1);
     } else {
@@ -124,7 +124,7 @@ const Pharmacy = () => {
         categoryIds: btnCategoryId,
         count: 3,
         page: 1,
-      })
+      }),
     );
     setIsLoading(false);
   };
@@ -195,7 +195,7 @@ const Pharmacy = () => {
     history.push(
       `/item/${searR?.category_key}/${
         searR?.service_code
-      }?categoryids=${searR?.category_ids?.join(",")}`
+      }?categoryids=${searR?.category_ids?.join(",")}`,
     );
 
     // history.push(`/pharmacy/item/${searR}`);
@@ -407,7 +407,7 @@ const Pharmacy = () => {
                     {label?.name}
                   </button>
                 );
-              }
+              },
             )}
           </div>
         </div>
@@ -421,7 +421,7 @@ const Pharmacy = () => {
 
                   const item2 = [...item];
                   item2.sort(
-                    (a: any, b: any) => a.discounted_price - b.discounted_price
+                    (a: any, b: any) => a.discounted_price - b.discounted_price,
                   );
                   // console.log("totLen", totLen);
                   // console.log("totLen1", totLen1);

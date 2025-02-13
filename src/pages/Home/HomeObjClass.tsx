@@ -131,7 +131,7 @@ export const indigridPackagesMobile = [
 
     navigatePath: "/radiology",
     background: "linear-gradient(229deg, #FEE6DC 11.99%, #FFF9F6 88.81%)",
-  }
+  },
 ];
 
 export const indigridDiscountedPackages = [

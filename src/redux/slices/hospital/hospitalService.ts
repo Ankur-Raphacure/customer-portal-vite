@@ -11,16 +11,16 @@ import {
 export const getHospitalDetailsAPI = createAsyncThunk(
   "hospital/getHospitalDetailsAPI",
   async (id: string) =>
-    await post(`${SERVER_IP}/graphql`, constructHospitalDetailsQuery(id))
+    await post(`${SERVER_IP}/graphql`, constructHospitalDetailsQuery(id)),
 );
 
 export const getHospitalDoctorsListAPI = createAsyncThunk(
   "hospital/getHospitalDoctorsListAPI",
   async (obj: any) =>
-    await post(`${SERVER_IP}/graphql`, constructHospitalDoctorsListQuery(obj))
+    await post(`${SERVER_IP}/graphql`, constructHospitalDoctorsListQuery(obj)),
 );
 export const getInHouseDoctorsAPI = createAsyncThunk(
   "hospital/getInHouseDoctorsAPI",
   async (obj: any) =>
-    await post(`${SERVER_IP}/graphql`, constructgetInHouseDoctorsQuery(obj))
+    await post(`${SERVER_IP}/graphql`, constructgetInHouseDoctorsQuery(obj)),
 );

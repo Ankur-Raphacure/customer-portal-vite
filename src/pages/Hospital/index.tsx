@@ -21,7 +21,7 @@ const Hospital = (props: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { hospitalDetails, doctorsList, doctorsListNew } = useSelector(
-    (ReduxState: any) => ReduxState.hospital
+    (ReduxState: any) => ReduxState.hospital,
   );
   const { configInfo } = useSelector((ReduxState: any) => ReduxState.config);
   const doctorFilters = configInfo?.doctorFilters;
@@ -81,7 +81,7 @@ const Hospital = (props: any) => {
         hospitalId: hospitalId,
         doctorFilterObject: JSON.stringify(doctorFilterObjectList).replace(
           /"(\w+)"\s*:/g,
-          "$1:"
+          "$1:",
         ),
       };
       dispatch(getHospitalDoctorsListAPI(doctorRequestOBj));
@@ -135,7 +135,7 @@ const Hospital = (props: any) => {
           },
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push("/doctor/bookingReview");
     }
@@ -197,7 +197,7 @@ const Hospital = (props: any) => {
     }
 
     const clonedFilterList: StringIndexedObject = structuredClone(
-      doctorFilterObjectList
+      doctorFilterObjectList,
     );
 
     for (const key in clonedFilterList) {

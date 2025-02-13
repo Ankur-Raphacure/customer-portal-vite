@@ -25,7 +25,7 @@ export const chatRoomSlice = createSlice({
 
     updateErrorMessage: (
       state: ChatRoomState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.error = action.payload;
     },
@@ -53,7 +53,7 @@ export const chatRoomSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.internalChats = action.payload.data.internalChats;
-      }
+      },
     );
 
     builder.addCase(
@@ -62,7 +62,7 @@ export const chatRoomSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     // getFirebaseTokenAPI
@@ -78,7 +78,7 @@ export const chatRoomSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.firebaseToken = action.payload.data.firebaseToken;
-      }
+      },
     );
 
     builder.addCase(
@@ -87,7 +87,7 @@ export const chatRoomSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
   },
 });

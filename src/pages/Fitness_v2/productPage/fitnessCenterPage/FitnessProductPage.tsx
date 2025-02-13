@@ -28,7 +28,7 @@ const Trainers = ({ centerId }: any) => {
     const getTrainers = async () => {
       setIsLoading(true);
       const result = (await dispatch(
-        getAllFitnessTrainersAPI({ fitnessCenter_id: centerId })
+        getAllFitnessTrainersAPI({ fitnessCenter_id: centerId }),
       )) as any;
       setTrainers(result?.payload?.data?.trainers);
       setIsLoading(false);
@@ -99,7 +99,7 @@ const FitnessProductPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [SimilarFitnessCenters, setSimilarFitnessCenters] = useState([]) as any;
   const [SelectedFitnessCenter, setSelectedFitnessCenter] = useState(
-    null
+    null,
   ) as any;
 
   const list = [
@@ -128,7 +128,7 @@ const FitnessProductPage = () => {
           role: "user",
           latitude: selectedCurrentAddress?.latitude,
           longitude: selectedCurrentAddress?.longitude,
-        })
+        }),
       )) as any;
       setSimilarFitnessCenters(result?.payload?.data);
     };
@@ -143,7 +143,7 @@ const FitnessProductPage = () => {
   useEffect(() => {
     const getSelected = async () => {
       const result = (await dispatch(
-        getFitnessCentersDataAPI({ id: productId })
+        getFitnessCentersDataAPI({ id: productId }),
       )) as any;
       setSelectedFitnessCenter(result?.payload?.data);
       setSelectedPackage(result?.payload?.data?.packages?.[0]?.service_code);
@@ -153,16 +153,15 @@ const FitnessProductPage = () => {
 
   console.log("selected", SelectedFitnessCenter);
 
-  const [selectedPackage, setSelectedPackage] = useState("") as any
+  const [selectedPackage, setSelectedPackage] = useState("") as any;
 
   const similar = SimilarFitnessCenters?.fitnessCenters?.filter(
-    (item: any) => String(item?.id) !== String(productId)
+    (item: any) => String(item?.id) !== String(productId),
   );
 
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState: RootState) => ReduxState.profile
+    (ReduxState: RootState) => ReduxState.profile,
   );
-
 
   return (
     <FitnessProductPageStyled>
@@ -317,7 +316,7 @@ const FitnessProductPage = () => {
                         `https://www.google.com/maps?q=${
                           SelectedFitnessCenter?.latitude
                         },${SelectedFitnessCenter?.longitude}&z=${15}`,
-                        "_blank"
+                        "_blank",
                       );
                     }
                   }}
@@ -351,12 +350,12 @@ const FitnessProductPage = () => {
                       Open:{" "}
                       {moment(
                         SelectedFitnessCenter?.opening_time,
-                        "HH:mm:ss"
+                        "HH:mm:ss",
                       ).format("h:mm A")}{" "}
                       -{" "}
                       {moment(
                         SelectedFitnessCenter?.closing_time,
-                        "HH:mm:ss"
+                        "HH:mm:ss",
                       ).format("h:mm A")}
                     </b>
                   </span>
@@ -367,41 +366,39 @@ const FitnessProductPage = () => {
 
           <div className="package-details-section">
             {SelectedFitnessCenter?.packages &&
-            Array.isArray(SelectedFitnessCenter?.packages) &&
-            SelectedFitnessCenter?.packages?.length > 0 && (
-              <div
-                className="package-details-section-deck"
-              >
-                {SelectedFitnessCenter?.packages?.map((item: any) => {
-                  return (
-                    <div
-                      onClick={() => setSelectedPackage(item?.service_code)}
-                      className={`package-div ${
-                        selectedPackage === item?.service_code
-                          ? "package-div-selected"
-                          : ""
-                      }`}
-                    >
-                      <h4>{item?.service_name}</h4>
-                      <div>
-                        <b>Descriptions:</b>
-                        <span
-                          className="description"
-                          dangerouslySetInnerHTML={{
-                            __html: item?.description,
-                          }}
-                        ></span>
-                      </div>
-                      <div className="price-container">
-                        <div className="price">
-                          Rs.{item?.price?.actual_cost}
+              Array.isArray(SelectedFitnessCenter?.packages) &&
+              SelectedFitnessCenter?.packages?.length > 0 && (
+                <div className="package-details-section-deck">
+                  {SelectedFitnessCenter?.packages?.map((item: any) => {
+                    return (
+                      <div
+                        onClick={() => setSelectedPackage(item?.service_code)}
+                        className={`package-div ${
+                          selectedPackage === item?.service_code
+                            ? "package-div-selected"
+                            : ""
+                        }`}
+                      >
+                        <h4>{item?.service_name}</h4>
+                        <div>
+                          <b>Descriptions:</b>
+                          <span
+                            className="description"
+                            dangerouslySetInnerHTML={{
+                              __html: item?.description,
+                            }}
+                          ></span>
+                        </div>
+                        <div className="price-container">
+                          <div className="price">
+                            Rs.{item?.price?.actual_cost}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ) }
+                    );
+                  })}
+                </div>
+              )}
           </div>
 
           <div className="service-section">
@@ -414,7 +411,11 @@ const FitnessProductPage = () => {
           </div>
 
           <div className="booking-side">
-            <BookingCard selectedPackage={selectedPackage} setSelectedPackage={setSelectedPackage} SelectedFitnessCenter={SelectedFitnessCenter} />
+            <BookingCard
+              selectedPackage={selectedPackage}
+              setSelectedPackage={setSelectedPackage}
+              SelectedFitnessCenter={SelectedFitnessCenter}
+            />
           </div>
         </div>
         {similar?.length > 0 && (
@@ -425,7 +426,7 @@ const FitnessProductPage = () => {
               viewAllLink="/fitnessCenters"
               heading={"Similar Products"}
               data={SimilarFitnessCenters?.fitnessCenters?.filter(
-                (item: any) => String(item?.id) !== String(productId)
+                (item: any) => String(item?.id) !== String(productId),
               )}
               renderCard={(item: any, i: any) => {
                 const data = {

@@ -1,41 +1,61 @@
-
 import { ShopglassStyled } from "./Shopglasess.Styled";
 import { useHistory } from "react-router-dom";
 
-
 const SpecsDetail = () => {
-    const history = useHistory();
+  const history = useHistory();
 
-    const handleBackClick = () => {
-      history.push("/eyecare/accessories/glasses");
-    };
+  const handleBackClick = () => {
+    history.push("/eyecare/accessories/glasses");
+  };
   return (
     <ShopglassStyled>
       <div className="specs-detail container">
-        <button className="back-btn" onClick={handleBackClick}>Back</button>
+        <button className="back-btn" onClick={handleBackClick}>
+          Back
+        </button>
 
         <div className="row">
           <div className="col-lg-8 col-md-8">
             <div className="images">
               <div className="row image-row">
                 <div className="col-lg-6 col-md-6 image-col">
-                  <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338453289.png" alt="preview-img" className="image" />
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338453289.png"
+                    alt="preview-img"
+                    className="image"
+                  />
                 </div>
                 <div className="col-lg-6 col-md-6 image-col">
-                  <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338453289.png" alt="preview-img" className="image" />
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338453289.png"
+                    alt="preview-img"
+                    className="image"
+                  />
                 </div>
               </div>
               <div className="row  image-row">
                 <div className="col-lg-6 col-md-6 image-col">
-                  <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338503669.png" alt="preview-img" className="image" />
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338503669.png"
+                    alt="preview-img"
+                    className="image"
+                  />
                 </div>
                 <div className="col-lg-6 col-md-6 image-col">
-                  <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338503669.png" alt="preview-img" className="image" />
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338503669.png"
+                    alt="preview-img"
+                    className="image"
+                  />
                 </div>
               </div>
               <div className="row  mb-4 image-row">
                 <div className="col-lg-6 col-md-6 image-col">
-                  <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338503669.png" alt="preview-img" className="image" />
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338503669.png"
+                    alt="preview-img"
+                    className="image"
+                  />
                 </div>
               </div>
             </div>

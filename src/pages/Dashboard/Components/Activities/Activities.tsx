@@ -147,7 +147,7 @@ const Activities = () => {
   };
   useEffect(() => {
     const dietPlan = document.querySelector(
-      "button#activities-tabs-tab-diet-plan"
+      "button#activities-tabs-tab-diet-plan",
     );
     if (dietPlan) {
       dietPlan.addEventListener("click", () => {

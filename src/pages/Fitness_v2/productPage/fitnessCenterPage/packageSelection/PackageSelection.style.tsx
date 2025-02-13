@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const PackageSelectionStyled = styled.div`
     .page-heading{
         margin :20px 0 35px 0;
@@ -47,11 +46,11 @@ export const PackageSelectionStyled = styled.div`
         right:-12px;
         top:35px;
     }
-`
+`;
 
 export const PackagesCardButton = styled.button`
-    background:${(props:any)=>(props?.selected ? "#002366" :"white")};
-    color: ${(props:any)=>(props?.selected ? "white" :"#002366")};
+    background:${(props: any) => (props?.selected ? "#002366" : "white")};
+    color: ${(props: any) => (props?.selected ? "white" : "#002366")};
     padding: 10px 15px;
     border: 1px solid #002366;
     border-radius: 24px;
@@ -61,4 +60,4 @@ export const PackagesCardButton = styled.button`
     &:hover {
         background: #001a44;
     }
-` as any
+` as any;

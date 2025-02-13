@@ -109,7 +109,10 @@ const TrackBookingPage = ({ setShowContent, picLoc, destLoc }: any) => {
           </div>
           <div className="emergencyDiv">
             {/* <div className="leftImage"></div> */}
-            <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736510420528.png" alt="" />
+            <img
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736510420528.png"
+              alt=""
+            />
             <div className="cardContainer">
               <h2>Download App</h2>
               <p>
@@ -117,10 +120,20 @@ const TrackBookingPage = ({ setShowContent, picLoc, destLoc }: any) => {
                 Get instant access to our wide range of medical services and
                 stay connected with healthcare professionals on the go.
               </p>
-              <img className="videoDemo" src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736510471957.png" alt="" />
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736510499783.png" alt="" />
+              <img
+                className="videoDemo"
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736510471957.png"
+                alt=""
+              />
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736510499783.png"
+                alt=""
+              />
             </div>
-            <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425965406.png" alt="" />
+            <img
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425965406.png"
+              alt=""
+            />
           </div>
         </div>
       </TrackBookingPageStyled>

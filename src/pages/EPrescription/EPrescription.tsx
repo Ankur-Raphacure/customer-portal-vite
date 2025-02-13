@@ -53,12 +53,12 @@ const EPrescription = (props: any) => {
     // Filter medicines by category
     const brandedMedicines =
       prescData.attachments[0]?.prescriptions_medicines?.filter(
-        (medicine: any) => medicine?.medicine?.category_key === "branded"
+        (medicine: any) => medicine?.medicine?.category_key === "branded",
       ) || [];
 
     const genericMedicines =
       prescData.attachments[0]?.prescriptions_medicines?.filter(
-        (medicine: any) => medicine?.medicine?.category_key === "generic"
+        (medicine: any) => medicine?.medicine?.category_key === "generic",
       ) || [];
 
     const labTests = prescData.attachments[0]?.prescriptions_tests || [];
@@ -102,7 +102,7 @@ const EPrescription = (props: any) => {
             {medicines.reduce(
               (sum: any, medicine: any) =>
                 sum + medicine?.medicine?.price?.actual_cost,
-              0
+              0,
             )}
           </span>
         </div>
@@ -154,7 +154,7 @@ const EPrescription = (props: any) => {
                 Total:{" "}
                 {labTests.reduce(
                   (sum: any, test: any) => sum + test?.test?.price?.actual_cost,
-                  0
+                  0,
                 )}
               </span>
             </div>

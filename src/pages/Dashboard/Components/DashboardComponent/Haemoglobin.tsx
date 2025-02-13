@@ -26,7 +26,12 @@ const Haemoglobin = ({ data }: any) => {
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Line type="monotone" dataKey="pulse" stroke="#8884d8" strokeWidth={3}/>
+        <Line
+          type="monotone"
+          dataKey="pulse"
+          stroke="#8884d8"
+          strokeWidth={3}
+        />
       </LineChart>
     </ResponsiveContainer>
   );

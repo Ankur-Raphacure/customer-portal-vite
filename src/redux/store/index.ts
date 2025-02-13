@@ -17,7 +17,7 @@ import timeslotReducer from "../slices/timeslot/timeslotSlice";
 import bloodBankReducer from "../slices/bloodbank/bloodBankSlice";
 import chatRoomReducer from "../slices/chatroom/chatRoomSlice";
 import hypersiteReducer from "../slices/hypersite/hypersiteSlice";
-import FitnessReducer from "../slices/fitness/fitnessSlice"
+import FitnessReducer from "../slices/fitness/fitnessSlice";
 
 const store = configureStore({
   reducer: {
@@ -37,7 +37,7 @@ const store = configureStore({
     bloodbank: bloodBankReducer,
     chatroom: chatRoomReducer,
     hypersite: hypersiteReducer,
-    Fitness:FitnessReducer
+    Fitness: FitnessReducer,
   },
 });
 

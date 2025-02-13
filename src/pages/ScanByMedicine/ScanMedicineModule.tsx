@@ -37,12 +37,12 @@ const ScanMedicineModule = () => {
   >(null);
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
   const { allMedicinesList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
   const { cartItems } = useSelector((ReduxState: any) => ReduxState.checkout);
   const pProducts =
     cartItems?.carts?.find(
-      (itemv: any) => itemv?.section_key === `${section}`
+      (itemv: any) => itemv?.section_key === `${section}`,
     ) || [];
 
   const UploadImage = useCallback(async () => {
@@ -90,7 +90,7 @@ const ScanMedicineModule = () => {
   };
   const handleClick = () => {
     const fileInput = document.getElementById(
-      "fileInput"
+      "fileInput",
     ) as HTMLInputElement | null;
     if (fileInput) {
       fileInput.click();
@@ -113,7 +113,7 @@ const ScanMedicineModule = () => {
         })
         .catch((error: any) => {
           setMedicinesErrorMsg(
-            "No medicines found. Please Upload Another Image."
+            "No medicines found. Please Upload Another Image.",
           );
           setIsScanning(false);
 
@@ -132,7 +132,7 @@ const ScanMedicineModule = () => {
       const response: any = await dispatch(getAllMedicineAPI(body));
       if (response?.payload?.data?.length === 0) {
         setMedicinesErrorMsg(
-          "No medicines found. Please Upload Another Image."
+          "No medicines found. Please Upload Another Image.",
         );
       } else {
         setMedicinesErrorMsg(null);
@@ -338,7 +338,7 @@ const ScanMedicineModule = () => {
               <div className="medicinesGridContainer">
                 {allMedicinesList?.map((item: any) => {
                   const isAddedToCart = pProducts?.medicines?.find(
-                    (med: any) => med?.service_code === item.service_code
+                    (med: any) => med?.service_code === item.service_code,
                   );
                   return (
                     <MedicineCardModule

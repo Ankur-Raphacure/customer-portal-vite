@@ -10,7 +10,7 @@ const Naturopathys = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { allNaturopathyList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
   const [activeButton, setActiveButton] = useState("Physio Therapy");

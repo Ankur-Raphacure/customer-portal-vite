@@ -108,7 +108,7 @@ const MultiCarouselModal = (props: any) => {
 
           {allTypeMedicineDetail?.map((item: any) => {
             const isAddedToCart = pProducts?.medicines?.find(
-              (med: any) => med?.service_code === item.service_code
+              (med: any) => med?.service_code === item.service_code,
             );
             return (
               <MedicineCardModule

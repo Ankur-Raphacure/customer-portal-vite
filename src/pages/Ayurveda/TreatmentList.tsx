@@ -11,7 +11,7 @@ const TreatmentList = () => {
   const [activeButton, setActiveButton] = useState("General Health");
   const [showDetails, setShowDetails] = useState(false);
   const { allAyurvedsDiseaseList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
   const item = allAyurvedsDiseaseList?.tests;

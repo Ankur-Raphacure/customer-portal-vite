@@ -176,10 +176,10 @@ const PrescriptionPdfDocument = ({ data, language = "en" }: any) => {
 
   // Filter medicines by category
   const brandedMedicines = medicines.filter(
-    (medicine: any) => medicine?.medicine?.category_key === "branded"
+    (medicine: any) => medicine?.medicine?.category_key === "branded",
   );
   const genericMedicines = medicines.filter(
-    (medicine: any) => medicine?.medicine?.category_key === "generic"
+    (medicine: any) => medicine?.medicine?.category_key === "generic",
   );
 
   return (

@@ -53,7 +53,7 @@ const Comorbidities = ({
         ext: ".png",
       };
       const presignedRes = (await dispatch(
-        getS3PresignedUrl(presignBody)
+        getS3PresignedUrl(presignBody),
       )) as any;
       const presignedUrlResp = presignedRes.payload?.signedUrL;
 
@@ -76,7 +76,7 @@ const Comorbidities = ({
       try {
         setLoading(true);
         const uploadPromises = Array.from(files).map((file: any) =>
-          uploadImageToS3(file)
+          uploadImageToS3(file),
         );
         const uploadedUrls = await Promise.all(uploadPromises);
         setImageUrls((prevUrls) => [...prevUrls, ...uploadedUrls]);
@@ -171,7 +171,7 @@ const Comorbidities = ({
                       }}
                       onClick={() =>
                         setImageUrls((prevUrls) =>
-                          prevUrls.filter((_, i) => i !== index)
+                          prevUrls.filter((_, i) => i !== index),
                         )
                       }
                     >

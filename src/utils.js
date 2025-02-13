@@ -27,7 +27,7 @@ export function generateToken(userID, seconds) {
     iv: CryptoJS.enc.Utf8.parse(iv),
   }).toString();
   const ciphert = new Uint8Array(
-    Array.from(atob(ciphertext)).map((val) => val.charCodeAt(0))
+    Array.from(atob(ciphertext)).map((val) => val.charCodeAt(0)),
   );
   const len_ciphert = ciphert.length;
 

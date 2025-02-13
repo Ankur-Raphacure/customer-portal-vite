@@ -17,7 +17,7 @@ const Coupons = (props: any) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { myAllSubscriptions } = useSelector(
-    (ReduxState: any) => ReduxState.dashboard
+    (ReduxState: any) => ReduxState.dashboard,
   );
   console.log("myAllSubscriptions", myAllSubscriptions);
   const isWallets = myAllSubscriptions?.wallets?.length > 0 ? true : false;

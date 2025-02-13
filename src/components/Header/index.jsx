@@ -18,13 +18,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import MobileTopBanner from "./MobileTopBanner";
 import MobileHeader from "./MobileHeader";
 import { getFormatedAddress } from "../../Scenes/common";
-import {
-  Row,
-  Col,
-  Button,
-  InputGroup,
-  Dropdown,
-} from "react-bootstrap";
+import { Row, Col, Button, InputGroup, Dropdown } from "react-bootstrap";
 import "./styles.css";
 import {
   updateShowLoginModel,
@@ -135,13 +129,13 @@ const Header = (props) => {
   const [selectedAddress, setSelectedAddress] = useState({});
   const [selectedUser, setSelectedUser] = useState({});
   const { userDependents, userAddress, selectedCurrentAddress } = useSelector(
-    (ReduxState) => ReduxState.profile
+    (ReduxState) => ReduxState.profile,
   );
 
   const { error, loading, subDomainDetails, user, userCity, subDomainName } =
     useSelector(({ auth }) => auth);
   const { cartItems, nitifySuccessMessage } = useSelector(
-    (startR) => startR?.checkout
+    (startR) => startR?.checkout,
   );
 
   useEffect(() => {
@@ -251,7 +245,7 @@ const Header = (props) => {
             ...user,
             wyhUserId: userId,
             wyhMobileNo: decryptMobileNum,
-          })
+          }),
         );
       }
     } else {
@@ -268,10 +262,10 @@ const Header = (props) => {
   const [LocalSelectedItem, setLocalSelectedItem] = useState(null);
   const [show, setShow] = useState(false);
   const [headerList, setHeaderList] = useState(
-    checkIsMobile() ? finalList?.slice(0, 40) : finalList?.slice(0, 2)
+    checkIsMobile() ? finalList?.slice(0, 40) : finalList?.slice(0, 2),
   );
   const [headerSelectList, setHeaderSelectList] = useState(
-    finalList?.slice(2, 20)
+    finalList?.slice(2, 20),
   );
 
   const [selectedNavItem, setSelectedNavItem] = useState("");
@@ -414,7 +408,7 @@ const Header = (props) => {
 
   const debouncedSearch1 = useCallback(
     debounce((searchQuery) => fetchSearchResults1(searchQuery), 500),
-    []
+    [],
   );
 
   const navigateToHome = (url) => {
@@ -472,10 +466,10 @@ const Header = (props) => {
 
   useEffect(() => {
     const isList1 = headerSelectList?.find(
-      (item3) => item3?.to?.toUpperCase() === uName?.toUpperCase()
+      (item3) => item3?.to?.toUpperCase() === uName?.toUpperCase(),
     );
     const isList2 = headerList?.find(
-      (item3) => item3?.to?.toUpperCase() === uName?.toUpperCase()
+      (item3) => item3?.to?.toUpperCase() === uName?.toUpperCase(),
     );
     if (!isList1?.name && !isList2?.name) {
       setSelectedItem(null);
@@ -760,9 +754,9 @@ const Header = (props) => {
                                     uName === "/"
                                       ? "no-active"
                                       : uName === language?.to ||
-                                        !uName?.indexOf(language?.to)
-                                      ? ""
-                                      : "no-active"
+                                          !uName?.indexOf(language?.to)
+                                        ? ""
+                                        : "no-active"
                                   }`}
                                   onClick={() => handleLanguageSelect(language)}
                                 >
@@ -875,9 +869,9 @@ const Header = (props) => {
                                           uName === "/"
                                             ? "no-active"
                                             : uName === item?.to ||
-                                              !uName?.indexOf(item?.to)
-                                            ? "text-danger"
-                                            : "no-active"
+                                                !uName?.indexOf(item?.to)
+                                              ? "text-danger"
+                                              : "no-active"
                                         }`}
                                         id="basic-nav-dropdown"
                                         key={item.headerName}
@@ -886,9 +880,9 @@ const Header = (props) => {
                                             uName === "/"
                                               ? "black"
                                               : selectedNavItem ===
-                                                item.headerName
-                                              ? "#9747ff"
-                                              : "black",
+                                                  item.headerName
+                                                ? "#9747ff"
+                                                : "black",
                                         }}
                                         onMouseEnter={() =>
                                           handleMouseEnter(item.headerName)
@@ -906,24 +900,24 @@ const Header = (props) => {
                                                   uName === "/"
                                                     ? "no-active"
                                                     : uName === subItem?.to ||
-                                                      !uName?.indexOf(
-                                                        subItem?.to
-                                                      )
-                                                    ? ""
-                                                    : "no-active"
+                                                        !uName?.indexOf(
+                                                          subItem?.to,
+                                                        )
+                                                      ? ""
+                                                      : "no-active"
                                                 }`}
                                                 style={{ marginTop: "-10px" }}
                                                 onClick={() =>
                                                   handleMenuItemClick(
                                                     subItem?.to,
-                                                    subItem?.name
+                                                    subItem?.name,
                                                   )
                                                 }
                                                 key={index}
                                               >
                                                 {subItem.name}
                                               </NavDropdown.Item>
-                                            )
+                                            ),
                                           )}
                                         </div>
                                       </NavDropdown>
@@ -1053,9 +1047,9 @@ const Header = (props) => {
                           uName === "/"
                             ? "no-active"
                             : uName === language?.to ||
-                              !uName?.indexOf(language?.to)
-                            ? ""
-                            : "no-active"
+                                !uName?.indexOf(language?.to)
+                              ? ""
+                              : "no-active"
                         }`}
                         onClick={() => handleLanguageSelect(language)}
                       >

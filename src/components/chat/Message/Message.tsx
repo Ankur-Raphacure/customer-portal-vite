@@ -11,7 +11,14 @@ import ShareMessages from "../ShareMessages";
 import { FaAngleDown } from "react-icons/fa";
 
 const Message = ({ msg }: { msg: messageDto }) => {
-  const { getRelativeTimeDifference, reply, setReply, handleReact, currentChat, userChatId } = useContext(ChatContext);
+  const {
+    getRelativeTimeDifference,
+    reply,
+    setReply,
+    handleReact,
+    currentChat,
+    userChatId,
+  } = useContext(ChatContext);
 
   let message = "";
 
@@ -33,12 +40,15 @@ const Message = ({ msg }: { msg: messageDto }) => {
     }
   }
 
-  const replyTo: messageDto = msg.replyTo as messageDto
+  const replyTo: messageDto = msg.replyTo as messageDto;
 
   const scrollToParentMessage = (messageId: string) => {
     const parentMessageElement = document.getElementById(`#${messageId}`);
     if (parentMessageElement) {
-      parentMessageElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      parentMessageElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
 
       parentMessageElement.classList.add("highlight");
       setTimeout(() => {
@@ -49,64 +59,70 @@ const Message = ({ msg }: { msg: messageDto }) => {
 
   const dropDownOptions = [
     {
-      key: '1',
-      label: <ShareMessages
-        tooltipTitle="Share"
-        data={{
-          data: {
-            content: msg?.message,
-            attachments: msg?.attachments,
-          },
-          type: msg?.type,
-          isKeyValuedData: false,
-        }}
-        replacePath={true}
-        iconType="SHARE"
-      />,
+      key: "1",
+      label: (
+        <ShareMessages
+          tooltipTitle="Share"
+          data={{
+            data: {
+              content: msg?.message,
+              attachments: msg?.attachments,
+            },
+            type: msg?.type,
+            isKeyValuedData: false,
+          }}
+          replacePath={true}
+          iconType="SHARE"
+        />
+      ),
     },
     {
-      key: '2',
-      label: <Tooltip title="reply">
-        <LuReplyAll
-          onClick={() => {
-            setReply(msg)
-          }}
-        />
-      </Tooltip>,
+      key: "2",
+      label: (
+        <Tooltip title="reply">
+          <LuReplyAll
+            onClick={() => {
+              setReply(msg);
+            }}
+          />
+        </Tooltip>
+      ),
     },
-
-  ]
+  ];
 
   if (!msg?.fromSelf) {
     dropDownOptions.push({
       key: `${dropDownOptions?.length + 1}`,
-      label: <Tooltip title="emoji">
-        <Dropdown
-          arrow
-          placement="topCenter"
-          menu={{
-            items: [
-              // {
-              //   key: "1",
-              //   label: <Picker data={data} onEmojiSelect={(e: any) => {
-              //     handleReact({ chatType: currentChat?.chatType || "INDIVIDUAL_CHAT", emoji: e?.native, messageId: msg?._id, to: currentChat?.chatId || "", from: userChatId })
-              //   }} />
-              // }
-            ]
-          }} >
-          <LuSmilePlus />
-        </Dropdown>
-      </Tooltip>,
-    })
+      label: (
+        <Tooltip title="emoji">
+          <Dropdown
+            arrow
+            placement="topCenter"
+            menu={{
+              items: [
+                // {
+                //   key: "1",
+                //   label: <Picker data={data} onEmojiSelect={(e: any) => {
+                //     handleReact({ chatType: currentChat?.chatType || "INDIVIDUAL_CHAT", emoji: e?.native, messageId: msg?._id, to: currentChat?.chatId || "", from: userChatId })
+                //   }} />
+                // }
+              ],
+            }}
+          >
+            <LuSmilePlus />
+          </Dropdown>
+        </Tooltip>
+      ),
+    });
   }
-  
 
   return (
     <div
       key={msg?._id}
       id={`#${msg?._id}`}
-      className={`msgContainer ${msg?.fromSelf ? "justify-content-end" : "justify-content-start"
-        }`}
+      className={`msgContainer ${
+        msg?.fromSelf ? "justify-content-end" : "justify-content-start"
+      }`}
     >
       <div className="msg">
         {/* options */}
@@ -135,19 +151,23 @@ const Message = ({ msg }: { msg: messageDto }) => {
         </div> */}
         {/* <div className="msgOptions"></div> */}
         <div
-          className={`d-flex justify-content-end ${msg?.fromSelf ? "" : "justify-content-end flex-row-reverse"
-            }`}
+          className={`d-flex justify-content-end ${
+            msg?.fromSelf ? "" : "justify-content-end flex-row-reverse"
+          }`}
         >
-          <div className={`d-flex align-items-start justify-content-between ${replyTo  && !msg?.fromSelf ? "flex-row-reverse" : ""}`}>
-            {(replyTo as messageDto) && <div
-
-              onClick={() => {
-                scrollToParentMessage(replyTo?._id)
-              }}
-              className="messageReply mr-1 d-flex align-items-center justify-content-center">
-              <LuReplyAll className="mr-1" /> Replied
-            </div>
-            }
+          <div
+            className={`d-flex align-items-start justify-content-between ${replyTo && !msg?.fromSelf ? "flex-row-reverse" : ""}`}
+          >
+            {(replyTo as messageDto) && (
+              <div
+                onClick={() => {
+                  scrollToParentMessage(replyTo?._id);
+                }}
+                className="messageReply mr-1 d-flex align-items-center justify-content-center"
+              >
+                <LuReplyAll className="mr-1" /> Replied
+              </div>
+            )}
             {msg?.message && (
               <div
                 className="textMsg"
@@ -160,9 +180,13 @@ const Message = ({ msg }: { msg: messageDto }) => {
 
           {/* drop drown options */}
           <div>
-            <Dropdown menu={{
-              items: dropDownOptions,
-            }} placement={msg?.fromSelf ? "bottomRight" : "bottomLeft"} arrow >
+            <Dropdown
+              menu={{
+                items: dropDownOptions,
+              }}
+              placement={msg?.fromSelf ? "bottomRight" : "bottomLeft"}
+              arrow
+            >
               <FaAngleDown />
             </Dropdown>
             <UserProfileImage
@@ -171,7 +195,6 @@ const Message = ({ msg }: { msg: messageDto }) => {
               className="msgProfileImg"
             />
           </div>
-
         </div>
         {msg?.type == "ATTACHMENT" && (
           <FileClamp
@@ -188,14 +211,18 @@ const Message = ({ msg }: { msg: messageDto }) => {
           {getRelativeTimeDifference(msg?.createdAt)}
         </div>
 
-        {Object.keys(msg?.reactions || {})?.length > 0 && <div className={`reactionsDiv ${msg?.fromSelf ? 'justify-content-end' : 'justify-content-start'}`}>
-          {
-            Object.keys(msg?.reactions || {})?.map((item: any) => <ul className="reactionCard" key={item}>
+        {Object.keys(msg?.reactions || {})?.length > 0 && (
+          <div
+            className={`reactionsDiv ${msg?.fromSelf ? "justify-content-end" : "justify-content-start"}`}
+          >
+            {Object.keys(msg?.reactions || {})?.map((item: any) => (
+              <ul className="reactionCard" key={item}>
                 <li>{item}</li>
                 <li>{msg?.reactions?.[item] || 0}</li>
-              </ul>)
-          }
-        </div>}
+              </ul>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

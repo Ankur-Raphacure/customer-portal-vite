@@ -80,7 +80,10 @@ const LabNearYouCard = (props: any) => {
                   </div>
                   <div className="flex locatio-name-sec-row mt-2">
                     <span className="flex float-left labs-near-sec-name text-sm opacity-70 text-overflow   ">
-                      <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png" className="w-5 h-5 flex " />
+                      <img
+                        src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png"
+                        className="w-5 h-5 flex "
+                      />
                       &nbsp; {item?.address}
                     </span>
                   </div>

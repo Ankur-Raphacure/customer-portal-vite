@@ -2,9 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 
 import { GalleryStyled } from "./Gallery.styled";
 // import  GalleryView  from "./GalleryView"
-import GalleryViewMobile from "./GalleryViewMobile"
+import GalleryViewMobile from "./GalleryViewMobile";
 import MultiCarouselModal from "../Home/MultiCarouselModal";
-
 
 const images = [
   "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/113945-1735584114268.png",
@@ -18,7 +17,6 @@ const images = [
 const Gallery = ({ siteDetails }: any) => {
   // State to hold the hyperSiteDetails, initially empty
   const [hyperSiteDetails, setHyperSiteDetails] = useState<any>({});
-
 
   // Update hyperSiteDetails when siteDetails changes
   useEffect(() => {
@@ -42,8 +40,6 @@ const Gallery = ({ siteDetails }: any) => {
   useEffect(() => {
     console.log("images : ", images);
   }, [images]);
-
-  
 
   // Update image scaling based on rotation angle
   const updateImageScales = () => {
@@ -147,11 +143,11 @@ const Gallery = ({ siteDetails }: any) => {
       </div> */}
 
       <div className="gallery">
-        <MultiCarouselModal galleryList={images}/>
+        <MultiCarouselModal galleryList={images} />
       </div>
 
       <div className="mobile-view">
-        <GalleryViewMobile/>
+        <GalleryViewMobile />
       </div>
     </GalleryStyled>
   );

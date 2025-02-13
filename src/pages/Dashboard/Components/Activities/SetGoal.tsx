@@ -215,7 +215,7 @@ const SetGoal = ({ visible, onCancel, onAdd, goal, setCurrentGoal }: any) => {
   };
   const handleCheckboxChange = (item: any) => {
     setSelectedItems((prevSelectedItem: any) =>
-      prevSelectedItem === item ? "" : item
+      prevSelectedItem === item ? "" : item,
     );
   };
   const handleHabitChange = (e: any, habit: string) => {

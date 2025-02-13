@@ -38,13 +38,13 @@ const DietPlanPreview: React.FC<DietPlanPreviewProps> = ({
         googleTranslateAPI({
           query: text,
           targetLang: to,
-        })
+        }),
       )) as any;
       return res?.payload?.translatedText;
     } catch (error) {
       console.error(
         `Error translating text "${text}" to language "${to}":`,
-        error
+        error,
       );
       return text; // Fallback to original text in case of error.
     }
@@ -56,7 +56,7 @@ const DietPlanPreview: React.FC<DietPlanPreviewProps> = ({
     toast.info(
       `Language changed to ${
         languageOptions.find((opt) => opt.value === languageCode)?.label
-      }`
+      }`,
     );
   };
 
@@ -70,7 +70,7 @@ const DietPlanPreview: React.FC<DietPlanPreviewProps> = ({
           const translatedItems = await Promise.all(
             (items as any[]).map(async (item: any) => {
               return await translateField(item, targetLang);
-            })
+            }),
           );
           translatedData[day][mealType] = translatedItems;
         } catch (error) {
@@ -87,7 +87,7 @@ const DietPlanPreview: React.FC<DietPlanPreviewProps> = ({
     console.log("selectedWeekData : ", selectedWeekData);
     const translated = await translateWeekDietData(
       selectedWeekData,
-      selectedLanguage
+      selectedLanguage,
     );
     console.log("translated : ", translated);
 

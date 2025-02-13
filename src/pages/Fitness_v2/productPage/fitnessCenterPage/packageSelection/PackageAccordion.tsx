@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const StyledAccordion = styled.div`
   .accordion-wrapper {
@@ -33,23 +33,23 @@ const StyledAccordion = styled.div`
   }
 
   .icon-wrapper {
-    transform: ${(props:any) => props.$isOpen ? 'rotate(45deg)' : 'rotate(0)'};
+    transform: ${(props: any) => (props.$isOpen ? "rotate(45deg)" : "rotate(0)")};
     transition: transform 0.2s ease-in-out;
   }
 
   .content-wrapper {
     overflow: hidden;
     transition: max-height 0.2s ease-in-out;
-    max-height: ${(props:any) => props.$isOpen ? '24rem' : '0'};
+    max-height: ${(props: any) => (props.$isOpen ? "24rem" : "0")};
   }
 
   .content {
-    padding: ${(props:any) => props.$isOpen ? '1rem' : '0'};
+    padding: ${(props: any) => (props.$isOpen ? "1rem" : "0")};
     color: #4b5563;
   }
 ` as any;
 
-const AccordionItem = ({ title, isOpen, onClick,content }:any) => {
+const AccordionItem = ({ title, isOpen, onClick, content }: any) => {
   return (
     <div className="accordion-item" role="button" onClick={onClick}>
       <div className="accordion-header">
@@ -72,9 +72,7 @@ const AccordionItem = ({ title, isOpen, onClick,content }:any) => {
         </span>
       </div>
       <div className="content-wrapper">
-        <div className="content">
-          {content}
-        </div>
+        <div className="content">{content}</div>
       </div>
     </div>
   );
@@ -82,29 +80,41 @@ const AccordionItem = ({ title, isOpen, onClick,content }:any) => {
 
 const PackageAccordion = () => {
   const [openItems, setOpenItems] = useState({}) as any;
-  
+
   const items = [
-    { id: 1, title: 'Terms & Conditions',content:`Memberships purchased are strictly non-transferable and non-refundable, ensuring fairness and consistency for all members. Members are required to present their valid ID cards for access to the
+    {
+      id: 1,
+      title: "Terms & Conditions",
+      content: `Memberships purchased are strictly non-transferable and non-refundable, ensuring fairness and consistency for all members. Members are required to present their valid ID cards for access to the
 gym premises and facilities. The membership benefits and access are limited to the specified duration as per the chosen plan. In special cases, such as medical emergencies, memberships may be
 temporarily suspended or extended, but only upon submission of valid supporting documents. Any form of inappropriate behavior, damage to gym property, or misuse of facilities will lead to
 immediate termination of membership without the possibility of a refund. Additionally, members are expected to adhere to the gym's code of conduct and policies at all times to maintain a safe and
-friendly environment.` },
-    { id: 2, title: 'Privacy Policy',content:`Memberships purchased are strictly non-transferable and non-refundable, ensuring fairness and consistency for all members. Members are required to present their valid ID cards for access to the
+friendly environment.`,
+    },
+    {
+      id: 2,
+      title: "Privacy Policy",
+      content: `Memberships purchased are strictly non-transferable and non-refundable, ensuring fairness and consistency for all members. Members are required to present their valid ID cards for access to the
 gym premises and facilities. The membership benefits and access are limited to the specified duration as per the chosen plan. In special cases, such as medical emergencies, memberships may be
 temporarily suspended or extended, but only upon submission of valid supporting documents. Any form of inappropriate behavior, damage to gym property, or misuse of facilities will lead to
 immediate termination of membership without the possibility ofa refund. Additionally, members are expected to adhere to the gym's code of conduct and policies at all times to maintain a safe and
-friendly environment.` },
-    { id: 3, title: 'Cancellation & Refund Policies',content:`Memberships purchased are strictly non-transferable and non-refundable, ensuring fairness and consistency for all members. Members are required to present their valid ID cards for access to the
+friendly environment.`,
+    },
+    {
+      id: 3,
+      title: "Cancellation & Refund Policies",
+      content: `Memberships purchased are strictly non-transferable and non-refundable, ensuring fairness and consistency for all members. Members are required to present their valid ID cards for access to the
 gym premises and facilities. The membership benefits and access are limited to the specified duration as per the chosen plan. In special cases, such as medical emergencies, memberships may be
 temporarily suspended or extended, but only upon submission of valid supporting documents. Any form of inappropriate behavior, damage to gym property, or misuse of facilities will lead to
 immediate termination of membership without the possibility of a refund. Additionally, members are expected to adhere to the gym's code of conduct and policies at all times to maintain a safe and
-friendly environment.` }
+friendly environment.`,
+    },
   ];
 
-  const toggleItem = (id:any) => {
-    setOpenItems((prev:any) => ({
+  const toggleItem = (id: any) => {
+    setOpenItems((prev: any) => ({
       ...prev,
-      [id]: !prev[id]
+      [id]: !prev[id],
     }));
   };
 

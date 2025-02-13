@@ -94,14 +94,14 @@ const ScanDetails = (props: any) => {
   const [showTimeSlotGraph, setShowTimeSlotGraph] = useState(false);
   const [showEmpanelWithUsModel, setShowEmpanelWithUsModel] = useState(false);
   const { user, userCity, subDomainDetails } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
   console.log("subDomainDetails", props);
   const { healthPackagesList, allTestsList, allPackagesList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   const [itemCode, setItemCode] = useState(null);
   const [currentItem, setCurrentItem] = useState<any>({});
@@ -177,7 +177,7 @@ const ScanDetails = (props: any) => {
 
   useEffect(() => {
     const foundPackage = healthPackagesList?.packages?.find(
-      (pkg: any) => pkg?.service_code === itemCode
+      (pkg: any) => pkg?.service_code === itemCode,
     );
     console.log("foundPackage : ", foundPackage);
 
@@ -211,7 +211,7 @@ const ScanDetails = (props: any) => {
     pkgId: string,
     distance: number = distanceVal,
     sort: "asc" | "desc" = sortVal,
-    collectionType = toggleValue
+    collectionType = toggleValue,
   ): Promise<void> => {
     try {
       if (!pkgId) {
@@ -247,7 +247,7 @@ const ScanDetails = (props: any) => {
   const getTestDetails = async (
     testId: string,
     distance: number = distanceVal,
-    sort: "asc" | "desc" = sortVal
+    sort: "asc" | "desc" = sortVal,
   ): Promise<void> => {
     try {
       if (!testId) {
@@ -316,7 +316,7 @@ const ScanDetails = (props: any) => {
       getCtmriDetailsQueryAPI({
         service_code: labTestServiceCode || scanId,
         city: userCity?.id ?? "",
-      })
+      }),
     );
     setLoading(false);
   };
@@ -329,7 +329,7 @@ const ScanDetails = (props: any) => {
           city: userCity?.id ?? "",
           collection_type: toggleValue,
           sort: sortVal,
-        })
+        }),
       );
     } catch (error) {
       console.error("Error fetching package details:", error);
@@ -360,7 +360,7 @@ const ScanDetails = (props: any) => {
   const handleAddToCart = async (
     evnt: any,
     obj: any,
-    expressAvailable = false
+    expressAvailable = false,
   ) => {
     const testId = obj?.id;
     const pathName = window.location.pathname;
@@ -388,7 +388,7 @@ const ScanDetails = (props: any) => {
             categoryType: "ctmri",
             slot1: {},
             slot2: {},
-          })
+          }),
         );
         history.push(`/ctmri/bookingReview`);
       } else if (pathName.includes(`/labTestDetils/`)) {
@@ -397,7 +397,7 @@ const ScanDetails = (props: any) => {
           updateSelectedlabtestDetails({
             selectedTest: { ...scanData },
             selectedPackage: { ...scanData },
-          })
+          }),
         );
         history.push(`/labtest/packages/${obj?.id}`);
       } else if (pathName.includes(`/labPackageDetils/`)) {
@@ -418,7 +418,7 @@ const ScanDetails = (props: any) => {
               expressBook: expressAvailable,
               slot1: {},
               slot2: {},
-            })
+            }),
           );
           history.push(`/labtest/bookingReview`);
         }
@@ -445,7 +445,7 @@ const ScanDetails = (props: any) => {
             categoryType: "ctmri",
             slot1: {},
             slot2: {},
-          })
+          }),
         );
         history.push(`/ctmri/bookingReview`);
       } else {
@@ -462,7 +462,7 @@ const ScanDetails = (props: any) => {
               hospitalDetails: obj,
               categoryType: "labtest",
               expressBook: expressChecked.checked,
-            })
+            }),
           );
           history.push(`/labtest/bookingReview`);
         } else {
@@ -483,7 +483,7 @@ const ScanDetails = (props: any) => {
                 expressBook: expressChecked.checked,
                 slot1: {},
                 slot2: {},
-              })
+              }),
             );
             history.push(`/labtest/bookingReview`);
           } else {
@@ -504,7 +504,7 @@ const ScanDetails = (props: any) => {
                   expressBook: expressChecked.checked,
                   slot1: {},
                   slot2: {},
-                })
+                }),
               );
               history.push(`/labtest/bookingReview`);
             } else {
@@ -512,7 +512,7 @@ const ScanDetails = (props: any) => {
                 updateSelectedlabtestDetails({
                   selectedTest: { ...scanDetails?.test },
                   selectedPackage: { ...scanDetails?.package },
-                })
+                }),
               );
               history.push(`/labtest/packages/${obj?.id}`);
             }
@@ -584,7 +584,7 @@ const ScanDetails = (props: any) => {
       return;
     }
     const res: any = await dispatch(
-      getAllSimilarPackages(labTestPackageServiceCode)
+      getAllSimilarPackages(labTestPackageServiceCode),
     );
     console.log("res : ", res);
     if (res?.payload) {
@@ -688,7 +688,7 @@ const ScanDetails = (props: any) => {
     let matchedAvailableVendor;
     if (labTestPackageServiceCode) {
       matchedAvailableVendor = availablePkgVendors.find(
-        (vendor: any) => item?.id === vendor?.vendor?.id
+        (vendor: any) => item?.id === vendor?.vendor?.id,
       );
     } else if (labTestServiceCode) {
       matchedAvailableVendor = item;
@@ -1104,7 +1104,7 @@ const ScanDetails = (props: any) => {
       return true;
     } else {
       toast.error(
-        "Sorry, Express Book is not available for the given pincode!"
+        "Sorry, Express Book is not available for the given pincode!",
       );
       return false;
     }

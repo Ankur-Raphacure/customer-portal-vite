@@ -34,7 +34,7 @@ const DoctoreNetwork = (props: any) => {
           categoryType: "doctor",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push("/doctor/bookingReview");
     }
@@ -52,7 +52,7 @@ const DoctoreNetwork = (props: any) => {
           categoryType: "doctor",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push("/doctor/bookingReview");
     }

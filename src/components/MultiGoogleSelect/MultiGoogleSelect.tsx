@@ -15,7 +15,7 @@ const MultiGoogleSelect = ({
   const [searchTerm, setSearchTerm] = useState("");
   const [allIssues, setAllIssues] = useState("");
   const [options, setOptions] = useState<{ value: string; label: string }[]>(
-    []
+    [],
   );
   const dispatch = useDispatch();
   const recognitionRef = useRef<any>(null);

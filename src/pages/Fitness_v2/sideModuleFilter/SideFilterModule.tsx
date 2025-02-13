@@ -3,7 +3,8 @@ import { SideFilterModuleStyled, SidebarMenu } from "./SideFilterModule.styled";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const SideFilterModule = (props: any) => {
-  const { allCategoriesList, selectedCategories ,vendors,selectedVendors} = props;
+  const { allCategoriesList, selectedCategories, vendors, selectedVendors } =
+    props;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -11,9 +12,9 @@ const SideFilterModule = (props: any) => {
     props?.handleChangeCategoryFilter(id);
   };
 
-  const handleVendorChange = (id:string) =>{
-    props?.handleVendorChangeFilter(id)
-  }
+  const handleVendorChange = (id: string) => {
+    props?.handleVendorChangeFilter(id);
+  };
 
   const clearFilters = () => {
     props.handleClearAll();
@@ -100,9 +101,9 @@ const SideFilterModule = (props: any) => {
 
         <div className="horizontal-line"></div>
 
-         {/* Filter by Vendors */}
+        {/* Filter by Vendors */}
 
-         <>
+        <>
           <div className="filter-by-type-div">
             <p className="filter-by-title">By Vendor</p>
             <div className="alltests">
@@ -126,7 +127,9 @@ const SideFilterModule = (props: any) => {
                       htmlFor={`checkbox-${item?.id}`}
                       title={item?.name ?? "Unnamed Category"}
                     >
-                      <p title={`${item?.name} (${item?.fitnessCenterCount})`}>{`${
+                      <p
+                        title={`${item?.name} (${item?.fitnessCenterCount})`}
+                      >{`${
                         item?.name ?? "Unnamed Category"
                       } (${item?.fitnessCenterCount}) `}</p>
                     </label>
@@ -136,8 +139,6 @@ const SideFilterModule = (props: any) => {
             </div>
           </div>
         </>
-
-
       </SidebarMenu>
     </SideFilterModuleStyled>
   );

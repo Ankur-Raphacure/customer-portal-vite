@@ -36,7 +36,7 @@ const MatchGame = () => {
 
     // Check if the selected pair has already been matched
     const isAlreadyMatched = matches.some(
-      (match: any) => match.left.id === image.id
+      (match: any) => match.left.id === image.id,
     );
 
     if (selectedLeft && !isAlreadyMatched) {
@@ -76,8 +76,8 @@ const MatchGame = () => {
                   selectedLeft === image
                     ? "selected"
                     : matches.some((match: any) => match.left.id === image.id)
-                    ? "matched"
-                    : ""
+                      ? "matched"
+                      : ""
                 }`}
                 onClick={() => handleLeftClick(image)}
               >
@@ -86,7 +86,10 @@ const MatchGame = () => {
             ))}
           </div>
           <div>
-            <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736508494308.png" alt="" />
+            <img
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736508494308.png"
+              alt=""
+            />
           </div>
 
           <div className="side right">
@@ -97,8 +100,8 @@ const MatchGame = () => {
                   selectedRight === image
                     ? "selected"
                     : matches.some((match: any) => match.right.id === image.id)
-                    ? "matched"
-                    : ""
+                      ? "matched"
+                      : ""
                 }`}
                 onClick={() => handleRightClick(image)}
               >

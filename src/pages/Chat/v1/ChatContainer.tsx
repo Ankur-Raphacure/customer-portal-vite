@@ -57,7 +57,7 @@ export default function ChatContainer({
           getMessages({
             from: currentUserChatId,
             to: currentChat.chatId,
-          })
+          }),
         );
         if (isMounted.current && Array.isArray(data?.payload)) {
           setMessages(data?.payload);
@@ -103,7 +103,7 @@ export default function ChatContainer({
       socket,
       user?.first_name,
       user?.last_name,
-    ]
+    ],
   );
 
   const handleSendMsg = useCallback(
@@ -125,7 +125,7 @@ export default function ChatContainer({
           message: msg,
           type: type,
           chat_type: "INDIVIDUAL_CHAT",
-        }
+        },
       );
 
       if (result?.data?.success) {
@@ -153,7 +153,7 @@ export default function ChatContainer({
       sendMessageRoute,
       socket,
       typingStatusChangeHandler,
-    ]
+    ],
   );
 
   const onMessageRecieve = useCallback(
@@ -194,7 +194,7 @@ export default function ChatContainer({
         // }
       }
     },
-    [currentChat]
+    [currentChat],
   );
 
   useEffect(() => {

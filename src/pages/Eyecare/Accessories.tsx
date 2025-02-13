@@ -1,4 +1,3 @@
-
 import { EyecareStyled } from "./Eyecare.styled";
 import Accessoriescard from "./Accessoriescard";
 import { useHistory } from "react-router-dom";
@@ -35,7 +34,10 @@ const Accessories = () => {
                 <UploadPrescription categoryName={"eye_care"} />
               </div>
               <div className="col-md-4">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736332196110.png" alt="eyecare-image " />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736332196110.png"
+                  alt="eyecare-image "
+                />
               </div>
             </div>
           </div>

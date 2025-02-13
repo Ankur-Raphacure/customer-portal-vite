@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { TimeSlotStyled } from "./timeSlot.styled";
 const TimeSlotcomp = (props: any) => {
   const { timeSlotsObj } = useSelector(
-    (ReduxState: any) => ReduxState.timeslot
+    (ReduxState: any) => ReduxState.timeslot,
   );
 
   const { defaultTimeSlotsObj } = useSelector(
-    (ReduxState: any) => ReduxState.config
+    (ReduxState: any) => ReduxState.config,
   );
 
   const timeSlotsObj1 = timeSlotsObj || defaultTimeSlotsObj;

@@ -42,13 +42,13 @@ const ChatComponent: React.FC = () => {
   const [newMessage, setNewMessage] = useState<string>("");
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [currentUserChatId, setCurrentUserChatId] = useState<string | null>(
-    null
+    null,
   );
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
   const [currentUserId, setCurrentUserId] = useState();
   const dispatch = useDispatch();
   const userIdFromUrl = new URLSearchParams(window.location.search).get(
-    "docId"
+    "docId",
   );
   const [currentUser, setCurrentUser] = useState<any>(undefined);
   const socket = useRef<any>(null);
@@ -72,7 +72,7 @@ const ChatComponent: React.FC = () => {
         await Promise.all(
           doctorsList.map(async (doctor: Doctor) => {
             const res = (await dispatch(
-              getUserChatId({ rcId: doctor.id, userId: currentUserChatId })
+              getUserChatId({ rcId: doctor.id, userId: currentUserChatId }),
             )) as any;
 
             console.log(res);
@@ -81,7 +81,7 @@ const ChatComponent: React.FC = () => {
               chatId: res.payload?.user?._id,
               unReadMessageCount: res?.payload?.user?.unReadMessageCount,
             });
-          })
+          }),
         );
         return updatedDoctors;
       } catch (error) {
@@ -90,7 +90,7 @@ const ChatComponent: React.FC = () => {
         return doctorsList;
       }
     },
-    [dispatch, currentUserChatId]
+    [dispatch, currentUserChatId],
   );
   console.log(currentUserChatId, "currentUserChatId");
 
@@ -111,7 +111,7 @@ const ChatComponent: React.FC = () => {
         const uniqueUsers = new Set(
           Array.isArray(usersList)
             ? [...usersList, data.fromUser]
-            : [data.fromUser]
+            : [data.fromUser],
         );
 
         newTypingStatus[from] = Array.from(uniqueUsers);
@@ -120,7 +120,7 @@ const ChatComponent: React.FC = () => {
           delete newTypingStatus[from];
         } else {
           newTypingStatus[from] = usersList?.filter(
-            (user: string) => user !== data?.fromUser
+            (user: string) => user !== data?.fromUser,
           );
         }
       }
@@ -150,12 +150,12 @@ const ChatComponent: React.FC = () => {
         updateReadMessagStatus({
           from: currentUserChatId,
           to: chat?.from,
-        })
+        }),
       );
 
       fetchDoctorsChatIds(doctors);
     },
-    [currentUserChatId, dispatch, doctors]
+    [currentUserChatId, dispatch, doctors],
   );
 
   const fetchDoctors = useCallback(async () => {
@@ -191,7 +191,7 @@ const ChatComponent: React.FC = () => {
       console.log(data);
       fetchDoctors();
     },
-    [fetchDoctors, currentUserId]
+    [fetchDoctors, currentUserId],
   );
 
   useEffect(() => {
@@ -199,7 +199,7 @@ const ChatComponent: React.FC = () => {
     if (currentUserChatId) {
       socket.current.on(
         `${currentUserChatId}-notification`,
-        onUserNotificationHandler
+        onUserNotificationHandler,
       );
     }
 
@@ -207,7 +207,7 @@ const ChatComponent: React.FC = () => {
       if (currentUserChatId) {
         socket.current.off(
           `${currentUserChatId}-notification`,
-          onUserNotificationHandler
+          onUserNotificationHandler,
         );
       }
     };
@@ -244,14 +244,14 @@ const ChatComponent: React.FC = () => {
       updateReadMessagStatusApiCall,
       doctors,
       fetchDoctorsChatIds,
-    ]
+    ],
   );
 
   useEffect(() => {
     if (socket.current) {
       socket.current.on(
         `msg-notification`,
-        onIndividualChatNotificationHandler
+        onIndividualChatNotificationHandler,
       );
     }
 
@@ -259,7 +259,7 @@ const ChatComponent: React.FC = () => {
       if (socket.current) {
         socket.current.off(
           `msg-notification`,
-          onIndividualChatNotificationHandler
+          onIndividualChatNotificationHandler,
         );
       }
     };
@@ -304,7 +304,7 @@ const ChatComponent: React.FC = () => {
   useEffect(() => {
     if (doctors.length > 0 && currentUserChatId && userIdFromUrl) {
       const matchedDoctor = doctors.find(
-        (doctor) => doctor.id === userIdFromUrl
+        (doctor) => doctor.id === userIdFromUrl,
       );
       if (matchedDoctor) {
         handleDoctorSelect(matchedDoctor);
@@ -334,7 +334,7 @@ const ChatComponent: React.FC = () => {
         updateReadMessagStatus({
           from: currentUserChatId,
           to: doctor?.chatId,
-        })
+        }),
       );
       const d = await fetchDoctorsChatIds(doctors);
       setDoctors(d);

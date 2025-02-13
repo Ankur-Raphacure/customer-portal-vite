@@ -104,14 +104,14 @@ export const authSlice = createSlice({
 
     updateErrorMessage: (
       state: LabTestState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.error = action.payload;
     },
 
     updateSelectedlabtestDetails: (
       state: LabTestState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.selectedTest = { ...action.payload?.selectedTest };
       state.selectedPackage = { ...action.payload?.selectedPackage };
@@ -129,14 +129,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.healthCategoriesList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getHealthCategoriesAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.healthCategoriesList = [];
-      }
+      },
     );
     //getHealthPackagesAPI
     builder.addCase(getHealthPackagesAPI.pending, (state: any) => {
@@ -149,14 +149,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.healthPackagesList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getHealthPackagesAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.healthPackagesList = [];
-      }
+      },
     );
     //getAllTestsAPI
     builder.addCase(getAllTestsAPI.pending, (state: any) => {
@@ -169,14 +169,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allTestsList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllTestsAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allTestsList = [];
-      }
+      },
     );
     //getAllPackagesAPI
     builder.addCase(getAllPackagesAPI.pending, (state: any) => {
@@ -189,14 +189,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allPackagesList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllPackagesAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allPackagesList = [];
-      }
+      },
     );
 
     //getAllFilteredPackages
@@ -210,14 +210,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allPackagesList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllFilteredPackages.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allPackagesList = [];
-      }
+      },
     );
 
     //getAllFilteredTests
@@ -232,14 +232,14 @@ export const authSlice = createSlice({
         state.loading = false;
         state.MedicinesCount = action.payload.total;
         state.allTestsList = action?.payload;
-      }
+      },
     );
     builder.addCase(
       getAllFilteredTests.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allTestsList = [];
-      }
+      },
     );
 
     //getPharmacyCategoriesAPI
@@ -254,14 +254,14 @@ export const authSlice = createSlice({
         state.loading = false;
         state.allPharmacyCategoriesList =
           action.payload?.data?.medicineCategories;
-      }
+      },
     );
     builder.addCase(
       getPharmacyCategoriesAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allPharmacyCategoriesList = [];
-      }
+      },
     );
     // getVendorDetailsAPI
     builder.addCase(getVendorDetailsAPI.pending, (state: any) => {
@@ -274,14 +274,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.vendorDetails = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getVendorDetailsAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.vendorDetails = [];
-      }
+      },
     );
     // getVendorPackageListAPI
     builder.addCase(getVendorPackageListAPI.pending, (state: any) => {
@@ -294,14 +294,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.vendorPackageList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getVendorPackageListAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.vendorPackageList = [];
-      }
+      },
     );
     // getVendorTestListAPI
     builder.addCase(getVendorTestListAPI.pending, (state: any) => {
@@ -314,14 +314,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.vendorTestList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getVendorTestListAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.vendorTestList = [];
-      }
+      },
     );
     //allNearByLabssList
     builder.addCase(getLabTestsNearBy.pending, (state: any) => {
@@ -334,14 +334,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allNearByLabssList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getLabTestsNearBy.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allNearByLabssList = {};
-      }
+      },
     );
     //allSimilarMedicinesList
     builder.addCase(getSimilarMedicinesAPI.pending, (state: any) => {
@@ -354,14 +354,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allSimilarMedicinesList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getSimilarMedicinesAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allSimilarMedicinesList = {};
-      }
+      },
     );
 
     //getAllCategoriesAPI
@@ -375,14 +375,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allCategoriesList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllCategoriesAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allCategoriesList = {};
-      }
+      },
     );
     //getAllActiveBodyPartAPI
     builder.addCase(getAllActiveBodyPartAPI.pending, (state: any) => {
@@ -395,14 +395,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allActiveBodyPartList = action.payload.data?.data;
-      }
+      },
     );
     builder.addCase(
       getAllActiveBodyPartAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allActiveBodyPartList = [];
-      }
+      },
     );
     //getAllgetActiveScanTypeAPI
     builder.addCase(getAllgetActiveScanTypeAPI.pending, (state: any) => {
@@ -415,14 +415,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allgetActiveScanTypeList = action.payload;
-      }
+      },
     );
     builder.addCase(
       getAllgetActiveScanTypeAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allgetActiveScanTypeList = [];
-      }
+      },
     );
 
     //getAllActiveTubes
@@ -436,14 +436,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allTubesList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllActiveTubes.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allTubesList = {};
-      }
+      },
     );
 
     //getAllBrandsAPI
@@ -457,14 +457,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allBrandsList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllBrandsAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allBrandsList = {};
-      }
+      },
     );
 
     //getAllSubCategoriesAPI
@@ -478,14 +478,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allSubCategoriesList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getAllSubCategoriesAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allSubCategoriesList = {};
-      }
+      },
     );
 
     //getAllMedicinesAPI
@@ -504,14 +504,14 @@ export const authSlice = createSlice({
         state.loading = false;
         state.MedicinesCount = action.payload.total;
         state.allMedicinesList = [...data, ...action?.payload?.data];
-      }
+      },
     );
     builder.addCase(
       getAllMedicineAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allMedicinesList = [];
-      }
+      },
     );
     //getAllTopMedicineAPI
     builder.addCase(
@@ -520,7 +520,7 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allTopMedicineList = action?.payload?.data;
-      }
+      },
     );
     //getAllBrandedMedicineAPI
     builder.addCase(
@@ -529,7 +529,7 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allBrandedMedicineList = action?.payload?.data;
-      }
+      },
     );
     //getAllCompareMedicineAPI
     builder.addCase(getAllCompareMedicineAPI.pending, (state: any) => {
@@ -546,14 +546,14 @@ export const authSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allCompareMedicineList = action.payload.data?.data;
-      }
+      },
     );
     builder.addCase(
       getAllCompareMedicineAPI.rejected,
       (state: LabTestState, action: any) => {
         state.loading = false;
         state.allCompareMedicineList = [];
-      }
+      },
     );
 
     //getAllSaltCategoriesAPI
@@ -561,28 +561,28 @@ export const authSlice = createSlice({
       getAllSaltCategoriesAPI.fulfilled,
       (state: LabTestState, action: PayloadAction<any>) => {
         state.allSaltCategoryList = action?.payload?.data;
-      }
+      },
     );
     //getAllSaltCategoriesAPI
     builder.addCase(
       getOrdersCountByItem.fulfilled,
       (state: LabTestState, action: PayloadAction<any>) => {
         state.ordersCountByItemDetails = action?.payload;
-      }
+      },
     );
     //getAllWellnessMedicines
     builder.addCase(
       getAllWellnessMedicines.fulfilled,
       (state: LabTestState, action: PayloadAction<any>) => {
         state.allWellnessMedicines = action?.payload;
-      }
+      },
     );
     //
     builder.addCase(
       getDeliveryTimeByItemID.fulfilled,
       (state: LabTestState, action: PayloadAction<any>) => {
         state.deliveryTimeData = action?.payload;
-      }
+      },
     );
     //
   },

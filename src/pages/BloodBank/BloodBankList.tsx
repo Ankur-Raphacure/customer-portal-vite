@@ -72,7 +72,7 @@ const BloodBankList: React.FC<BloodBankListProps> = ({ clinicsData }) => {
       const bloodtests = JSON.parse(JSON.stringify(res));
       const bloodBankStore = bloodtests.payload.data.bloodTests;
       const test = bloodBankStore.find(
-        (item: any) => item.test.service_name === selectedName
+        (item: any) => item.test.service_name === selectedName,
       );
 
       if (test && selectedVendor) {

@@ -27,7 +27,7 @@ const SpecializationList = (props: any) => {
   const [searchText, setSearchText] = useState("");
 
   const { allCategoriesList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
   const handleonFilterName = async (event: any) => {
     setSearchText(event);

@@ -9,7 +9,7 @@ export interface CheckoutState {
   loading: boolean;
   error: any;
   cartItems: any;
-  bookingInfo:any;
+  bookingInfo: any;
   nitifySuccessMessage: any;
   checkoutSelectedUser: any;
   checkoutSelectedAddress: any;
@@ -21,7 +21,7 @@ const initialState: CheckoutState = {
   error: null,
   nitifySuccessMessage: null as any,
   // cartItems: raphaCartData !== null ? JSON.parse(raphaCartData) : [],
-  cartItems:  [],
+  cartItems: [],
   bookingInfo: {},
   checkoutSelectedUser: {},
   checkoutSelectedAddress: {},
@@ -35,17 +35,22 @@ export const checkoutSlice = createSlice({
     setLoading: (state: CheckoutState, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
-  
-    updateErrorMessage: (state: CheckoutState, action: PayloadAction<boolean>) => {
+
+    updateErrorMessage: (
+      state: CheckoutState,
+      action: PayloadAction<boolean>,
+    ) => {
       state.error = action.payload;
     },
-    updateNitifySuccessMessage: (state: CheckoutState, action: PayloadAction<any>) => {
+    updateNitifySuccessMessage: (
+      state: CheckoutState,
+      action: PayloadAction<any>,
+    ) => {
       state.nitifySuccessMessage = action.payload;
     },
     updateCartItems: (state: any, action: any) => {
       state.cartItems = action.payload;
       // localStorage.setItem("raphaCart", JSON.stringify(action.payload));
-
     },
     updateCheckoutSelectedUser: (state: any, action: any) => {
       state.checkoutSelectedUser = action.payload;
@@ -53,8 +58,7 @@ export const checkoutSlice = createSlice({
     updateCheckoutSelectedAddress: (state: any, action: any) => {
       state.checkoutSelectedAddress = action.payload;
     },
-  
-    
+
     updateItemQuantity: (state: CheckoutState, action: any) => {
       // const citem= action.payload;
       // const raphaCartL = localStorage.getItem("raphaCart");
@@ -78,13 +82,11 @@ export const checkoutSlice = createSlice({
       // }
       // localStorage.setItem("raphaCart", JSON.stringify(prevItems));
       // state.cartItems = prevItems;
-
     },
     handleAddToCart: (state: CheckoutState, action: any) => {
       // const citem= action.payload;
       //   const raphaCartL = localStorage.getItem("raphaCart");
       //   const prevItems = raphaCartL ? JSON.parse(raphaCartL) : [];
-        
       //   const index = prevItems.findIndex((item: any) => item?.service_code === citem.service_code);
       //   if (index > -1) {
       //     prevItems[index].count = prevItems[index].count+1;
@@ -94,23 +96,21 @@ export const checkoutSlice = createSlice({
       //     prevItems.push({...citem, count:1});
       //     state.nitifySuccessMessage = "Successfully added to Cart."
       //   }
-        
       //   localStorage.setItem("raphaCart", JSON.stringify(prevItems));
       //   state.cartItems = prevItems;
     },
     handleAddToCartDoctor: (state: CheckoutState, action: any) => {
-        // const citems = action.payload;
-        // console.log("citems", citems);
-        // console.log("action.payload", action.payload);
-        // const raphaCartL = localStorage.getItem("raphaCart");
-        // const prevItems = raphaCartL ? JSON.parse(raphaCartL) : [];
-        // console.log("citems", prevItems);
-        // const newListItems = [...prevItems, ...citems]
-        // state.nitifySuccessMessage = "Successfully added to Cart."
-        // localStorage.setItem("raphaCart", JSON.stringify(newListItems));
-        // state.cartItems = newListItems;
+      // const citems = action.payload;
+      // console.log("citems", citems);
+      // console.log("action.payload", action.payload);
+      // const raphaCartL = localStorage.getItem("raphaCart");
+      // const prevItems = raphaCartL ? JSON.parse(raphaCartL) : [];
+      // console.log("citems", prevItems);
+      // const newListItems = [...prevItems, ...citems]
+      // state.nitifySuccessMessage = "Successfully added to Cart."
+      // localStorage.setItem("raphaCart", JSON.stringify(newListItems));
+      // state.cartItems = newListItems;
     },
-    
   },
   extraReducers: (builder: any) => {
     // createBookingAPI
@@ -124,12 +124,15 @@ export const checkoutSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.bookingInfo = action.payload?.data;
-      }
+      },
     );
-    builder.addCase(createBookingAPI.rejected, (state: CheckoutState, action: any) => {
-      state.loading = false;
-      state.bookingInfo = {};
-    });
+    builder.addCase(
+      createBookingAPI.rejected,
+      (state: CheckoutState, action: any) => {
+        state.loading = false;
+        state.bookingInfo = {};
+      },
+    );
     //getCartItemsAPI
     builder.addCase(getCartItemsAPI.pending, (state: any) => {
       state.loading = true;
@@ -141,12 +144,15 @@ export const checkoutSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.cartItems = action.payload?.data;
-      }
+      },
     );
-    builder.addCase(getCartItemsAPI.rejected, (state: CheckoutState, action: any) => {
-      state.loading = false;
-      state.bookingInfo = {};
-    });
+    builder.addCase(
+      getCartItemsAPI.rejected,
+      (state: CheckoutState, action: any) => {
+        state.loading = false;
+        state.bookingInfo = {};
+      },
+    );
     builder.addCase(handleGetPriceAPI.pending, (state: any) => {
       state.loading = true;
       state.error = null;
@@ -156,20 +162,31 @@ export const checkoutSlice = createSlice({
       (state: CheckoutState, action: PayloadAction<any>) => {
         state.error = null;
         state.loading = false;
-        state.priceinfo = action.payload?.data && action.payload?.data.services || [];
-      }
+        state.priceinfo =
+          (action.payload?.data && action.payload?.data.services) || [];
+      },
     );
-    builder.addCase(handleGetPriceAPI.rejected, (state: CheckoutState, action: any) => {
-      state.loading = false;
-      state.priceinfo = [];
-    });
-    
+    builder.addCase(
+      handleGetPriceAPI.rejected,
+      (state: CheckoutState, action: any) => {
+        state.loading = false;
+        state.priceinfo = [];
+      },
+    );
   },
 });
 
-export const { setLoading ,updateCartItems, handleAddToCartDoctor, 
-  updateErrorMessage, handleAddToCart, updateNitifySuccessMessage,
-   updateItemQuantity,handleRemoveItem,updateCheckoutSelectedUser,
-   updateCheckoutSelectedAddress } = checkoutSlice.actions;
+export const {
+  setLoading,
+  updateCartItems,
+  handleAddToCartDoctor,
+  updateErrorMessage,
+  handleAddToCart,
+  updateNitifySuccessMessage,
+  updateItemQuantity,
+  handleRemoveItem,
+  updateCheckoutSelectedUser,
+  updateCheckoutSelectedAddress,
+} = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

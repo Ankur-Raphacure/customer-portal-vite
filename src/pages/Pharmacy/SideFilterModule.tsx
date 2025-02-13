@@ -79,7 +79,7 @@ const SideFilterModule = (props: any) => {
     string[]
   >([]);
   const [selectedPriceRange, setSelectedPriceRange] = useState<string | null>(
-    null
+    null,
   );
   const filterLabels = useMemo(() => {
     if (consultType?.includes("virtual")) {
@@ -115,7 +115,7 @@ const SideFilterModule = (props: any) => {
   const handleCheckboxChange = (
     value: any,
     setter: any,
-    selectedState: any
+    selectedState: any,
   ) => {
     if (selectedState.includes(value)) {
       setter(selectedState.filter((item: any) => item !== value));
@@ -370,7 +370,7 @@ const SideFilterModule = (props: any) => {
                         handleCheckboxChange(
                           "male",
                           setSelectedGender,
-                          selectedGender
+                          selectedGender,
                         )
                       }
                     />{" "}
@@ -385,7 +385,7 @@ const SideFilterModule = (props: any) => {
                         handleCheckboxChange(
                           "female",
                           setSelectedGender,
-                          selectedGender
+                          selectedGender,
                         )
                       }
                     />{" "}
@@ -417,13 +417,13 @@ const SideFilterModule = (props: any) => {
                       type="checkbox"
                       value="general-surgeon"
                       checked={selectedSpecialization.includes(
-                        "general-surgeon"
+                        "general-surgeon",
                       )}
                       onChange={() =>
                         handleCheckboxChange(
                           "general-surgeon",
                           setSelectedSpecialization,
-                          selectedSpecialization
+                          selectedSpecialization,
                         )
                       }
                     />{" "}
@@ -438,7 +438,7 @@ const SideFilterModule = (props: any) => {
                         handleCheckboxChange(
                           "dentist",
                           setSelectedSpecialization,
-                          selectedSpecialization
+                          selectedSpecialization,
                         )
                       }
                     />{" "}
@@ -474,7 +474,7 @@ const SideFilterModule = (props: any) => {
                         handleCheckboxChange(
                           "online",
                           setSelectedConsultantType,
-                          selectedConsultantType
+                          selectedConsultantType,
                         )
                       }
                     />{" "}
@@ -489,7 +489,7 @@ const SideFilterModule = (props: any) => {
                         handleCheckboxChange(
                           "opd",
                           setSelectedConsultantType,
-                          selectedConsultantType
+                          selectedConsultantType,
                         )
                       }
                     />{" "}
@@ -620,15 +620,15 @@ const SideFilterModule = (props: any) => {
                               originPage === "labtest"
                                 ? item?.tests?.length || 0
                                 : originPage === "package"
-                                ? item?.packages?.length || 0
-                                : 0
+                                  ? item?.packages?.length || 0
+                                  : 0
                             }) `}
                           >{`${item?.name || "Unnamed Vendor"} (${
                             originPage === "labtest"
                               ? item?.tests?.length || 0
                               : originPage === "package"
-                              ? item?.packages?.length || 0
-                              : 0
+                                ? item?.packages?.length || 0
+                                : 0
                           }) `}</p>
                         </label>
                       </div>

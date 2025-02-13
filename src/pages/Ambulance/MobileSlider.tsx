@@ -10,15 +10,18 @@ const delay = 2500;
 const articles = [
   {
     id: 1,
-    img_1: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509457792.png",
+    img_1:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509457792.png",
   },
   {
     id: 2,
-    img_1: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509377858.png",
+    img_1:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509377858.png",
   },
   {
     id: 3,
-    img_1: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509431235.png",
+    img_1:
+      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509431235.png",
   },
 ];
 const MobileSlider = () => {
@@ -42,9 +45,9 @@ const MobileSlider = () => {
     timeoutRef.current = setTimeout(
       () =>
         setIndex((prevIndex) =>
-          prevIndex === articles.length - 1 ? 0 : prevIndex + 1
+          prevIndex === articles.length - 1 ? 0 : prevIndex + 1,
         ),
-      delay
+      delay,
     );
 
     return () => {
@@ -54,7 +57,10 @@ const MobileSlider = () => {
   return (
     <ContinueBookingStyled>
       <div className="emergencyDiv mainContent-right">
-        <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509504499.png" alt="" />
+        <img
+          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509504499.png"
+          alt=""
+        />
         <div className="cardContainer">
           <h2>Download App</h2>
           <p>
@@ -77,9 +83,17 @@ const MobileSlider = () => {
               </div>
             </div>
           </div>
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509554756.png" alt="" onClick={handleClickPlay} />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736509554756.png"
+            alt=""
+            onClick={handleClickPlay}
+          />
         </div>
-        <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425965406.png" alt="" onClick={handleClickApp} />
+        <img
+          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425965406.png"
+          alt=""
+          onClick={handleClickApp}
+        />
       </div>
     </ContinueBookingStyled>
   );

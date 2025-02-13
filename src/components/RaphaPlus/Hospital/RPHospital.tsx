@@ -18,7 +18,10 @@ const RPHospital = () => {
     <HospitalStyled>
       <div className="hero-image">
         <div className="imgWrapperDiv">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736406829826.png" alt="Hospital Hero" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736406829826.png"
+            alt="Hospital Hero"
+          />
         </div>
         <div className="overlayWrapper">
           <h1>Hospital Management</h1>
@@ -31,7 +34,10 @@ const RPHospital = () => {
         </div>
       </div>
       <div className="hero-image">
-        <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736406892650.png" alt="How Rapha Works" />
+        <img
+          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736406892650.png"
+          alt="How Rapha Works"
+        />
       </div>
       <div className="software-promo">
         <div className="promo-text">
@@ -68,7 +74,11 @@ const RPHospital = () => {
                 Rapha<sup className="plus-icon">+</sup> Feature
               </th>
               <th className="th">
-                <img className="icon" src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736406115270.png" alt="Rapha+" />
+                <img
+                  className="icon"
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736406115270.png"
+                  alt="Rapha+"
+                />
               </th>
               {/* <th className="th">
                   <PractoIcon

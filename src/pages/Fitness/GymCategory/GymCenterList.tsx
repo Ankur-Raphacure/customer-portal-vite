@@ -88,7 +88,7 @@ const GymCenterList = () => {
   const [selectedCardName, setSelectedCardName] = useState("Gym Centres");
 
   const { allFitnessList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const allFitnessData = allFitnessList?.vendors;
 

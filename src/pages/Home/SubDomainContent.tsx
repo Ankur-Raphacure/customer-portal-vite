@@ -173,8 +173,8 @@ const SubDomainContent = (props: any) => {
             {(subDomainDetails?.subdomain_key === "wyh"
               ? wyhPackages
               : subDomainDetails?.subdomain_key === "indigrid"
-              ? indigridPackagesMobile
-              : mobileCategories
+                ? indigridPackagesMobile
+                : mobileCategories
             ).map((category: any, index: any) => {
               if (Array.isArray(category)) {
                 return (
@@ -269,7 +269,7 @@ const SubDomainContent = (props: any) => {
                 const newurl33 = item?.to || item?.navigatePath;
 
                 const imgLisnl = allLists?.find(
-                  (itttm: any) => itttm?.navigatePath == newurl33
+                  (itttm: any) => itttm?.navigatePath == newurl33,
                 ) as any;
                 console.log("imgLisnl", imgLisnl);
                 const newimgURL = imgLisnl?.imageUrl || item?.imageUrl;
@@ -294,7 +294,9 @@ const SubDomainContent = (props: any) => {
                                 }}
                               >
                                 <div className="mobile-category">
-                                  {item?.name || item?.title || imgLisnl?.title}{" "}
+                                  {item?.name ||
+                                    item?.title ||
+                                    imgLisnl?.title}{" "}
                                 </div>
                                 <div className="mobile-category-p">
                                   {item?.description}

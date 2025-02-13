@@ -99,7 +99,7 @@ const VideoCall = () => {
       serverSecret,
       roomID,
       randomID(5),
-      randomID(5)
+      randomID(5),
     );
 
     // Create instance object from Kit Token.

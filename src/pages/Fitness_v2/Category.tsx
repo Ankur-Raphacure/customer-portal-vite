@@ -46,23 +46,35 @@ const cards = [
 // );
 const CategoryCards = () => (
   <>
-    <div style={{padding:"0 5% 0 5%"}}>
+    <div style={{ padding: "0 5% 0 5%" }}>
       <div>
         <h2>Category</h2>
       </div>
-      <div style={{display:"flex",justifyContent:"space-between",flexWrap:"wrap"}}>
-        {
-          cards.map((item)=>{
-            return(
-              <>
-                <div style={{borderRadius:"15px",backgroundColor:"white",width:"250px",padding:"15px 15px 0 15px"}} key={item?.title}>
-                  <h5>{item?.title}</h5>
-                  <p>{item?.text}</p>
-                </div>
-              </>
-            )
-          })
-        }
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+        }}
+      >
+        {cards.map((item) => {
+          return (
+            <>
+              <div
+                style={{
+                  borderRadius: "15px",
+                  backgroundColor: "white",
+                  width: "250px",
+                  padding: "15px 15px 0 15px",
+                }}
+                key={item?.title}
+              >
+                <h5>{item?.title}</h5>
+                <p>{item?.text}</p>
+              </div>
+            </>
+          );
+        })}
       </div>
     </div>
   </>

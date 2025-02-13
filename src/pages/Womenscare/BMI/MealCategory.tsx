@@ -100,7 +100,7 @@ const MealCategory = (props: any) => {
     dayKey: string,
     mealSlot: string,
     index: number,
-    newMeal: string
+    newMeal: string,
   ) => {
     if (!selectedCard) return;
     const weekKey = `Week_${selectedCard}`;
@@ -230,7 +230,7 @@ const MealCategory = (props: any) => {
                                         dayKey,
                                         slot,
                                         index,
-                                        e.target.value
+                                        e.target.value,
                                       )
                                     }
                                   />
@@ -258,7 +258,7 @@ const MealCategory = (props: any) => {
                               )}
                             </li>
                           );
-                        }
+                        },
                       )}
                     </ul>
                   </div>

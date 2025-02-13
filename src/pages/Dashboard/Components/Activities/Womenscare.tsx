@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { CareStyled } from "./CareStyled.Styled"; 
+import { CareStyled } from "./CareStyled.Styled";
 import { ReactComponent as Light } from "../../../../assets/icons/light.svg";
 import { ReactComponent as Medium } from "../../../../assets/icons/medium.svg";
 import { ReactComponent as Heavy } from "../../../../assets/icons/heavy.svg";
@@ -114,7 +114,7 @@ const Womenscare = () => {
   };
 
   const datesToDisplay = Array.from({ length: 7 }).map((_, index) =>
-    moment(currentDate).startOf("week").add(index, "days")
+    moment(currentDate).startOf("week").add(index, "days"),
   );
 
   const insightsData = [
@@ -230,7 +230,7 @@ const Womenscare = () => {
 
     try {
       const res = await dispatch(
-        makeSignUpCall({ periodtracker: periodTrackerBody })
+        makeSignUpCall({ periodtracker: periodTrackerBody }),
       );
       const resJson = JSON.parse(JSON.stringify(res));
 
@@ -320,339 +320,355 @@ const Womenscare = () => {
       {/* Modal for Logging Symptoms */}
       <Modal show={showSymptomModal} onHide={handleCloseSymptomModal}>
         <CareStyled>
-        <Modal.Header closeButton>
-          <Modal.Title>Log Symptoms</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="modal-content period-modal">
-            <div className="period-section">
-              <h5>Period</h5>
-              <div className="period-options">
-                <button
-                  className={`period-option ${
-                    selectedPeriod === "light" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("period", "light")}
-                >
-                  <Light /> Light
-                </button>
+          <Modal.Header closeButton>
+            <Modal.Title>Log Symptoms</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="modal-content period-modal">
+              <div className="period-section">
+                <h5>Period</h5>
+                <div className="period-options">
+                  <button
+                    className={`period-option ${
+                      selectedPeriod === "light" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("period", "light")}
+                  >
+                    <Light /> Light
+                  </button>
 
-                <button
-                  className={`period-option ${
-                    selectedPeriod === "medium" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("period", "medium")}
-                >
-                  <Medium /> Medium
-                </button>
-                <button
-                  className={`period-option ${
-                    selectedPeriod === "heavy" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("period", "heavy")}
-                >
-                  <Heavy /> Heavy
-                </button>
+                  <button
+                    className={`period-option ${
+                      selectedPeriod === "medium" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("period", "medium")}
+                  >
+                    <Medium /> Medium
+                  </button>
+                  <button
+                    className={`period-option ${
+                      selectedPeriod === "heavy" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("period", "heavy")}
+                  >
+                    <Heavy /> Heavy
+                  </button>
+                </div>
+                {errorData.selectedPeriod && (
+                  <p className="options-error-text">
+                    Please select a period option.
+                  </p>
+                )}
               </div>
-              {errorData.selectedPeriod && (
-                <p className="options-error-text">
-                  Please select a period option.
-                </p>
-              )}
-            </div>
-            <div className="spotting-section">
-              <h5>Spotting</h5>
-              <div className="spotting-options">
-                <button
-                  className={`spotting-option red${
-                    selectedSpotting === "red" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("spotting", "red")}
-                >
-                  <Red /> Red
-                </button>
-                <button
-                  className={`spotting-option brown ${
-                    selectedSpotting === "brown" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("spotting", "brown")}
-                >
-                  <Brown /> Brown
-                </button>
+              <div className="spotting-section">
+                <h5>Spotting</h5>
+                <div className="spotting-options">
+                  <button
+                    className={`spotting-option red${
+                      selectedSpotting === "red" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("spotting", "red")}
+                  >
+                    <Red /> Red
+                  </button>
+                  <button
+                    className={`spotting-option brown ${
+                      selectedSpotting === "brown" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("spotting", "brown")}
+                  >
+                    <Brown /> Brown
+                  </button>
+                </div>
+                {errorData.selectedSpotting && (
+                  <p className="options-error-text">
+                    Please select a spotting option.
+                  </p>
+                )}
               </div>
-              {errorData.selectedSpotting && (
-                <p className="options-error-text">
-                  Please select a spotting option.
-                </p>
-              )}
-            </div>
-            <div className="pain-section">
-              <h5>Pain</h5>
-              <div className="pain-options">
-                <button
-                  className={`pain-option ${
-                    selectedPain === "Pain free" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("pain", "Pain free")}
-                >
-                  <Pain /> Pain free
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedPain === "Period cramps" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("pain", "Period cramps")}
-                >
-                  <Period /> Period cramps
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedPain === "Ovulation" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("pain", "Ovulation")}
-                >
-                  <Ovule /> Ovulation
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedPain === "Breast Tenderness" ? "selected" : ""
-                  }`}
-                  onClick={() =>
-                    handleOptionSelect("pain", "Breast Tenderness")
-                  }
-                >
-                  <Breast />
-                  Breast Tenderness
-                </button>
+              <div className="pain-section">
+                <h5>Pain</h5>
+                <div className="pain-options">
+                  <button
+                    className={`pain-option ${
+                      selectedPain === "Pain free" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("pain", "Pain free")}
+                  >
+                    <Pain /> Pain free
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedPain === "Period cramps" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("pain", "Period cramps")}
+                  >
+                    <Period /> Period cramps
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedPain === "Ovulation" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("pain", "Ovulation")}
+                  >
+                    <Ovule /> Ovulation
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedPain === "Breast Tenderness" ? "selected" : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("pain", "Breast Tenderness")
+                    }
+                  >
+                    <Breast />
+                    Breast Tenderness
+                  </button>
+                </div>
+                {errorData.selectedPain && (
+                  <p className="options-error-text">
+                    Please select a Pain option.
+                  </p>
+                )}
               </div>
-              {errorData.selectedPain && (
-                <p className="options-error-text">
-                  Please select a Pain option.
-                </p>
-              )}
-            </div>
-            <div className="pain-section">
-              <h5>Feelings</h5>
-              <div className="pain-options">
-                <button
-                  className={`pain-option ${
-                    selectedFeeling === "Mood swings" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("feeling", "Mood swings")}
-                >
-                  <Mood /> Mood swings
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedFeeling === "Not In Control" ? "selected" : ""
-                  }`}
-                  onClick={() =>
-                    handleOptionSelect("feeling", "Not In Control")
-                  }
-                >
-                  <Control /> Not in control
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedFeeling === "Happy" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("feeling", "Happy")}
-                >
-                  <Happy /> Happy
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedFeeling === "Sad" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("feeling", "Sad")}
-                >
-                  <Sad /> Sad
-                </button>
+              <div className="pain-section">
+                <h5>Feelings</h5>
+                <div className="pain-options">
+                  <button
+                    className={`pain-option ${
+                      selectedFeeling === "Mood swings" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("feeling", "Mood swings")}
+                  >
+                    <Mood /> Mood swings
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedFeeling === "Not In Control" ? "selected" : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("feeling", "Not In Control")
+                    }
+                  >
+                    <Control /> Not in control
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedFeeling === "Happy" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("feeling", "Happy")}
+                  >
+                    <Happy /> Happy
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedFeeling === "Sad" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("feeling", "Sad")}
+                  >
+                    <Sad /> Sad
+                  </button>
+                </div>
+                {errorData.selectedFeeling && (
+                  <p className="options-error-text">
+                    Please select a Feelings option.
+                  </p>
+                )}
               </div>
-              {errorData.selectedFeeling && (
-                <p className="options-error-text">
-                  Please select a Feelings option.
-                </p>
-              )}
-            </div>
 
-            <div className="pain-section">
-              <h5>Sleep Quantity</h5>
-              <div className="pain-options">
-                <button
-                  className={`pain-option ${
-                    selectedSleepQuality === "Trouble falling asleep"
-                      ? "selected"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    handleOptionSelect(
-                      "sleep_quantity",
-                      "Trouble falling asleep"
-                    )
-                  }
-                >
-                  <Trouble /> Trouble falling sleep
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSleepQuality === "Woke up Refreshed"
-                      ? "selected"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    handleOptionSelect("sleepQuality", "Woke up Refreshed")
-                  }
-                >
-                  <Refresh /> Woke up Refreshed
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSleepQuality === "Woke up Tired" ? "selected" : ""
-                  }`}
-                  onClick={() =>
-                    handleOptionSelect("sleepQuality", "Woke up Tired")
-                  }
-                >
-                  <Wokeup /> Woke up Tired
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSleepQuality === "Restless sleep" ? "selected" : ""
-                  }`}
-                  onClick={() =>
-                    handleOptionSelect("sleepQuality", "Restless sleep")
-                  }
-                >
-                  <Rest /> Restless sleep
-                </button>
+              <div className="pain-section">
+                <h5>Sleep Quantity</h5>
+                <div className="pain-options">
+                  <button
+                    className={`pain-option ${
+                      selectedSleepQuality === "Trouble falling asleep"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect(
+                        "sleep_quantity",
+                        "Trouble falling asleep",
+                      )
+                    }
+                  >
+                    <Trouble /> Trouble falling sleep
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSleepQuality === "Woke up Refreshed"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("sleepQuality", "Woke up Refreshed")
+                    }
+                  >
+                    <Refresh /> Woke up Refreshed
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSleepQuality === "Woke up Tired" ? "selected" : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("sleepQuality", "Woke up Tired")
+                    }
+                  >
+                    <Wokeup /> Woke up Tired
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSleepQuality === "Restless sleep"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("sleepQuality", "Restless sleep")
+                    }
+                  >
+                    <Rest /> Restless sleep
+                  </button>
+                </div>
+                {errorData.selectedSleepQuality && (
+                  <p className="options-error-text">
+                    Please select a Sleep Quality option.
+                  </p>
+                )}
               </div>
-              {errorData.selectedSleepQuality && (
-                <p className="options-error-text">
-                  Please select a Sleep Quality option.
-                </p>
-              )}
-            </div>
 
-            <div className="pain-section">
-              <h5>Sex Life </h5>
-              <div className="pain-options ">
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "protected" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "protected")}
-                >
-                  <Trouble /> Protected
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "unprotected" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "unprotected")}
-                >
-                  <Refresh /> Unprotected
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "no_sex_today" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "no_sex_today")}
-                >
-                  <Refresh /> No Sex Today
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "high_sex_drive"
-                      ? "selected"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    handleOptionSelect("sexLife", "high_sex_drive")
-                  }
-                >
-                  <Refresh /> High Sex Drive
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "withdrawal" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "withdrawal")}
-                >
-                  <Refresh /> Withdrawal
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "low_sex_drive" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "low_sex_drive")}
-                >
-                  <Refresh /> Low Sex Drive
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "masturbation" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "masturbation")}
-                >
-                  <Refresh /> Masturbation
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "sex_toys" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "sex_toys")}
-                >
-                  <Refresh /> Sex Toys
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "orgasm" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "orgasm")}
-                >
-                  <Refresh /> Orgasm
-                </button>
-                <button
-                  className={`pain-option ${
-                    selectedSexLifeQuality === "no_orgasm" ? "selected" : ""
-                  }`}
-                  onClick={() => handleOptionSelect("sexLife", "no_orgasm")}
-                >
-                  <Refresh /> No Orgasm
-                </button>
+              <div className="pain-section">
+                <h5>Sex Life </h5>
+                <div className="pain-options ">
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "protected" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("sexLife", "protected")}
+                  >
+                    <Trouble /> Protected
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "unprotected" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("sexLife", "unprotected")}
+                  >
+                    <Refresh /> Unprotected
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "no_sex_today"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("sexLife", "no_sex_today")
+                    }
+                  >
+                    <Refresh /> No Sex Today
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "high_sex_drive"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("sexLife", "high_sex_drive")
+                    }
+                  >
+                    <Refresh /> High Sex Drive
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "withdrawal" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("sexLife", "withdrawal")}
+                  >
+                    <Refresh /> Withdrawal
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "low_sex_drive"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("sexLife", "low_sex_drive")
+                    }
+                  >
+                    <Refresh /> Low Sex Drive
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "masturbation"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionSelect("sexLife", "masturbation")
+                    }
+                  >
+                    <Refresh /> Masturbation
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "sex_toys" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("sexLife", "sex_toys")}
+                  >
+                    <Refresh /> Sex Toys
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "orgasm" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("sexLife", "orgasm")}
+                  >
+                    <Refresh /> Orgasm
+                  </button>
+                  <button
+                    className={`pain-option ${
+                      selectedSexLifeQuality === "no_orgasm" ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionSelect("sexLife", "no_orgasm")}
+                  >
+                    <Refresh /> No Orgasm
+                  </button>
+                </div>
+                {errorData.selectedSexLifeQuality && (
+                  <p className="options-error-text">
+                    Please select a Sleep Sex Life option.
+                  </p>
+                )}
               </div>
-              {errorData.selectedSexLifeQuality && (
-                <p className="options-error-text">
-                  Please select a Sleep Sex Life option.
-                </p>
-              )}
             </div>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          {errorMessage && <p className="options-error-text">{errorMessage}</p>}
-          <Button variant="secondary" onClick={handleCloseSymptomModal}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSave}>
-            Save
-          </Button>
-        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
+            {errorMessage && (
+              <p className="options-error-text">{errorMessage}</p>
+            )}
+            <Button variant="secondary" onClick={handleCloseSymptomModal}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSave}>
+              Save
+            </Button>
+          </Modal.Footer>
         </CareStyled>
       </Modal>
 
       <Modal show={showSuccessModal} onHide={handleCloseSymptomModal}>
         <CareStyled>
-        <Modal.Header>
-          <Modal.Title>Log Symptoms</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Log Symptoms Added Successfully.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseSymptomModal}>
-            Ok
-          </Button>
-        </Modal.Footer>
+          <Modal.Header>
+            <Modal.Title>Log Symptoms</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Log Symptoms Added Successfully.</Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={handleCloseSymptomModal}>
+              Ok
+            </Button>
+          </Modal.Footer>
         </CareStyled>
       </Modal>
 

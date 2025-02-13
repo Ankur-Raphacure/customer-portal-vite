@@ -12,7 +12,7 @@ let docFeMaleImage =
 
 const RecentOrders = () => {
   const { allBookings } = useSelector(
-    (ReduxState: any) => ReduxState.dashboard
+    (ReduxState: any) => ReduxState.dashboard,
   );
   console.log("allBookings in recent orders : ", allBookings);
   const [items, setItems] = useState([]);
@@ -76,10 +76,10 @@ const RecentOrders = () => {
           booking.medicines.length > 0
             ? booking.medicines[0].image
             : booking.user && booking.user.image
-            ? booking.user.image
-            : booking.user.gender === "male"
-            ? docMaleImage
-            : docFeMaleImage, // Assuming the first medicine image or empty string
+              ? booking.user.image
+              : booking.user.gender === "male"
+                ? docMaleImage
+                : docFeMaleImage, // Assuming the first medicine image or empty string
         name: `${booking.user.first_name} ${booking.user.last_name}`,
         type: formatType(booking.type),
         schDate: formatDate(booking.collection_1_date),

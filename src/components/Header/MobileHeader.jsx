@@ -21,7 +21,7 @@ const MobileHeader = (props) => {
   const history = useHistory();
   const { user, showLoginModel } = useSelector((ReduxState) => ReduxState.auth);
   const { userAddress, selectedCurrentAddress } = useSelector(
-    (ReduxState) => ReduxState.profile
+    (ReduxState) => ReduxState.profile,
   );
 
   const [show, setShow] = useState(false);

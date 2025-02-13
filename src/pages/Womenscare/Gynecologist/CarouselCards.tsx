@@ -19,7 +19,7 @@ const CarouselCards = (props: any) => {
   const filteredDoctors = data?.filter(
     (doctor: any) =>
       doctor?.specialization === "Gynecologist" ||
-      doctor?.specialization?.includes("Gynecologist")
+      doctor?.specialization?.includes("Gynecologist"),
   );
   const dispatch = useDispatch();
   const history = useHistory();
@@ -59,7 +59,7 @@ const CarouselCards = (props: any) => {
           categoryType: "doctor",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push("/doctor/bookingReview");
     }

@@ -23,7 +23,7 @@ const MedicineCardModule = (props: any) => {
               history.push(
                 `/item/${medicineDetail?.category_key}/${
                   medicineDetail?.service_code
-                }?categoryids=${medicineDetail?.category_ids?.join(",")}`
+                }?categoryids=${medicineDetail?.category_ids?.join(",")}`,
               )
             }
           >

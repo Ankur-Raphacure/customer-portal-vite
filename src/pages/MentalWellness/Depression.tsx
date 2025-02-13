@@ -3,7 +3,7 @@ import { AdhdStyled } from "./Adhd.Styled";
 import { useHistory } from "react-router-dom";
 
 const Depression = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(0); 
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [testComplete, setTestComplete] = useState(false);
 
@@ -17,40 +17,93 @@ const Depression = () => {
     {
       question:
         "How often do you find that you have little interest or enjoyment in activities that you previously liked or used to find enjoyable ?",
-      options: ["Not at all", "Several days", "More then half the days", "Nearly every day"]
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
     },
     {
-        question:"How often do you experience feelings of sadness, depression, or a sense of hopelessness?",
-        options: ["Not at all", "Several days", "More then half the days", "Nearly every day"]
+      question:
+        "How often do you experience feelings of sadness, depression, or a sense of hopelessness?",
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
     },
-   {
-        question:"How often do you have difficulty falling asleep, staying asleep, or find yourself sleeping excessively ?",
-        options: ["Not at all", "Several days", "More then half the days", "Nearly every day"]
-   },
-   {
-        question:"How often do you feel fatigued or lack energy, even after getting sufficient rest ?",
-        options: ["Not at all", "Several days", "More then half the days", "Nearly every day"]
-   },
-   {
-        question:"How often do you experience changes in your appetite, such as eating too little or overeating ?",
-        options: ["Not at all", "Several days", "More then half the days", "Nearly every day"]
-   },
-   {
-        question:"How often do you feel like a failure or believe you’ve let yourself or your family down ?",
-        options: ["Not at all", "Several days", "More then half the days", "Nearly every day"] 
-   },
-   {
-        question:"How often do you notice yourself moving or speaking much more slowly or being unusually restless and fidgety?",
-        options: ["Not at all", "Several days", "More then half the days", "Nearly every day"] 
-   },
-   {
-        question:"How often do you think about death or self-harm, or feel that you’d be better off dead?",
-        options: ["Not at all", "Several days", "More then half the days", "Nearly every day"] 
-   },
-   {
-        question:"If you’ve experienced any of these issues, how much have they affected your work, home life, or relationships?",
-        options: ["Not at all", "Several days", "More then half the days", "Nearly every day"] 
-   }
+    {
+      question:
+        "How often do you have difficulty falling asleep, staying asleep, or find yourself sleeping excessively ?",
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
+    },
+    {
+      question:
+        "How often do you feel fatigued or lack energy, even after getting sufficient rest ?",
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
+    },
+    {
+      question:
+        "How often do you experience changes in your appetite, such as eating too little or overeating ?",
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
+    },
+    {
+      question:
+        "How often do you feel like a failure or believe you’ve let yourself or your family down ?",
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
+    },
+    {
+      question:
+        "How often do you notice yourself moving or speaking much more slowly or being unusually restless and fidgety?",
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
+    },
+    {
+      question:
+        "How often do you think about death or self-harm, or feel that you’d be better off dead?",
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
+    },
+    {
+      question:
+        "If you’ve experienced any of these issues, how much have they affected your work, home life, or relationships?",
+      options: [
+        "Not at all",
+        "Several days",
+        "More then half the days",
+        "Nearly every day",
+      ],
+    },
   ];
 
   const handleOptionChange = (event: any) => {
@@ -62,7 +115,7 @@ const Depression = () => {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption(null);
     } else {
-      setTestComplete(true); 
+      setTestComplete(true);
     }
   };
 
@@ -71,7 +124,9 @@ const Depression = () => {
       <div className="adhd">
         <div className="container-fluid">
           <div className="row">
-            <button className="back-btn" onClick={handleBackClick}>Back</button>
+            <button className="back-btn" onClick={handleBackClick}>
+              Back
+            </button>
           </div>
           <div className="row text-center">
             {!testComplete ? (
@@ -79,7 +134,10 @@ const Depression = () => {
                 <h2>Assess Your Focus</h2>
                 <h4>Depression Self-Test</h4>
                 <p>
-                  Please answer the questions below, rating yourself on each of the criteria shown. As you answer each question, select the button that best describes how you have felt and conducted yourself over the past 6 months.
+                  Please answer the questions below, rating yourself on each of
+                  the criteria shown. As you answer each question, select the
+                  button that best describes how you have felt and conducted
+                  yourself over the past 6 months.
                 </p>
               </>
             ) : (
@@ -121,11 +179,18 @@ const Depression = () => {
               ) : (
                 <div className="result-screen">
                   <p className="score">
-                    Overall Score: <b>3/6</b>, Inattention: <b>4/9</b>, Hyperactivity/Impulsivity: <b>4/9</b>
+                    Overall Score: <b>3/6</b>, Inattention: <b>4/9</b>,
+                    Hyperactivity/Impulsivity: <b>4/9</b>
                   </p>
-                  <p>Your results indicate that you are experiencing none, or very few signs of ADHD.</p>
                   <p>
-                    These results are not meant to be a diagnosis. You can meet with a doctor or therapist to get a diagnosis and access therapy or medications. Sharing these results with someone you trust can be a great place to start.
+                    Your results indicate that you are experiencing none, or
+                    very few signs of ADHD.
+                  </p>
+                  <p>
+                    These results are not meant to be a diagnosis. You can meet
+                    with a doctor or therapist to get a diagnosis and access
+                    therapy or medications. Sharing these results with someone
+                    you trust can be a great place to start.
                   </p>
                   {/* <button className="next-btn">Loren Ipsum</button> */}
                 </div>

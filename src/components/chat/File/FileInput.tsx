@@ -38,7 +38,7 @@ const FileInput = () => {
     const result = await Promise.allSettled(
       files?.map(async (file: any) => {
         return await uploadToS3(file, user?.id);
-      })
+      }),
     );
 
     let urlsTemp: string[] = [];

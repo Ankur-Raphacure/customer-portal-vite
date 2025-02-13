@@ -22,13 +22,13 @@ const GymViewDetails = () => {
   const item = location.state as any;
 
   const { allFitnessList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const allFitnessData = allFitnessList?.vendors;
 
   const [activeButton, setActiveButton] = useState("Gym");
   const stars = Array.from({ length: 5 }, (_, index) =>
-    index < item?.rating ? "⭐" : "☆"
+    index < item?.rating ? "⭐" : "☆",
   );
 
   useEffect(() => {
@@ -55,7 +55,11 @@ const GymViewDetails = () => {
           <div className="gym1-banner-div">
             <div className="gym-left-content-view-div">
               <img
-                src={item?.image ? item?.image : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332388650.png"}
+                src={
+                  item?.image
+                    ? item?.image
+                    : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332388650.png"
+                }
                 alt=""
                 className="w-100"
               />
@@ -63,11 +67,28 @@ const GymViewDetails = () => {
             <div className="gym-right-content-view-div d-flex">
               <div className="d-flex">
                 <div className="column-images d-flex flex-column me-4">
-                  <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332009568.png"} alt="Gym View 1" className="mb-3" />{" "}
-                  <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332595141.png"} alt="Gym View 2" className="mb-3" />
+                  <img
+                    src={
+                      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332009568.png"
+                    }
+                    alt="Gym View 1"
+                    className="mb-3"
+                  />{" "}
+                  <img
+                    src={
+                      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332595141.png"
+                    }
+                    alt="Gym View 2"
+                    className="mb-3"
+                  />
                 </div>
                 <div className="final-column-images">
-                  <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332513426.png"} alt="Gym View 3" />
+                  <img
+                    src={
+                      "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736332513426.png"
+                    }
+                    alt="Gym View 3"
+                  />
                   <div className="d-flex justify-content-between align-items-center  mt-4">
                     <p className="gym-media-icon-div">
                       <Direaction className="me-1" />

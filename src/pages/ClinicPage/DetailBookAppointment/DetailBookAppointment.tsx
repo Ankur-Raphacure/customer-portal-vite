@@ -71,7 +71,6 @@ interface DaySlot {
   slots: TimeSlot[];
 }
 
-
 const DetailBookAppointment = () => {
   const [activeTab, setActiveTab] = useState("Info");
   const [isTooltipVisible, setIsTooltipVisible] = useState(null);

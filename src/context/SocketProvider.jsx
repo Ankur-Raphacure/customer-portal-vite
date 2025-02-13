@@ -36,7 +36,7 @@ const SocketProvider = ({ children }) => {
               image: user?.image,
               name: `${user?.first_name ?? ""} ${user?.last_name ?? ""}`,
             },
-          })
+          }),
         );
         setUserChatId(res.payload?.data?._id);
       }
@@ -53,15 +53,14 @@ const SocketProvider = ({ children }) => {
   }, [fetchChatId]);
 
   useEffect(() => {
-    
     if (CHAT_API && userChatId) {
       socket.current = io(CHAT_API);
-      
+
       socket.current.emit("add-user", userChatId);
-      setSocketReady(true)
+      setSocketReady(true);
     }
     return () => {
-      if (socket.current) {        
+      if (socket.current) {
         socket.current?.disconnect();
       }
     };

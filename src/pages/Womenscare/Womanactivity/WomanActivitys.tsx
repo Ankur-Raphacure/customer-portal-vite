@@ -49,9 +49,9 @@ const WomanActivitys = () => {
     timeoutRef.current = setTimeout(
       () =>
         setIndex((prevIndex) =>
-          prevIndex === articles.length - 1 ? 0 : prevIndex + 1
+          prevIndex === articles.length - 1 ? 0 : prevIndex + 1,
         ),
-      delay
+      delay,
     );
 
     return () => {

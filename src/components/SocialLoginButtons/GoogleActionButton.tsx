@@ -26,7 +26,7 @@ function GoogleActionButton(props: any) {
               Authorization: `Bearer ${user?.access_token}`,
               Accept: "application/json",
             },
-          }
+          },
         )
         .then(async (res) => {
           const profile = res.data;

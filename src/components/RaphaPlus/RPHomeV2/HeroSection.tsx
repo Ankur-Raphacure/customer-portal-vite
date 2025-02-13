@@ -50,12 +50,15 @@ const HeroSection = () => {
             </li>
           </ul>
           <div className="buttons">
-            <button className="book-demo-button"
-            onClick={() => history.push("/bookdemo")}
-            >Book Demo</button>
+            <button
+              className="book-demo-button"
+              onClick={() => history.push("/bookdemo")}
+            >
+              Book Demo
+            </button>
             <button onClick={handleSignup} className="sign-up-button">
-            Sign Up Now
-          </button>
+              Sign Up Now
+            </button>
           </div>
         </div>
       </div>
@@ -96,7 +99,9 @@ const HeroSection = () => {
         </ul>
         <div className="mobile-buttons">
           <button className="book-demo-mobile">Book Demo</button>
-          <button onClick={handleSignup} className="sign-up-mobile">Sign Up Now</button>
+          <button onClick={handleSignup} className="sign-up-mobile">
+            Sign Up Now
+          </button>
         </div>
         <p>Get Started for Free. No Payment Required</p>
       </div>

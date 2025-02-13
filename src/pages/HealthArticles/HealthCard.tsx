@@ -56,7 +56,10 @@ const HealthCard = () => {
               </div>
               <div className="heading-name-rating flex flex-col mt-1">
                 <div>
-                  <p className="text-justify px-3" style={{ fontWeight: "600" }}>
+                  <p
+                    className="text-justify px-3"
+                    style={{ fontWeight: "600" }}
+                  >
                     {card.title}
                   </p>
                   <p className="px-3  text-justify">{card.description}</p>
@@ -72,12 +75,10 @@ const HealthCard = () => {
       {visibleCards < cards.length && (
         <div className="more-labs-action-btns-1">
           <button onClick={handleLoadMore} className="load-more-btn">
-          Show more
+            Show more
           </button>
         </div>
       )}
-
-  
     </HealthCardStyled>
   );
 };

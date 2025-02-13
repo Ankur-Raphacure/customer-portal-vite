@@ -9,7 +9,7 @@ const OurOffices = () => {
   useEffect(() => {
     if (configInfo.cities) {
       const citiesWithImages = configInfo.cities.filter(
-        (city: any) => city.image
+        (city: any) => city.image,
       );
       const firstSixCitiesWithImages = citiesWithImages.slice(0, 6);
       setSelectedCities(firstSixCitiesWithImages);

@@ -17,7 +17,6 @@ import { toast } from "react-toastify";
 import { getAllCategoriesAPI } from "../../redux/slices/labtest/labtestService";
 import { Link } from "react-router-dom";
 
-
 const containerStyle = {
   width: "100%",
   height: "400px",
@@ -38,7 +37,6 @@ const MapComponent = () => {
 
   // Get user's current location
   useEffect(() => {
-  
     const setPosition = () => {
       if (addr?.latitude && addr?.longitude) {
         setCurrentPosition({
@@ -60,7 +58,7 @@ const MapComponent = () => {
           (error) => {
             toast.error(`Error fetching geolocation: ${error?.message}`);
             console.error("Error fetching geolocation:", error);
-          }
+          },
         );
       } else {
         console.error("Geolocation is not supported by this browser.");
@@ -102,7 +100,7 @@ const Fitness = () => {
 
   const { user, userCity } = useSelector((ReduxState: any) => ReduxState.auth);
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState: RootState) => ReduxState.profile
+    (ReduxState: RootState) => ReduxState.profile,
   );
 
   const getLatestData = (city = "bengaluru") => {
@@ -131,7 +129,7 @@ const Fitness = () => {
         role: "user",
         latitude: selectedCurrentAddress?.latitude,
         longitude: selectedCurrentAddress?.longitude,
-      })
+      }),
     );
   }, [selectedCurrentAddress]);
 
@@ -151,7 +149,7 @@ const Fitness = () => {
   useEffect(() => {
     const getAllCategories = async () => {
       const result = (await dispatch(
-        getAllCategoriesAPI({ sectionName: "fitness" })
+        getAllCategoriesAPI({ sectionName: "fitness" }),
       )) as any;
       if (result?.meta?.requestStatus === "fulfilled") {
         setCategories(result?.payload?.data);
@@ -176,7 +174,7 @@ const Fitness = () => {
 
           <div className="parent-search-left-div">
             <SearchByTextModule
-              details={[" 💪 Gym",]}
+              details={[" 💪 Gym"]}
               handleonFilterName={() => {}}
               setSearchText={setSearchText}
               searchText={searchText}
@@ -257,7 +255,7 @@ const Fitness = () => {
                 imgLink: item?.images?.[0],
                 rating: item?.rating,
                 distance: item?.distance_km ?? "N/A",
-                isRapha:item?.isRapha,
+                isRapha: item?.isRapha,
               };
               return (
                 <ProductCard
@@ -313,7 +311,10 @@ const Fitness = () => {
               alt="rapha gym banner"
             />
             <button className="bottom-banner-book-now">
-              <Link className="bottom-banner-book-now-link" to="/fitnessCenters">
+              <Link
+                className="bottom-banner-book-now-link"
+                to="/fitnessCenters"
+              >
                 BOOK NOW
               </Link>
             </button>

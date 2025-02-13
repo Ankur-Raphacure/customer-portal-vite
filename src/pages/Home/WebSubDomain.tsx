@@ -26,10 +26,10 @@ const SubDomainHome = () => {
   const [showSearchPopupModel, setShowSearchPopupModel] = useState(false);
   var sowLabTest = false;
   const { subDomainName, subDomainDetails } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
   const aggservice = subDomainDetails?.agreed_services?.services?.find(
-    (itttm: any) => itttm?.to == "/labtest"
+    (itttm: any) => itttm?.to == "/labtest",
   );
   if (!subDomainDetails?.id || aggservice) {
     sowLabTest = true;
@@ -41,7 +41,7 @@ const SubDomainHome = () => {
         count: 10,
         page: 0,
         searchText: "",
-      })
+      }),
     );
   }, []);
 

@@ -66,7 +66,7 @@ const IcuHome = () => {
     });
   };
   const { allDomiciliaryNursesAPI } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   const validateForm = () => {
@@ -123,7 +123,7 @@ const IcuHome = () => {
 
     try {
       const resultAction: any = await dispatch(
-        createCallBackRequestAPI(callBackRequestObjBody)
+        createCallBackRequestAPI(callBackRequestObjBody),
       );
       if (resultAction.payload.success === "true") {
         setShow(true);
@@ -210,7 +210,10 @@ const IcuHome = () => {
                 </p>
               </div>
               <div className="col-lg-6 image-container">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736422115546.png" alt="rentimage" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736422115546.png"
+                  alt="rentimage"
+                />
               </div>
             </div>
           </div>
@@ -225,7 +228,10 @@ const IcuHome = () => {
               <div className="col-md-6">
                 <div className="wellbeing-card">
                   <div className="icon">
-                    <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501085709.png" alt="Emotional Well-being" />
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501085709.png"
+                      alt="Emotional Well-being"
+                    />
                   </div>
                   <div className="content">
                     <h4>Continuity of Care</h4>
@@ -238,7 +244,10 @@ const IcuHome = () => {
                 </div>
                 <div className="wellbeing-card">
                   <div className="icon">
-                    <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501143749.png" alt="Emotional Well-being" />
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501143749.png"
+                      alt="Emotional Well-being"
+                    />
                   </div>
                   <div className="content">
                     <h4>Emotional Well-being</h4>
@@ -251,7 +260,10 @@ const IcuHome = () => {
                 </div>
                 <div className="wellbeing-card">
                   <div className="icon">
-                    <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501220593.png" alt="Emotional Well-being" />
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501220593.png"
+                      alt="Emotional Well-being"
+                    />
                   </div>
                   <div className="content">
                     <h4>Family Involvement</h4>
@@ -266,7 +278,10 @@ const IcuHome = () => {
               <div className="col-md-6">
                 <div className="wellbeing-card">
                   <div className="icon">
-                    <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501261086.png" alt="Emotional Well-being" />
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501261086.png"
+                      alt="Emotional Well-being"
+                    />
                   </div>
                   <div className="content">
                     <h4>Faster Recovery</h4>
@@ -279,7 +294,10 @@ const IcuHome = () => {
                 </div>
                 <div className="wellbeing-card">
                   <div className="icon">
-                    <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501331200.png" alt="Emotional Well-being" />
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501331200.png"
+                      alt="Emotional Well-being"
+                    />
                   </div>
                   <div className="content">
                     <h4>Customized Nutrition</h4>
@@ -292,7 +310,10 @@ const IcuHome = () => {
                 </div>
                 <div className="wellbeing-card">
                   <div className="icon">
-                    <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501500409.png" alt="Emotional Well-being" />
+                    <img
+                      src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501500409.png"
+                      alt="Emotional Well-being"
+                    />
                   </div>
                   <div className="content">
                     <h4>Cost-Effective</h4>
@@ -425,7 +446,10 @@ const IcuHome = () => {
             </div>
 
             <div className="doc-img-div">
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501380626.png" alt="" />
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501380626.png"
+                alt=""
+              />
             </div>
           </div>
         </div>
@@ -440,7 +464,10 @@ const IcuHome = () => {
         <DomiciliaryCareStyled>
           <Modal.Body>
             <div className="d-flex justify-content-center align-items-center mt-3">
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501442326.png" alt="bck_img" />
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501442326.png"
+                alt="bck_img"
+              />
             </div>
             <div>
               <h5 className="cnf-text">Thank You</h5>

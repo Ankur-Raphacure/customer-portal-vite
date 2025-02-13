@@ -35,12 +35,12 @@ const PhamacyHeader = (props: any) => {
     section === "ctmri"
       ? "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736421219032.png"
       : section === "eyecare"
-      ? eyecare
-      : section === "dentalcare"
-      ? "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425108362.png"
-      : section === "labtest"
-      ? "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736493218765.png"
-      : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736504684408.png";
+        ? eyecare
+        : section === "dentalcare"
+          ? "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425108362.png"
+          : section === "labtest"
+            ? "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736493218765.png"
+            : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736504684408.png";
   return (
     <PhamacyHeaderStyled>
       <div>
@@ -55,13 +55,13 @@ const PhamacyHeader = (props: any) => {
                   backgroundRepeat: "no-repeat",
                 }
               : section === "ctmri"
-              ? {
-                  backgroundImage: `url("https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736408163762.png")`,
-                  backgroundPosition: "right",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                }
-              : {}
+                ? {
+                    backgroundImage: `url("https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736408163762.png")`,
+                    backgroundPosition: "right",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }
+                : {}
           }
         >
           <div className="pharmacy-header-sec-left">
@@ -162,8 +162,8 @@ const PhamacyHeader = (props: any) => {
                     {section === "ctmri"
                       ? "Book Scanning"
                       : section === "labtest"
-                      ? "Book Test"
-                      : "Buy Medicine"}
+                        ? "Book Test"
+                        : "Buy Medicine"}
                   </button>
                 </label>
               </div>

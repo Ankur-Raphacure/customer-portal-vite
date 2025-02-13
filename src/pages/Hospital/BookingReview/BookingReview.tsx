@@ -77,10 +77,10 @@ const BookingReview = (props: any) => {
     expressBook,
   } = useSelector((ReduxState: any) => ReduxState.bookingReview);
   const { cartItems, priceinfo } = useSelector(
-    (ReduxState: any) => ReduxState.checkout
+    (ReduxState: any) => ReduxState.checkout,
   );
   const { user, subDomainDetails } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
 
   const { ProfileData, dependentsData, isNelyAdedUser, userAddress } =
@@ -142,7 +142,7 @@ const BookingReview = (props: any) => {
         indexforUpdate = idxforDoctorChange;
       } else {
         indexforUpdate = BookingArray.findIndex(
-          (item: any) => item?.patientsDetails?.relation === "Self"
+          (item: any) => item?.patientsDetails?.relation === "Self",
         );
       }
 
@@ -176,7 +176,7 @@ const BookingReview = (props: any) => {
     if (isNewAddressAdded.current && userAddress?.length) {
       handleAddAddressItem(
         userAddress[userAddress?.length - 1],
-        selectedItemForUpdate
+        selectedItemForUpdate,
       );
       setSelectedItemForUpdate(null);
     }
@@ -242,7 +242,7 @@ const BookingReview = (props: any) => {
       minute: "2-digit",
     });
     let slotEndtime = new Date(
-      new Date().setMinutes(new Date().getMinutes() + 90)
+      new Date().setMinutes(new Date().getMinutes() + 90),
     ).toLocaleTimeString(navigator.language, {
       hour: "2-digit",
       minute: "2-digit",
@@ -270,8 +270,8 @@ const BookingReview = (props: any) => {
     return patientsDetailsObj?.image
       ? patientsDetailsObj?.image
       : patientsDetailsObj?.gender === "male"
-      ? imageMale
-      : imageFemale;
+        ? imageMale
+        : imageFemale;
   };
 
   const isObject = (ObjData: any) => {
@@ -287,7 +287,7 @@ const BookingReview = (props: any) => {
     profileListEle = dependentsData
       ?.filter(
         (item: any) =>
-          selectedProfileIds && selectedProfileIds.indexOf(item.id) === -1
+          selectedProfileIds && selectedProfileIds.indexOf(item.id) === -1,
       )
       .map((item: any, index: any) => {
         return (
@@ -431,7 +431,7 @@ const BookingReview = (props: any) => {
     patientsDetailsObj: any,
     index: any,
     address: any,
-    doctorDetails: any
+    doctorDetails: any,
   ) => {
     let selectedProfileEle = patientsDetailsObj ? (
       <SelectedProfileDetails
@@ -531,8 +531,8 @@ const BookingReview = (props: any) => {
             {consultType && consultType === "OPD"
               ? "OPD Consultation"
               : consultType === "CHAT"
-              ? "Chat Consultation"
-              : "Virtual Consultation"}
+                ? "Chat Consultation"
+                : "Virtual Consultation"}
           </div>
           <div className="change-doctor">
             <button
@@ -577,8 +577,8 @@ const BookingReview = (props: any) => {
               {consultType && consultType === "OPD"
                 ? "OPD Consultation"
                 : consultType === "CHAT"
-                ? "Chat Consultation"
-                : "Virtual Consultation"}
+                  ? "Chat Consultation"
+                  : "Virtual Consultation"}
             </div>
           </div>
         </div>
@@ -653,18 +653,19 @@ const BookingReview = (props: any) => {
             <>
               <div className="doctor-consultation">
                 <p> Name: {dDetails?.service_name}</p>
-                {
-                  hDetails?.type === "gym" 
-                  ? 
-                  (
-                    <p> Description: <p dangerouslySetInnerHTML={{__html:dDetails?.description}}/></p>
-                  )
-                  :
-                  (
-                    <p> Description: {dDetails?.description}</p>
-                  )
-                }
-                
+                {hDetails?.type === "gym" ? (
+                  <p>
+                    {" "}
+                    Description:{" "}
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: dDetails?.description,
+                      }}
+                    />
+                  </p>
+                ) : (
+                  <p> Description: {dDetails?.description}</p>
+                )}
               </div>
             </>
           )}
@@ -828,7 +829,7 @@ const BookingReview = (props: any) => {
                         errorBookItem.hospitalDetails =
                           bookingItem?.hospitalDetails;
                       }
-                    }
+                    },
                   );
                 }
               }
@@ -864,7 +865,7 @@ const BookingReview = (props: any) => {
                       if (bookTestItem?.labtestType === "labpackage") {
                         removecitems.push({ ...cartItem });
                       }
-                    }
+                    },
                   );
                 }
               }
@@ -879,7 +880,7 @@ const BookingReview = (props: any) => {
       setshowConfirmMessageModel(true);
 
       setshowConfirmMessageModelText(
-        `The User(s) had already booked Tests/Packages in the cart. Are you sure you want to replace the Cart Items?`
+        `The User(s) had already booked Tests/Packages in the cart. Are you sure you want to replace the Cart Items?`,
       );
     } else {
       continurBookingtoCart(bookingType);
@@ -975,14 +976,14 @@ const BookingReview = (props: any) => {
             ittem.consultationType === "VIRTUAL_INSTANT"
               ? "instant"
               : ittem.consultationType === "VIRTUAL"
-              ? "video"
-              : null,
+                ? "video"
+                : null,
           test_code:
             ittem?.categoryType === "gym"
               ? undefined
               : ittem?.doctorDetails?.service_code
-              ? ittem?.doctorDetails?.service_code
-              : undefined,
+                ? ittem?.doctorDetails?.service_code
+                : undefined,
           package_code:
             ittem?.categoryType === "gym"
               ? ittem?.doctorDetails?.service_code
@@ -1096,10 +1097,10 @@ const BookingReview = (props: any) => {
             ittem.consultationType === "VIRTUAL_INSTANT"
               ? "instant"
               : ittem.consultationType === "VIRTUAL"
-              ? "video"
-              : ittem.consultationType === "inhouse"
-              ? "inhouse"
-              : null,
+                ? "video"
+                : ittem.consultationType === "inhouse"
+                  ? "inhouse"
+                  : null,
           test_code: ittem?.doctorDetails?.service_code
             ? ittem?.doctorDetails?.service_code
             : undefined,
@@ -1263,7 +1264,7 @@ const BookingReview = (props: any) => {
     otherBookingType: String,
     isApplyDiscount: boolean,
     isexpressBook: boolean,
-    index: any
+    index: any,
   ) => {
     if (priceinfo && priceinfo?.length && priceinfo[index]?.price) {
       return priceinfo[index]?.price?.actual_cost;
@@ -1286,12 +1287,12 @@ const BookingReview = (props: any) => {
     otherBooking: boolean,
     otherBookingType: String,
     isApplyDiscount: boolean,
-    index: any
+    index: any,
   ) => {
     if (priceinfo && priceinfo?.length && priceinfo[index]?.price) {
       console.log(
         "priceinfo[index]?.price.final_cost",
-        priceinfo[index]?.price.final_cost
+        priceinfo[index]?.price.final_cost,
       );
       return priceinfo[index]?.price.final_cost || 0.0;
     } else {
@@ -1303,7 +1304,7 @@ const BookingReview = (props: any) => {
     otherBooking: boolean,
     otherBookingType: String,
     isApplyDiscount: boolean,
-    index: any
+    index: any,
   ) => {
     return (
       getConsultationCost(
@@ -1312,17 +1313,17 @@ const BookingReview = (props: any) => {
         isOtherBookings,
         "actual_cost",
         isApplyDiscount,
-        item?.expressBook
+        item?.expressBook,
       ) -
       // Discount
       parseFloat(
         !isApplyDiscount
           ? "0.00"
           : isOtherBookings
-          ? getDiscountedPrice(item?.doctorDetails)?.toFixed(2)
-          : bookingtype === "doctor"
-          ? getDiscountedPrice(item)?.toFixed(2)
-          : "0.00"
+            ? getDiscountedPrice(item?.doctorDetails)?.toFixed(2)
+            : bookingtype === "doctor"
+              ? getDiscountedPrice(item)?.toFixed(2)
+              : "0.00",
       )
     );
   };
@@ -1336,7 +1337,7 @@ const BookingReview = (props: any) => {
     otherBooking: boolean,
     otherBookingType: String,
     isApplyDiscount: boolean,
-    isexpressBook: boolean
+    isexpressBook: boolean,
   ) => {
     if (otherBooking) {
       if (
@@ -1351,8 +1352,8 @@ const BookingReview = (props: any) => {
               otherBookingType === "actual_cost"
                 ? Ddetail?.price?.actual_cost
                 : isApplyDiscount
-                ? Ddetail?.price?.discounted_price
-                : Ddetail?.price?.actual_cost;
+                  ? Ddetail?.price?.discounted_price
+                  : Ddetail?.price?.actual_cost;
           }
         });
 
@@ -1365,8 +1366,8 @@ const BookingReview = (props: any) => {
         return otherBookingType === "actual_cost"
           ? doctorObj?.price?.actual_cost
           : isApplyDiscount
-          ? doctorObj?.price?.discounted_price
-          : doctorObj?.price?.actual_cost;
+            ? doctorObj?.price?.discounted_price
+            : doctorObj?.price?.actual_cost;
       }
     } else {
       if (consulttype === "OPD") return doctorObj?.consultation_cost || 0;
@@ -1489,8 +1490,8 @@ const BookingReview = (props: any) => {
                         item.patientsDetails?.relation === "Self"
                           ? true
                           : item.doctorDetails?.price?.discount_for_dependents
-                          ? true
-                          : false;
+                            ? true
+                            : false;
                       console.log("expressBook : ", item.expressBook);
                       const isExpressBookingAvailable = item.expressBook;
 
@@ -1553,7 +1554,7 @@ const BookingReview = (props: any) => {
                               item.patientsDetails,
                               index,
                               item.address,
-                              item.doctorDetails
+                              item.doctorDetails,
                             )}
                             <div className="doctor-divider-profile"></div>
 
@@ -1585,10 +1586,10 @@ const BookingReview = (props: any) => {
                                       isOtherBookings
                                         ? "Select Your Preferred Slot"
                                         : item?.consultationType === "OPD"
-                                        ? "Select Your OPD Consultation Slot"
-                                        : item?.consultationType === "CHAT"
-                                        ? "Select Your Chat Consultation Slot"
-                                        : "Select Your Virtual Consultation Slot"
+                                          ? "Select Your OPD Consultation Slot"
+                                          : item?.consultationType === "CHAT"
+                                            ? "Select Your Chat Consultation Slot"
+                                            : "Select Your Virtual Consultation Slot"
                                     }
                                   />
                                 }
@@ -1628,7 +1629,7 @@ const BookingReview = (props: any) => {
                                           "actual_cost",
                                           isApplyDiscount,
                                           false,
-                                          index
+                                          index,
                                         )?.toFixed(2) ?? "0.00"}
                                       </span>
                                     </div>
@@ -1641,16 +1642,16 @@ const BookingReview = (props: any) => {
                                         {!isApplyDiscount
                                           ? 0
                                           : isOtherBookings
-                                          ? getDiscountedPriceByAPI(
-                                              item?.doctorDetails,
-                                              index
-                                            )?.toFixed(2)
-                                          : bookingtype === "doctor"
-                                          ? getDiscountedPriceByAPI(
-                                              item,
-                                              index
-                                            )?.toFixed(2)
-                                          : "0.00"}
+                                            ? getDiscountedPriceByAPI(
+                                                item?.doctorDetails,
+                                                index,
+                                              )?.toFixed(2)
+                                            : bookingtype === "doctor"
+                                              ? getDiscountedPriceByAPI(
+                                                  item,
+                                                  index,
+                                                )?.toFixed(2)
+                                              : "0.00"}
                                       </span>
                                     </div>
                                     {item.expressBook && (
@@ -1662,7 +1663,7 @@ const BookingReview = (props: any) => {
                                           <MdOutlineCurrencyRupee />{" "}
                                           {getExpressBookAmountByAPI(
                                             item,
-                                            index
+                                            index,
                                           )?.toFixed(2)}
                                         </span>
                                       </div>
@@ -1678,7 +1679,7 @@ const BookingReview = (props: any) => {
                                           isOtherBookings,
                                           "actual_cost",
                                           isApplyDiscount,
-                                          index
+                                          index,
                                         )?.toFixed(2)}
                                       </span>
                                     </div>

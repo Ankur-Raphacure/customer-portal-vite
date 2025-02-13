@@ -102,7 +102,7 @@ const AllScansList = (props: any) => {
   const [minDiscount, setMinDiscount] = useState("");
   const [maxDiscount, setMaxDiscount] = useState("");
   const [categoryFilter, setCategoryFilter] = useState(
-    sectionName ? ([Number(sectionName)] as any) : ([] as any)
+    sectionName ? ([Number(sectionName)] as any) : ([] as any),
   );
 
   const [bodyTypeFilter, setBodyTypeFilter] = useState([] as any);
@@ -241,7 +241,7 @@ const AllScansList = (props: any) => {
     await dispatch(
       getAllFilteredTests({
         filters: { ...body, count: currentCount, page: 1, testType: "ctmri" },
-      })
+      }),
     );
   };
   useEffect(() => {
@@ -263,14 +263,14 @@ const AllScansList = (props: any) => {
     dispatch(
       getAllgetActiveScanTypeAPI({
         filters: { categoryIds: categoryFilter },
-      })
+      }),
     );
   }, [dispatch, categoryFilter]);
   useEffect(() => {
     dispatch(
       getAllActiveBodyPartAPI({
         filters: { categoryIds: categoryFilter },
-      })
+      }),
     );
   }, [dispatch, categoryFilter]);
   const handleLoadMore = () => {
@@ -362,7 +362,7 @@ const AllScansList = (props: any) => {
                           viewScanCards={item}
                           handleNavigateDetails={navigateToAllScans}
                         />
-                      )
+                      ),
                     )}
                   </div>
                 </>

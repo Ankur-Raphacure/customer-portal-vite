@@ -23,7 +23,9 @@ const AboutUs = ({ siteDetails }: any) => {
           <h1 className="title">About Us</h1>
           <p className="description">
             {/* {hyperSiteDetails?.about_us_text || "Default description text"} */}
-            Do consectetur proident proident id eiusmod deserunt consequat pariatur ad ex velit do Lorem reprehenderit.  consequat pariatur ad ex velit do Lorem reprehenderit.
+            Do consectetur proident proident id eiusmod deserunt consequat
+            pariatur ad ex velit do Lorem reprehenderit. consequat pariatur ad
+            ex velit do Lorem reprehenderit.
           </p>
         </div>
       </div>

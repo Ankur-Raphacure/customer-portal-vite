@@ -33,7 +33,7 @@ const TopAddressSelectionModel = (props: any) => {
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
   const { userAddress } = useSelector((ReduxState: any) => ReduxState.profile);
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   useEffect(() => {
     dispatch(getMyAddressQueryAPI());
@@ -68,35 +68,35 @@ const TopAddressSelectionModel = (props: any) => {
       const addressComponents = place.address_components;
 
       const city = addressComponents?.find((component: any) =>
-        component.types.includes("locality")
+        component.types.includes("locality"),
       )?.long_name;
 
       const state = addressComponents?.find((component: any) =>
-        component.types.includes("administrative_area_level_1")
+        component.types.includes("administrative_area_level_1"),
       )?.long_name;
 
       const country = addressComponents?.find((component: any) =>
-        component.types.includes("country")
+        component.types.includes("country"),
       )?.long_name;
 
       const postalCode = addressComponents?.find((component: any) =>
-        component.types.includes("postal_code")
+        component.types.includes("postal_code"),
       )?.long_name;
 
       const address1 = addressComponents
         ?.filter((component: any) =>
           component.types.some((type: string) =>
             ["street_number", "route", "sublocality", "neighborhood"].includes(
-              type
-            )
-          )
+              type,
+            ),
+          ),
         )
         .map((component: any) => component.long_name)
         .join(", ");
 
       // Address2 includes sublocality, state, and country
       const sublocality = addressComponents?.find((component: any) =>
-        component.types.includes("sublocality")
+        component.types.includes("sublocality"),
       )?.long_name;
 
       const address2 = [sublocality, state, country]

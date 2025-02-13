@@ -13,10 +13,10 @@ const Bookings = () => {
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
   const { cartItems } = useSelector((ReduxState: any) => ReduxState.checkout);
   const { userDependents, userAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   const { myBookings, allBookings } = useSelector(
-    (ReduxState: any) => ReduxState.dashboard
+    (ReduxState: any) => ReduxState.dashboard,
   );
   const [isLoader, setIsLoader] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -91,7 +91,7 @@ const Bookings = () => {
     count = pageSize,
     from = startDate,
     to = endDate,
-    dateType: "scheduled" | "created" = "scheduled"
+    dateType: "scheduled" | "created" = "scheduled",
   ) => {
     if (!user?.id) {
       return;

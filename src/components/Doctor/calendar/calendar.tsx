@@ -23,9 +23,7 @@ const Calendar = (props: any) => {
           {props?.list?.map((item: any) => {
             return (
               // <div className="mb-2 gap-2 justify-center items-center">
-              <div className="cardstyle ">
-                
-              </div>
+              <div className="cardstyle "></div>
               // </div>
             );
           })}

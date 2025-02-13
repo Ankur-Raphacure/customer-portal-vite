@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const PulseRate = ({data}:any) => {
+const PulseRate = ({ data }: any) => {
   return (
     <ResponsiveContainer width="100%" height={400}>
       <LineChart

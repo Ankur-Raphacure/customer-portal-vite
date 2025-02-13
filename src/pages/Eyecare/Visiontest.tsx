@@ -23,7 +23,7 @@ const Visiontest = () => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [selectedService, setSelectedService] = useState<ClinicService | null>(
-    null
+    null,
   );
 
   const handleBackClick = () => {
@@ -44,7 +44,8 @@ const Visiontest = () => {
   const clinicServices: ClinicService[] = [
     {
       id: 1,
-      imageUrl: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736339287188.png",
+      imageUrl:
+        "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736339287188.png",
       name: "Vision Pro Optical Store",
       address:
         "Magadi Main Rd, Chandana layout, Sunkadakatte, Bengaluru, Karnataka 560091",

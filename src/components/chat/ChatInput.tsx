@@ -12,8 +12,14 @@ const ChatInput = () => {
   const inputRef = useRef(null);
   const [msg, setMsg] = useState("");
   const [isShiftKeyPressing, setIsShiftKeyPressing] = useState(false);
-  const { sendMessage, typingStatusChangeHandler, currentChat, reply, userChatId, setReply } =
-    useContext(ChatContext);
+  const {
+    sendMessage,
+    typingStatusChangeHandler,
+    currentChat,
+    reply,
+    userChatId,
+    setReply,
+  } = useContext(ChatContext);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -28,23 +34,23 @@ const ChatInput = () => {
       ? false
       : true;
 
-      if (!isEmpty) {
+    if (!isEmpty) {
       const trimmedContent = msg
         .replace(/<p><br><\/p>/g, "")
         .replace(/&nbsp;/g, "")
         .trim();
 
-        console.log("sending....");
-        
+      console.log("sending....");
+
       sendMessage({
         msg: trimmedContent,
         type: "TEXT",
         chatType: currentChat?.chatType as chatTypes,
       });
 
-      setMsg("")
+      setMsg("");
     }
-  }
+  };
 
   return (
     <div className="d-flex bottom_input">
@@ -83,29 +89,34 @@ const ChatInput = () => {
         /> */}
 
         <div className="w-100">
-          {reply && <div className="reply">
-            <ul className="d-flex justify-content-between align-items-center">
-              <li className="d-flex align-items-center">
-                <UserProfileImage name={reply?.senderName ?? ""} className="msgProfileImg mr-2" url={reply?.senderImage ?? ""} />
-                {reply?.senderName}
-              </li>
-              <li>
-                <IoClose
-                  className="closeIcon"
-                  onClick={() => {
-                    setReply(null)
-                  }}
-                  size={20}
-                />
-              </li>
-            </ul>
-            <div
-              dangerouslySetInnerHTML={{
-                __html:
-                  reply?.message?.slice(0, 100) ?? ""
-              }}
-            />
-          </div>}
+          {reply && (
+            <div className="reply">
+              <ul className="d-flex justify-content-between align-items-center">
+                <li className="d-flex align-items-center">
+                  <UserProfileImage
+                    name={reply?.senderName ?? ""}
+                    className="msgProfileImg mr-2"
+                    url={reply?.senderImage ?? ""}
+                  />
+                  {reply?.senderName}
+                </li>
+                <li>
+                  <IoClose
+                    className="closeIcon"
+                    onClick={() => {
+                      setReply(null);
+                    }}
+                    size={20}
+                  />
+                </li>
+              </ul>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: reply?.message?.slice(0, 100) ?? "",
+                }}
+              />
+            </div>
+          )}
           <ReactQuill
             preserveWhitespace={false}
             theme="snow"
@@ -139,7 +150,6 @@ const ChatInput = () => {
             }}
           />
         </div>
-
       </div>
       <div className="sendBtn">
         <button onClick={handleSendMessage}>

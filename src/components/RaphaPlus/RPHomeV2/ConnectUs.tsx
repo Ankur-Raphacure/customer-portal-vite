@@ -32,7 +32,7 @@ const MapComponent = () => {
         },
         (error) => {
           console.error("Error fetching geolocation:", error);
-        }
+        },
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
@@ -73,7 +73,7 @@ const ConnectUs = () => {
   const [errors, setErrors] = useState<any>({});
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { id, value } = e.target;
 
@@ -134,7 +134,7 @@ const ConnectUs = () => {
         time: "06:00",
         type: "demorequests",
       };
-  
+
       const res = await createBookDemoRequest(payload);
       if (res) {
         // Reset the form fields
@@ -146,7 +146,6 @@ const ConnectUs = () => {
       }
     }
   };
-  
 
   const createBookDemoRequest = async (payload: any) => {
     try {
@@ -296,7 +295,6 @@ const ConnectUs = () => {
                   onChange={handleInputChange}
                   required
                   placeholder="Save me ! Rapha+"
-
                 ></textarea>
                 {errors.message && (
                   <span className="error">{errors.message}</span>

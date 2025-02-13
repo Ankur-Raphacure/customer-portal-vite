@@ -10,7 +10,7 @@ const RemotePatient = () => {
   const dispatch = useDispatch();
 
   const { allDomiciliaryEquipmentsList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const item = allDomiciliaryEquipmentsList?.equipment || [];
 

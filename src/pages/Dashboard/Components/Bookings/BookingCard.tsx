@@ -267,7 +267,7 @@ const BookingCard = ({ item }: { item: BookingItem }) => {
           name,
           email,
           image,
-        })
+        }),
       );
 
       if (result?.payload?.success) {
@@ -276,7 +276,7 @@ const BookingCard = ({ item }: { item: BookingItem }) => {
         toast.error("Something went wrong!.");
       }
     },
-    [userChatId]
+    [userChatId],
   );
 
   return (

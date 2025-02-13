@@ -20,7 +20,7 @@ const SearchComponent = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { universalSearchResults } = useSelector(
-    (ReduxState: any) => ReduxState?.generic
+    (ReduxState: any) => ReduxState?.generic,
   );
   console.log("universalSearchResults", universalSearchResults);
   console.log("searchText", searchText);

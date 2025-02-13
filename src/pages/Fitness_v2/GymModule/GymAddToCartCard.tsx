@@ -23,7 +23,7 @@ const GymAddToCartCard = ({ show, item, onHide }: any) => {
     }
   };
   const stars = Array.from({ length: 5 }, (_, index) =>
-    index < item?.rating ? "⭐" : "☆"
+    index < item?.rating ? "⭐" : "☆",
   );
   return (
     <Modal
@@ -43,7 +43,14 @@ const GymAddToCartCard = ({ show, item, onHide }: any) => {
           <div className="gym-plan-Card mb-3">
             <div className="GymInfoHeader">
               <div className="GymImage">
-                <img src={item?.image ? item?.image : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337916958.png"} alt="Gym" />
+                <img
+                  src={
+                    item?.image
+                      ? item?.image
+                      : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337916958.png"
+                  }
+                  alt="Gym"
+                />
               </div>
               <div className="GymDetails">
                 <h5 className="GymName">{item?.name}</h5>

@@ -19,7 +19,7 @@ const EquipmentDetail = () => {
 
   const equipmentData = location.state as any;
   const { allDomiciliaryEquipmentsList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const item = allDomiciliaryEquipmentsList.equipment;
 
@@ -122,7 +122,7 @@ const EquipmentDetail = () => {
     const newDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth() + increment,
-      1
+      1,
     );
     setCurrentDate(newDate);
   };
@@ -132,7 +132,7 @@ const EquipmentDetail = () => {
   });
   const nextMonthName = new Date(
     currentDate.getFullYear(),
-    currentDate.getMonth() + 1
+    currentDate.getMonth() + 1,
   ).toLocaleString("default", { month: "long" });
 
   const calculateTotalAmount = () => {
@@ -323,7 +323,7 @@ const EquipmentDetail = () => {
                   {renderDays()}
                   {renderDates(
                     currentDate.getFullYear(),
-                    currentDate.getMonth()
+                    currentDate.getMonth(),
                   )}
                 </Col>
                 <Col
@@ -338,7 +338,7 @@ const EquipmentDetail = () => {
                   {renderDays()}
                   {renderDates(
                     currentDate.getFullYear(),
-                    currentDate.getMonth() + 1
+                    currentDate.getMonth() + 1,
                   )}
                 </Col>
               </Row>

@@ -30,7 +30,7 @@ const DomiciliaryCare = () => {
   });
 
   const { allDomiciliaryNursesAPI } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
@@ -61,7 +61,7 @@ const DomiciliaryCare = () => {
           categoryType: "domiciliarycare",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push("/domiciliarycare/bookingReview");
     }
@@ -121,7 +121,7 @@ const DomiciliaryCare = () => {
 
     try {
       const resultAction: any = await dispatch(
-        createCallBackRequestAPI(callBackRequestObjBody)
+        createCallBackRequestAPI(callBackRequestObjBody),
       );
       if (resultAction.payload.success === "true") {
         setShowConform(true);
@@ -192,7 +192,10 @@ const DomiciliaryCare = () => {
             </div>
             <div className="col-lg-4">
               <div className="dom-img">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501781539.png" alt="" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736501781539.png"
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -217,7 +220,10 @@ const DomiciliaryCare = () => {
               <button className="viewmore">View More</button>
             </div>
             <div className="col-lg-6">
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736420620556.png" alt="rentimage" />
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736420620556.png"
+                alt="rentimage"
+              />
             </div>
           </div>
         </div>
@@ -267,7 +273,10 @@ const DomiciliaryCare = () => {
               <button className="viewmore">View More</button>
             </div>
             <div className="col-lg-6">
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736421033036.png" alt="rentimage" />
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736421033036.png"
+                alt="rentimage"
+              />
             </div>
           </div>
         </div>

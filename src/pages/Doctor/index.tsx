@@ -72,11 +72,11 @@ const Doctor = (props: any) => {
   const hospitalistsearchText = useRef("");
 
   const { hospitalList, doctorsList, tablist } = useSelector(
-    (ReduxState: any) => ReduxState.doctor
+    (ReduxState: any) => ReduxState.doctor,
   );
 
   const { subDomainName, subDomainDetails, userCity } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const Doctor = (props: any) => {
       searchText: searV || hospitalSearchText,
       doctorFilterObject: JSON.stringify(doctorFilterObjectList).replace(
         /"(\w+)"\s*:/g,
-        "$1:"
+        "$1:",
       ),
     };
     dispatch(getHospitalListAPI(hospitalRequestOBj));
@@ -132,7 +132,7 @@ const Doctor = (props: any) => {
 
   const debouncedSearch1 = useCallback(
     debounce((searchQuery) => fetchSearchResults1(searchQuery), 500),
-    []
+    [],
   );
   const getvertivalCall = async (searV: any) => {
     setIsLoading(true);
@@ -142,7 +142,7 @@ const Doctor = (props: any) => {
       searchText: searV || virtualdoctorSearchText,
       doctorFilterObject: JSON.stringify(doctorFilterObjectList).replace(
         /"(\w+)"\s*:/g,
-        "$1:"
+        "$1:",
       ),
     };
     dispatch(getDoctorsListAPI(doctorRequestOBj));
@@ -154,7 +154,7 @@ const Doctor = (props: any) => {
 
   const debouncedSearch = useCallback(
     debounce((searchQuery) => fetchSearchResults(searchQuery), 500),
-    []
+    [],
   );
 
   const doctorsGoToPage = (page: any) => {
@@ -179,7 +179,7 @@ const Doctor = (props: any) => {
   };
 
   const [filteredDoctorSuggestions, setFilteredDoctorSuggestions] = useState(
-    []
+    [],
   );
   const [filteredHospitalSuggestions, setFilteredHospitalSuggestions] =
     useState([]);
@@ -189,7 +189,9 @@ const Doctor = (props: any) => {
       const filtered = doctorsList.doctors.filter(
         (doctor: any) =>
           doctor.name.toLowerCase().includes(searchText.toLowerCase()) ||
-          doctor.specialization.toLowerCase().includes(searchText.toLowerCase())
+          doctor.specialization
+            .toLowerCase()
+            .includes(searchText.toLowerCase()),
       );
       setFilteredDoctorSuggestions(filtered);
     } else {
@@ -200,7 +202,7 @@ const Doctor = (props: any) => {
   const filterHospitalSuggestions = (searchText: string) => {
     if (searchText.length > 0) {
       const filtered = hospitalList.vendors.filter((hospital: any) =>
-        hospital.name.toLowerCase().includes(searchText.toLowerCase())
+        hospital.name.toLowerCase().includes(searchText.toLowerCase()),
       );
       setFilteredHospitalSuggestions(filtered);
     } else {
@@ -272,7 +274,7 @@ const Doctor = (props: any) => {
       [key: string]: any;
     }
     const clonedFilterList: StringIndexedObject = structuredClone(
-      doctorFilterObjectList
+      doctorFilterObjectList,
     );
     for (const key in clonedFilterList) {
       clonedFilterList[key].map((filterData: any) => {
@@ -331,7 +333,7 @@ const Doctor = (props: any) => {
                           (suggestion: any) => ({
                             value: suggestion.name,
                             label: `${suggestion.name} - ${suggestion.specialization}`,
-                          })
+                          }),
                         )}
                         onSelect={handleDoctorSuggestionClick}
                         onSearch={handleDoctorChangeSearchText}
@@ -421,7 +423,7 @@ const Doctor = (props: any) => {
                           (suggestion: any) => ({
                             value: suggestion.name,
                             label: suggestion.name,
-                          })
+                          }),
                         )}
                         onSelect={handleHospitalSuggestionClick}
                         onSearch={handleHospitalChangeSearchText}

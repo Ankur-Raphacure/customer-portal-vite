@@ -57,7 +57,7 @@ const StackedCard = ({
           //   scale: scale,
           //   width: `${(scale as any) * 100}%`,
           position: "relative",
-        //   top: `calc(-5vh + ${i * 25}px)`,
+          //   top: `calc(-5vh + ${i * 25}px)`,
         }}
       >
         {origin === "doctorsList" && (

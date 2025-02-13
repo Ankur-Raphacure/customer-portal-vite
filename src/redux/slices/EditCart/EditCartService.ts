@@ -4,7 +4,7 @@ import { patch, put } from "../../../library/Requests/helpers";
 
 export const getDoctorSlotsAPI = createAsyncThunk(
   "bookingScreen/getDoctorSlotsAPI",
-  async (obj: any) => await patch(`${SERVER_IP}/api/v1/timeslot/doctor`, obj)
+  async (obj: any) => await patch(`${SERVER_IP}/api/v1/timeslot/doctor`, obj),
 );
 
 export const cancelBookingAPI = createAsyncThunk(
@@ -12,8 +12,8 @@ export const cancelBookingAPI = createAsyncThunk(
   async (cancelBkObj: any) =>
     await patch(
       `${SERVER_IP}/api/v1/booking/${cancelBkObj.bookingId}/cancel`,
-      cancelBkObj.cancelObjBody
-    )
+      cancelBkObj.cancelObjBody,
+    ),
 );
 
 export const raiseIssueAPI = createAsyncThunk(
@@ -21,6 +21,6 @@ export const raiseIssueAPI = createAsyncThunk(
   async (raiseIssueObj: any) =>
     await put(
       `${SERVER_IP}/api/v1/booking/${raiseIssueObj.bookingId}/issue`,
-      raiseIssueObj.raiseIssueObjBody
-    )
+      raiseIssueObj.raiseIssueObjBody,
+    ),
 );

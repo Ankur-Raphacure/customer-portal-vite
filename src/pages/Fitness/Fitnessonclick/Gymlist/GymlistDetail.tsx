@@ -50,7 +50,7 @@ const GymlistDetail = (props: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { allGymVendorsList, allGymCategoriesList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
   console.log("allGymVendorsList", allGymVendorsList);
@@ -79,7 +79,7 @@ const GymlistDetail = (props: any) => {
           categoryType: "gym",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push(`/gym/bookingReview`);
     }
@@ -102,7 +102,12 @@ const GymlistDetail = (props: any) => {
           <div className="gyminside">
             <div className="item">
               <div className="column image">
-                <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405682760.png"} alt="Gym Details Image" />
+                <img
+                  src={
+                    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405682760.png"
+                  }
+                  alt="Gym Details Image"
+                />
                 <div className="image-caption">
                   <Badgetwo /> 20% Saving Use Coupon Rapha 4
                 </div>

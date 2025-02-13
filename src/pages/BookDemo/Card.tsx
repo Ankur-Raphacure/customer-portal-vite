@@ -26,7 +26,7 @@ const Card = () => {
         <h2 className="title">Booking Confirmed</h2>
         <div className="line-div"></div>
         <p className="message">
-          "Thank you! Everything is set for your call. A detailed booking 
+          "Thank you! Everything is set for your call. A detailed booking
           confirmation will be sent to this email address shortly."
         </p>
         <div className="info-container">
@@ -39,14 +39,14 @@ const Card = () => {
               <p>
                 {
                   formatDate(resp?.date || new Date().toISOString()).split(
-                    " "
+                    " ",
                   )[1]
                 }
               </p>
               <p>
                 {
                   formatDate(resp?.date || new Date().toISOString()).split(
-                    " "
+                    " ",
                   )[0]
                 }
               </p>
@@ -63,7 +63,10 @@ const Card = () => {
             src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/113945-1734687128124.png"
             alt="Confirmation Icon"
           />
-          <p>Thank you! <br />Everything is set for your call.</p>
+          <p>
+            Thank you! <br />
+            Everything is set for your call.
+          </p>
         </div>
         {/* <button
           className="reschedule-btn"

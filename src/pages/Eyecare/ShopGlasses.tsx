@@ -12,7 +12,7 @@ const ShopGlasses = () => {
   const [isFavorited, setIsFavorited] = useState(false);
 
   const { allEyewearGlassessList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   const spectaclesData = allEyewearGlassessList?.eyewear;
@@ -111,11 +111,19 @@ const ShopGlasses = () => {
                         Square
                       </button>
                       <button className="frame-option">
-                        <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736337676032.png" alt="Round" className="frame-image" />
+                        <img
+                          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736337676032.png"
+                          alt="Round"
+                          className="frame-image"
+                        />
                         Round
                       </button>
                       <button className="frame-option">
-                        <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736337719687.png" alt="Cat Eye" className="frame-image" />
+                        <img
+                          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736337719687.png"
+                          alt="Cat Eye"
+                          className="frame-image"
+                        />
                         Cat Eye
                       </button>
                       <button className="frame-option">
@@ -143,7 +151,11 @@ const ShopGlasses = () => {
                         Aviator
                       </button>
                       <button className="frame-option">
-                        <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338102527.png" alt="Oval" className="frame-image" />
+                        <img
+                          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338102527.png"
+                          alt="Oval"
+                          className="frame-image"
+                        />
                         Oval
                       </button>
                       <button className="frame-option">
@@ -213,7 +225,11 @@ const ShopGlasses = () => {
                     <div className="card">
                       <div className="card-header">
                         <img
-                          src={spec?.image ? spec?.image : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338278838.png"}
+                          src={
+                            spec?.image
+                              ? spec?.image
+                              : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736338278838.png"
+                          }
                           className="card-img-top"
                           alt={spec.name}
                           onClick={handleDetailLink}

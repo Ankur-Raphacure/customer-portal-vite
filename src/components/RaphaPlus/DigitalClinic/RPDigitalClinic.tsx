@@ -9,7 +9,10 @@ const RPDigitalClinic = () => {
     <RPDigitalClinicStyled>
       <div className="hero-image">
         <div className="imgWrapperDiv">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736414775826.png" alt="Hospital Hero" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736414775826.png"
+            alt="Hospital Hero"
+          />
         </div>
         <div className="overlayWrapper">
           <div className="content">

@@ -20,9 +20,7 @@ const initVal = {
   officeEmail: undefined,
   PANNo: undefined,
   companyRegNo: undefined,
-
 };
-
 
 const initValError = {
   firstName: false,
@@ -38,16 +36,15 @@ const initValError = {
   officeEmail: false,
   PANNo: false,
   companyRegNo: false,
-
 };
 
 const initValErrorData = {
-  firstName: 'Please Enter First name',
-  lastName: 'Please Enter Last name',
-  phoneNumber: 'Please Enter Phone number',
-  email: 'Please Enter valid email',
-  password: 'Please Enter Password',
-  conformPassword: 'Please Enter Conform Password',
+  firstName: "Please Enter First name",
+  lastName: "Please Enter Last name",
+  phoneNumber: "Please Enter Phone number",
+  email: "Please Enter valid email",
+  password: "Please Enter Password",
+  conformPassword: "Please Enter Conform Password",
   companyName: "Please Enter Company Name",
   GSTNo: "Please Enter GST No",
   // officeNo: "Please Enter Office No",
@@ -56,7 +53,6 @@ const initValErrorData = {
   PANNo: "Please Enter PAN No",
   companyRegNo: "Please Enter Company Reg No",
 };
-
 
 const SignUpTab = () => {
   const [signUpData, setSignUpData] = useState(initVal);
@@ -73,7 +69,7 @@ const SignUpTab = () => {
     }
   }, [user]);
 
-  const handleChangeValue = e => {
+  const handleChangeValue = (e) => {
     let { name, value } = e.target;
     var value1 = value;
     if (value.trim() == "") {
@@ -81,21 +77,21 @@ const SignUpTab = () => {
     }
     const addr = { ...signUpData };
     const addr_error = { ...errorData };
-    if (name == 'phoneNumber' || name == "officeNo") {
+    if (name == "phoneNumber" || name == "officeNo") {
       const re = /^[0-9\b]+$/;
-      if (value1 === '' || re.test(value1)) {
+      if (value1 === "" || re.test(value1)) {
         setSignUpData({
           ...addr,
           [name]: value1,
         });
       }
     } else if (name === "email" || name == "officeEmail") {
-
       setSignUpData({
         ...addr,
         [name]: value1,
       });
-      const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const emailRegex =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (emailRegex.test(String(value).toLowerCase())) {
         setErrorData({
           ...addr_error,
@@ -107,8 +103,6 @@ const SignUpTab = () => {
           [name]: true,
         });
       }
-
-
     } else {
       setSignUpData({
         ...addr,
@@ -126,41 +120,47 @@ const SignUpTab = () => {
         isValid = false;
       }
     }
-    console.log("errornew", errornew)
+    console.log("errornew", errornew);
     setErrorData({ ...errornew });
 
     if (signUpData?.password !== signUpData?.conformPassword) {
       isValid = false;
-      setPassError("Password and Confirm Password fields value must be matched.")
+      setPassError(
+        "Password and Confirm Password fields value must be matched.",
+      );
     } else if (signUpData?.password.length < 6) {
       isValid = false;
-      setPassError("Password requires 6 characters minimum.")
+      setPassError("Password requires 6 characters minimum.");
     }
 
     if (isValid) {
       makeSignUpCall(signUpData);
-      console.log("signUpData", signUpData)
+      console.log("signUpData", signUpData);
     }
-  }
+  };
   const makeSignUpCall = (data) => {
     dispatch(signUpUser(data));
-    console.log("vinodddd")
-  }
+    console.log("vinodddd");
+  };
   const validationCheck = () => {
     var formValid = false;
-    console.log("signUpData", signUpData)
+    console.log("signUpData", signUpData);
     for (var key in signUpData) {
       if (signUpData[key] === "" || !signUpData[key]) {
         formValid = true;
       }
     }
     return formValid;
-  }
-  const allCitys = [{ id: 45, name: "Bangalore" }, { id: 45, name: "Hyderabad" }, { id: 45, name: "Mumbai" }, { id: 45, name: "Delhi" }]
+  };
+  const allCitys = [
+    { id: 45, name: "Bangalore" },
+    { id: 45, name: "Hyderabad" },
+    { id: 45, name: "Mumbai" },
+    { id: 45, name: "Delhi" },
+  ];
 
-  console.log("errorData?.email", errorData)
+  console.log("errorData?.email", errorData);
   return (
-
     <div className="SignupContainer">
       <Form.Group className="signup-md" size="lg" controlId="email">
         <Form.Label>First Name</Form.Label>
@@ -172,9 +172,7 @@ const SignUpTab = () => {
           onChange={(e) => handleChangeValue(e)}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.firstName ? <>
-            {errorDataValue?.firstName}
-          </> : null}
+          {errorData?.firstName ? <>{errorDataValue?.firstName}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="signup-md-left" size="lg" controlId="email">
@@ -186,9 +184,7 @@ const SignUpTab = () => {
           onChange={(e) => handleChangeValue(e)}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.lastName ? <>
-            {errorDataValue?.lastName}
-          </> : null}
+          {errorData?.lastName ? <>{errorDataValue?.lastName}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="signup-md" size="lg" controlId="email">
@@ -201,9 +197,7 @@ const SignUpTab = () => {
           onChange={(e) => handleChangeValue(e)}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.phoneNumber ? <>
-            {errorDataValue?.phoneNumber}
-          </> : null}
+          {errorData?.phoneNumber ? <>{errorDataValue?.phoneNumber}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="signup-md-left" size="lg" controlId="email">
@@ -215,9 +209,7 @@ const SignUpTab = () => {
           onChange={(e) => handleChangeValue(e)}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.email ? <>
-            {errorDataValue?.email}
-          </> : null}
+          {errorData?.email ? <>{errorDataValue?.email}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -231,9 +223,7 @@ const SignUpTab = () => {
           onChange={(e) => handleChangeValue(e)}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.companyName ? <>
-            {errorDataValue?.companyName}
-          </> : null}
+          {errorData?.companyName ? <>{errorDataValue?.companyName}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="signup-md-left" size="lg" controlId="GSTNo">
@@ -246,9 +236,7 @@ const SignUpTab = () => {
           onChange={(e) => handleChangeValue(e)}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.GSTNo ? <>
-            {errorDataValue?.GSTNo}
-          </> : null}
+          {errorData?.GSTNo ? <>{errorDataValue?.GSTNo}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -270,28 +258,29 @@ const SignUpTab = () => {
 
       <Form.Group className="signup-md" size="lg" controlId="city">
         <Form.Label>City</Form.Label>
-        
+
         <Form.Control
           name="city"
           // isInvalid={x.cityError}
           value={signUpData?.city}
-          onChange={e => handleChangeValue(e)} 
-          as="select" >
+          onChange={(e) => handleChangeValue(e)}
+          as="select"
+        >
           <option name="">Select</option>
           {(allCitys || []).map((item, key) => {
             return (
               <>
-                <option selected={false} name={item.id} value={item.name}>{item.name}</option>
-              </>)
+                <option selected={false} name={item.id} value={item.name}>
+                  {item.name}
+                </option>
+              </>
+            );
           })}
         </Form.Control>
         <Form.Control.Feedback type="invalid">
-          {errorData?.city ? <>
-            {errorDataValue?.city}
-          </> : null}
+          {errorData?.city ? <>{errorDataValue?.city}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
-
 
       <Form.Group className="signup-md-left" size="lg" controlId="officeEmail">
         <Form.Label>Office Email</Form.Label>
@@ -303,9 +292,7 @@ const SignUpTab = () => {
           onChange={(e) => handleChangeValue(e)}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.officeEmail ? <>
-            {errorDataValue?.officeEmail}
-          </> : null}
+          {errorData?.officeEmail ? <>{errorDataValue?.officeEmail}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="signup-md" size="lg" controlId="PANNo">
@@ -319,9 +306,7 @@ const SignUpTab = () => {
           isInvalid={errorData?.PANNo}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.PANNo ? <>
-            {errorDataValue?.PANNo}
-          </> : null}
+          {errorData?.PANNo ? <>{errorDataValue?.PANNo}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -336,9 +321,7 @@ const SignUpTab = () => {
           isInvalid={errorData?.companyRegNo}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.companyRegNo ? <>
-            {errorDataValue?.companyRegNo}
-          </> : null}
+          {errorData?.companyRegNo ? <>{errorDataValue?.companyRegNo}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -352,9 +335,7 @@ const SignUpTab = () => {
           onChange={(e) => handleChangeValue(e)}
         />
         <Form.Control.Feedback type="invalid">
-          {errorData?.password ? <>
-            {errorDataValue?.password}
-          </> : null}
+          {errorData?.password ? <>{errorDataValue?.password}</> : null}
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="signup-md-left" size="lg" controlId="password">
@@ -367,14 +348,22 @@ const SignUpTab = () => {
         />
       </Form.Group>
 
-      {passError && (<p className="errorMessage">{passError}</p>)}
-      {error && !passError && (<p className="errorMessage">{error}</p>)}
+      {passError && <p className="errorMessage">{passError}</p>}
+      {error && !passError && <p className="errorMessage">{error}</p>}
 
-      <Button disabled={validationCheck()} onClick={() => { createAccountData() }} block size="lg" type="submit" >
+      <Button
+        disabled={validationCheck()}
+        onClick={() => {
+          createAccountData();
+        }}
+        block
+        size="lg"
+        type="submit"
+      >
         {loading ? "Loading" : "Create Account"}
       </Button>
     </div>
   );
-}
+};
 
 export default SignUpTab;

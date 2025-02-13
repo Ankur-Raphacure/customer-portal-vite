@@ -48,7 +48,7 @@ const ClinicDetails = (props: any) => {
   const count = 80;
   const [page, setPage] = useState(1);
   const [specialization, setSpecialization] = useState<number[]>(
-    specializationId ? [Number(specializationId)] : ([] as any)
+    specializationId ? [Number(specializationId)] : ([] as any),
   );
   const [languages, setLanguages] = useState([] as any);
   const [gender, setGender] = useState([] as any);
@@ -72,7 +72,7 @@ const ClinicDetails = (props: any) => {
     clinicDetails,
   } = useSelector((ReduxState: any) => ReduxState.doctor);
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
   const [doctorsListData, setDoctorsListData] = useState<any>([]);
@@ -81,7 +81,7 @@ const ClinicDetails = (props: any) => {
   const [showHospitalDoctors, setShowHospitalDoctors] = useState(true);
   const [isLoadMoreClick, setIsLoadMoreClick] = useState(false);
   const [selectedServiceType, setSelectedServiceType] = useState(
-    pathUrl?.includes("nearbyhospitals") ? "clinic" : ("online" as any)
+    pathUrl?.includes("nearbyhospitals") ? "clinic" : ("online" as any),
   );
 
   const [updatedFilters, setUpdatedFilters] = useState(false);
@@ -239,7 +239,7 @@ const ClinicDetails = (props: any) => {
             type: ["virtual"],
           },
         },
-      })
+      }),
     );
     setIsPageLoading(false);
     console.log("res?.payload?.data", res?.payload?.data);

@@ -78,39 +78,39 @@ const ProductCard = ({ data, link }: any) => {
           alt={data?.name}
         />
         <div className="card-rating-div">
-            <svg
-              width="83"
-              style={{ transform: "scale(.75)" }}
-              height="56"
-              viewBox="0 0 83 56"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+          <svg
+            width="83"
+            style={{ transform: "scale(.75)" }}
+            height="56"
+            viewBox="0 0 83 56"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22 39H0L22 56V39Z" fill="#496C9A" />
+
+            <path
+              d="M0 2C0 0.89543 0 2 2 2H63.5C74.2696 2 83 10.7304 83 21.5V21.5C83 32.2696 74.2696 41 63.5 41H0V2Z"
+              fill="#92BDF6"
+            />
+
+            <path
+              d="M13.3987 30L15.2675 22.2355L9 17.0132L17.28 16.3224L20.5 9L23.72 16.3224L32 17.0132L25.7325 22.2355L27.6012 30L20.5 25.8829L13.3987 30Z"
+              fill="#252B61"
+            />
+
+            <text
+              x="49.5"
+              y="24"
+              font-size="14"
+              font-family="Arial, sans-serif"
+              font-weight="bold"
+              fill="#252B61"
+              text-anchor="middle"
+              dominant-baseline="middle"
             >
-              <path d="M22 39H0L22 56V39Z" fill="#496C9A" />
-
-              <path
-                d="M0 2C0 0.89543 0 2 2 2H63.5C74.2696 2 83 10.7304 83 21.5V21.5C83 32.2696 74.2696 41 63.5 41H0V2Z"
-                fill="#92BDF6"
-              />
-
-              <path
-                d="M13.3987 30L15.2675 22.2355L9 17.0132L17.28 16.3224L20.5 9L23.72 16.3224L32 17.0132L25.7325 22.2355L27.6012 30L20.5 25.8829L13.3987 30Z"
-                fill="#252B61"
-              />
-
-              <text
-                x="49.5"
-                y="24"
-                font-size="14"
-                font-family="Arial, sans-serif"
-                font-weight="bold"
-                fill="#252B61"
-                text-anchor="middle"
-                dominant-baseline="middle"
-              >
-                {Number(data?.rating)?.toFixed?.(1)}
-              </text>
-            </svg>
+              {Number(data?.rating)?.toFixed?.(1)}
+            </text>
+          </svg>
         </div>
       </div>
       <p className="card-item-name">

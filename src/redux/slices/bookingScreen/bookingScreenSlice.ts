@@ -59,17 +59,17 @@ export const BookingReviewSlice = createSlice({
 
     updateErrorMessage: (
       state: bookingScreenState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.error = action.payload;
     },
     updateDoctordetails: (
       state: bookingScreenState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       console.log(
         "action.payload?.hospitalDetails",
-        action.payload?.hospitalDetails
+        action.payload?.hospitalDetails,
       );
       state.doctorDetails = { ...action.payload?.doctorDetails };
       state.hospitalDetails = { ...action.payload?.hospitalDetails };
@@ -86,7 +86,7 @@ export const BookingReviewSlice = createSlice({
           newBookingArr.length === state.BookingArray.length
         ) {
           let selectedProfileIds = newBookingArr.map(
-            (item: any) => item.patientsDetails.id
+            (item: any) => item.patientsDetails.id,
           );
           state.selectedProfileIds = selectedProfileIds;
           state.BookingArray = [...newBookingArr];
@@ -104,7 +104,7 @@ export const BookingReviewSlice = createSlice({
     },
     updateBookingSlot1: (
       state: bookingScreenState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.BookingArray[action.payload.idx].slot1 = {
         ...action.payload.slot1,
@@ -112,7 +112,7 @@ export const BookingReviewSlice = createSlice({
     },
     updateBookingSlot2: (
       state: bookingScreenState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.BookingArray[action.payload.idx].slot2 = {
         ...action.payload.slot2,
@@ -120,7 +120,7 @@ export const BookingReviewSlice = createSlice({
     },
     updateBookingDoctordetails: (
       state: bookingScreenState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.BookingArray[action.payload.idx].doctorDetails = {
         ...action.payload.doctorDetails,
@@ -151,7 +151,7 @@ export const BookingReviewSlice = createSlice({
     },
     updateBookingAddress: (
       state: bookingScreenState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.BookingArray[action.payload.idx].address = {
         ...action.payload.address,
@@ -168,13 +168,13 @@ export const BookingReviewSlice = createSlice({
         state.BookingArray.push({ ...action.payload });
       }
       let selectedProfileIds = state.BookingArray.map(
-        (item: any) => item.patientsDetails.id
+        (item: any) => item.patientsDetails.id,
       );
       state.selectedProfileIds = selectedProfileIds;
     },
     updatePayloadFromMyPackage: (
       state: bookingScreenState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.payloadFromMyPackage = { ...action.payload };
     },
@@ -222,7 +222,7 @@ export const BookingReviewSlice = createSlice({
       state.categoryType = action.payload.categoryType || null;
       state.expressBook = null;
       let selectedProfileIds = state.BookingArray.map(
-        (item: any) => item.patientsDetails.id
+        (item: any) => item.patientsDetails.id,
       );
       state.selectedProfileIds = selectedProfileIds;
       state.payloadFromMyPackage = null;
@@ -231,7 +231,7 @@ export const BookingReviewSlice = createSlice({
     removeBooking: (state: bookingScreenState, action: PayloadAction<any>) => {
       state.BookingArray.splice(action.payload, 1);
       let selectedProfileIds = state.BookingArray.map(
-        (item: any) => item.patientsDetails.id
+        (item: any) => item.patientsDetails.id,
       );
       if (state.BookingArray && state.BookingArray.length === 0) {
         state.selectedProfileIds = [];
@@ -241,7 +241,7 @@ export const BookingReviewSlice = createSlice({
     },
     resetBookingArray: (
       state: bookingScreenState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.selectedProfileIds = [];
       state.BookingArray = [];
@@ -255,7 +255,7 @@ export const BookingReviewSlice = createSlice({
     },
     updateIdxforDoctorChange: (
       state: bookingScreenState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.idxforDoctorChange = action.payload;
     },
@@ -303,14 +303,14 @@ export const BookingReviewSlice = createSlice({
         }
         state.slots = action.payload?.data;
         state.timeSlotsObj = { ...timeSlotsObj1 };
-      }
+      },
     );
     builder.addCase(
       getDoctorSlotsAPI.rejected,
       (state: bookingScreenState, action: any) => {
         state.loading = false;
         state.slots = null;
-      }
+      },
     );
 
     //
@@ -320,7 +320,7 @@ export const BookingReviewSlice = createSlice({
         state.loading = true;
         state.error = null;
         state.vendors = [];
-      }
+      },
     );
     builder.addCase(
       getAllVendorDetailsAPI.fulfilled,
@@ -328,7 +328,7 @@ export const BookingReviewSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.vendors = action.payload.data?.vendors;
-      }
+      },
     );
     builder.addCase(
       getAllVendorDetailsAPI.rejected,
@@ -336,7 +336,7 @@ export const BookingReviewSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
   },
 });

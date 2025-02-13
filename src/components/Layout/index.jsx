@@ -78,7 +78,7 @@ const Layout = (props) => {
   const doctorId = query1.get("doctorId");
   console.log("isMobile1", isMobile1);
   const { isRaphaPlus, user, subDomainDetails } = useSelector(
-    ({ auth }) => auth
+    ({ auth }) => auth,
   );
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -91,7 +91,7 @@ const Layout = (props) => {
   const user_subDD1 = user_subDD !== null ? JSON.parse(user_subDD) : {};
 
   const { userDependents, userAddress } = useSelector(
-    (ReduxState) => ReduxState.profile
+    (ReduxState) => ReduxState.profile,
   );
   const patha = window.location.hostname;
   const userToken = getToken();
@@ -204,7 +204,7 @@ const Layout = (props) => {
             const response = await Axios.patch(url1, data1, { headers });
             console.log(
               "subdomain_key : ",
-              response?.data?.data?.subdomain_key
+              response?.data?.data?.subdomain_key,
             );
             const subdomain_key = response?.data?.data?.subdomain_key;
             if (subdomain_key && subdomain_key?.trim !== "") {

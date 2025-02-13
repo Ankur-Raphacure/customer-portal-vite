@@ -1,63 +1,60 @@
-.success-sec{
-    .notify-text{
-        font-size: 22px;
-        font-weight: 600;
-        color: #9747ff;
-        margin-top: 30px;
-        margin-bottom: 26px;
-    }
-    hr{
-        width: 95%;
-        border-top: 2px solid #000;
-        box-sizing: border-box;
-        height: 2px;
-        margin: unset;
-        margin-bottom: 34px;
-        opacity: 0.5;
-    }
-    .thanks-sec{
-        font-size: 17px;
-        color: #000;
-        text-align: justify;
-        display: inline-block;
-        padding: 0px 50px;
-    }
-
+.success-sec {
+  .notify-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: #9747ff;
+    margin-top: 30px;
+    margin-bottom: 26px;
+  }
+  hr {
+    width: 95%;
+    border-top: 2px solid #000;
+    box-sizing: border-box;
+    height: 2px;
+    margin: unset;
+    margin-bottom: 34px;
+    opacity: 0.5;
+  }
+  .thanks-sec {
+    font-size: 17px;
+    color: #000;
+    text-align: justify;
+    display: inline-block;
+    padding: 0px 50px;
+  }
 }
-.job-confirm-modal{
-    .modal-body {
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;
-        background-color: #f6f6f6;
-      }
+.job-confirm-modal {
+  .modal-body {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-color: #f6f6f6;
+  }
+  .modal-dialog {
+    max-width: 600px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .job-confirm-modal {
+    display: flex !important;
+    justify-content: center;
     .modal-dialog {
-        max-width: 600px;
-      }
-}
-
-@media only screen and  (max-width: 700px) {
-    .job-confirm-modal{
-        display: flex !important;
-        justify-content: center;
-        .modal-dialog {
-            max-width: 300px;
-        }
-        img{
-            width: 70px;
-            height: 80px;
-        }
-        .notify-text{
-            font-size: 10px;
-            margin: 10px 0px;
-        }
-        hr{
-            margin-bottom: 17px;
-        }
-        .thanks-sec {
-            font-size: 10px;
-            padding: 0px 30px;
-        }
+      max-width: 300px;
     }
-
+    img {
+      width: 70px;
+      height: 80px;
+    }
+    .notify-text {
+      font-size: 10px;
+      margin: 10px 0px;
+    }
+    hr {
+      margin-bottom: 17px;
+    }
+    .thanks-sec {
+      font-size: 10px;
+      padding: 0px 30px;
+    }
+  }
 }
-

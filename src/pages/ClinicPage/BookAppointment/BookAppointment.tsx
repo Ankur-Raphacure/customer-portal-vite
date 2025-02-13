@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BookAppointmentStyled } from "./BookAppointment.styled";
 import SideFilterModule from "../../Pharmacy/SideFilterModule";
 import { IoIosStar } from "react-icons/io";
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
 
 const appointmentsData = [
   {
@@ -78,19 +78,19 @@ const BookAppointment = (props: any) => {
     let filtered = appointmentsData;
     if (updatedFilters.gender) {
       filtered = filtered.filter(
-        (appointment) => appointment.gender === updatedFilters.gender
+        (appointment) => appointment.gender === updatedFilters.gender,
       );
     }
     if (updatedFilters.specialization) {
       filtered = filtered.filter(
         (appointment) =>
-          appointment.specialization === updatedFilters.specialization
+          appointment.specialization === updatedFilters.specialization,
       );
     }
     if (updatedFilters.consultantType) {
       filtered = filtered.filter(
         (appointment) =>
-          appointment.consultantType === updatedFilters.consultantType
+          appointment.consultantType === updatedFilters.consultantType,
       );
     }
     if (updatedFilters.priceRange) {
@@ -160,7 +160,7 @@ const BookAppointment = (props: any) => {
     return appointments.filter(
       (appointment: any) =>
         appointment.inClinicFee >= priceRange[0] &&
-        appointment.inClinicFee <= priceRange[1]
+        appointment.inClinicFee <= priceRange[1],
     );
   };
 
@@ -308,9 +308,14 @@ const BookAppointment = (props: any) => {
                   </div>
                   <div className="book">
                     <div className="button">
-                      <button className="book-now btn" 
-                      onClick={() => history.push("/bookappointment/DetailBookAppointment")}
-                      >Book Now</button>
+                      <button
+                        className="book-now btn"
+                        onClick={() =>
+                          history.push("/bookappointment/DetailBookAppointment")
+                        }
+                      >
+                        Book Now
+                      </button>
                     </div>
                     <div className="sb">
                       <div className="slots">

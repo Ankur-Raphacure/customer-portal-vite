@@ -21,28 +21,24 @@ const workout = [
       "Exercise releases endorphins, reducing stress, anxiety, and depression",
 
     img: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736404871261.png",
-
   },
   {
     title: "Increased Energy Levels",
     sub_title: " helping you feel more energized throughout the day.",
 
     img: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736404960564.png",
-
   },
   {
     title: "Weight Management",
     sub_title: "Helps with weight loss and metabolism.",
 
     img: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736404112974.png",
-
   },
   {
     title: "Better Sleep Quality",
     sub_title: "Promotes deeper, more restful sleep.",
 
     img: "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736404282669.png",
-
   },
 ];
 
@@ -84,7 +80,7 @@ const allNearByLabssList = [
 const GymIndex = () => {
   const dispatch = useDispatch();
   const { allFitnessList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   useEffect(() => {
@@ -121,10 +117,20 @@ const GymIndex = () => {
             </div>
             <div className="right-content">
               <div className="fitness-img-div">
-
-                <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736406643600.png"} alt="fitness" className="fitness-girl-img" />
-                <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736403350158.png"} alt="fitness" className="fitness-text-img" />
-
+                <img
+                  src={
+                    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736406643600.png"
+                  }
+                  alt="fitness"
+                  className="fitness-girl-img"
+                />
+                <img
+                  src={
+                    "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736403350158.png"
+                  }
+                  alt="fitness"
+                  className="fitness-text-img"
+                />
               </div>
             </div>
           </div>
@@ -180,7 +186,12 @@ const GymIndex = () => {
               <button className="shopnow">SHOP NOW</button>
             </div>
             <div className="right-content">
-              <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736406171478.png"} alt="fitness" />
+              <img
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736406171478.png"
+                }
+                alt="fitness"
+              />
             </div>
           </div>
         </div>

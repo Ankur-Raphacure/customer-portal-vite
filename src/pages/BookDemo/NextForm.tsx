@@ -31,12 +31,12 @@ const NextForm = () => {
 
   const { selectedDate, selectedTime } = location.state || ({} as any);
 
-  const addMinutesToTime = (time:any, minutesToAdd: any) => {
+  const addMinutesToTime = (time: any, minutesToAdd: any) => {
     const [timePart, period] = time.includes(" ")
       ? time.split(" ")
       : [time, null];
     let [hours, minutes] = timePart.split(":").map(Number);
-  
+
     // Handle AM/PM
     if (period) {
       if (period === "PM" && hours !== 12) {
@@ -45,11 +45,11 @@ const NextForm = () => {
         hours = 0;
       }
     }
-  
+
     const date = new Date();
     date.setHours(hours, minutes);
     date.setMinutes(date.getMinutes() + minutesToAdd);
-  
+
     const options: Intl.DateTimeFormatOptions = {
       hour: "2-digit",
       minute: "2-digit",
@@ -57,9 +57,6 @@ const NextForm = () => {
     };
     return date.toLocaleTimeString("en-US", options);
   };
-  
-
-  
 
   const formattedStartTime = selectedTime
     ? addMinutesToTime(selectedTime, 0)
@@ -179,7 +176,7 @@ const NextForm = () => {
                 <span>
                   {selectedTime && selectedDate
                     ? `${formattedStartTime} - ${formattedEndTime}, ${new Date(
-                        selectedDate
+                        selectedDate,
                       ).toLocaleDateString("en-US", {
                         weekday: "long",
                         month: "long",

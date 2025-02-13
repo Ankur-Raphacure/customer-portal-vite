@@ -82,7 +82,7 @@ const BookingReview = (props: any) => {
         indexforUpdate = idxforDoctorChange;
       } else {
         indexforUpdate = BookingArray.findIndex(
-          (item: any) => item?.patientsDetails?.relation === "Self"
+          (item: any) => item?.patientsDetails?.relation === "Self",
         );
       }
       if (indexforUpdate >= 0) {
@@ -105,7 +105,7 @@ const BookingReview = (props: any) => {
     if (isNewAddressAdded.current && userAddress.length) {
       handleAddAddressItem(
         userAddress[userAddress.length - 1],
-        selectedItemForUpdate
+        selectedItemForUpdate,
       );
       setSelectedItemForUpdate(null);
     }
@@ -152,8 +152,8 @@ const BookingReview = (props: any) => {
     return image
       ? image
       : props.doctor?.gender === "male"
-      ? imageMale
-      : imageFemale;
+        ? imageMale
+        : imageFemale;
   };
 
   const constructUserProfileEle = () => {
@@ -163,7 +163,7 @@ const BookingReview = (props: any) => {
     profileListEle = dependentsData
       ?.filter(
         (item: any) =>
-          selectedProfileIds && selectedProfileIds.indexOf(item.id) === -1
+          selectedProfileIds && selectedProfileIds.indexOf(item.id) === -1,
       )
       .map((item: any, index: any) => {
         return (
@@ -229,7 +229,7 @@ const BookingReview = (props: any) => {
   const displaySelectedProfile = (
     patientsDetailsObj: any,
     index: any,
-    address: any
+    address: any,
   ) => {
     let selectedProfileEle = patientsDetailsObj ? (
       <div className="SelectedProfileDetails inlineflex_start flexdirection_col">
@@ -451,7 +451,8 @@ const BookingReview = (props: any) => {
               {hDetails?.name}
             </div>
             <div className="doctor-department poppins-medium">
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png" /> {hDetails?.address}, {hDetails?.city}
+              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png" />{" "}
+              {hDetails?.address}, {hDetails?.city}
             </div>
           </div>
         </div>
@@ -559,8 +560,8 @@ const BookingReview = (props: any) => {
       bookingtype == "ctmri"
         ? "ctmri"
         : bookingtype == "labtest"
-        ? "labtest"
-        : "doctor";
+          ? "labtest"
+          : "doctor";
     const neList = [] as any;
     BookingArray.map((itemB: any) => {
       neList.push({
@@ -679,7 +680,7 @@ const BookingReview = (props: any) => {
                           {displaySelectedProfile(
                             item.patientsDetails,
                             index,
-                            item.address
+                            item.address,
                           )}
                           <div className="doctor-divider-profile"></div>
 

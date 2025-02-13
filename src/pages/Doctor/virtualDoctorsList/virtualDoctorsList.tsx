@@ -26,7 +26,7 @@ const VirtualDoctorsList = (props: any) => {
   const [showHospitalList, setShowHospitalList] = useState(false);
   const history = useHistory();
   const { doctorHospitalsList } = useSelector(
-    (ReduxState: any) => ReduxState.doctor
+    (ReduxState: any) => ReduxState.doctor,
   );
 
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
@@ -57,7 +57,7 @@ const VirtualDoctorsList = (props: any) => {
           categoryType: "doctor",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push("/doctor/bookingReview");
     }
@@ -83,7 +83,7 @@ const VirtualDoctorsList = (props: any) => {
           },
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       setShowHospitalList(false);
       history.push("/doctor/bookingReview");
@@ -398,7 +398,7 @@ const VirtualDoctorsList = (props: any) => {
                                 onClick={() =>
                                   handleOPDBookingClick(
                                     props.doctor,
-                                    hospitalDetail
+                                    hospitalDetail,
                                   )
                                 }
                               >

@@ -31,10 +31,10 @@ const DashboardMenu = ({ sectionName = "" }: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { user, subDomainName, subDomainDetails } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
   const { myAllSubscriptions } = useSelector(
-    (ReduxState: any) => ReduxState.dashboard
+    (ReduxState: any) => ReduxState.dashboard,
   );
   const { cartItems } = useSelector((ReduxState: any) => ReduxState.checkout);
   const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -160,11 +160,10 @@ const DashboardMenu = ({ sectionName = "" }: any) => {
   };
 
   useEffect(() => {
-   if(sectionName){
-    setIsMenuOpen(false);
-   }
-  }, [sectionName])
-  
+    if (sectionName) {
+      setIsMenuOpen(false);
+    }
+  }, [sectionName]);
 
   const renderSectionName = () => {
     switch (sectionName) {
@@ -259,7 +258,7 @@ const DashboardMenu = ({ sectionName = "" }: any) => {
             <IoArrowBackOutline size={27} />
             {renderSectionName()}
           </div>
-          
+
           <div className="bannerProfileOptions">
             <button
               className="btn btn-outline-secondary d-sm-none custome-btn"

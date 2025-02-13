@@ -47,7 +47,7 @@ const RPFooterV2 = () => {
               <a href="#">Careers</a>
               <a
                 onClick={(e) => {
-                  e.preventDefault(); 
+                  e.preventDefault();
                   history.push("/connectus");
                 }}
                 className="contact-link"

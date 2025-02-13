@@ -1,8 +1,8 @@
 export type ChatContextType = {
   messages: messageDto[];
-  reply: messageDto | null,
-  setReply: React.Dispatch<React.SetStateAction<messageDto | null>>
-  handleReact: (prop: inCommingReactionsDto) => Promise<void>
+  reply: messageDto | null;
+  setReply: React.Dispatch<React.SetStateAction<messageDto | null>>;
+  handleReact: (prop: inCommingReactionsDto) => Promise<void>;
   sendMessage: (prop: {
     msg: string;
     urls?: string[];
@@ -14,7 +14,7 @@ export type ChatContextType = {
   allDirectChatLists: allDirectChatsDto[];
   // activeTab: chatTypes;
   // setActiveTab: React.Dispatch<React.SetStateAction<chatTypes>>;
-currentChat: opponentDto | undefined;
+  currentChat: opponentDto | undefined;
   setCurrentChat: React.Dispatch<React.SetStateAction<opponentDto | undefined>>;
   handleOpenChat: (prop: { opponent: opponentDto; type: chatTypes }) => void;
   onlineUsers: string[];
@@ -27,11 +27,16 @@ currentChat: opponentDto | undefined;
     to: number;
   }) => void;
   getRelativeTimeDifference: (prop: string) => string;
-  isPipMode: boolean
+  isPipMode: boolean;
 };
 
-
-export type inCommingReactionsDto = { emoji: string; to: string; messageId: string; chatType: chatTypeDto, from : string }
+export type inCommingReactionsDto = {
+  emoji: string;
+  to: string;
+  messageId: string;
+  chatType: chatTypeDto;
+  from: string;
+};
 
 export type messageDto = {
   _id: string;
@@ -47,10 +52,10 @@ export type messageDto = {
   } | null;
   event?: eventDto;
   senderImage: string | undefined;
-  replyTo?: messageDto
+  replyTo?: messageDto;
   reactions?: {
     [item: string]: number;
-  },
+  };
   isShared?: boolean;
 };
 
@@ -66,12 +71,11 @@ export type ChatDto = {
 };
 
 export type doctorsListDto = {
-  [key: string] : {
-    name: string,
-    photo: string
-  } 
-} 
-
+  [key: string]: {
+    name: string;
+    photo: string;
+  };
+};
 
 export type opponentDto = {
   id?: string;

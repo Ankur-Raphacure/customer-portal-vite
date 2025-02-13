@@ -31,19 +31,19 @@ export default function CRHome() {
   }, [userId]);
 
   useEffect(() => {
-    zim.on("error", function (zim:any, errorInfo:any) {
+    zim.on("error", function (zim: any, errorInfo: any) {
       console.log("error", errorInfo.code, errorInfo.message);
     });
 
     zim.on(
       "connectionStateChanged",
-      function (zim:any, { state, event, extendedData }:any) {
+      function (zim: any, { state, event, extendedData }: any) {
         console.log("connectionStateChanged", state, event, extendedData);
         if (state === 0 && event === 3) {
           // @ts-ignore
           zim.login({ userName }, token);
         }
-      }
+      },
     );
 
     // zim.on(
@@ -61,21 +61,21 @@ export default function CRHome() {
     //   }
     // );
 
-    zim.on("tokenWillExpire", function (zim:any, { second }:any) {
+    zim.on("tokenWillExpire", function (zim: any, { second }: any) {
       console.log("tokenWillExpire", second);
       zim
         .renewToken(token)
-        .then(function ({ token }:any) {
+        .then(function ({ token }: any) {
           // Renewed successfully.
         })
-        .catch(function (err:any) {
+        .catch(function (err: any) {
           // Renew failed.
         });
     });
 
     zim.on(
       "receivePeerMessage",
-      function (zim:any, { messageList, fromConversationID }:any) {
+      function (zim: any, { messageList, fromConversationID }: any) {
         console.log("receivePeerMessage", messageList, fromConversationID);
         const newMessages = messageList.map((msg: any) => ({
           id: msg.messageID,
@@ -85,7 +85,7 @@ export default function CRHome() {
           timestamp: msg.timestamp,
         }));
         setMessages((prevMessages) => [...prevMessages, ...newMessages]);
-      }
+      },
     );
   }, [userId, userName, token]);
 
@@ -94,11 +94,11 @@ export default function CRHome() {
       const newUserDetails = { userName, userID: userId };
       zim
         .login(newUserDetails, token)
-        .then(function (res:any) {
+        .then(function (res: any) {
           console.log("res", res);
           toast.success("Logged in successfully");
         })
-        .catch(function (err:any) {
+        .catch(function (err: any) {
           console.log("err", err);
           toast.error("Login failed");
         });
@@ -117,7 +117,7 @@ export default function CRHome() {
       var messageTextObj = { type: 1, message: message };
       zim
         .sendMessage(messageTextObj, toUserId, 0, config)
-        .then(function ({ message: sentMessage }:any) {
+        .then(function ({ message: sentMessage }: any) {
           console.log("message", sentMessage);
           const newMessage = {
             id: sentMessage.messageID,
@@ -130,7 +130,7 @@ export default function CRHome() {
           toast.success("Message sent successfully");
           setMessage("");
         })
-        .catch(function (err:any) {
+        .catch(function (err: any) {
           console.log("err", err);
           toast.error(err.message);
         });

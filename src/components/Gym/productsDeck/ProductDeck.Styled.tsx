@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const ProductDeckStyled = styled.div`
     .product-deck-container{
         margin:20px 0 20px 0;
@@ -61,4 +60,4 @@ export const ProductDeckStyled = styled.div`
             right: -50;
         }
     }
-`
+`;

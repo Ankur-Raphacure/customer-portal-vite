@@ -212,7 +212,10 @@ const Emotional: React.FC<EmotionalProps> = ({ onBackClick }) => {
               </div>
               <div className="row mt-4">
                 <div className="col-md-2 text-center">
-                  <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736508785628.png" alt="imagesmiley" />
+                  <img
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736508785628.png"
+                    alt="imagesmiley"
+                  />
                 </div>
                 <div className="col-md-10">
                   <p>

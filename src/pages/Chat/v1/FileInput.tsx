@@ -51,7 +51,7 @@ const FileInput = ({
 
     console.log(e?.target?.files?.[0]?.type?.split("/")?.[0]);
     console.log(
-      fileTypeHelper[e?.target?.files?.[0]?.type?.split("/")?.[0]] ?? "FILE"
+      fileTypeHelper[e?.target?.files?.[0]?.type?.split("/")?.[0]] ?? "FILE",
     );
 
     const url = await uploadToS3(e.target.files[0], user?.id);
@@ -61,7 +61,7 @@ const FileInput = ({
     if (url) {
       setMessage(url);
       setFileType(
-        fileTypeHelper[e?.target?.files?.[0]?.type?.split("/")?.[0]] ?? "FILE"
+        fileTypeHelper[e?.target?.files?.[0]?.type?.split("/")?.[0]] ?? "FILE",
       );
       setShowModal(true);
     }

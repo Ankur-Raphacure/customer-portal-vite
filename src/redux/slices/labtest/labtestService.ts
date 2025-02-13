@@ -17,31 +17,31 @@ import {
 export const getHealthCategoriesAPI = createAsyncThunk(
   "auth/getHealthCategoriesAPI",
   async () =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(healthCategories))
+    await post(`${SERVER_IP}/graphql`, JSON.stringify(healthCategories)),
 );
 
 export const getHealthPackagesAPI = createAsyncThunk(
   "auth/getHealthPackagesAPI",
   async () =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(labtestPackages))
+    await post(`${SERVER_IP}/graphql`, JSON.stringify(labtestPackages)),
 );
 
 export const getVendorDetailsAPI = createAsyncThunk(
   "auth/getVendorDetailsAPI",
   async (id: string) =>
-    await post(`${SERVER_IP}/graphql`, constructVendorDetailsQuery(id))
+    await post(`${SERVER_IP}/graphql`, constructVendorDetailsQuery(id)),
 );
 
 export const getVendorPackageListAPI = createAsyncThunk(
   "labtest/getVendorPackageListAPI",
   async (obj: any) =>
-    await post(`${SERVER_IP}/graphql`, constructVendorPackageListQuery(obj))
+    await post(`${SERVER_IP}/graphql`, constructVendorPackageListQuery(obj)),
 );
 
 export const getVendorTestListAPI = createAsyncThunk(
   "hospital/getHospitalDoctorsListAPI",
   async (obj: any) =>
-    await post(`${SERVER_IP}/graphql`, constructVendorTestListQuery(obj))
+    await post(`${SERVER_IP}/graphql`, constructVendorTestListQuery(obj)),
 );
 
 export const getAllTestsAPI = createAsyncThunk(
@@ -96,11 +96,11 @@ export const getAllTestsAPI = createAsyncThunk(
       `${SERVER_IP}/graphql`,
       JSON.stringify({
         query: `{ ${query} }`,
-      })
+      }),
     );
 
     return response;
-  }
+  },
 );
 
 export const getAllPackagesAPI = createAsyncThunk(
@@ -180,17 +180,17 @@ export const getAllPackagesAPI = createAsyncThunk(
       `${SERVER_IP}/graphql`,
       JSON.stringify({
         query: `{ ${query} }`,
-      })
+      }),
     );
 
     return response;
-  }
+  },
 );
 
 export const getPharmacyCategoriesAPI = createAsyncThunk(
   "auth/getPharmacyCategoriesAPI",
   async () =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(pharmacyCategories))
+    await post(`${SERVER_IP}/graphql`, JSON.stringify(pharmacyCategories)),
 );
 
 export const getAllMedicinesAPI = createAsyncThunk(
@@ -208,10 +208,10 @@ export const getAllMedicinesAPI = createAsyncThunk(
           medicineObj?.discStart,
           medicineObj?.discEnd,
           medicineObj?.startPrice,
-          medicineObj?.endPrice
-        )
-      )
-    )
+          medicineObj?.endPrice,
+        ),
+      ),
+    ),
 );
 
 export const getSimilarMedicinesAPI = createAsyncThunk(
@@ -219,13 +219,13 @@ export const getSimilarMedicinesAPI = createAsyncThunk(
   async (Obj: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(SimilarMedicinesQuery(Obj?.medicineId))
-    )
+      JSON.stringify(SimilarMedicinesQuery(Obj?.medicineId)),
+    ),
 );
 export const getLabTestsNearBy = createAsyncThunk(
   "auth/getLabTestsNearBy",
   async (city: any) =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(getNearByLabTest(city)))
+    await post(`${SERVER_IP}/graphql`, JSON.stringify(getNearByLabTest(city))),
 );
 
 export const checkExpressBook = createAsyncThunk(
@@ -233,8 +233,8 @@ export const checkExpressBook = createAsyncThunk(
   async (body: any) =>
     await patch(
       `${SERVER_IP}/api/v1/vendor/${body.vendorId}/instant`,
-      body.data
-    )
+      body.data,
+    ),
 );
 
 export const getAllCategoriesAPI = createAsyncThunk(
@@ -243,38 +243,38 @@ export const getAllCategoriesAPI = createAsyncThunk(
     const extraPram =
       body?.count && body?.count > 0 ? `&count=${body?.count}` : "";
     return await get(
-      `${SERVER_IP}/api/v1/category/getActiveCategories?section_name=${body?.sectionName}${extraPram}`
+      `${SERVER_IP}/api/v1/category/getActiveCategories?section_name=${body?.sectionName}${extraPram}`,
     );
-  }
+  },
 );
 export const getAllActiveBodyPartAPI = createAsyncThunk(
   "auth/getAllActiveBodyPartAPI",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/test/getActiveBodyPart`, body)
+    await post(`${SERVER_IP}/api/v1/test/getActiveBodyPart`, body),
 );
 export const getAllgetActiveScanTypeAPI = createAsyncThunk(
   "auth/getAllgetActiveScanTypeAPI",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/test/getActiveScanType`, body)
+    await post(`${SERVER_IP}/api/v1/test/getActiveScanType`, body),
 );
 export const getAllBrandsAPI = createAsyncThunk(
   "auth/getAllBrandsAPI",
-  async (body: any) => await post(`${SERVER_IP}/api/v1/medicine/brands`, body)
+  async (body: any) => await post(`${SERVER_IP}/api/v1/medicine/brands`, body),
 );
 export const getAllSubCategoriesAPI = createAsyncThunk(
   "auth/getAllSubCategoriesAPI",
   async (body: any) =>
     await get(
-      `${SERVER_IP}/api/v1/category/getActiveCategories?section_name=pharmacy`
-    )
+      `${SERVER_IP}/api/v1/category/getActiveCategories?section_name=pharmacy`,
+    ),
 );
 
 export const getAllSaltCategoriesAPI = createAsyncThunk(
   "auth/getAllSaltCategoriesAPI",
   async (body: any) =>
     await get(
-      `${SERVER_IP}/api/v1/category/getActiveCategories?section_name=pharmacy&salt_category=true`
-    )
+      `${SERVER_IP}/api/v1/category/getActiveCategories?section_name=pharmacy&salt_category=true`,
+    ),
 );
 
 export const getAllMedicineAPI = createAsyncThunk(
@@ -284,7 +284,7 @@ export const getAllMedicineAPI = createAsyncThunk(
     return await post(`${SERVER_IP}/api/v1/medicine/getmedicines`, {
       filters: body1,
     });
-  }
+  },
 );
 export const getAllWellnessMedicines = createAsyncThunk(
   "auth/getAllWellnessMedicines",
@@ -293,7 +293,7 @@ export const getAllWellnessMedicines = createAsyncThunk(
     return await post(`${SERVER_IP}/api/v1/medicine/getmedicines`, {
       filters: body1,
     });
-  }
+  },
 );
 export const getAllTopMedicineAPI = createAsyncThunk(
   "auth/getAllTopMedicineAPI",
@@ -302,7 +302,7 @@ export const getAllTopMedicineAPI = createAsyncThunk(
     return await post(`${SERVER_IP}/api/v1/medicine/getmedicines`, {
       filters: body1,
     });
-  }
+  },
 );
 
 export const getAllBrandedMedicineAPI = createAsyncThunk(
@@ -312,25 +312,25 @@ export const getAllBrandedMedicineAPI = createAsyncThunk(
     return await post(`${SERVER_IP}/api/v1/medicine/getmedicines`, {
       filters: body1,
     });
-  }
+  },
 );
 
 export const getAllCompareMedicineAPI = createAsyncThunk(
   "auth/getAllCompareMedicineAPI",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/medicine/salt`, { filters: body })
+    await post(`${SERVER_IP}/api/v1/medicine/salt`, { filters: body }),
 );
 export const getDeliveryTimeByItemID = createAsyncThunk(
   "auth/getDeliveryTimeByItemID",
   async (body: any) =>
     await get(
-      `${SERVER_IP}/api/v1/vendor/delivery-time?vendor_ids=${body?.vendor_ids}`
-    )
+      `${SERVER_IP}/api/v1/vendor/delivery-time?vendor_ids=${body?.vendor_ids}`,
+    ),
 );
 export const getOrdersCountByItem = createAsyncThunk(
   "auth/getOrdersCountByItem",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/booking/ordersCountByItem`, body)
+    await post(`${SERVER_IP}/api/v1/booking/ordersCountByItem`, body),
 );
 
 export const getAllFilteredPackages = createAsyncThunk(
@@ -342,7 +342,7 @@ export const getAllFilteredPackages = createAsyncThunk(
         ...body.filters,
         status: "active",
       },
-    })
+    }),
 );
 
 export const getAllFilteredTests = createAsyncThunk(
@@ -354,41 +354,41 @@ export const getAllFilteredTests = createAsyncThunk(
         ...body.filters,
         active_status: "active",
       },
-    })
+    }),
 );
 
 export const getAllActiveTubes = createAsyncThunk(
   "package/getAllActiveTubes",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/test/getActiveTubeNames`, body)
+    await post(`${SERVER_IP}/api/v1/test/getActiveTubeNames`, body),
 );
 
 export const getAllSimilarTests = createAsyncThunk(
   "labtest/getAllSimilarTests",
   async (id: any) =>
-    await get(`${SERVER_IP}/api/v1/test/similar?test_code=${id}`)
+    await get(`${SERVER_IP}/api/v1/test/similar?test_code=${id}`),
 );
 
 export const getAllSimilarPackages = createAsyncThunk(
   "package/getAllSimilarPackages",
   async (id: any) =>
-    await get(`${SERVER_IP}/api/v1/package/similar?package_code=${id}`)
+    await get(`${SERVER_IP}/api/v1/package/similar?package_code=${id}`),
 );
 
 export const getAllPkgVendorsAPI = createAsyncThunk(
   "package/getAllPkgVendorsAPI",
   async (id: any) =>
-    await get(`${SERVER_IP}/api/v1/package/get-vendors-by-package/${id}`)
+    await get(`${SERVER_IP}/api/v1/package/get-vendors-by-package/${id}`),
 );
 
 export const getPackageDetailsAPI = createAsyncThunk(
   "package/getPackageDetailsAPI",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/package/getPackageDetails`, body)
+    await post(`${SERVER_IP}/api/v1/package/getPackageDetails`, body),
 );
 
 export const getTestDetailsAPI = createAsyncThunk(
   "test/getTestDetailsAPI",
   async (body: any) =>
-    await post(`${SERVER_IP}/api/v1/test/getTestDetails`, body)
+    await post(`${SERVER_IP}/api/v1/test/getTestDetails`, body),
 );

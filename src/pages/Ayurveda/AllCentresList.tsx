@@ -20,7 +20,7 @@ const AllCentresList = (props: any) => {
   const itemsPerPage = 3;
 
   const { allAyurvedsCenterList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   useEffect(() => {
@@ -44,14 +44,14 @@ const AllCentresList = (props: any) => {
   };
 
   const totalPages = Math.ceil(
-    (allAyurvedsCenterList?.vendors?.length || 0) / itemsPerPage
+    (allAyurvedsCenterList?.vendors?.length || 0) / itemsPerPage,
   );
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = allAyurvedsCenterList?.vendors?.slice(
     startIndex,
-    endIndex
+    endIndex,
   );
 
   const getPagination = () => {

@@ -11,7 +11,7 @@ const Therapists = (props: any) => {
   const history = useHistory();
   const data = props.doctorsList;
   const physiotherapistDoctors = props?.doctorsList?.filter(
-    (doctor: any) => doctor?.specialization === "Physiotherapist"
+    (doctor: any) => doctor?.specialization === "Physiotherapist",
   );
   const defaultImage =
     props.doctor?.gender === "male" ? doctorMale : doctorFemale;

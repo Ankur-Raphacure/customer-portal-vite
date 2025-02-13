@@ -16,16 +16,16 @@ const PackageQuantityBtn = (props: any) => {
           }}
           className="minus-quantity"
         >
-        <div className="minus_icon">
-          <Circle />
-          <RemoveIcon />
-        </div>
+          <div className="minus_icon">
+            <Circle />
+            <RemoveIcon />
+          </div>
         </button>
-        <div className="current-quantity">{'01'}</div>
+        <div className="current-quantity">{"01"}</div>
         <button
           disabled={true}
           onClick={() => {
-            console.log('plus');
+            console.log("plus");
           }}
           className="plus-quantity"
         >

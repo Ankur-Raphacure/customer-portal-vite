@@ -33,7 +33,11 @@ const GymModuleCards = (props: any) => {
             <div className="cardstyle px-2 py-2 d-flex flex-column">
               <div className="relative imgspace">
                 <img
-                  src={item?.image ? item?.image : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337916958.png"}
+                  src={
+                    item?.image
+                      ? item?.image
+                      : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337916958.png"
+                  }
                   alt="Health360"
                   className="card-img-top object-cover rounded-t-xl"
                 />
@@ -47,7 +51,11 @@ const GymModuleCards = (props: any) => {
 
                   <div className="d-flex locatio-name-sec-row mt-2">
                     <span className="d-flex align-items-center labs-near-sec-name text-sm opacity-70 text-truncate">
-                      <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png" className="me-2" alt="Location" />
+                      <img
+                        src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736498912733.png"
+                        className="me-2"
+                        alt="Location"
+                      />
                       {item?.address}
                     </span>
                   </div>

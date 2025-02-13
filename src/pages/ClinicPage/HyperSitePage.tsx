@@ -53,7 +53,7 @@ const HyperSitePage = (props: any) => {
   };
   const debouncedSearch1 = useCallback(
     debounce((searchQuery: any) => fetchSearchResults1(searchQuery), 500),
-    []
+    [],
   );
   const handleonFilterName = (e: any) => {
     setShowSearchPopupModel(true);

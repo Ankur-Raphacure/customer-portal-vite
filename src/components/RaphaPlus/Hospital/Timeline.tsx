@@ -22,7 +22,7 @@ export default function Timeline() {
       },
       {
         threshold: [0, 1],
-      }
+      },
     );
 
     timelineItems.forEach((item) => {

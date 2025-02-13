@@ -14,7 +14,7 @@ const DomiciliaryCare = () => {
   const dispatch = useDispatch();
   // const [selectedCategory, setsSlectedCategory] = useState({} as any);
   const { allDomiciliaryCareList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   console.log("allDomiciliaryCareList : ", allDomiciliaryCareList);
 
@@ -35,7 +35,7 @@ const DomiciliaryCare = () => {
           categoryType: "domiciliarycare",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push("/domiciliarycare/bookingReview");
     }
@@ -80,25 +80,41 @@ const DomiciliaryCare = () => {
       </div> */}
       <div className="content-sec">
         <div className="patient-moni-sec">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502840216.png" alt="Remote Patient" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502840216.png"
+            alt="Remote Patient"
+          />
         </div>
         <div className="two-img-sec">
           <div className="two-img-sec-one">
             <div onClick={() => handleBookNow(allDomiciliaryCareList.tests[1])}>
-              <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736338090733.png"} alt="Remote Patient" />
+              <img
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736338090733.png"
+                }
+                alt="Remote Patient"
+              />
               <button>Book Now</button>
             </div>
           </div>
           <div className="two-img-sec-two">
             <div onClick={() => handleBookNow(allDomiciliaryCareList.tests[2])}>
-              <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736338018385.png"} alt="Remote Patient" />
+              <img
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736338018385.png"
+                }
+                alt="Remote Patient"
+              />
               <button>Book Now</button>
             </div>
           </div>
         </div>
         <div className="third-img-sec">
           <div onClick={() => handleBookNow(allDomiciliaryCareList.tests[0])}>
-            <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502776421.png" alt="Remote Patient" />
+            <img
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502776421.png"
+              alt="Remote Patient"
+            />
             <button>Book Now </button>
           </div>
         </div>
@@ -106,7 +122,12 @@ const DomiciliaryCare = () => {
         <div className="fourth-img-sec">
           <div className="first-img">
             <div>
-              <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337802616.png"} alt="Remote Patient" />
+              <img
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337802616.png"
+                }
+                alt="Remote Patient"
+              />
               <button onClick={() => history.push("/comingsoon")}>
                 View More
               </button>
@@ -114,7 +135,12 @@ const DomiciliaryCare = () => {
           </div>
           <div className="second-img">
             <div>
-              <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337548573.png"} alt="Remote Patient" />
+              <img
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736337548573.png"
+                }
+                alt="Remote Patient"
+              />
               <button onClick={() => history.push("/comingsoon")}>
                 View More
               </button>
@@ -122,7 +148,10 @@ const DomiciliaryCare = () => {
           </div>
           <div className="third-img">
             <div>
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425482080.png" alt="Remote Patient" />
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425482080.png"
+                alt="Remote Patient"
+              />
               <button onClick={() => history.push("/comingsoon")}>
                 View More
               </button>
@@ -148,16 +177,28 @@ const DomiciliaryCare = () => {
           <a href="#AddOns">Add Ons</a>
         </div>
         <div className="img-div" id="consultation">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502719623.png" alt="consultation" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502719623.png"
+            alt="consultation"
+          />
         </div>
         <div className="img-div" id="diagnosisAndTherapy">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502683305.png" alt="Diagnosis and Therapy" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502683305.png"
+            alt="Diagnosis and Therapy"
+          />
         </div>
         <div className="img-div" id="OtherServices">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502655816.png" alt="Other services" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502655816.png"
+            alt="Other services"
+          />
         </div>
         <div className="img-div" id="AddOns">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502600828.png" alt="Add Ons" />
+          <img
+            src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502600828.png"
+            alt="Add Ons"
+          />
         </div>
       </div>
     </DomiciliaryCareStyled>

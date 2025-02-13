@@ -8,7 +8,11 @@ const VaccineCard = (props: any) => {
         <div key={index} className="nurse-card">
           <div className="nurse-image-container image">
             <img
-              src={nurse?.image ? nurse?.image : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502119141.png"}
+              src={
+                nurse?.image
+                  ? nurse?.image
+                  : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736502119141.png"
+              }
               alt={nurse?.name}
               className="nurse-image2"
             />

@@ -54,17 +54,17 @@ export const ProfileSlice = createSlice({
     },
     setNelyAdedUserFlg: (
       state: ProfileState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.isNelyAdedUser = action.payload;
     },
     updateSelectedUserAddress: (
       state: ProfileState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       localStorage.setItem(
         "userSelectedAddress",
-        JSON.stringify(action.payload)
+        JSON.stringify(action.payload),
       );
       state.selectedCurrentAddress = action.payload;
     },
@@ -92,14 +92,14 @@ export const ProfileSlice = createSlice({
         state.userDependents = [...dependentsData];
 
         state.isNelyAdedUser = false;
-      }
+      },
     );
     builder.addCase(
       getUserWithDependentsAPI.rejected,
       (state: ProfileState, action: any) => {
         state.loading = false;
         state.ProfileData = null;
-      }
+      },
     );
     builder.addCase(createNewDependentAPI.pending, (state: any) => {
       state.loading = true;
@@ -118,14 +118,14 @@ export const ProfileSlice = createSlice({
         state.userDependents = [...dependentsData];
 
         state.isNelyAdedUser = true;
-      }
+      },
     );
     builder.addCase(
       createNewDependentAPI.rejected,
       (state: ProfileState, action: any) => {
         state.loading = false;
         state.ProfileData = null;
-      }
+      },
     );
     //getMyAddressQueryAPI
     builder.addCase(getMyAddressQueryAPI.pending, (state: any) => {
@@ -138,14 +138,14 @@ export const ProfileSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.userAddress = action.payload?.data?.addresses;
-      }
+      },
     );
     builder.addCase(
       getMyAddressQueryAPI.rejected,
       (state: ProfileState, action: any) => {
         state.loading = false;
         state.userAddress = [];
-      }
+      },
     );
 
     //getNearbyVendorsAPI
@@ -159,14 +159,14 @@ export const ProfileSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.nearbyVendors = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getNearbyVendorsAPI.rejected,
       (state: ProfileState, action: any) => {
         state.loading = false;
         state.nearbyVendors = [];
-      }
+      },
     );
   },
 });

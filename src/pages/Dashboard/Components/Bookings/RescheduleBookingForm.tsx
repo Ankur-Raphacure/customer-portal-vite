@@ -222,7 +222,7 @@ const RescheduleBookingForm = ({ booking, onClose }: any) => {
         bookAgainAPI({
           bookingId: booking?.id,
           bkAgainObjBody: bookingData,
-        })
+        }),
       )) as any;
 
       if (res?.error) {

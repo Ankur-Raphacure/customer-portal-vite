@@ -36,16 +36,16 @@ const Cart = () => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [showAddAddressModel, setShowAddAddressModel] = useState(false);
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   const [showAddMemberModel, setShowAddMemberModel] = useState(false);
   const [selectedUser, setSelectedUser] = useState({} as any);
   const { userDependents, userAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
 
   const paharmacyProducts = cartItems?.carts?.filter(
-    (itemV: any) => itemV.medicines?.length > 0
+    (itemV: any) => itemV.medicines?.length > 0,
   );
   useEffect(() => {
     if (cartItems?.carts?.length > 0 && paharmacyProducts?.length === 0) {
@@ -114,8 +114,8 @@ const Cart = () => {
     return user?.image
       ? user?.image
       : user?.gender === "male"
-      ? group_505
-      : group_505;
+        ? group_505
+        : group_505;
   };
   const handleSelectUser = (user: any) => {
     setSelectedUser(user);
@@ -133,7 +133,7 @@ const Cart = () => {
     setShowSuccessUserPopupText(addSucTet);
     const newList = (await dispatch(getUserWithDependentsAPI())) as any;
     const sUser = newList?.payload?.data?.me?.dependents?.find(
-      (iimm: any) => iimm?.id === selectedUser?.id
+      (iimm: any) => iimm?.id === selectedUser?.id,
     );
     if (sUser?.id) {
       setSelectedUser(sUser);

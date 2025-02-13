@@ -20,7 +20,7 @@ const CentresDetails = (props: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { allAyurvedsDiseaseList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
   const [activeButton, setActiveButton] = useState("General Health");
@@ -65,7 +65,11 @@ const CentresDetails = (props: any) => {
         <div className="flexdesign contenal-1">
           <div className="hospital_item">
             <div className="hospital_img">
-              <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736422837311.png" alt="" className="custome_img" />
+              <img
+                src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736422837311.png"
+                alt=""
+                className="custome_img"
+              />
             </div>
             <div className="hospital_datalist flex-col inlineflex_start">
               <div className="hospital_data flex-col flex_start">

@@ -87,7 +87,7 @@ const TableManager: React.FC<TableManagerProps> = ({
     });
 
     const uniqueItems = Array.from(new Set(items)).filter(
-      (item) => item !== undefined && item !== ""
+      (item) => item !== undefined && item !== "",
     );
 
     if (uniqueItems.length === 0) {

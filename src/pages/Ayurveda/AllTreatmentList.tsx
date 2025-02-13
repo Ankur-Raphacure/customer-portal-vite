@@ -24,7 +24,7 @@ const AllTreatmentList = (props: any) => {
   const dispatch = useDispatch();
 
   const { allAyurvedsDiseaseList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { item } = allAyurvedsDiseaseList?.tests;
   useEffect(
@@ -42,7 +42,7 @@ const AllTreatmentList = (props: any) => {
       }
     },
     // [sectionName, treatmentNumberPerPage, treatmentCurrentPage, dispatch]
-    [sectionName, dispatch]
+    [sectionName, dispatch],
   );
 
   const navigateToPage = (url: string) => {
@@ -75,14 +75,14 @@ const AllTreatmentList = (props: any) => {
   };
 
   const totalPages = Math.ceil(
-    (allAyurvedsDiseaseList?.tests?.length || 0) / itemsPerPage
+    (allAyurvedsDiseaseList?.tests?.length || 0) / itemsPerPage,
   );
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentItems = allAyurvedsDiseaseList?.tests?.slice(
     startIndex,
-    endIndex
+    endIndex,
   );
 
   const getPagination = () => {

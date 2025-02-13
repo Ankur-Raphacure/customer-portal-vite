@@ -31,7 +31,7 @@ export const get = async function (url) {
     // }
     throw new Error(
       error?.response?.data?.message ||
-        error?.response?.data?.statusMessages?.[0]
+        error?.response?.data?.statusMessages?.[0],
     );
   }
 };
@@ -51,7 +51,7 @@ export const put = async function (url, body = {}) {
     }
     throw new Error(
       error?.response?.data?.message ||
-        error?.response?.data?.statusMessages?.[0]
+        error?.response?.data?.statusMessages?.[0],
     );
   }
 };
@@ -71,7 +71,7 @@ export const post = async function (url, body = {}) {
     }
     throw new Error(
       error?.response?.data?.message ||
-        error?.response?.data?.statusMessages?.[0]
+        error?.response?.data?.statusMessages?.[0],
     );
   }
 };
@@ -108,7 +108,7 @@ export const patch = async function (url, body = {}) {
     }
     throw new Error(
       error?.response?.data?.message ||
-        error?.response?.data?.statusMessages?.[0]
+        error?.response?.data?.statusMessages?.[0],
     );
   }
 };

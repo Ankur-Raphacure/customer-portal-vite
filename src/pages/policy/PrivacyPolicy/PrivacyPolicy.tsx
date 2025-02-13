@@ -113,23 +113,20 @@ const PrivacyPolicy = () => {
           the Internet protocol (IP) address used to connect your computer to
           the Internet, browser type and version, time zone setting, browser
           plug-in types and versions, operating system and platform.
-          <br />
-          • Information about your visit, including the full Uniform Resource
-          Locators (URL), clickstream to, through and from our site (including
-          date and time), products you viewed or searched for, page response
-          times, download errors, length of visits to certain pages, page
-          interaction information (such as scrolling, clicks, and mouse-overs),
-          methods used to browse away from the page.
+          <br />• Information about your visit, including the full Uniform
+          Resource Locators (URL), clickstream to, through and from our site
+          (including date and time), products you viewed or searched for, page
+          response times, download errors, length of visits to certain pages,
+          page interaction information (such as scrolling, clicks, and
+          mouse-overs), methods used to browse away from the page.
           <br />
           The data that we request from you may include special category data.
           This includes information that relates to the following: • racial or
           ethnic origin, or
-          <br />
-          • genetic data, biometric data for the purpose of uniquely identifying
-          a natural person, or
-          <br />
-          • medical records and history, health data including but not limited
-          to physical, physiological and mental health conditions,
+          <br />• genetic data, biometric data for the purpose of uniquely
+          identifying a natural person, or
+          <br />• medical records and history, health data including but not
+          limited to physical, physiological and mental health conditions,
           <br />• or data concerning a natural person's sex life or sexual
           orientation.
         </p>
@@ -137,26 +134,17 @@ const PrivacyPolicy = () => {
         <p className="strong">When do we collect personal data about you?</p>
         <p>We may collect personal data about you if you:</p>
         <p>
-          • visit one of our websites <br />
-          • book appointments on our website
-          <br />
-          • enquire about any of our services or treatments
-          <br />
-          • register to be a customer or patient with us or book to receive any
-          of our services or treatments
-          <br />
-          • fill in a form or survey for us
-          <br />
-          • carry out a transaction on our website
-          <br />
-          • participate in a competition or promotion or other marketing
+          • visit one of our websites <br />• book appointments on our website
+          <br />• enquire about any of our services or treatments
+          <br />• register to be a customer or patient with us or book to
+          receive any of our services or treatments
+          <br />• fill in a form or survey for us
+          <br />• carry out a transaction on our website
+          <br />• participate in a competition or promotion or other marketing
           activity
-          <br />
-          • make online payments
-          <br />
-          • contact us, for example by email, telephone or social media
-          <br />
-          • participate in interactive features on any of our websites.
+          <br />• make online payments
+          <br />• contact us, for example by email, telephone or social media
+          <br />• participate in interactive features on any of our websites.
           <br />
           In the interests of training and continually improving our services,
           calls to Raphacure and its agents may be monitored or recorded.
@@ -169,28 +157,24 @@ const PrivacyPolicy = () => {
         </p>
         <p>
           We may collect personal data about you from third parties such as:
-          <br />
-          • If you are an employee of one of our corporate clients who has taken
-          up one of our services, we may be passed your name, contact number and
-          email address, in order to get in touch with you to arrange an
-          appointment or collect further information from you;
-          <br />
-          • We have a number of independent third parties acting on our behalf
-          who may collect personal data from you to allow us to carry out the
-          services we offer e.g. an independent physician may carry out your
+          <br />• If you are an employee of one of our corporate clients who has
+          taken up one of our services, we may be passed your name, contact
+          number and email address, in order to get in touch with you to arrange
+          an appointment or collect further information from you;
+          <br />• We have a number of independent third parties acting on our
+          behalf who may collect personal data from you to allow us to carry out
+          the services we offer e.g. an independent physician may carry out your
           initial Triage call or a subsequent consultation and collect personal
           data from you which is subsequently shared with Raphacure for the
           continuity of your care and may be used for quality and monitoring
           purposes;
-          <br />
-          • We carry out work with panel of specialist for the continuity of
-          your care we may be passed medical information usually in the form of
-          a referral for the purposes of your treatment with Raphacure or a
+          <br />• We carry out work with panel of specialist for the continuity
+          of your care we may be passed medical information usually in the form
+          of a referral for the purposes of your treatment with Raphacure or a
           third party consultant;
-          <br />
-          • Raphacure use the services of independent consultants who carry out
-          procedures at our Clinics. Consultants may need to share your personal
-          data and medical records with Raphacure.
+          <br />• Raphacure use the services of independent consultants who
+          carry out procedures at our Clinics. Consultants may need to share
+          your personal data and medical records with Raphacure.
           <br />• Insurance providers will pass Raphacure personal data of
           patients who have commenced a claim and require medical treatment with
           Raphacure. This will normally be in the form of a referral and may
@@ -235,11 +219,9 @@ const PrivacyPolicy = () => {
           treatments to you and related matter such as billing, accounting and
           audit, credit or other payment card verification and anti-fraud
           screening
-          <br />
-          • in our or a third party's legitimate interests to do so - see
+          <br />• in our or a third party's legitimate interests to do so - see
           details below
-          <br />
-          • required or allowed by any applicable law
+          <br />• required or allowed by any applicable law
           <br />• with your explicit consent for example direct marketing
           communications
         </p>
@@ -253,14 +235,11 @@ const PrivacyPolicy = () => {
           care treatment, or to manage health or social care systems and
           services. This may also include monitoring whether the quality of our
           services or treatment is meeting expectations.
-          <br />
-          • It is necessary to establish, make or defend legal claims or court
-          action
-          <br />
-          • It is necessary so that we can comply with employment law
-          <br />
-          • It is necessary for a public interest purpose in line with any laws
-          that are applicable. This should assist in protecting the public
+          <br />• It is necessary to establish, make or defend legal claims or
+          court action
+          <br />• It is necessary so that we can comply with employment law
+          <br />• It is necessary for a public interest purpose in line with any
+          laws that are applicable. This should assist in protecting the public
           against dishonesty, malpractice or other seriously improper behaviour
           for example, investigating complaints, clinical concerns, regulatory
           breaches.
@@ -273,65 +252,49 @@ const PrivacyPolicy = () => {
           interest's rights and freedom. This allows us to manage the
           relationship that exists between you and us and can include the
           following reasons:
-          <br />
-          • provide you with information, products or services that you request
-          from us
-          <br />
-          • managing all aspects of our relationship with you, our products and
-          services and any third parties who may provide products or services on
-          our behalf
-          <br />
-          • allow you to participate in interactive features of our services,
-          when you choose to do so
-          <br />
-          • notify you about changes to our products or services
-          <br />
-          • keep our records up to date <br />
-          • respond to requests where we have a legal or regulatory obligation
-          to do so
-          <br />
-          • check the accuracy of information about you and the quality of your
-          treatment or care, including auditing medical and billing information
-          for insurance claims as well as part of any claims or litigation
-          process
-          <br />
-          • support your doctor, nurse or other healthcare professional
-          <br />
-          • assess the quality and/or type of care you have received (including
-          giving you the opportunity to complete customer satisfaction surveys)
-          and any concerns or complaints you may raise, so that these can be
-          properly investigated
-          <br />
-          • to conduct and analyse market research
-          <br />
-          • to ensure that content from any of our websites is presented in the
-          most effective manner for you and for your computer
-          <br />
-          • to allow us to enforce our website terms of use, our policy terms
-          and conditions or other contracts, or to protect our or other's
+          <br />• provide you with information, products or services that you
+          request from us
+          <br />• managing all aspects of our relationship with you, our
+          products and services and any third parties who may provide products
+          or services on our behalf
+          <br />• allow you to participate in interactive features of our
+          services, when you choose to do so
+          <br />• notify you about changes to our products or services
+          <br />• keep our records up to date <br />• respond to requests where
+          we have a legal or regulatory obligation to do so
+          <br />• check the accuracy of information about you and the quality of
+          your treatment or care, including auditing medical and billing
+          information for insurance claims as well as part of any claims or
+          litigation process
+          <br />• support your doctor, nurse or other healthcare professional
+          <br />• assess the quality and/or type of care you have received
+          (including giving you the opportunity to complete customer
+          satisfaction surveys) and any concerns or complaints you may raise, so
+          that these can be properly investigated
+          <br />• to conduct and analyse market research
+          <br />• to ensure that content from any of our websites is presented
+          in the most effective manner for you and for your computer
+          <br />• to allow us to enforce our website terms of use, our policy
+          terms and conditions or other contracts, or to protect our or other's
           rights, property or safety
-          <br />
-          • to share your personal information with people or organisations in
-          order to run our business or comply with any legal and/or regulatory
-          obligations including to defend ourselves from claims, exercise our
-          rights and adhere to laws and regulations that apply to us and the
-          third parties we work with
-          <br />
-          • to take part in, or be the subject of, any sale, purchase, merger or
-          takeover of all or part our business.
+          <br />• to share your personal information with people or
+          organisations in order to run our business or comply with any legal
+          and/or regulatory obligations including to defend ourselves from
+          claims, exercise our rights and adhere to laws and regulations that
+          apply to us and the third parties we work with
+          <br />• to take part in, or be the subject of, any sale, purchase,
+          merger or takeover of all or part our business.
           <br />
           Exceptions: Our obligations to keep your personal data shall not apply
           to any information which:
-          <br />
-          • is at the time of disclosure already in public domain or becomes
-          available to the public through no breach on our part; or
-          <br />
-          • is received by us from a third party free to lawfully disclose such
-          information belonging to you; or <br />
-          • was in our lawful possession prior to receipt from us as evidenced
-          by written documentation; or
-          <br />
-          • is approved for release by written agreement obtained from you; or
+          <br />• is at the time of disclosure already in public domain or
+          becomes available to the public through no breach on our part; or
+          <br />• is received by us from a third party free to lawfully disclose
+          such information belonging to you; or <br />• was in our lawful
+          possession prior to receipt from us as evidenced by written
+          documentation; or
+          <br />• is approved for release by written agreement obtained from
+          you; or
           <br />• is required to be disclosed to comply with legal mandatory
           regulations, a judicial or official order or decree, provided that
           written advance notice of such judicial action is given to you.
@@ -384,12 +347,10 @@ const PrivacyPolicy = () => {
         <p>
           Unless we explain otherwise to you, we will retain your personal data
           on the basis of the following guidelines:
-          <br />
-          • for as long as we have a reasonable business need, such as managing
-          our relationship with you and managing our business
-          <br />
-          • for as long as we provide services and/or treatment to you and then
-          for as long as someone could bring a claim against us and/or
+          <br />• for as long as we have a reasonable business need, such as
+          managing our relationship with you and managing our business
+          <br />• for as long as we provide services and/or treatment to you and
+          then for as long as someone could bring a claim against us and/or
           <br />• in line with legal and regulatory requirements or guidance and
           in no event more than a period of 8 years
         </p>
@@ -401,16 +362,13 @@ const PrivacyPolicy = () => {
           (which will be limited to the extent reasonably necessary) to certain
           third party organisations that we use to support the delivery of our
           services. This may include the following:
-          <br />
-          • business partners, suppliers and sub-contractors for the performance
-          of any contract we enter into with you,
-          <br />
-          • organisations providing IT systems support and hosting in relation
-          to the IT systems on which your information is stored,
-          <br />
-          • third party debt collectors for the purposes of debt collection,
-          <br />
-          • delivery companies for the purposes of transportation,
+          <br />• business partners, suppliers and sub-contractors for the
+          performance of any contract we enter into with you,
+          <br />• organisations providing IT systems support and hosting in
+          relation to the IT systems on which your information is stored,
+          <br />• third party debt collectors for the purposes of debt
+          collection,
+          <br />• delivery companies for the purposes of transportation,
           <br />• third party service providers for the purposes of storage of
           information and confidential destruction, third party marketing
           companies for the purpose of sending marketing emails, subject to

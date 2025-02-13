@@ -18,7 +18,7 @@ const Womens = () => {
   const dispatch = useDispatch();
 
   const { allWomensPackagesList, allVaccinationsList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
 

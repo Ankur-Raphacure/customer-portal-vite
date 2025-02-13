@@ -14,7 +14,7 @@ const PaymentActions = (props: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { user, isRaphaPlus } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -62,13 +62,13 @@ const PaymentActions = (props: any) => {
   const handlePayNow = async (merchant: any) => {
     console.log("Merchant", merchant);
     const resp = await dispatch(
-      paymentRetryAPI({ bookingId: item?.id, merchant: merchant || "" })
+      paymentRetryAPI({ bookingId: item?.id, merchant: merchant || "" }),
     );
     console.log("resp resp", resp);
     if ((resp as any)?.payload?.success) {
       console.log(
         "resp?.payload?.data?.bookings?.id",
-        (resp as any)?.payload?.data?.bookings?.id
+        (resp as any)?.payload?.data?.bookings?.id,
       );
       if ((resp as any)?.payload?.data?.payment) {
         let paymentObj = (resp as any)?.payload?.data?.payment;

@@ -13,7 +13,6 @@ import { RootState } from "../../../../../redux/store";
 import { updateShowLoginModel } from "../../../../../redux/slices/auth/authSlice";
 import { updateDoctordetails } from "../../../../../redux/slices/bookingScreen/bookingScreenSlice";
 
-
 const Card: any = styled.div`
   background: white;
   padding: 20px;
@@ -28,17 +27,17 @@ const Card: any = styled.div`
   flex-shrink: 0;
   flex-grow: 0;
   position:relative;
-  scale: ${(props:any)=>props?.selected ? "1.1" :"1"};
+  scale: ${(props: any) => (props?.selected ? "1.1" : "1")};
 `;
 
 const PackageSelection = () => {
-    const dispatch = useDispatch()
-    const history = useHistory()
+  const dispatch = useDispatch();
+  const history = useHistory();
   const location = useLocation() as any;
   const { fitnessCenterID, packageID } = useParams() as any;
   const [selected, setSelected] = useState(packageID);
   const [selectedFitnessCenter, setSelectedFitnessCenter] = useState(
-    location.state?.selectedFitnessCenter
+    location.state?.selectedFitnessCenter,
   );
 
   const [loading, isLoading] = useState(false);
@@ -68,27 +67,30 @@ const PackageSelection = () => {
     },
   ];
 
-  const {user} = useSelector((store:RootState)=>store.auth)
+  const { user } = useSelector((store: RootState) => store.auth);
 
-
-  const handleBookNow = async (currentPack:any) => {
+  const handleBookNow = async (currentPack: any) => {
     const vendor = {
       address: selectedFitnessCenter?.vendor?.address,
       city: selectedFitnessCenter?.vendor?.city,
       id: selectedFitnessCenter?.vendor?.id,
       image: selectedFitnessCenter?.images?.find(
-        (item: any) => item?.length > 0
+        (item: any) => item?.length > 0,
       ),
       name: selectedFitnessCenter?.vendor?.name,
       state: selectedFitnessCenter?.vendor?.state,
       type: "gym",
       zip: selectedFitnessCenter?.vendor?.zip,
     };
-    let selectedPackage
-    if(currentPack){
-        selectedPackage = selectedFitnessCenter?.packages?.find((item:any)=>item?.service_code===currentPack)
-    }else{
-        selectedPackage = selectedFitnessCenter?.packages?.find((item:any)=>item?.service_code===selected)
+    let selectedPackage;
+    if (currentPack) {
+      selectedPackage = selectedFitnessCenter?.packages?.find(
+        (item: any) => item?.service_code === currentPack,
+      );
+    } else {
+      selectedPackage = selectedFitnessCenter?.packages?.find(
+        (item: any) => item?.service_code === selected,
+      );
     }
     const test = {
       visit_type: selectedPackage?.visit_type,
@@ -111,7 +113,7 @@ const PackageSelection = () => {
           categoryType: "gym",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push(`/gym/bookingReview`);
     }
@@ -147,11 +149,7 @@ const PackageSelection = () => {
                     fill="#89DB7B"
                   />
                   <path d="M79 36H91L79 46V36Z" fill="#2C7420" />
-                  <text
-                    x="15%"
-                    y="50%"
-                    fill="black"
-                  >
+                  <text x="15%" y="50%" fill="black">
                     Save {pkg?.price?.discount_percentage}%
                   </text>
                 </svg>
@@ -191,7 +189,10 @@ const PackageSelection = () => {
                 <p dangerouslySetInnerHTML={{ __html: pkg?.description }} />
               </div>
               <div className="card-book-btn-div">
-                <PackagesCardButton onClick={()=>handleBookNow(pkg?.service_code)} selected={pkg?.service_code === selected}>
+                <PackagesCardButton
+                  onClick={() => handleBookNow(pkg?.service_code)}
+                  selected={pkg?.service_code === selected}
+                >
                   Book Now
                 </PackagesCardButton>
               </div>
@@ -200,7 +201,7 @@ const PackageSelection = () => {
         </div>
 
         <div>
-          <PackageAccordion/>
+          <PackageAccordion />
         </div>
       </div>
     </PackageSelectionStyled>

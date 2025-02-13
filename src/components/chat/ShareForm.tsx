@@ -90,7 +90,7 @@ const ShareForm = ({
           to: groupId,
           ...payload,
           chat_type: "GROUP_CHAT",
-        })
+        }),
       );
 
       // Send API requests for individual chats
@@ -99,7 +99,7 @@ const ShareForm = ({
           to: userId,
           ...payload,
           chat_type: "INDIVIDUAL_CHAT",
-        })
+        }),
       );
 
       // Wait for all promises to resolve

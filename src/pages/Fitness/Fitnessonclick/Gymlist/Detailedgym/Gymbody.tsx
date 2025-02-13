@@ -13,7 +13,11 @@ const Gymbody = () => (
     <div className="grow">
       <div className="gleft">
         <div className="image-overlay">
-          <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405971895.png"} />
+          <Image
+            src={
+              "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405971895.png"
+            }
+          />
           <div className="watch-video">
             Watch Video <Video />
           </div>
@@ -23,18 +27,36 @@ const Gymbody = () => (
       <div className="gright">
         <div className="image-row">
           <div className="image-container">
-            <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405582737.png"} className="marinimg" />
+            <Image
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405582737.png"
+              }
+              className="marinimg"
+            />
           </div>
           <div className="image-container">
-            <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405510154.png"} />
+            <Image
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405510154.png"
+              }
+            />
             <button className="more-button">19 more</button>
           </div>
         </div>
 
         <div className="image-row">
-          <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405321628.png"} className="marinimg" />
+          <Image
+            src={
+              "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405321628.png"
+            }
+            className="marinimg"
+          />
           <div className="map-container">
-            <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405194828.png"} />
+            <Image
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405194828.png"
+              }
+            />
             <button className="view-map-button">View map</button>
           </div>
         </div>
@@ -42,14 +64,28 @@ const Gymbody = () => (
     </div>
 
     <div className="gmobile">
-      <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405971895.png"} style={{ width: "100%", marginBottom: "12px" }} />
+      <Image
+        src={
+          "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405971895.png"
+        }
+        style={{ width: "100%", marginBottom: "12px" }}
+      />
       <div className="gleft">
         <div className="image-row">
           <div className="image-container">
-            <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405582737.png"} className="marinimg" />
+            <Image
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405582737.png"
+              }
+              className="marinimg"
+            />
           </div>
           <div className="image-container">
-            <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405510154.png"} />
+            <Image
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405510154.png"
+              }
+            />
             <button className="more-button">19 more</button>
           </div>
         </div>
@@ -57,9 +93,18 @@ const Gymbody = () => (
 
       <div className="gright">
         <div className="image-row">
-          <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405321628.png"} className="marinimg" />
+          <Image
+            src={
+              "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405321628.png"
+            }
+            className="marinimg"
+          />
           <div className="map-container">
-            <Image src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405194828.png"} />
+            <Image
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736405194828.png"
+              }
+            />
             <button className="view-map-button">View map</button>
           </div>
         </div>

@@ -563,8 +563,8 @@ const HealthJourney = () => {
                   {showPopup === "intake"
                     ? "How much did you drink?"
                     : showPopup === "monitorfood"
-                    ? "Add your food intake"
-                    : "How much did you sleep?"}
+                      ? "Add your food intake"
+                      : "How much did you sleep?"}
                 </h1>
                 <div className="row justify-content-center">
                   {showPopup === "monitorfood" && (

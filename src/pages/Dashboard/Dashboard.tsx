@@ -35,11 +35,11 @@ const Dashboard = (props: any) => {
   const [moreOptions, setMoreOptions] = useState(false);
   const [showLoginPopupModel, setShowLoginPopupModel] = useState(false);
   const { user, subDomainDetails } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
   const { cartItems } = useSelector((ReduxState: any) => ReduxState.checkout);
   const { userDependents, userAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   const { myBookings } = useSelector((ReduxState: any) => ReduxState.dashboard);
   console.log("subdomain_key ", subDomainDetails?.subdomain_key);

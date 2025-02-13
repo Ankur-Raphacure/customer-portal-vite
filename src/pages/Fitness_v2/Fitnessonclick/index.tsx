@@ -23,7 +23,12 @@ const Fitnessonclick = () => {
             <button className="subscribe">Subscribe Now</button>
           </div>
           <div className="right-content">
-            <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736331826116.png"} alt="fitness" />
+            <img
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736331826116.png"
+              }
+              alt="fitness"
+            />
           </div>
         </div>
       </div>
@@ -43,7 +48,12 @@ const Fitnessonclick = () => {
             <button className="subscribe">Subscribe Now</button>
           </div>
           <div className="right-content">
-            <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736331648413.png"} alt="fitness" />
+            <img
+              src={
+                "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736331648413.png"
+              }
+              alt="fitness"
+            />
           </div>
         </div>
       </div>

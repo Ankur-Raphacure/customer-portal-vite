@@ -142,7 +142,7 @@ const BookingCard = ({
   const selectedPackageData = SelectedFitnessCenter?.packages?.find(
     (item: any) => {
       return item?.service_code === selectedPackage;
-    }
+    },
   );
 
   const dateRef = useRef(null) as any;
@@ -294,7 +294,7 @@ const BookingCard = ({
             <button
               onClick={() => {
                 toast.error("please select a date");
-                dateRef?.current?.focus()
+                dateRef?.current?.focus();
               }}
               className="book-now-link-btn btn-disabled"
             >

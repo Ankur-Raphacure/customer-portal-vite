@@ -22,13 +22,18 @@ const RaphaPlusAssurance = () => {
             className="free-trial"
 
             >Free Trial</a> */}
-            <button className="free-trial" onClick={() => history.push("https://www.raphadoc.com/signin")}>
-            Free Trial
+            <button
+              className="free-trial"
+              onClick={() => history.push("https://www.raphadoc.com/signin")}
+            >
+              Free Trial
             </button>
-            <button 
-            className="book-demo"
-            onClick={() => history.push("/bookdemo")}
-            >Book Demo</button>
+            <button
+              className="book-demo"
+              onClick={() => history.push("/bookdemo")}
+            >
+              Book Demo
+            </button>
           </div>
         </div>
         <div className="image">

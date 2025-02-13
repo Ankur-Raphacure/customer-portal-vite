@@ -12,7 +12,7 @@ const Subscriptions = (props: any) => {
   const dispatch = useDispatch();
 
   const { myAllSubscriptions } = useSelector(
-    (ReduxState: any) => ReduxState.dashboard
+    (ReduxState: any) => ReduxState.dashboard,
   );
   console.log("myAllSubscriptions", myAllSubscriptions);
 

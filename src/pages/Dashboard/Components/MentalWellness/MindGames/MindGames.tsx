@@ -6,7 +6,7 @@ const MindGames = () => {
   return (
     <MindGamesStyled>
       MindGames
-      <MatchGame/>
+      <MatchGame />
     </MindGamesStyled>
   );
 };

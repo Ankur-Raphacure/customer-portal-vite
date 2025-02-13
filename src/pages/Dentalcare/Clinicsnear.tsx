@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getdentalcareNearClinicAPI } from "../../redux/slices/generic/genericService";
@@ -9,7 +9,7 @@ const Clinicsnear = (props: any) => {
   const dispatch = useDispatch();
 
   const { alldentalcareNearClinic } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity } = useSelector((ReduxState: any) => ReduxState.auth);
 
@@ -38,7 +38,11 @@ const Clinicsnear = (props: any) => {
             >
               <div className="clinic-image">
                 <img
-                  src={clinic?.image ? clinic.image : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736334781035.png"}
+                  src={
+                    clinic?.image
+                      ? clinic.image
+                      : "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736334781035.png"
+                  }
                   alt={clinic.name}
                   className="clinic-placeholder"
                 />

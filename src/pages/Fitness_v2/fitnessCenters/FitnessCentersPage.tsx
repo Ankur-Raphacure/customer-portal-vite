@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllCategoriesAPI,
-} from "../../../redux/slices/labtest/labtestService";
+import { getAllCategoriesAPI } from "../../../redux/slices/labtest/labtestService";
 import SideFilterModule from "../sideModuleFilter/SideFilterModule";
 import SearchByTextModule from "../../Pharmacy/SearchByTextModule";
 import BreadCrumbModule from "../../Pharmacy/BreadCrumbModule";
 import ProductCard from "../../../components/Gym/productCard/productCard/ProductCard";
 import { RootState } from "../../../redux/store";
-import { getAllFitnessCentersAPI, getAllFitnessVendorsAPI } from "../../../redux/slices/fitness/fitnessService";
+import {
+  getAllFitnessCentersAPI,
+  getAllFitnessVendorsAPI,
+} from "../../../redux/slices/fitness/fitnessService";
 import { FitnessCenterPageStyle } from "./FitnessCentersPage.style";
 import { toast } from "react-toastify";
 import Loader from "../../../components/Loader/Loader";
@@ -23,22 +24,18 @@ const FitnessCenterPage = (props: any) => {
       link: `/fitness_v2`,
     },
     {
-      title:"Gyms",
-      link:"/fitnessCenters"
-    }
+      title: "Gyms",
+      link: "/fitnessCenters",
+    },
   ];
   const [pageSize, setPageSize] = useState(20);
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState(
-    sectionName ? ([Number(sectionName)] as any) : ([] as any)
+    sectionName ? ([Number(sectionName)] as any) : ([] as any),
   );
-  const [vendorFilter,setVendorFilter] = useState([])
+  const [vendorFilter, setVendorFilter] = useState([]);
 
   const dispatch = useDispatch();
-
-
- 
-
 
   const handleChangeCategoryFilter = async (id: any) => {
     const prevcaids = [...categoryFilter];
@@ -60,37 +57,35 @@ const FitnessCenterPage = (props: any) => {
     setCategoryFilter([]);
   };
 
-  const handleVendorChangeFilter = (id:string)=>{
-    setVendorFilter((pre:any)=>{
-      if(pre?.includes(id)){
-        return pre?.filter((item:any)=>item!==id)
-      }else{
-        return [...pre,id]
+  const handleVendorChangeFilter = (id: string) => {
+    setVendorFilter((pre: any) => {
+      if (pre?.includes(id)) {
+        return pre?.filter((item: any) => item !== id);
+      } else {
+        return [...pre, id];
       }
-    })
-  }
+    });
+  };
 
   // filter data fetch for vendors and categories
 
   const { allCategoriesList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
-  const {fitnessVendors} = useSelector((store:RootState)=>store?.Fitness)
+  const { fitnessVendors } = useSelector((store: RootState) => store?.Fitness);
 
   useEffect(() => {
     dispatch(getAllCategoriesAPI({ sectionName: "fitness" }));
-    dispatch(getAllFitnessVendorsAPI({status:"approved"}))
+    dispatch(getAllFitnessVendorsAPI({ status: "approved" }));
   }, []);
-
 
   //
 
-
   //fitness centers
 
-    const { selectedCurrentAddress } = useSelector(
-      (ReduxState: RootState) => ReduxState.profile
-    );
+  const { selectedCurrentAddress } = useSelector(
+    (ReduxState: RootState) => ReduxState.profile,
+  );
 
   const [pageNo, setPageNo] = useState(1);
 
@@ -100,11 +95,11 @@ const FitnessCenterPage = (props: any) => {
     error: fitnessCentersError,
   } = useSelector((store: RootState) => store.Fitness.fitnessCenters);
 
-  useEffect(()=>{
-    if(fitnessCentersError){
-      toast.error(fitnessCentersError)
+  useEffect(() => {
+    if (fitnessCentersError) {
+      toast.error(fitnessCentersError);
     }
-  },[fitnessCentersError])
+  }, [fitnessCentersError]);
 
   useEffect(() => {
     const filterData = {
@@ -118,12 +113,20 @@ const FitnessCenterPage = (props: any) => {
         category_ids: categoryFilter,
         status: "active",
         role: "user",
-        latitude:selectedCurrentAddress?.latitude,
-        longitude:selectedCurrentAddress?.longitude,
-        vendor_id:vendorFilter
-      })
+        latitude: selectedCurrentAddress?.latitude,
+        longitude: selectedCurrentAddress?.longitude,
+        vendor_id: vendorFilter,
+      }),
     );
-  }, [pageNo, pageSize, dispatch, searchText, categoryFilter,selectedCurrentAddress,vendorFilter]);
+  }, [
+    pageNo,
+    pageSize,
+    dispatch,
+    searchText,
+    categoryFilter,
+    selectedCurrentAddress,
+    vendorFilter,
+  ]);
 
   const handleLoadMore = () => {
     setPageSize((pre) => {
@@ -131,7 +134,7 @@ const FitnessCenterPage = (props: any) => {
     });
   };
 
-  console.log(fitnessVendors)
+  console.log(fitnessVendors);
 
   console.log("centers", fitnessCentersData);
 
@@ -139,9 +142,7 @@ const FitnessCenterPage = (props: any) => {
 
   return (
     <FitnessCenterPageStyle>
-      {
-        fitnessCentersLoading && <Loader/>
-      }
+      {fitnessCentersLoading && <Loader />}
       <div className="all-fitnesscenter-page-div container">
         <div className="filter-module-div">
           <SideFilterModule
@@ -196,8 +197,8 @@ const FitnessCenterPage = (props: any) => {
                   place: item?.city,
                   imgLink: item?.images?.[0],
                   rating: item?.rating ?? "n/a",
-                  distance:item?.distance_km ?? "N/A",
-                  isRapha:item?.isRapha,
+                  distance: item?.distance_km ?? "N/A",
+                  isRapha: item?.isRapha,
                 };
                 return (
                   <ProductCard

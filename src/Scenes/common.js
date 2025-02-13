@@ -55,13 +55,13 @@ export const parseAddress = (place, addressStr) => {
     address2: "",
     city:
       place?.address_components?.filter((a) =>
-        a?.types?.includes("locality")
+        a?.types?.includes("locality"),
       )[0]?.long_name ||
       selectedAddress[1] ||
       "",
     state:
       place?.address_components?.filter((a) =>
-        a?.types?.includes("administrative_area_level_1")
+        a?.types?.includes("administrative_area_level_1"),
       )[0]?.long_name ||
       selectedAddress[2] ||
       "",
@@ -72,7 +72,7 @@ export const parseAddress = (place, addressStr) => {
       "",
     zipcode:
       place?.address_components?.filter((a) =>
-        a?.types?.includes("postal_code")
+        a?.types?.includes("postal_code"),
       )[0]?.long_name || "",
   };
 };
@@ -90,8 +90,8 @@ export const getFormatedAddress = (address1, isdesktop) => {
   let forrAddres = address1?.zip
     ? `${address1?.address1}, ${address1?.city}, ${address1?.zip}`
     : address1?.address1
-    ? `${address1?.address1}, ${address1?.city}`
-    : address1?.city;
+      ? `${address1?.address1}, ${address1?.city}`
+      : address1?.city;
   if (isdesktop) {
     forrAddres = address1?.zip
       ? `${address1?.city}, ${address1?.zip}`
@@ -303,7 +303,7 @@ export const htmlTemplate = async (data) => {
                                 medicine?.medicine?.price?.actual_cost || "N/A"
                               }</td>
                           </tr>
-                      `
+                      `,
                         )
                         .join("")}
                   </tbody>
@@ -335,7 +335,7 @@ export const htmlTemplate = async (data) => {
                                <td>${
                                  test?.next_visit
                                    ? new Date(
-                                       test.next_visit
+                                       test.next_visit,
                                      ).toLocaleDateString()
                                    : "N/A"
                                }</td>
@@ -343,7 +343,7 @@ export const htmlTemplate = async (data) => {
                                 test?.test?.price?.actual_cost || "N/A"
                               }</td>
                           </tr>
-                      `
+                      `,
                         )
                         .join("")}
                   </tbody>
@@ -411,7 +411,7 @@ export const decryptWyhData = async (encryptedStr) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ str: [encryptedStr] }),
-    }
+    },
   );
 
   const decryptionData = await decryptionResponse.json();
@@ -478,7 +478,7 @@ export const generateDates = () => {
 
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
       2,
-      "0"
+      "0",
     )}-${String(date.getDate()).padStart(2, "0")}`;
   });
 };

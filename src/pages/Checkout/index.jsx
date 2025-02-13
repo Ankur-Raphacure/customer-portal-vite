@@ -61,7 +61,7 @@ const Checkout = () => {
   let imageFemale =
     "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/105748-1736338333932.png";
   const { user, isRaphaPlus, subDomainDetails, subDomainName } = useSelector(
-    (ReduxState) => ReduxState.auth
+    (ReduxState) => ReduxState.auth,
   );
   const {
     cartItems,
@@ -70,10 +70,10 @@ const Checkout = () => {
     checkoutSelectedUser,
   } = useSelector((ReduxState) => ReduxState.checkout);
   const { userDependents, userAddress } = useSelector(
-    (ReduxState) => ReduxState.profile
+    (ReduxState) => ReduxState.profile,
   );
   const { myAllSubscriptions } = useSelector(
-    (ReduxState) => ReduxState.dashboard
+    (ReduxState) => ReduxState.dashboard,
   );
   console.log("cartItems : ", cartItems);
   const hide_price = subDomainDetails?.agreed_services?.hide_price;
@@ -95,7 +95,7 @@ const Checkout = () => {
 
   useEffect(() => {
     const isPharmacyItemPresent = cartItems?.carts?.some(
-      (cart) => cart?.section_key === "pharmacy"
+      (cart) => cart?.section_key === "pharmacy",
     );
     setHasPharmacyItem(isPharmacyItemPresent);
   }, [cartItems?.carts]);
@@ -183,8 +183,8 @@ const Checkout = () => {
             ittem.patientsDetails?.relation === "Self"
               ? true
               : ittem.doctorDetails?.price?.discount_for_dependents
-              ? true
-              : false;
+                ? true
+                : false;
           let finalTemp1 = isApplyDiscount
             ? ittem?.doctorDetails?.price?.discounted_price
             : ittem?.doctorDetails?.price?.actual_cost;
@@ -311,8 +311,8 @@ const Checkout = () => {
                   ittem.patientsDetails?.relation === "Self"
                     ? true
                     : Ddetail?.price?.discount_for_dependents
-                    ? true
-                    : false;
+                      ? true
+                      : false;
                 finalTemp1 += isApplyDiscount
                   ? Ddetail?.price?.discounted_price
                   : Ddetail?.price?.actual_cost;
@@ -323,8 +323,8 @@ const Checkout = () => {
               ittem.patientsDetails?.relation === "Self"
                 ? true
                 : ittem.doctorDetails?.price?.discount_for_dependents
-                ? true
-                : false;
+                  ? true
+                  : false;
 
             finalTemp1 = isApplyDiscount
               ? ittem?.price?.discounted_price ||
@@ -349,7 +349,7 @@ const Checkout = () => {
       let finalList = [];
       allSecNames.map((ittem) => {
         const values = cartItems?.carts?.filter(
-          (itemV) => ittem === itemV.section_key
+          (itemV) => ittem === itemV.section_key,
         );
         finalList.push({ section_key: ittem, products: values });
       });
@@ -446,41 +446,41 @@ const Checkout = () => {
           cartObj = cartItems?.carts?.find(
             (item3) =>
               item3?.hospitalDetails?.vendorId &&
-              item3?.section_key === "doctor"
+              item3?.section_key === "doctor",
           );
         } else if (ittem1?.type == "virtual_consultation") {
           cartObj = cartItems?.carts?.find(
             (item3) =>
               !item3?.hospitalDetails?.vendorId &&
-              item3?.section_key === "doctor"
+              item3?.section_key === "doctor",
           );
         } else if (ittem1?.type == "ctmri_tests") {
           cartObj = cartItems?.carts?.find(
-            (item3) => item3?.section_key === "ctmri"
+            (item3) => item3?.section_key === "ctmri",
           );
         } else if (ittem1?.type == "dental_consultation") {
           cartObj = cartItems?.carts?.find(
-            (item3) => item3?.section_key === "dentalcare"
+            (item3) => item3?.section_key === "dentalcare",
           );
         } else if (ittem1?.type == "gym_subscription") {
           cartObj = cartItems?.carts?.find(
-            (item3) => item3?.section_key === "gym"
+            (item3) => item3?.section_key === "gym",
           );
         } else if (ittem1?.type == "eye_consultation") {
           cartObj = cartItems?.carts?.find(
-            (item3) => item3?.section_key === "eyecare"
+            (item3) => item3?.section_key === "eyecare",
           );
         } else if (ittem1?.type == "diagnostic_tests") {
           cartObj = cartItems?.carts?.find(
-            (item3) => item3?.section_key === "labtest"
+            (item3) => item3?.section_key === "labtest",
           );
         } else if (ittem1?.type == "ambulance") {
           cartObj = cartItems?.carts?.find(
-            (item3) => item3?.section_key === "ambulance"
+            (item3) => item3?.section_key === "ambulance",
           );
         } else if (ittem1?.type == "pharmacy") {
           cartObj = cartItems?.carts?.find(
-            (item3) => item3?.section_key === "pharmacy"
+            (item3) => item3?.section_key === "pharmacy",
           );
         }
 
@@ -518,7 +518,7 @@ const Checkout = () => {
     setDeleteConformSection(sName);
     setShowConformMessageModel(true);
     setShowConformMessageModelTest(
-      `Are you sure, Do you want to delete ${getDisplayName(sName)} Section?`
+      `Are you sure, Do you want to delete ${getDisplayName(sName)} Section?`,
     );
   };
 
@@ -689,7 +689,7 @@ const Checkout = () => {
           };
           loadJS(
             "https://mercury-stg.phonepe.com/web/bundle/checkout.js",
-            true
+            true,
           );
         }
       }
@@ -826,7 +826,7 @@ const Checkout = () => {
     setIsLoading(true);
     // https://api.raphacure.co.in/api/v1/cart/book' \
     const resp = await dispatch(
-      createCartBookingAPI({ bookings: finalJson1, merchant: merchant || "" })
+      createCartBookingAPI({ bookings: finalJson1, merchant: merchant || "" }),
     );
     const res = await dispatch(getCartItemsAPI());
     // const resp = await dispatch(createBookingAPI({ bookings: finalJson1 }));
@@ -837,7 +837,7 @@ const Checkout = () => {
       localStorage.removeItem("raphaPrescriptions");
       console.log(
         "resp?.payload?.data?.bookings?.id",
-        resp?.payload?.data?.bookings?.id
+        resp?.payload?.data?.bookings?.id,
       );
       if (
         !isCod &&
@@ -999,7 +999,7 @@ const Checkout = () => {
 
   const showLocalStorageDetails = useMemo(
     () => (localStorage?.getItem("raphaPrescriptions") ? true : false),
-    []
+    [],
   );
   const sectionName = "pharmacy";
   const isPrescriptionFound = useMemo(() => {
@@ -1240,10 +1240,10 @@ ${formatIssues(data.issues)}
                                             "virtual_consultation"
                                               ? "Virtual Consultation"
                                               : item?.type ===
-                                                "opd_consultation"
-                                              ? "OPD Consultation"
-                                              : item?.doctor?.name ||
-                                                item?.test?.service_name}
+                                                  "opd_consultation"
+                                                ? "OPD Consultation"
+                                                : item?.doctor?.name ||
+                                                  item?.test?.service_name}
                                           </p>
                                           <div>
                                             {/* <p>
@@ -1511,9 +1511,9 @@ ${formatIssues(data.issues)}
                                   item.patientsDetails?.relation === "Self"
                                     ? true
                                     : item.doctorDetails?.price
-                                        ?.discount_for_dependents
-                                    ? true
-                                    : false;
+                                          ?.discount_for_dependents
+                                      ? true
+                                      : false;
                                 const proceDisplay = isApplyDiscount
                                   ? item?.doctorDetails?.price?.discounted_price
                                   : item?.doctorDetails?.price?.actual_cost ||
@@ -1646,7 +1646,7 @@ ${formatIssues(data.issues)}
                                   handleOpenComorbidities(item1.products[0].id);
                                 } else {
                                   console.error(
-                                    "No products available to add past medical history."
+                                    "No products available to add past medical history.",
                                   );
                                 }
                               }}
@@ -1849,7 +1849,7 @@ ${formatIssues(data.issues)}
                             onClick={() =>
                               history.push(
                                 "/uploadprescription/uploadsubprescription",
-                                sectionName
+                                sectionName,
                               )
                             }
                           >

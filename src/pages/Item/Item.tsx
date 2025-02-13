@@ -60,7 +60,7 @@ const Item = (props: any) => {
   const { cartItems } = useSelector((ReduxState: any) => ReduxState.checkout);
   const { user, userCity } = useSelector((ReduxState: any) => ReduxState.auth);
   const { allSimilarMedicinesList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
   const { userAddress } = useSelector((ReduxState: any) => ReduxState.profile);
   const getAllSimilarMedicinesList =
@@ -74,7 +74,7 @@ const Item = (props: any) => {
   const isAddedtoCart =
     pProducts &&
     pProducts?.medicines?.find(
-      (item2: any) => item2?.service_code === itemDetail?.service_code
+      (item2: any) => item2?.service_code === itemDetail?.service_code,
     );
   let urlParams = new URLSearchParams(window?.location?.search);
   let categoryIds = urlParams.get("categoryids");
@@ -84,7 +84,7 @@ const Item = (props: any) => {
     "selectPinCode",
     selectPinCode,
     userDeliveryTime,
-    isAddressChecked
+    isAddressChecked,
   );
   const list = [
     {
@@ -134,7 +134,7 @@ const Item = (props: any) => {
       dispatch(
         getDeliveryTimeByItemID({
           vendor_ids: itemDetail?.vendor_ids?.join(","),
-        })
+        }),
       );
     }
     if (itemDetail?.service_code) {
@@ -157,7 +157,7 @@ const Item = (props: any) => {
     await dispatch(
       getSimilarMedicinesAPI({
         medicineId: itemId,
-      })
+      }),
     );
     setIsPageLoading(false);
   };
@@ -186,7 +186,7 @@ const Item = (props: any) => {
     } else {
       handleAddtoCartCall(itemR);
       const isAdded = pProducts?.medicines?.findIndex(
-        (item2: any) => item2?.service_code === itemDetail?.service_code
+        (item2: any) => item2?.service_code === itemDetail?.service_code,
       );
     }
   };
@@ -457,7 +457,7 @@ const Item = (props: any) => {
                         dangerouslySetInnerHTML={{
                           __html: `${itemDetail?.product_highlights?.replace(
                             /\n/g,
-                            "<br>"
+                            "<br>",
                           )}`,
                         }}
                       ></div>
@@ -474,7 +474,7 @@ const Item = (props: any) => {
                         dangerouslySetInnerHTML={{
                           __html: `${itemDetail?.information?.replace(
                             /\n/g,
-                            "<br>"
+                            "<br>",
                           )}`,
                         }}
                       ></div>
@@ -491,7 +491,7 @@ const Item = (props: any) => {
                         dangerouslySetInnerHTML={{
                           __html: `${itemDetail?.safety_instruction?.replace(
                             /\n/g,
-                            "<br>"
+                            "<br>",
                           )}`,
                         }}
                       ></div>
@@ -533,7 +533,7 @@ const Item = (props: any) => {
                     {allMedicinesList?.map((item: any) => {
                       const isAddedToCart = pProducts?.medicines?.find(
                         (item2: any) =>
-                          item2?.service_code === item.service_code
+                          item2?.service_code === item.service_code,
                       );
                       return (
                         <MedicineCardModule

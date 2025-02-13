@@ -21,7 +21,10 @@ export const bloodBankSlice = createSlice({
       state.loading = action.payload;
     },
 
-    updateErrorMessage: (state: BloodBankState, action: PayloadAction<boolean>) => {
+    updateErrorMessage: (
+      state: BloodBankState,
+      action: PayloadAction<boolean>,
+    ) => {
       state.error = action.payload;
     },
   },
@@ -37,7 +40,7 @@ export const bloodBankSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.vendors = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getBloodBankVendorsAPI.rejected,
@@ -45,7 +48,7 @@ export const bloodBankSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
   },
 });

@@ -18,7 +18,7 @@ function ImageCropper(props: any) {
   function centerAspectCrop(
     mediaWidth: number,
     mediaHeight: number,
-    aspect: number
+    aspect: number,
   ) {
     return centerCrop(
       makeAspectCrop(
@@ -28,10 +28,10 @@ function ImageCropper(props: any) {
         },
         aspect,
         mediaWidth,
-        mediaHeight
+        mediaHeight,
       ),
       mediaWidth,
-      mediaHeight
+      mediaHeight,
     );
   }
 
@@ -49,7 +49,7 @@ function ImageCropper(props: any) {
       const croppedImage = await getCroppedImage(
         imageRef || imgref,
         crop,
-        "croppedImage.jpeg" // destination filename
+        "croppedImage.jpeg", // destination filename
       );
 
       // calling the props function to expose
@@ -81,7 +81,7 @@ function ImageCropper(props: any) {
       0,
       0,
       cropConfig.width * scaleX,
-      cropConfig.height * scaleY
+      cropConfig.height * scaleY,
     );
 
     return new Promise((resolve, reject) => {

@@ -152,7 +152,7 @@ const Packages = (props: any) => {
       setlabBookingList([...listData]);
 
       toast.success(
-        `'${testObj?.service_name}' added for review successfully!`
+        `'${testObj?.service_name}' added for review successfully!`,
       );
       setshowReview(true);
     }
@@ -181,7 +181,7 @@ const Packages = (props: any) => {
           categoryType: "labtest",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
 
       // Emtpy selected values
@@ -189,7 +189,7 @@ const Packages = (props: any) => {
         updateSelectedlabtestDetails({
           selectedTest: {},
           selectedPackage: {},
-        })
+        }),
       );
 
       history.push(`/labtest/bookingReview`);
@@ -203,9 +203,9 @@ const Packages = (props: any) => {
       let listData = [...labBookingList];
       listData.splice(
         listData.findIndex(
-          (testData: any) => testData?.service_code === testObj?.service_code
+          (testData: any) => testData?.service_code === testObj?.service_code,
         ),
-        1
+        1,
       );
       setlabBookingList([...listData]);
 

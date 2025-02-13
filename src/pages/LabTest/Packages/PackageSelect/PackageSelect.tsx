@@ -89,7 +89,7 @@ const PackageSelect = (props: any) => {
                 {props.testList.tests?.map((testData: any) => {
                   const isAddedtoList = props.labBookingList.findIndex(
                     (testData2: any) =>
-                      testData2?.service_code === testData.service_code
+                      testData2?.service_code === testData.service_code,
                   );
 
                   const handleShowDetails = (service_code: any) => {
@@ -142,7 +142,7 @@ const PackageSelect = (props: any) => {
                   const showDetails = showDetailsMap[index] || false;
                   const isAddedtoList = props.labBookingList.findIndex(
                     (packageData2: any) =>
-                      packageData2?.service_code === packageData.service_code
+                      packageData2?.service_code === packageData.service_code,
                   );
                   return (
                     <>
@@ -163,7 +163,7 @@ const PackageSelect = (props: any) => {
                       )}
                     </>
                   );
-                }
+                },
               )}
             {!props.packagesList ||
             props.packagesList.packages?.length === 0 ? (

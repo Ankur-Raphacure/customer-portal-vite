@@ -46,12 +46,20 @@ const Recommendedtwo = (props: any) => (
     <div className="proCardMainDiv">
       {cards?.map((item: any, index: number) => (
         <>
-          <div style={{backgroundColor:"white",borderRadius:"25px",padding:"3px"}}>
-            <img style={{width: '100%', borderRadius: "25px"}} src="https://via.placeholder.com/233x145" alt="gymphoto"/>
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: "25px",
+              padding: "3px",
+            }}
+          >
+            <img
+              style={{ width: "100%", borderRadius: "25px" }}
+              src="https://via.placeholder.com/233x145"
+              alt="gymphoto"
+            />
             <p>Goldrn Brothers Gym & Fitness Centre</p>
-            <div>
-              .4km - HSR layout
-            </div>
+            <div>.4km - HSR layout</div>
           </div>
         </>
       ))}

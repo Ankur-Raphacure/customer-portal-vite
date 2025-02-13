@@ -48,18 +48,18 @@ const Packages = () => {
   const [showAddMemberModel, setShowAddMemberModel] = useState(false);
   const [selectedUser, setSelectedUser] = useState({} as any);
   const { userDependents, userAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   const { myAllPackages } = useSelector(
-    (ReduxState: any) => ReduxState.dashboard
+    (ReduxState: any) => ReduxState.dashboard,
   );
   const { userCity, user, subDomainDetails } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
 
   const getPackagesCategoriesAPI = async () => {
     const res = (await dispatch(
-      getAllCategoriesAPI({ sectionName: "packages" })
+      getAllCategoriesAPI({ sectionName: "packages" }),
     )) as any;
     setLabPackageCategories(res?.payload?.data?.category_ids);
   };
@@ -85,8 +85,8 @@ const Packages = () => {
     return user?.image
       ? user?.image
       : user?.gender === "male"
-      ? imageMale
-      : imageFemale;
+        ? imageMale
+        : imageFemale;
   };
   const handleSelectUser = (user: any) => {
     setSelectedUser(user);
@@ -111,13 +111,13 @@ const Packages = () => {
       updatePayloadFromMyPackage({
         patientsDetails: { ...selectedUser },
         doctorDetails: { ...packageData },
-      })
+      }),
     );
     history.push(`/labPackageDetils/${item?.service_code}`);
   };
 
   const { healthPackagesList, allPackagesList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
   const { allCityList } = useSelector((ReduxState: any) => ReduxState.ctmri);
   console.log("allCityList : ", allCityList);
@@ -355,14 +355,12 @@ const Packages = () => {
                       <LabtestStyled>
                         {subDomainDetails?.subdomain_key !== "indigrid" && (
                           <div className="healthSaverSection">
-                           
-
                             <div className="healthCards">
                               {allPackagesList?.data?.length > 0 &&
                                 allPackagesList?.data
                                   ?.filter(
                                     (packageItem: any) =>
-                                      packageItem?.price?.actual_cost > 0
+                                      packageItem?.price?.actual_cost > 0,
                                   ) // Filter for actual_cost > 0
                                   ?.slice(0, 6) // Slice the filtered list
                                   ?.map((packageItem: any, index: any) => (
@@ -371,7 +369,7 @@ const Packages = () => {
                                       title={packageItem?.service_name} // Truncate title
                                       subtitle={truncateText(
                                         packageItem?.description,
-                                        30
+                                        30,
                                       )} // Truncate subtitle
                                       featureButtonText="Package" // You can customize this text
                                       reportTime="N/A" // If no data provided for report time
@@ -391,7 +389,7 @@ const Packages = () => {
                                       ).toString()}
                                       addToCart={() => {
                                         addPackageToCart(
-                                          packageItem?.service_code
+                                          packageItem?.service_code,
                                         );
                                       }}
                                     />

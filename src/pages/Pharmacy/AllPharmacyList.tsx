@@ -78,7 +78,7 @@ const AllPharmacyList = (props: any) => {
   const [minDiscount, setMinDiscount] = useState("");
   const [maxDiscount, setMaxDiscount] = useState("");
   const [categoryFilter, setCategoryFilter] = useState(
-    sectionName ? ([Number(sectionName)] as any) : ([] as any)
+    sectionName ? ([Number(sectionName)] as any) : ([] as any),
   );
   const [brandFilter, setBrandFilter] = useState([] as any);
   const [typeFilter, setTypeFilter] = useState("");
@@ -108,13 +108,13 @@ const AllPharmacyList = (props: any) => {
   }, [allCompareMedicineList]);
 
   const { selectedFilterType } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const handleClick = (btnName: any) => {
     const prevcaids = [...btnCategoryId];
     if (prevcaids?.includes(btnName)) {
       const findINdex = prevcaids.findIndex(
-        (itemId: any) => itemId === btnName
+        (itemId: any) => itemId === btnName,
       );
       prevcaids.splice(findINdex, 1);
     } else {
@@ -138,7 +138,7 @@ const AllPharmacyList = (props: any) => {
         categoryIds: btnCategoryId,
         page: 1,
         count: newCount,
-      })
+      }),
     );
     setIsLoading(false);
   };
@@ -362,7 +362,7 @@ const AllPharmacyList = (props: any) => {
                         {label?.name}
                       </button>
                     );
-                  }
+                  },
                 )}
               </div>
             </div>
@@ -375,7 +375,7 @@ const AllPharmacyList = (props: any) => {
                     const item2 = [...item];
                     item2.sort(
                       (a: any, b: any) =>
-                        a.discounted_price - b.discounted_price
+                        a.discounted_price - b.discounted_price,
                     );
                     const isAddedToCarts = pProducts?.medicines;
                     return (
@@ -477,7 +477,7 @@ const AllPharmacyList = (props: any) => {
             <div className="card-module-div">
               {allMedicinesList?.map((item: any) => {
                 const isAddedToCart = pProducts?.medicines?.find(
-                  (item2: any) => item2?.service_code === item.service_code
+                  (item2: any) => item2?.service_code === item.service_code,
                 );
                 return (
                   <MedicineCardModule

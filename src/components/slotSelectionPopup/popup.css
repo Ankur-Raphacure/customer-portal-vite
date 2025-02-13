@@ -9,16 +9,15 @@
   }
 }
 
-.doctor_slotModal .doctor_slotselection{
+.doctor_slotModal .doctor_slotselection {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  
 }
-.modal-dialog.doctor_slotModal{
+.modal-dialog.doctor_slotModal {
   margin: 1rem;
   max-width: 100% !important;
-  @media (max-width: 760px){
+  @media (max-width: 760px) {
     margin: 0;
     padding: 1rem;
     height: auto;

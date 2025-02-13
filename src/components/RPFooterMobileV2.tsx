@@ -74,29 +74,28 @@ const RPFooterMobileV2 = () => {
             </div>
           ))}
         </div>
-       
       </div>
 
       <div className="footer-bottom-mobile">
-          <div className="socialLinks">
-            <a href="#" aria-label="Facebook">
-              <FaFacebookSquare size={30} className="fa fa-facebook" />
-            </a>
-            <a href="#" aria-label="Instagram">
-              <FaInstagram size={30} className="fa fa-instagram" />
-            </a>
-            <a href="#" aria-label="Twitter">
-              <FaTwitter size={30} className="fa fa-twitter" />
-            </a>
-          </div>
-          <div className="footerLinks">
-            <a href="#">Privacy Policies</a>
-            <a href="#">Terms & Conditions</a>
-          </div>
-          <div className="footerCopyright">
-            &copy; 2024. All Rights Reserved by Raphaplus
-          </div>
+        <div className="socialLinks">
+          <a href="#" aria-label="Facebook">
+            <FaFacebookSquare size={30} className="fa fa-facebook" />
+          </a>
+          <a href="#" aria-label="Instagram">
+            <FaInstagram size={30} className="fa fa-instagram" />
+          </a>
+          <a href="#" aria-label="Twitter">
+            <FaTwitter size={30} className="fa fa-twitter" />
+          </a>
         </div>
+        <div className="footerLinks">
+          <a href="#">Privacy Policies</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
+        <div className="footerCopyright">
+          &copy; 2024. All Rights Reserved by Raphaplus
+        </div>
+      </div>
     </RPFooterV2style>
   );
 };

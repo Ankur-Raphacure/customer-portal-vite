@@ -439,7 +439,12 @@ const RideConfirmed = ({ pickup, dest }: any) => {
           <span>{dest}</span>
         </div>
         <div className="action-buttons">
-          <button className="action-button" onClick={()=>setShowCancelRidePopup(true)}>Cancel Ride</button>
+          <button
+            className="action-button"
+            onClick={() => setShowCancelRidePopup(true)}
+          >
+            Cancel Ride
+          </button>
           <button className="action-button">Support</button>
         </div>
         {showCancelRidePopup && (

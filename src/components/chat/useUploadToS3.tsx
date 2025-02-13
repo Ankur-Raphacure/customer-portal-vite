@@ -30,7 +30,7 @@ const useUploadToS3 = () => {
             "Content-Type": "application/json",
             Authorization: "Bearer " + getToken(),
           },
-        }
+        },
       );
       const presignedUrlResp = JSON.parse(JSON.stringify(presignedRes));
 

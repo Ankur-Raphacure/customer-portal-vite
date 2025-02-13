@@ -130,7 +130,7 @@ const LoginModel = (props: any) => {
       resetTImer();
     } else {
       setIsPhoneNumberError(
-        response?.error?.message || "Please enter valid details"
+        response?.error?.message || "Please enter valid details",
       );
       // toast.add({ title: response.errorMessage, color: "red" });
     }

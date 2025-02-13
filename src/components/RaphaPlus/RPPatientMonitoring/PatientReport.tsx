@@ -28,7 +28,10 @@ const PatientReport = () => (
           <div className="row service">
             <div className="col-2 d-flex align-items-center justify-content-center icon-div">
               <i className="service-icon bi bi-heart-pulse">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413112201.png" alt="" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413112201.png"
+                  alt=""
+                />
               </i>
             </div>
             <div className="col-10">
@@ -42,7 +45,10 @@ const PatientReport = () => (
           <div className="row service">
             <div className="col-2 d-flex align-items-center justify-content-center icon-div">
               <i className="service-icon bi bi-clock-history">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413240838.png" alt="" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413240838.png"
+                  alt=""
+                />
               </i>
             </div>
             <div className="col-10">
@@ -56,7 +62,10 @@ const PatientReport = () => (
           <div className="row service">
             <div className="col-2 d-flex align-items-center justify-content-center icon-div">
               <i className="service-icon bi bi-person-circle">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413240838.png" alt="" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413240838.png"
+                  alt=""
+                />
               </i>
             </div>
             <div className="col-10">
@@ -70,7 +79,10 @@ const PatientReport = () => (
           <div className="row service">
             <div className="col-2 d-flex align-items-center justify-content-center icon-div">
               <i className="service-icon bi bi-person-plus">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413240838.png" alt="" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413240838.png"
+                  alt=""
+                />
               </i>
             </div>
             <div className="col-10">
@@ -84,7 +96,10 @@ const PatientReport = () => (
           <div className="row service">
             <div className="col-2 d-flex align-items-center justify-content-center icon-div">
               <i className="service-icon bi bi-person-plus">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413240838.png" alt="" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736413240838.png"
+                  alt=""
+                />
               </i>
             </div>
             <div className="col-10">

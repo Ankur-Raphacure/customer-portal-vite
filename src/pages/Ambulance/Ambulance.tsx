@@ -40,7 +40,7 @@ const Ambulance = () => {
     console.log("selectedAddress", selectedAddress);
     let { address1, city, state, country, zipcode } = parseAddress(
       place,
-      selectedAddress
+      selectedAddress,
     );
     // fromPlaceId(place?.place_id)
     //   .then(({ results }) => {
@@ -149,7 +149,10 @@ const Ambulance = () => {
                 </button>
               </form>
             </div>
-            <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425965406.png" alt="" />
+            <img
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736425965406.png"
+              alt=""
+            />
           </div>
         </div>
       )}

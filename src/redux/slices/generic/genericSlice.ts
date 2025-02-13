@@ -97,7 +97,7 @@ export const ctmriSlice = createSlice({
     },
     updateUniversalSearchResults: (
       state: CtmriState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.universalSearchResults = action.payload;
     },
@@ -113,7 +113,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allEyeCareCategoriesList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getEyeCategoriesAPI.rejected,
@@ -121,7 +121,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //scanDetails
@@ -135,7 +135,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allEyeCareHospitalsList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getEyeHospitalsAPI.rejected,
@@ -143,7 +143,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //getAmbulanceList
     builder.addCase(getAmbulanceList.pending, (state: any) => {
@@ -156,7 +156,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allAmbulanceList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAmbulanceList.rejected,
@@ -164,7 +164,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     builder.addCase(getCategoriesAPI.pending, (state: any) => {
       state.loading = true;
@@ -176,7 +176,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allGymCategoriesList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getCategoriesAPI.rejected,
@@ -184,7 +184,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     builder.addCase(getGymVendorsAPI.pending, (state: any) => {
       state.loading = true;
@@ -196,7 +196,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allGymVendorsList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getGymVendorsAPI.rejected,
@@ -204,7 +204,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     // getAyurvedaServiceList
     builder.addCase(getAyurvedaServiceAPI.pending, (state: any) => {
@@ -217,7 +217,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allAyurvedaServiceList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAyurvedaServiceAPI.rejected,
@@ -226,7 +226,7 @@ export const ctmriSlice = createSlice({
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
         state.allAyurvedaServiceList = [];
-      }
+      },
     );
     // getAyurvedaServiceList
     builder.addCase(getAppoinmentDropdownAPI.pending, (state: any) => {
@@ -239,7 +239,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allAppoinmentList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAppoinmentDropdownAPI.rejected,
@@ -248,7 +248,7 @@ export const ctmriSlice = createSlice({
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
         state.allAppoinmentList = [];
-      }
+      },
     );
     // getAllFitnessAPI
     builder.addCase(getAllFitnessAPI.pending, (state: any) => {
@@ -261,7 +261,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allFitnessList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllFitnessAPI.rejected,
@@ -270,7 +270,7 @@ export const ctmriSlice = createSlice({
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
         state.allFitnessList = [];
-      }
+      },
     );
     // getAyurvedaCenterList
     builder.addCase(getAyurvedsCenterAPI.pending, (state: any) => {
@@ -284,7 +284,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allAyurvedsCenterList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAyurvedsCenterAPI.rejected,
@@ -292,7 +292,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //geteyecareNearClinicAPI
@@ -307,7 +307,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.alleyecareNearClinic = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       geteyecareNearClinicAPI.rejected,
@@ -315,7 +315,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //getAllEyewearGlassessAPI
     builder.addCase(getAllEyewearGlassessAPI.pending, (state: any) => {
@@ -329,7 +329,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allEyewearGlassessList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllEyewearGlassessAPI.rejected,
@@ -337,7 +337,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //getneardentalcare
@@ -352,7 +352,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.alldentalcareNearClinic = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getdentalcareNearClinicAPI.rejected,
@@ -360,7 +360,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     // getAyurvedaDisease
@@ -375,7 +375,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allAyurvedsDiseaseList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAyurvedsDiseaseAPI.rejected,
@@ -383,7 +383,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     // getDomiciliarycareNurses
@@ -398,7 +398,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allDomiciliaryNursesAPI = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllDomiciliaryNursesAPI.rejected,
@@ -406,7 +406,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     // getAllDomiciliaryEquipments
@@ -421,7 +421,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allDomiciliaryEquipmentsList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAllDomiciliaryEquipmentsAPI.rejected,
@@ -429,7 +429,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     // getAyurvedaPanchakarmaList
@@ -444,7 +444,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allPanchakarmaList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAyurvedsPanchakarmaAPI.rejected,
@@ -452,7 +452,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     // getAyurvedaNaturopathyList
     builder.addCase(getAyurvedsNaturopathyAPI.pending, (state: any) => {
@@ -466,7 +466,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allNaturopathyList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getAyurvedsNaturopathyAPI.rejected,
@@ -474,7 +474,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     builder.addCase(getWomensPackagesAPI.pending, (state: any) => {
@@ -488,7 +488,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allWomensPackagesList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getWomensPackagesAPI.rejected,
@@ -496,7 +496,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //getVaccinationsAPI
@@ -511,7 +511,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allVaccinationsList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getVaccinationsAPI.rejected,
@@ -519,7 +519,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //getDomiciliaryVaccinationsAPI
     builder.addCase(getDomiciliaryVaccinationsAPI.pending, (state: any) => {
@@ -533,7 +533,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allDomiciliaryVaccinationsList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getDomiciliaryVaccinationsAPI.rejected,
@@ -541,7 +541,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //CreateTrackerDetailAPI
@@ -556,7 +556,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allVaccinationsList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getCreateTrackerDetailAPI.rejected,
@@ -564,7 +564,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     // getDomiciliaryCareAPI
@@ -579,7 +579,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allDomiciliaryCareList = action.payload.data;
-      }
+      },
     );
     builder.addCase(
       getDomiciliaryCareAPI.rejected,
@@ -587,7 +587,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //getUniversalSearchData
@@ -601,7 +601,7 @@ export const ctmriSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.universalSearchResults = action.payload.data?.results || [];
-      }
+      },
     );
     builder.addCase(
       getUniversalSearchData.rejected,
@@ -609,7 +609,7 @@ export const ctmriSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
 
     //createUplodedImagedDetailsAPI
@@ -622,14 +622,14 @@ export const ctmriSlice = createSlice({
       (state: CtmriState, action: PayloadAction<any>) => {
         state.error = null;
         state.loading = false;
-      }
+      },
     );
     builder.addCase(
       createUplodedImagedDetailsAPI.rejected,
       (state: CtmriState, action: any) => {
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
   },
 });

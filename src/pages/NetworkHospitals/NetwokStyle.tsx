@@ -59,7 +59,10 @@ const NetwokStyle = () => {
         </Description>
       </TextContainer>
       <ImageContainer>
-        <Image src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736505187160.png" alt="Network Illustration" />
+        <Image
+          src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736505187160.png"
+          alt="Network Illustration"
+        />
       </ImageContainer>
     </Container>
   );

@@ -30,8 +30,8 @@ export const getEyeCategoriesAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getEyeCategoriesQuery(body))
-    )
+      JSON.stringify(getEyeCategoriesQuery(body)),
+    ),
 );
 
 export const getCreateTrackerDetailAPI = createAsyncThunk(
@@ -39,9 +39,9 @@ export const getCreateTrackerDetailAPI = createAsyncThunk(
   async (body: any) => {
     return await post(
       `${SERVER_IP}/api/v1/periodtracker/personal-details`,
-      body
+      body,
     );
-  }
+  },
 );
 
 export const getEyeHospitalsAPI = createAsyncThunk(
@@ -49,14 +49,14 @@ export const getEyeHospitalsAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getEyeHospitalsQuery(body))
-    )
+      JSON.stringify(getEyeHospitalsQuery(body)),
+    ),
 );
 
 export const getAyurvedaServiceAPI = createAsyncThunk(
   "auth/getAyurvedaServiceAPI",
   async () =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(getAyurvedsServiceQuery))
+    await post(`${SERVER_IP}/graphql`, JSON.stringify(getAyurvedsServiceQuery)),
 );
 
 export const getAyurvedsCenterAPI = createAsyncThunk(
@@ -64,8 +64,8 @@ export const getAyurvedsCenterAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getAyurvedsCenterQuery(body))
-    )
+      JSON.stringify(getAyurvedsCenterQuery(body)),
+    ),
 );
 
 export const geteyecareNearClinicAPI = createAsyncThunk(
@@ -73,8 +73,8 @@ export const geteyecareNearClinicAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(eyecareNearClinicQuery(body))
-    )
+      JSON.stringify(eyecareNearClinicQuery(body)),
+    ),
 );
 
 export const getdentalcareNearClinicAPI = createAsyncThunk(
@@ -82,8 +82,8 @@ export const getdentalcareNearClinicAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(dentalcareNearClinicQuery(body))
-    )
+      JSON.stringify(dentalcareNearClinicQuery(body)),
+    ),
 );
 
 export const getAyurvedsPanchakarmaAPI = createAsyncThunk(
@@ -91,22 +91,22 @@ export const getAyurvedsPanchakarmaAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getAyurvedsPanchakarmaQuery(body))
-    )
+      JSON.stringify(getAyurvedsPanchakarmaQuery(body)),
+    ),
 );
 export const getAyurvedsNaturopathyAPI = createAsyncThunk(
   "auth/getAyurvedsNaturopathyAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getAyurvedsNaturopathyQuery(body))
-    )
+      JSON.stringify(getAyurvedsNaturopathyQuery(body)),
+    ),
 );
 
 export const getWomensPackagesAPI = createAsyncThunk(
   "auth/getWomensPackagesAPI",
   async () =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(getWomensPackagesQuery))
+    await post(`${SERVER_IP}/graphql`, JSON.stringify(getWomensPackagesQuery)),
 );
 
 export const getVaccinationsAPI = createAsyncThunk(
@@ -114,31 +114,31 @@ export const getVaccinationsAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getVaccinationsQuery(body))
-    )
+      JSON.stringify(getVaccinationsQuery(body)),
+    ),
 );
 export const getDomiciliaryVaccinationsAPI = createAsyncThunk(
   "auth/getDomiciliaryVaccinationsAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getDomiciliaryVaccinationsQuery(body))
-    )
+      JSON.stringify(getDomiciliaryVaccinationsQuery(body)),
+    ),
 );
 export const getAllEyewearGlassessAPI = createAsyncThunk(
   "auth/getAllEyewearGlassessAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getAllEyewearGlassessQuery(body))
-    )
+      JSON.stringify(getAllEyewearGlassessQuery(body)),
+    ),
 );
 
 export const getCreateLogSymptomsDetailAPI = createAsyncThunk(
   "auth/getCreateLogSymptomsDetailAPI",
   async (body: any) => {
     return await post(`${SERVER_IP}/api/v1/periodtracker`, body);
-  }
+  },
 );
 
 export const getDomiciliaryCareAPI = createAsyncThunk(
@@ -146,8 +146,8 @@ export const getDomiciliaryCareAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getDomiciliaryCareQuery(body))
-    )
+      JSON.stringify(getDomiciliaryCareQuery(body)),
+    ),
 );
 
 export const getAyurvedsDiseaseAPI = createAsyncThunk(
@@ -155,50 +155,53 @@ export const getAyurvedsDiseaseAPI = createAsyncThunk(
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getAyurvedsDiseaseQuery(body))
-    )
+      JSON.stringify(getAyurvedsDiseaseQuery(body)),
+    ),
 );
 export const getAllDomiciliaryNursesAPI = createAsyncThunk(
   "auth/getAllDomiciliaryNursesAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getDomiciliaryNurseQuery(body))
-    )
+      JSON.stringify(getDomiciliaryNurseQuery(body)),
+    ),
 );
 export const getAllDomiciliaryEquipmentsAPI = createAsyncThunk(
   "auth/getAllDomiciliaryEquipmentsAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getDomiciliaryEquipmentsQuery(body))
-    )
+      JSON.stringify(getDomiciliaryEquipmentsQuery(body)),
+    ),
 );
 export const getAllFitnessAPI = createAsyncThunk(
   "auth/getAllFitnessAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getgetAllFitnessQuery(body))
-    )
+      JSON.stringify(getgetAllFitnessQuery(body)),
+    ),
 );
 
 export const getAmbulanceList = createAsyncThunk(
   "auth/getAmbulanceList",
-  async (body: any) => await patch(`${SERVER_IP}/api/v1/test/ambulance`, body)
+  async (body: any) => await patch(`${SERVER_IP}/api/v1/test/ambulance`, body),
 );
 export const getGymVendorsAPI = createAsyncThunk(
   "auth/getGymVendorsAPI",
   async (body: any) =>
-    await post(`${SERVER_IP}/graphql`, JSON.stringify(getGymVendorsQuery(body)))
+    await post(
+      `${SERVER_IP}/graphql`,
+      JSON.stringify(getGymVendorsQuery(body)),
+    ),
 );
 export const getCategoriesAPI = createAsyncThunk(
   "auth/getCategoriesAPI",
   async (body: any) =>
     await post(
       `${SERVER_IP}/graphql`,
-      JSON.stringify(getGymCategoriesQuery(body))
-    )
+      JSON.stringify(getGymCategoriesQuery(body)),
+    ),
 );
 
 export const getUniversalSearchData = createAsyncThunk(
@@ -214,35 +217,35 @@ export const getUniversalSearchData = createAsyncThunk(
     } else {
       return await post(url, body);
     }
-  }
+  },
 );
 
 export const getuserActivityAPI = createAsyncThunk(
   "auth/getuserActivityAPI",
   async (body: any) => {
     return await post(`${SERVER_IP}/api/v1/activity`, body);
-  }
+  },
 );
 
 export const getallUserActivityAPI = createAsyncThunk(
   "auth/getallUserActivityAPI",
   async () =>
     await get(`${SERVER_IP}/api/v1/activity/allCategoriesWithActivity
-`)
+`),
 );
 export const getUpdateUserActivityAPI = createAsyncThunk(
   "auth/getUpdateUserActivityAPI",
-  async (body: any) => await put(`${SERVER_IP}/api/v1/actvity`, body)
+  async (body: any) => await put(`${SERVER_IP}/api/v1/actvity`, body),
 );
 
 export const getAppoinmentDropdownAPI = createAsyncThunk(
   "auth/getAppoinmentDropdownAPI",
-  async () => await get(`${SERVER_IP}/api/v1/filter/treatmenttype`)
+  async () => await get(`${SERVER_IP}/api/v1/filter/treatmenttype`),
 );
 
 export const createUplodedImagedDetailsAPI = createAsyncThunk(
   "auth/createUplodedImagedDetailsAPI",
   async (body: any) => {
     return await post(`${SERVER_IP}/api/v1/userlogs`, body);
-  }
+  },
 );

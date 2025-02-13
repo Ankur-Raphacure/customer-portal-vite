@@ -81,7 +81,7 @@ export const hospitalSlice = createSlice({
 
     updateErrorMessage: (
       state: DoctorState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.error = action.payload;
     },
@@ -90,7 +90,7 @@ export const hospitalSlice = createSlice({
     },
     updateSelectedHospitalData: (
       state: DoctorState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.selectedHospitalData = action.payload;
     },
@@ -106,14 +106,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.doctorsList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getDoctorsListAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.doctorsList = [];
-      }
+      },
     );
 
     //get Hospital List
@@ -127,14 +127,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.doctorHospitalsList = action.payload?.data?.doctorById;
-      }
+      },
     );
     builder.addCase(
       getDoctorHospitalListAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.doctorHospitalsList = [];
-      }
+      },
     );
 
     //getHealthPackagesAPI
@@ -148,14 +148,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.hospitalList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getHospitalListAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.hospitalList = [];
-      }
+      },
     );
 
     //getAllDoctorAPI
@@ -172,7 +172,7 @@ export const hospitalSlice = createSlice({
         if (Array.isArray(action.payload?.data?.doctors)) {
           state.allDoctorList.doctors = action.payload?.data?.doctors;
         }
-      }
+      },
     );
     builder.addCase(
       getAllDoctorAPI.rejected,
@@ -180,7 +180,7 @@ export const hospitalSlice = createSlice({
         state.loading = false;
         state.allDoctorList.doctors = [];
         state.allDoctorList.totalCount = 0;
-      }
+      },
     );
     //getAllDoctorAPI
     builder.addCase(getSearchAllDoctorAPI.pending, (state: any) => {
@@ -193,14 +193,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allSearchAllDoctorList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getSearchAllDoctorAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.allSearchAllDoctorList = [];
-      }
+      },
     );
     //getDoctorDetailAPI
     builder.addCase(getDoctorDetailAPI.pending, (state: any) => {
@@ -213,14 +213,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.doctorDetailList = action.payload;
-      }
+      },
     );
     builder.addCase(
       getDoctorDetailAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.doctorDetailList = [];
-      }
+      },
     );
     //getSpecializationAPI
     builder.addCase(getSpecializationAPI.pending, (state: any) => {
@@ -233,14 +233,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allSpecializationList = action.payload?.data;
-      }
+      },
     );
     builder.addCase(
       getSpecializationAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.allSpecializationList = [];
-      }
+      },
     );
     //getDoctorRelatedHospitalAPI
     builder.addCase(getDoctorRelatedHospitalAPI.pending, (state: any) => {
@@ -253,14 +253,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allDoctorRelatedHospitalList = action.payload;
-      }
+      },
     );
     builder.addCase(
       getDoctorRelatedHospitalAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.allDoctorRelatedHospitalList = [];
-      }
+      },
     );
     //getTimeslotsAPI
     builder.addCase(getTimeslotsAPI.pending, (state: any) => {
@@ -273,14 +273,14 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allTimeslotsIList = action.payload;
-      }
+      },
     );
     builder.addCase(
       getTimeslotsAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.allTimeslotsIList = [];
-      }
+      },
     );
     //getNearByHospitalAPI
     builder.addCase(getNearByHospitalAPI.pending, (state: any) => {
@@ -303,14 +303,14 @@ export const hospitalSlice = createSlice({
         } else {
           state.allNearByHospitalList = action.payload?.data;
         }
-      }
+      },
     );
     builder.addCase(
       getNearByHospitalAPI.rejected,
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.allNearByHospitalList = [];
-      }
+      },
     );
     //getDoctorFiltersAPI
     builder.addCase(getDoctorFiltersAPI.pending, (state: any) => {
@@ -323,7 +323,7 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.allDoctorFiltersList = action.payload?.data;
-      }
+      },
     );
 
     builder.addCase(
@@ -331,7 +331,7 @@ export const hospitalSlice = createSlice({
       (state: DoctorState, action: any) => {
         state.loading = false;
         state.allDoctorFiltersList = [];
-      }
+      },
     );
     builder.addCase(
       getTypeFiltersAPI.fulfilled,
@@ -354,7 +354,7 @@ export const hospitalSlice = createSlice({
         }
         console.log("prevResp", prevResp);
         state.allDoctorsFiltersData = prevResp;
-      }
+      },
     );
     builder.addCase(
       getClinicFiltersAPI.fulfilled,
@@ -378,7 +378,7 @@ export const hospitalSlice = createSlice({
         }
         console.log("prevResp", prevResp);
         state.clinicFilters = prevResp;
-      }
+      },
     );
     builder.addCase(
       getClinicDetailsAPI.fulfilled,
@@ -386,7 +386,7 @@ export const hospitalSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.clinicDetails = action.payload?.data;
-      }
+      },
     );
   },
 });

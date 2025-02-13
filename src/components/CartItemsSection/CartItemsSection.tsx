@@ -40,7 +40,7 @@ const CartItemsSection = () => {
     [];
 
   const paharmacyProducts = cartItems?.carts?.filter(
-    (itemV: any) => itemV.medicines?.length > 0
+    (itemV: any) => itemV.medicines?.length > 0,
   );
   // console.log("cartItems", cartItems);
   // const addToCartAdd = (itemR: any) => {
@@ -139,7 +139,7 @@ const CartItemsSection = () => {
                       setRemovingItem(item);
                       setShowConformMessageModel(true);
                       setShowConformMessageModelTest(
-                        `Are you sure, Do you want to delete ${item?.service_name} Section?`
+                        `Are you sure, Do you want to delete ${item?.service_name} Section?`,
                       );
                     }}
                   >

@@ -59,24 +59,24 @@ export const authSlice = createSlice({
     },
     updateShowLoginModel: (
       state: AuthState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.showLoginModel = action.payload;
     },
     updateShowAddressSearchModel: (
       state: AuthState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       state.showAddressSearchModel = action.payload;
     },
 
     updateSubDomainDetails: (
       state: AuthState,
-      action: PayloadAction<boolean>
+      action: PayloadAction<boolean>,
     ) => {
       localStorage.setItem(
         "user_subDomainDetails",
-        JSON.stringify(action.payload)
+        JSON.stringify(action.payload),
       );
       state.subDomainDetails = action.payload;
     },
@@ -92,7 +92,7 @@ export const authSlice = createSlice({
     },
     updateRpSubDomainDetails: (
       state: AuthState,
-      action: PayloadAction<any>
+      action: PayloadAction<any>,
     ) => {
       state.rpSubDomainDetails = action.payload;
     },
@@ -115,7 +115,7 @@ export const authSlice = createSlice({
         var userInfo = action.payload;
 
         localStorage.setItem("user", JSON.stringify(userInfo));
-      }
+      },
     );
     builder.addCase(loginUser.rejected, (state: AuthState, action: any) => {
       state.loading = false;
@@ -139,7 +139,7 @@ export const authSlice = createSlice({
         var userInfo = action.payload;
 
         localStorage.setItem("user", JSON.stringify(userInfo));
-      }
+      },
     );
     builder.addCase(signUpUser.rejected, (state: AuthState, action: any) => {
       console.log({ action });
@@ -178,7 +178,7 @@ export const authSlice = createSlice({
         var userInfo = action.payload?.data;
         state.user = userInfo;
         localStorage.setItem("user", JSON.stringify(userInfo));
-      }
+      },
     );
     builder.addCase(
       validateOtpAPI.rejected,
@@ -186,7 +186,7 @@ export const authSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //checkSocialUserAPI
     builder.addCase(checkSocialUserAPI.pending, (state: any) => {
@@ -201,7 +201,7 @@ export const authSlice = createSlice({
         var userInfo = action.payload?.data;
         state.user = userInfo;
         localStorage.setItem("user", JSON.stringify(userInfo));
-      }
+      },
     );
     builder.addCase(
       checkSocialUserAPI.rejected,
@@ -209,7 +209,7 @@ export const authSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //getSubDomainLoginDetails
     builder.addCase(getSubDomainLoginDetails.pending, (state: any) => {
@@ -225,7 +225,7 @@ export const authSlice = createSlice({
         // var userInfo = action.payload?.data;
         // state.user = userInfo;
         // localStorage.setItem("user", JSON.stringify(userInfo));
-      }
+      },
     );
     builder.addCase(
       getSubDomainLoginDetails.rejected,
@@ -233,7 +233,7 @@ export const authSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
     //getCityNameAPI
     builder.addCase(getCityNameAPI.pending, (state: any) => {
@@ -247,7 +247,7 @@ export const authSlice = createSlice({
         state.loading = false;
         console.log("action?.payload", action?.payload);
         state.userCity = action?.payload?.city;
-      }
+      },
     );
     builder.addCase(
       getCityNameAPI.rejected,
@@ -255,7 +255,7 @@ export const authSlice = createSlice({
         console.log({ action });
         state.loading = false;
         state.error = action.error?.message ?? "Something went wrong";
-      }
+      },
     );
   },
 });

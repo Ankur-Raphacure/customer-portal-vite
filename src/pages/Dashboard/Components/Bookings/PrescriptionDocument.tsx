@@ -43,13 +43,13 @@ const PrescriptionPreview = ({
         googleTranslateAPI({
           query: text,
           targetLang: to,
-        })
+        }),
       )) as any;
       return res?.payload?.translatedText;
     } catch (error) {
       console.error(
         `Error translating text "${text}" to language "${to}":`,
-        error
+        error,
       );
       return text; // Fallback to original text in case of error.
     }
@@ -63,7 +63,7 @@ const PrescriptionPreview = ({
     if (translatedData?.doctor?.specialization) {
       translatedData.doctor.specialization = await translateField(
         translatedData.doctor.specialization,
-        languageCode
+        languageCode,
       );
     }
     if (translatedData.attachments) {
@@ -72,7 +72,7 @@ const PrescriptionPreview = ({
         if (attachment.symptoms) {
           attachment.symptoms = await translateField(
             attachment.symptoms,
-            languageCode
+            languageCode,
           );
         }
 
@@ -86,7 +86,7 @@ const PrescriptionPreview = ({
             if (medicine.intake) {
               medicine.intake = await translateField(
                 medicine.intake,
-                languageCode
+                languageCode,
               );
             }
           }
@@ -102,7 +102,7 @@ const PrescriptionPreview = ({
     toast.info(
       `Language changed to ${
         languageOptions.find((opt) => opt.value === languageCode)?.label
-      }`
+      }`,
     );
   };
 

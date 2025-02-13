@@ -6,16 +6,16 @@ const ContentLoaderSection = (props: any) => {
     fromPage === "followPage"
       ? 600
       : fromPage === "marketplaceliveauctions"
-      ? 500
-      : fromPage === "biddinginfo"
-      ? 250
-      : 775;
+        ? 500
+        : fromPage === "biddinginfo"
+          ? 250
+          : 775;
   const viewBoxVal =
     fromPage === "followPage"
       ? "0 0"
       : fromPage === "biddinginfo"
-      ? "0 0 500 250"
-      : "0 0 800 575";
+        ? "0 0 500 250"
+        : "0 0 800 575";
   return (
     <>
       <ContentLoaderSectionStyled>

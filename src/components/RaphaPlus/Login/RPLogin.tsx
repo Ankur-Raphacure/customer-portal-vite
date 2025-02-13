@@ -162,7 +162,10 @@ const RPLogin = () => {
   const [showLogin, setShowLogin] = useState(true);
   return (
     <RPLoginStyled>
-      <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736415398929.png" alt="Login Hero" />
+      <img
+        src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736415398929.png"
+        alt="Login Hero"
+      />
       <div className="loginRegWrapper">
         {showLogin ? (
           <LoginComp setShowLogin={setShowLogin} />

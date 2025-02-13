@@ -292,7 +292,7 @@ const AddNewMember = (props: any) => {
     setIsLoading(true);
     const resp = props?.selectedMember?.id
       ? ((await dispatch(
-          editDependentAPI({ id: props?.selectedMember?.id, user: data })
+          editDependentAPI({ id: props?.selectedMember?.id, user: data }),
         )) as any)
       : ((await dispatch(createNewDependentAPI(data))) as any);
     console.log("vinodddd", resp);
@@ -371,7 +371,9 @@ const AddNewMember = (props: any) => {
                   <div className="row-item-sec-user">
                     <Form.Group className="signup-md" controlId="email">
                       <Form.Label>
-                        First Name <span className="mand-sign-field">*</span>{" "}
+                        First Name <span className="mand-sign-field">
+                          *
+                        </span>{" "}
                       </Form.Label>
                       <Form.Control
                         autoFocus
@@ -390,7 +392,9 @@ const AddNewMember = (props: any) => {
                     </Form.Group>
                     <Form.Group className="signup-md-left" controlId="email">
                       <Form.Label>
-                        Last Name <span className="mand-sign-field">*</span>{" "}
+                        Last Name <span className="mand-sign-field">
+                          *
+                        </span>{" "}
                       </Form.Label>
                       <Form.Control
                         name="last_name"
@@ -563,8 +567,8 @@ const AddNewMember = (props: any) => {
                       {loading
                         ? "Loading"
                         : props?.selectedMember?.id
-                        ? "Update Member"
-                        : "Add Member"}
+                          ? "Update Member"
+                          : "Add Member"}
                     </Button>
                   </div>
                 </div>

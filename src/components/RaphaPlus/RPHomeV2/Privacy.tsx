@@ -19,9 +19,13 @@ const Privacy = () => {
               <div className="feature-item">
                 <img
                   src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/113945-1735190378893.png"
-                  alt="Patient Data Icon" className="group-icon"
+                  alt="Patient Data Icon"
+                  className="group-icon"
                 />
-                <span>Patient data that <br />only you own</span>
+                <span>
+                  Patient data that <br />
+                  only you own
+                </span>
               </div>
               <div className="feature-item">
                 <img
@@ -29,7 +33,10 @@ const Privacy = () => {
                   alt="FHIR Icon"
                   className="group-icon"
                 />
-                <span>FHIR compliant <br />data storage</span>
+                <span>
+                  FHIR compliant <br />
+                  data storage
+                </span>
               </div>
               <div className="feature-item">
                 <img
@@ -37,7 +44,10 @@ const Privacy = () => {
                   alt="Control Icon"
                   className="group-icon"
                 />
-                <span>Control over <br />messages to patients</span>
+                <span>
+                  Control over <br />
+                  messages to patients
+                </span>
               </div>
             </div>
           </div>

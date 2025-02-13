@@ -75,7 +75,7 @@ const MapComponent = () => {
           (error) => {
             toast.error(`Error fetching geolocation: ${error?.message}`);
             console.error("Error fetching geolocation:", error);
-          }
+          },
         );
       } else {
         console.error("Geolocation is not supported by this browser.");
@@ -126,14 +126,14 @@ const LabTestV2 = () => {
     allPackagesList,
   } = useSelector((ReduxState: any) => ReduxState.labtest);
   const { userCity, user, subDomainDetails } = useSelector(
-    (ReduxState: any) => ReduxState.auth
+    (ReduxState: any) => ReduxState.auth,
   );
   const [labtestCategories, setLabtestCategories] = useState([]);
   const [labPackageCategories, setLabPackageCategories] = useState([]);
   const [activeLabtestCategory, setActiveLabtestCategory] = useState(0); // Default to the first category
   const [activePackageCategory, setActivePackageCategory] = useState(0); // Default to the first package
   const { selectedCurrentAddress, nearbyVendors } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
 
   useEffect(() => {
@@ -168,7 +168,7 @@ const LabTestV2 = () => {
             count: 20,
             page: 1,
           },
-        })
+        }),
       )) as any;
       if (res?.error) {
         toast.error(res?.error?.message || "Unknown Error Occured");
@@ -191,7 +191,7 @@ const LabTestV2 = () => {
             type: "diagnostic",
             page: 1,
           },
-        })
+        }),
       )) as any;
       if (res?.error) {
         toast.error(res?.error?.message || "Unknown Error Occured");
@@ -202,14 +202,14 @@ const LabTestV2 = () => {
 
   const getLabtestCategoriesAPI = async () => {
     const res = (await dispatch(
-      getAllCategoriesAPI({ sectionName: "labtest" })
+      getAllCategoriesAPI({ sectionName: "labtest" }),
     )) as any;
     setLabtestCategories(res?.payload?.data?.category_ids);
   };
 
   const getPackagesCategoriesAPI = async () => {
     const res = (await dispatch(
-      getAllCategoriesAPI({ sectionName: "packages" })
+      getAllCategoriesAPI({ sectionName: "packages" }),
     )) as any;
     setLabPackageCategories(res?.payload?.data?.category_ids);
   };
@@ -245,7 +245,7 @@ const LabTestV2 = () => {
           isCorporate: false,
           type: "diagnostic",
         },
-      })
+      }),
     );
   };
 
@@ -559,7 +559,7 @@ const LabTestV2 = () => {
             {allPackagesList?.data?.length > 0 &&
               allPackagesList?.data
                 ?.filter(
-                  (packageItem: any) => packageItem?.price?.actual_cost > 0
+                  (packageItem: any) => packageItem?.price?.actual_cost > 0,
                 ) // Filter for actual_cost > 0
                 ?.slice(0, 6) // Slice the filtered list
                 ?.map((packageItem: any, index: any) => (
@@ -624,7 +624,7 @@ const LabTestV2 = () => {
             allTestsList?.data
               ?.filter(
                 (testItem: any) =>
-                  testItem?.price?.actual_cost > 0 || testItem?.actual_cost > 0
+                  testItem?.price?.actual_cost > 0 || testItem?.actual_cost > 0,
               )
               ?.slice(0, 6)
               ?.map((testItem: any, index: any) => (
@@ -684,7 +684,7 @@ const LabTestV2 = () => {
                   image={vendor?.image}
                   rating={(vendor?.rating || "0").toString()} // Vendor rating
                   distance={`${parseFloat(vendor?.distance_km || 0).toFixed(
-                    2
+                    2,
                   )} Km`}
                   location={truncateText(vendor?.address, 40) || "N/A"} // Vendor address
                   id={vendor?.id}

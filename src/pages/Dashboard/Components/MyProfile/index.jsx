@@ -43,7 +43,7 @@ const MyProfile = () => {
   console.log("user : ", user);
   const { cartItems } = useSelector((ReduxState) => ReduxState.checkout);
   const { userDependents, userAddress } = useSelector(
-    (ReduxState) => ReduxState.profile
+    (ReduxState) => ReduxState.profile,
   );
   const { myBookings } = useSelector((ReduxState) => ReduxState.dashboard);
   const query1 = useQuery();
@@ -140,8 +140,6 @@ const MyProfile = () => {
     handleSelectDefaultAdd();
   }, [selectedAddId]);
 
-
-
   const handleDeleteAddress = async (addId) => {
     setIsLoading(true);
     const resp = await dispatch(deleteAddressAPI({ id: addId?.id }));
@@ -194,7 +192,9 @@ const MyProfile = () => {
           <div className="full-profile-sec-all">
             <div className="orders-header">
               <h3>Your Dependents</h3>
-              <button className="addMemberBtn" onClick={handleAddNewMember}>Add New Member</button>
+              <button className="addMemberBtn" onClick={handleAddNewMember}>
+                Add New Member
+              </button>
               {/* <div className="search-container">
                 <input
                   type="text"
@@ -208,10 +208,7 @@ const MyProfile = () => {
               <div className="depends-users-all">
                 {userDependents?.map((user) => {
                   return (
-                    <ProfileCard
-                      user={user}
-                      handleEditUser={handleEditUser}
-                    />
+                    <ProfileCard user={user} handleEditUser={handleEditUser} />
                   );
                 })}
               </div>
@@ -222,7 +219,9 @@ const MyProfile = () => {
           <div className="full-profile-sec-all">
             <div className="orders-header">
               <h3>Your Address</h3>
-              <button className="addMemberBtn" onClick={handleAddNewAddress}>Add New Address</button>
+              <button className="addMemberBtn" onClick={handleAddNewAddress}>
+                Add New Address
+              </button>
             </div>
             <div className="all-depends-content">
               <div className="depends-users-all">
@@ -256,10 +255,12 @@ const MyProfile = () => {
                             {item?.isDefault ||
                               (selectedAddId !== item.id && (
                                 <div className="user-box-right">
-                                  <span onClick={() => {
-                                    setShowDeleteConfirmModal(true);
-                                    setSelectedDeleteAddress(item);
-                                  }}>
+                                  <span
+                                    onClick={() => {
+                                      setShowDeleteConfirmModal(true);
+                                      setSelectedDeleteAddress(item);
+                                    }}
+                                  >
                                     <div className="d-flex flex-row align-items-center gap-1">
                                       <MdDeleteOutline />
                                       Delete

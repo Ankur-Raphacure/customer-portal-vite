@@ -43,7 +43,7 @@ const OrderConformation = (props: any) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ str: [encryptedUserId] }),
-        }
+        },
       );
 
       const decryptionData = await decryptionResponse.json();
@@ -133,7 +133,7 @@ const OrderConformation = (props: any) => {
             Authorization: `Bearer ${authToken}`,
           },
           body: JSON.stringify(transactionBody),
-        }
+        },
       );
 
       const transactionData = await transactionResponse.json();
@@ -141,7 +141,7 @@ const OrderConformation = (props: any) => {
       if (!transactionData?.success) {
         console.error(
           "Transaction failed or invalid response",
-          transactionData
+          transactionData,
         );
         return;
       }

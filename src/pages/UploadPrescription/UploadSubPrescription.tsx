@@ -40,7 +40,7 @@ const UploadSubPrescription = (props: any) => {
   const [showSuccessUserPopupText, setShowSuccessUserPopupText] = useState("");
   const [showSuccessUserPopup, setShowSuccessUserPopup] = useState(false);
   const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(
-    null
+    null,
   );
   const [selectedMember, setSelectedMember] = useState({});
   const [showAddMemberModel, setShowAddMemberModel] = useState(false);
@@ -55,7 +55,7 @@ const UploadSubPrescription = (props: any) => {
   const [saveprescriptiondata, setSaveprescriptiondata] = useState(
     raphaPrescriptionsSection?.[categoryName]
       ? raphaPrescriptionsSection?.[categoryName]
-      : []
+      : [],
   );
   const { userAddress } = useSelector((ReduxState: any) => ReduxState.profile);
   const path = categoryName;
@@ -187,7 +187,7 @@ const UploadSubPrescription = (props: any) => {
               remarks,
               address_id,
               type,
-            })
+            }),
           )) as any;
           const signedUrl = resp1?.payload?.signedUrl;
           const aID = resp1?.payload?.attachment?.id;
@@ -207,14 +207,14 @@ const UploadSubPrescription = (props: any) => {
             prevItems[categoryName] = [...prevItemsCat];
             localStorage.setItem(
               "raphaPrescriptions",
-              JSON.stringify(prevItems)
+              JSON.stringify(prevItems),
             );
             setSaveprescriptiondata([...prevItemsCat]);
             fileInput.current = null;
             showSavedPrescription();
             setShowUploadPecModel(false);
             const res = await dispatch(
-              updateNitifySuccessMessage("Prescription Uploaded Successfully")
+              updateNitifySuccessMessage("Prescription Uploaded Successfully"),
             );
             if (res) {
               setConfPriscriptionShow(true);

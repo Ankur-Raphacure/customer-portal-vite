@@ -23,10 +23,10 @@ const ComparisonMedicineCardModule = (props: any) => {
   const { generic, branded, addToCart, isAddedtoCart } = props;
   const history = useHistory();
   const isBrandedAddedToCarts = isAddedtoCart?.find(
-    (med: any) => med?.service_code === branded?.service_code
+    (med: any) => med?.service_code === branded?.service_code,
   );
   const isGenericAddedToCarts = isAddedtoCart?.find(
-    (med: any) => med?.service_code === generic?.service_code
+    (med: any) => med?.service_code === generic?.service_code,
   );
 
   const { getFirstImageUrl } = useHandleImageUrl();

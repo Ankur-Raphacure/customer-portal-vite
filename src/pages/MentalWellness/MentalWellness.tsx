@@ -32,7 +32,7 @@ const MentalWellness = () => {
         count: 1000,
         page: 0,
         searchText: "",
-      })
+      }),
     );
   }, [0]);
 
@@ -102,7 +102,7 @@ const MentalWellness = () => {
 
     try {
       const resultAction: any = await dispatch(
-        createCallBackRequestAPI(callBackRequestObjBody)
+        createCallBackRequestAPI(callBackRequestObjBody),
       );
       if (resultAction.payload.success === "true") {
         setShowConform(true);
@@ -160,7 +160,10 @@ const MentalWellness = () => {
             </div>
             <div className="col-lg-6 col-md-12">
               <div className="dom-img text-center">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507502193.png" alt="Mental Wellness" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736507502193.png"
+                  alt="Mental Wellness"
+                />
               </div>
             </div>
           </div>
@@ -191,7 +194,10 @@ const MentalWellness = () => {
             <div className="row">
               <h2>Don’t Wait – Book Your Therapy Slot Now</h2>
               <div className="col-lg-6 text-center mt-5 pt-5">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736508298330.png" alt="Form-img" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736508298330.png"
+                  alt="Form-img"
+                />
               </div>
               <div className="col-lg-6">
                 <form className="form-icu">

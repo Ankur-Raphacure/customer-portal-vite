@@ -21,7 +21,7 @@ const PackageReview = (props: any) => {
                               </div>
                               <div className="review_price poppins-medium">
                                 {(testData?.price?.discounted_price).toFixed(
-                                  2
+                                  2,
                                 ) ?? "0.00"}
                               </div>
                             </div>

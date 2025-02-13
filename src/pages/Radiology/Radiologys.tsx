@@ -45,7 +45,7 @@ const Radiologys = () => {
   const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
   const { allScansNearBy } = useSelector((ReduxState: any) => ReduxState.ctmri);
   const { allTestsList, allCategoriesList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
   const { getFirstImageUrl } = useHandleImageUrl();
   const getLatestData = (city = "bengaluru") => {
@@ -53,7 +53,7 @@ const Radiologys = () => {
     dispatch(getAllScansNearByAPI({ city: city?.toLowerCase(), count: 4 }));
   };
   const { nearbyVendors, selectedCurrentAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
   const handleBuyMedicine = (item: any) => {
     history.push(`/radiology/allScans/${item?.id}`, item);
@@ -303,7 +303,7 @@ const Radiologys = () => {
                         image={vendor?.image}
                         rating={(vendor?.rating || "0").toString()}
                         distance={`${parseFloat(
-                          vendor?.distance_km || 0
+                          vendor?.distance_km || 0,
                         ).toFixed(2)} Km`}
                         location={truncateText(vendor?.address, 40) || "N/A"}
                         id={vendor?.id}

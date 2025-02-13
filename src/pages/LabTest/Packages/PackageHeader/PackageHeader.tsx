@@ -20,13 +20,13 @@ const PackageHeader = (props: any) => {
         currentdate.getFullYear(),
         currentdate.getMonth(),
         currentdate.getDate(),
-        ...startTime
+        ...startTime,
       );
       let enddate = new Date(
         currentdate.getFullYear(),
         currentdate.getMonth(),
         currentdate.getDate(),
-        ...endTime
+        ...endTime,
       );
 
       return startdate < currentdate && enddate > currentdate
@@ -45,7 +45,7 @@ const PackageHeader = (props: any) => {
         todaydate.getFullYear(),
         todaydate.getMonth(),
         todaydate.getDate(),
-        ...time
+        ...time,
       );
       return returndate.toLocaleTimeString("en-us", {
         hour: "2-digit",
@@ -63,7 +63,7 @@ const PackageHeader = (props: any) => {
           <div className="package_img">
             <img src={getPackageImage()} alt="" />
           </div>
-          
+
           <div className="package_datalist flex-col inlineflex_start">
             <div className="package_data flex-col flex_start">
               <div className="package_title">
@@ -101,7 +101,7 @@ const PackageHeader = (props: any) => {
                 <div className="opacity-70 text-sm text-violet poppins-medium">
                   {checkTimes(
                     props.vendor?.slot_start_time,
-                    props.vendor?.slot_end_time
+                    props.vendor?.slot_end_time,
                   )}{" "}
                 </div>
                 <div className="opacity-70 text-sm poppins-medium">

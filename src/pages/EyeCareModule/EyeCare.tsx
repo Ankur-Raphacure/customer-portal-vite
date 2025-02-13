@@ -26,7 +26,7 @@ export const EyeCare = (props: any) => {
   const ref = useRef(null as any);
 
   const { allEyeCareCategoriesList, allEyeCareHospitalsList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
   console.log("allEyeCareCategoriesList", allEyeCareCategoriesList);
@@ -66,12 +66,12 @@ export const EyeCare = (props: any) => {
           categoryType: cName === "/dentalcare" ? "dentalcare" : "eyecare",
           slot1: {},
           slot2: {},
-        })
+        }),
       );
       history.push(
         cName === "/dentalcare"
           ? `/dentalcare/bookingReview`
-          : `/eyecare/bookingReview`
+          : `/eyecare/bookingReview`,
       );
     }
   };

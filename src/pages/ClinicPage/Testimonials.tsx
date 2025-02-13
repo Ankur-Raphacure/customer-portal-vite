@@ -50,13 +50,13 @@ const Testimonials = ({ siteDetails }: any) => {
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
+      prev === 0 ? testimonials.length - 1 : prev - 1,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) =>
-      prev === testimonials.length - 1 ? 0 : prev + 1
+      prev === testimonials.length - 1 ? 0 : prev + 1,
     );
   };
 
@@ -77,7 +77,11 @@ const Testimonials = ({ siteDetails }: any) => {
             >
               ←
             </button>
-            <button className="nav-button-mobile right-arrow" aria-label="Next" onClick={handleNext}>
+            <button
+              className="nav-button-mobile right-arrow"
+              aria-label="Next"
+              onClick={handleNext}
+            >
               →
             </button>
           </div>

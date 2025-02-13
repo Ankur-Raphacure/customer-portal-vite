@@ -53,8 +53,8 @@ const SimilarPackageTable: React.FC<SimilarPackageTableProps> = ({
     new Set(
       allPackages
         ?.flatMap((pkg) => pkg?.tests)
-        .map((test) => test?.service_code)
-    )
+        .map((test) => test?.service_code),
+    ),
   )
     .map((testCode) => {
       const test = allPackages
@@ -220,7 +220,7 @@ const SimilarPackageTable: React.FC<SimilarPackageTableProps> = ({
                                   <td key={pkgIndex}>
                                     {isTestInPackage(
                                       test?.service_code,
-                                      pkg?.tests
+                                      pkg?.tests,
                                     ) ? (
                                       <BsCheckLg className="check-icon" />
                                     ) : (

@@ -92,7 +92,12 @@ const Gymcard = () => (
               </ul>
             </div>
             <div className="bgrigt">
-              <img src={"https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736336344670.png"} className="girlimg" />
+              <img
+                src={
+                  "https://raphacure-public-images.s3.ap-south-1.amazonaws.com/119535-1736336344670.png"
+                }
+                className="girlimg"
+              />
             </div>
             <p className="saving custom-flex-container">
               <svg

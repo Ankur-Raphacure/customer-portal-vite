@@ -152,7 +152,7 @@ const InvoicePdfDocument = ({ data, language = "en" }: any) => {
           <Text>
             {data.address
               ? `${safeDisplay(data.address.city)}, ${safeDisplay(
-                  data.address.state
+                  data.address.state,
                 )} - ${safeDisplay(data.address.zip)}`
               : "N/A"}
           </Text>

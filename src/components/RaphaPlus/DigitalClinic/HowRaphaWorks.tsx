@@ -57,35 +57,38 @@ const HowRaphaWorks = () => {
           </h1>
         </div>
         <div className="imgWrapper">
-        <div className="image-section">
-          <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736414617190.png" alt="Illustrative description" />
-        </div>
-        <div className="content-section">
-          <div className="tabs-section">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                className={`tab-button ${activeTab === tab ? "active" : ""}`}
-                onClick={() =>
-                  setActiveTab(
-                    tab as
-                      | "In-House Clinic"
-                      | "Vitals Tracking"
-                      | "Facility Monitoring"
-                      | "Improved Efficiency"
-                  )
-                }
-              >
-                {tab}
-              </button>
-            ))}
+          <div className="image-section">
+            <img
+              src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736414617190.png"
+              alt="Illustrative description"
+            />
           </div>
-          <ul>
-            {content[activeTab].map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
+          <div className="content-section">
+            <div className="tabs-section">
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  className={`tab-button ${activeTab === tab ? "active" : ""}`}
+                  onClick={() =>
+                    setActiveTab(
+                      tab as
+                        | "In-House Clinic"
+                        | "Vitals Tracking"
+                        | "Facility Monitoring"
+                        | "Improved Efficiency",
+                    )
+                  }
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+            <ul>
+              {content[activeTab].map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </HowRaphaWorksStyled>

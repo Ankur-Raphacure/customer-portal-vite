@@ -15,7 +15,7 @@ const MedicalEquipments = () => {
   const [activeTab, setActiveTab] = useState("respiratory");
 
   const { allDomiciliaryEquipmentsList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const item = allDomiciliaryEquipmentsList?.equipment || [];
 

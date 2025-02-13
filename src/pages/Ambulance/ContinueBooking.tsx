@@ -61,7 +61,7 @@ const ContinueBooking = ({ setShowContent, picLoc, destLoc }: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { allAmbulanceList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
   console.log("allAmbulanceList", allAmbulanceList);
@@ -179,7 +179,7 @@ const ContinueBooking = ({ setShowContent, picLoc, destLoc }: any) => {
       .catch(console.error);
     let { address1, city, state, country, zipcode } = parseAddress(
       place,
-      selectedAddress
+      selectedAddress,
     );
     console.log("zipcode", zipcode);
     setFromAddressObj({ address: selectedAddress, zip: zipcode, city, state });
@@ -205,7 +205,7 @@ const ContinueBooking = ({ setShowContent, picLoc, destLoc }: any) => {
       .catch(console.error);
     let { address1, city, state, country, zipcode } = parseAddress(
       place,
-      selectedAddress
+      selectedAddress,
     );
     setToAddressObj({ address: selectedAddress, zip: zipcode, city, state });
   };
@@ -345,7 +345,7 @@ const ContinueBooking = ({ setShowContent, picLoc, destLoc }: any) => {
     switch (selectedTab) {
       case "book-ambulance":
         return <BookAmbulance setShowContent={setShowContent} />;
-        case "air-ambulance":
+      case "air-ambulance":
         return <AirAmbulance setShowContent={setShowContent} />;
       case "train-ambulance":
         return <TrainAmbulance setShowContent={setShowContent} />;

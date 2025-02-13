@@ -34,17 +34,17 @@ const AllPackages = (props: any) => {
     [];
   const { configInfo } = useSelector((ReduxState: any) => ReduxState.config);
   const { selectedFilterType } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const [minDiscount, setMinDiscount] = useState(0);
   const [maxDiscount, setMaxDiscount] = useState(0);
   console.log(selectedFilterType, "allPharmacyCategoriesList");
   const [labPackageCategories, setLabPackageCategories] = useState([]);
   const { allPackagesList, allTestsList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
   const { vendors } = useSelector(
-    (ReduxState: any) => ReduxState.bookingReview
+    (ReduxState: any) => ReduxState.bookingReview,
   );
   const [maxLabPackagesCount, setMaxLabPackagesCount] = useState(20); // total num of labtest available, to be used for pagination
   const [selectedCategories, setSelectedCategories] = useState<any>([]);
@@ -239,7 +239,7 @@ const AllPackages = (props: any) => {
 
       // Remove newCategory from selectedCategories
       const updatedCategories = selectedCategories.filter(
-        (category: any) => category !== newCategory
+        (category: any) => category !== newCategory,
       );
 
       setSelectedCategories(updatedCategories);
@@ -289,7 +289,7 @@ const AllPackages = (props: any) => {
 
       // Remove newVendor from selectedVendors
       const updatedVendors = selectedVendors.filter(
-        (vendr: any) => vendr !== newVendor
+        (vendr: any) => vendr !== newVendor,
       );
 
       setSelectedVendors(updatedVendors);
@@ -331,7 +331,7 @@ const AllPackages = (props: any) => {
 
   const getPackagesCategoriesAPI = async () => {
     const res = (await dispatch(
-      getAllCategoriesAPI({ sectionName: "packages" })
+      getAllCategoriesAPI({ sectionName: "packages" }),
     )) as any;
     setLabPackageCategories(res?.payload?.data);
   };
@@ -383,7 +383,7 @@ const AllPackages = (props: any) => {
       const res = (await dispatch(
         getAllFilteredTests({
           filters: {},
-        })
+        }),
       )) as any;
 
       if (res?.error) {
@@ -408,7 +408,7 @@ const AllPackages = (props: any) => {
     setCorpToggle(false);
     if (!selected) {
       const updatedTests = selectedTests.filter(
-        (currTest: any) => currTest !== test.service_code
+        (currTest: any) => currTest !== test.service_code,
       );
       console.log("updatedTests : ", updatedTests);
 
@@ -447,7 +447,7 @@ const AllPackages = (props: any) => {
               type: "diagnostic",
               page: 1,
             },
-          })
+          }),
         )) as any;
 
         if (res?.error) {
@@ -497,7 +497,7 @@ const AllPackages = (props: any) => {
           type: "diagnostic",
           page: 1,
         },
-      })
+      }),
     )) as any;
 
     if (res?.error) {
@@ -524,7 +524,7 @@ const AllPackages = (props: any) => {
           count: testsPerPage,
           page: 1,
         },
-      })
+      }),
     )) as any;
 
     if (res?.error) {

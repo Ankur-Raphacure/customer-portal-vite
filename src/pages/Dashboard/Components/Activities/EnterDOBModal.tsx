@@ -3,8 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import moment from "moment";
 import { getCreateTrackerDetailAPI } from "../../../../redux/slices/generic/genericService";
 import { useDispatch } from "react-redux";
-import { CareStyled } from "./CareStyled.Styled"; 
-
+import { CareStyled } from "./CareStyled.Styled";
 
 const initVal = {
   dob: undefined,
@@ -60,15 +59,15 @@ const EnterDOBModal = ({ show, handleClose, setPeriodPrediction }: any) => {
 
   const makeSignUpCall = async (periodData: any) => {
     console.log(periodData, "periodData");
-    setIsLoading(true)
-    const resp = await dispatch(getCreateTrackerDetailAPI(periodData))
-    const resJson = JSON.parse(JSON.stringify(resp))
+    setIsLoading(true);
+    const resp = await dispatch(getCreateTrackerDetailAPI(periodData));
+    const resJson = JSON.parse(JSON.stringify(resp));
     console.log("resJson : ", resJson);
-    
+
     if (resJson?.payload?.success) {
       setSignUpData(initVal as any);
       setIsLoading(false);
-      handleClose()
+      handleClose();
       // props?.addEmpanelSuccess(resJson?.payload?.data);
     }
     // const resp = props?.selectedMember?.id
@@ -173,31 +172,31 @@ const EnterDOBModal = ({ show, handleClose, setPeriodPrediction }: any) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <CareStyled>
-      <Modal.Header closeButton>
-        <Modal.Title>
-          {currentStep === 1 && "Enter Date of Birth"}
-          {currentStep === 2 && "Second Step"}
-          {currentStep === 3 && "Third Step"}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>{renderStepContent()}</Modal.Body>
-      <Modal.Footer>
-        {currentStep > 1 && (
-          <Button variant="secondary" onClick={handleBack}>
-            Back
-          </Button>
-        )}
-        {currentStep < 3 && (
-          <Button variant="primary" onClick={handleNext}>
-            Next
-          </Button>
-        )}
-        {currentStep === 3 && (
-          <Button variant="primary" onClick={createAccountData}>
-            Confirm
-          </Button>
-        )}
-      </Modal.Footer>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {currentStep === 1 && "Enter Date of Birth"}
+            {currentStep === 2 && "Second Step"}
+            {currentStep === 3 && "Third Step"}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{renderStepContent()}</Modal.Body>
+        <Modal.Footer>
+          {currentStep > 1 && (
+            <Button variant="secondary" onClick={handleBack}>
+              Back
+            </Button>
+          )}
+          {currentStep < 3 && (
+            <Button variant="primary" onClick={handleNext}>
+              Next
+            </Button>
+          )}
+          {currentStep === 3 && (
+            <Button variant="primary" onClick={createAccountData}>
+              Confirm
+            </Button>
+          )}
+        </Modal.Footer>
       </CareStyled>
     </Modal>
   );

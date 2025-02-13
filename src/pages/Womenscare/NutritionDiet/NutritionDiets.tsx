@@ -104,7 +104,7 @@ const NutritionDiets = () => {
   const [selectedDiet, setSelectedDiet] = useState("");
 
   const { allVaccinationsList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
   const { userCity, user } = useSelector((ReduxState: any) => ReduxState.auth);
   const [modalShow, setModalShow] = useState(false);

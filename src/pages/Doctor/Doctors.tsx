@@ -81,7 +81,7 @@ const Doctors = () => {
   const [showBookingErrorMessage, setshowBookingErrorMessage] = useState("");
   const [showSearchPopupModel, setShowSearchPopupModel] = useState(false);
   const { userAddress, nearbyVendors } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
 
   const {
@@ -93,7 +93,7 @@ const Doctors = () => {
   const { user } = useSelector((ReduxState: any) => ReduxState.auth);
   const [selectedUserData, setSelectedUserData] = useState<any>(user);
   const { allCategoriesList } = useSelector(
-    (ReduxState: any) => ReduxState.labtest
+    (ReduxState: any) => ReduxState.labtest,
   );
 
   useEffect(() => {
@@ -101,7 +101,7 @@ const Doctors = () => {
   }, [allNearByHospitalList]);
 
   const { selectedCurrentAddress } = useSelector(
-    (ReduxState: any) => ReduxState.profile
+    (ReduxState: any) => ReduxState.profile,
   );
 
   const navigateToDetails = (item: any) => {
@@ -131,7 +131,7 @@ const Doctors = () => {
           status: ["approved"],
           availabilities: true,
         },
-      })
+      }),
     );
   };
   const getAllDoctorsList = async () => {
@@ -147,7 +147,7 @@ const Doctors = () => {
             availabilities: true,
           },
         },
-      })
+      }),
     );
   };
   const getSpecializationLsit = async () => {
@@ -201,7 +201,7 @@ const Doctors = () => {
 
   const continurBookingtoCart = async (
     bType: any,
-    docDetails = doctorDetails
+    docDetails = doctorDetails,
   ) => {
     try {
       const neList = [] as any;
@@ -339,7 +339,7 @@ const Doctors = () => {
                       </p>
                     </div>
                   </div>
-                )
+                ),
               )
             ) : searchText?.length > 3 ? (
               <div className="search-popup-no-results">
@@ -454,7 +454,7 @@ const Doctors = () => {
                     image={vendor?.image}
                     rating={(vendor?.rating || "0").toString()}
                     distance={`${parseFloat(vendor?.distance_km || 0).toFixed(
-                      2
+                      2,
                     )} Km`}
                     location={truncateText(vendor?.address, 40) || "N/A"}
                     id={vendor?.id}

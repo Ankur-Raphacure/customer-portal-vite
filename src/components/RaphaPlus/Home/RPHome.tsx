@@ -24,7 +24,10 @@ const RPHome = () => {
               onClick={() => history.push("/raphaplus/hospital-management")}
             >
               <div className="CardIcon">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405472282.png" alt="" />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405472282.png"
+                  alt=""
+                />
               </div>
               <h3 className="CardTitle">Hospital Management</h3>
               <p className="CardDescription">
@@ -119,7 +122,11 @@ const RPHome = () => {
                   Rapha<sup className="plus-icon">+</sup> Feature
                 </th>
                 <th className="th">
-                  <img className="icon" src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405595221.png" alt="Rapha+" />
+                  <img
+                    className="icon"
+                    src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736405595221.png"
+                    alt="Rapha+"
+                  />
                 </th>
                 {/* <th className="th">
                   <PractoIcon

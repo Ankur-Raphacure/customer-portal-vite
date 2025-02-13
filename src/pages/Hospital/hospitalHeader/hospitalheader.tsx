@@ -20,13 +20,13 @@ const HospitalHeader = (props: any) => {
         currentdate.getFullYear(),
         currentdate.getMonth(),
         currentdate.getDate(),
-        ...startTime
+        ...startTime,
       );
       let enddate = new Date(
         currentdate.getFullYear(),
         currentdate.getMonth(),
         currentdate.getDate(),
-        ...endTime
+        ...endTime,
       );
 
       return startdate < currentdate && enddate > currentdate
@@ -45,7 +45,7 @@ const HospitalHeader = (props: any) => {
         todaydate.getFullYear(),
         todaydate.getMonth(),
         todaydate.getDate(),
-        ...time
+        ...time,
       );
       return returndate.toLocaleTimeString("en-us", {
         hour: "2-digit",
@@ -96,7 +96,7 @@ const HospitalHeader = (props: any) => {
                 <div className="opacity-70 text-sm text-violet poppins-medium">
                   {checkTimes(
                     props.hospital?.slot_start_time,
-                    props.hospital?.slot_end_time
+                    props.hospital?.slot_end_time,
                   )}{" "}
                 </div>
                 <div className="opacity-70 text-sm poppins-medium">

@@ -20,7 +20,7 @@ const Dentalcare = () => {
   const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const { allAppoinmentList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   const TreatmentList = allAppoinmentList?.dental;
@@ -46,7 +46,7 @@ const Dentalcare = () => {
     });
   };
   const { alldentalcareNearClinic } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   const handleViewAllClick = () => {
@@ -116,7 +116,7 @@ const Dentalcare = () => {
 
     try {
       const resultAction: any = await dispatch(
-        bookAppointmentAPI(appointmentObjBody)
+        bookAppointmentAPI(appointmentObjBody),
       );
       if (resultAction.payload.success === "true") {
         setShowConform(true);
@@ -172,7 +172,10 @@ const Dentalcare = () => {
                 </button>
               </div>
               <div className="col-md-5">
-                <img src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736332196110.png" alt="eyecare-image " />
+                <img
+                  src="https://raphacure-public-images.s3.ap-south-1.amazonaws.com/120521-1736332196110.png"
+                  alt="eyecare-image "
+                />
               </div>
             </div>
           </div>

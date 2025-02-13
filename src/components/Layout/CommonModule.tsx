@@ -11,7 +11,7 @@ const CommonModule = () => {
   const [showAdressModel, setShowAdressModel] = useState(false);
   const dispatch = useDispatch();
   const { showLoginModel, showAddressSearchModel } = useSelector(
-    (routeR: any) => routeR.auth
+    (routeR: any) => routeR.auth,
   );
 
   useEffect(() => {

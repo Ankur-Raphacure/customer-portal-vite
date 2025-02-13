@@ -21,12 +21,12 @@ const Vaccine = () => {
   };
 
   const { allDomiciliaryVaccinationsList } = useSelector(
-    (ReduxState: any) => ReduxState.generic
+    (ReduxState: any) => ReduxState.generic,
   );
 
   console.log(
     allDomiciliaryVaccinationsList?.tests,
-    "allDomiciliaryVaccinationsList"
+    "allDomiciliaryVaccinationsList",
   );
 
   useEffect(() => {
